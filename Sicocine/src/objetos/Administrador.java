@@ -9,6 +9,6 @@ public class Administrador extends Usuario {
 	}
 	
 	/* 
-	 * IMPLEMENTAR O RESTO
+	 * IMPLEMENTAR O RESTO, pls
 	 */
 }
