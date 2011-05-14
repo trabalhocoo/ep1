@@ -2,7 +2,7 @@ package objetos;
 import java.sql.Date;
 
 public class RegistroOutros {
-	/***O tipo representa a operação que o método deve fazer, respectivamente: 
+	/***O tipo representa a operacaoo que o metodo deve fazer, respectivamente: 
 	**** 1 -> adicionar, 2 -> modificar, 3 -> remover ***/
 	void registrarSessao(Sessao sessao, int tipo){
 		
@@ -13,11 +13,11 @@ public class RegistroOutros {
 	void registrarFilme(Filme filme, int tipo){
 		
 	}
-	void registrarCaixa(Caixa caixa, int tipo){ // que classe é esse caixa?
+	void registrarCaixa(Caixa caixa, int tipo){ // que classe ï¿½ esse caixa?
 		
 	}
 	
-	void registrarUsuario(Usuario usuário, int tipo){
+	void registrarUsuario(Usuario usuario, int tipo){
 		
 	}
 }
