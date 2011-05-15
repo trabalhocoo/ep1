@@ -1,4 +1,4 @@
-package objetos;
+package banco;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,6 +6,12 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.ListIterator;
 import java.util.Scanner;
+
+import objetos.Administrador;
+import objetos.Filme;
+import objetos.Sala;
+import objetos.Sessao;
+import objetos.Usuario;
 
 //Eu tive uma ideia pro banco: a gente poderia
 //colocar já de cara um vetore 

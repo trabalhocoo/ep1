@@ -1,9 +1,12 @@
-package objetos;
+package registro;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
+
+import objetos.Usuario;
+
 
 public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo? >_<
 

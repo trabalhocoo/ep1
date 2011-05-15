@@ -1,9 +1,13 @@
-package objetos;
+package registro;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
+
+import objetos.Filme;
+import objetos.Sala;
+
 
 public class RegistroVenda extends Registrador {//o q eh esse Registrador? O_O
 

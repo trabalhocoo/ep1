@@ -1,9 +1,15 @@
-package objetos;
+package registro;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.Date;
+
+import objetos.Filme;
+import objetos.Sala;
+import objetos.Sessao;
+import objetos.Usuario;
+
 
 /**
  * 
