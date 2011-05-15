@@ -103,8 +103,8 @@ public class Banco {
 		sessoes.add(sessao);
 	}
 
-	boolean modificarSessao(Sessao sessao, Filme filme, String horaInicio,
-			String horaFim, Sala sala, double preco, boolean is3d) {
+	boolean modificarSessao(Sessao sessao, Filme filme, Date horaInicio,
+			long horaFim, Sala sala, double preco) {
 		Iterator<Sessao> it = sessoes.iterator();
 		Sessao sessaoEncontrada = null;
 		// essa contrucao eh usada para nao dar currentModificationException
@@ -119,7 +119,6 @@ public class Banco {
 			sessaoEncontrada.setHorarioDeFim(horaFim);
 			sessaoEncontrada.setSala(sala);
 			sessaoEncontrada.setPreco(preco);
-			sessaoEncontrada.setEh3d(is3d);
 			return true;
 		}
 		return false;
@@ -252,6 +251,10 @@ public class Banco {
 
 	public static TreeSet<Sessao> getSessoes() {
 		return sessoes;
+	}
+	
+	public static TreeSet<Usuario> getUsuarios() {
+		return usuarios;
 	}
 
 	public static ArrayList<Filme> getFilmes() {

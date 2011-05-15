@@ -1,26 +1,24 @@
 package objetos;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Sessao implements Serializable {
 	private Filme filme;
-	private String horarioDeInicio;
-	private String horarioDeFim;
+	private Date horarioDeInicio;
+	private long horarioDeFim;
 	private Sala sala;
 	private double preco;
-	private boolean eh3d;
 	private Date duracao;
 	private int lugaresDisponiveis;
 	
-	Sessao(Filme filme, String inicio, String fim, Sala sala, double preco, boolean is3d, Date duracao, int disp)
+	Sessao(Filme filme, Date inicio, long fim, Sala sala, double preco, Date duracao, int disp)
 	{
 		this.filme = filme;
 		this.horarioDeInicio = inicio;
 		this.horarioDeFim = fim;
 		this.sala = sala;
 		this.preco = preco;
-		this.eh3d = is3d;
 		this.duracao = duracao;
 		this.lugaresDisponiveis = disp;
 
@@ -34,19 +32,19 @@ public class Sessao implements Serializable {
 		this.filme = filme;
 	}
 
-	public String getHorarioDeInicio() {
+	public Date getHorarioDeInicio() {
 		return horarioDeInicio;
 	}
 
-	public void setHorarioDeInicio(String horarioDeInicio) {
+	public void setHorarioDeInicio(Date horarioDeInicio) {
 		this.horarioDeInicio = horarioDeInicio;
 	}
 
-	public String getHorarioDeFim() {
+	public long getHorarioDeFim() {
 		return horarioDeFim;
 	}
 
-	public void setHorarioDeFim(String horarioDeFim) {
+	public void setHorarioDeFim(long horarioDeFim) {
 			this.horarioDeFim = horarioDeFim;
 	}
 
@@ -67,21 +65,15 @@ public class Sessao implements Serializable {
 			this.preco = preco;
 	}
 
-	public boolean isEh3d() {
-		return eh3d;
-	}
-
-	public void setEh3d(boolean eh3d) {
-		this.eh3d = eh3d;
-	}
-
 	public Date getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(Date duracao) {
+	public long setDuracao(Date duracao) {
 		this.duracao = duracao;
-		horarioDeFim = horarioDeInicio+duracao;
+		long horarioDeFim = duracao.getTime() + horarioDeInicio.getTime();
+		this.horarioDeFim = horarioDeFim;
+		return this.horarioDeFim;
 	}
 
 	public int getLugaresDisponiveis() {
