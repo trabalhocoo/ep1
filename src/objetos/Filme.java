@@ -1,15 +1,17 @@
 package objetos;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Filme implements Serializable {
 	private String nome;
 	private int faixaEtaria;
-	private double duracao;
+	private Date duracao;
 	private String diretor;
 	private String sinopse;
 	private String genero;
 	private String dataDeEstreia;
+	private boolean is3d;
 	
 	/**
 	 * 
@@ -24,7 +26,7 @@ public class Filme implements Serializable {
 	 * Quem vai tratar se os parâmetros estão errados? Será o contrutor? Acho que não
 	 */
 	
-	Filme(String nome, int faixa, double duracao, String diretor, String sinopse, String genero, String estreia){
+	Filme(String nome, int faixa, Date duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d){
 		this.nome = nome;
 		faixaEtaria = faixa;
 		this.duracao = duracao;
@@ -32,6 +34,7 @@ public class Filme implements Serializable {
 		this.sinopse = sinopse;
 		this.genero = genero;
 		dataDeEstreia = estreia;
+		this.is3d = is3d;//Modifiquei o filme
 	}
 
 	public String getNome() {
@@ -50,11 +53,11 @@ public class Filme implements Serializable {
 		this.faixaEtaria = faixaEtaria;
 	}
 
-	public double getDuracao() {
+	public Date getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(double duracao) {
+	public void setDuracao(Date duracao) {
 		this.duracao = duracao;
 	}
 
