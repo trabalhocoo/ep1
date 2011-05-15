@@ -12,7 +12,16 @@ public class Sessao {
 	private Date duracao;
 	private int lugaresDisponiveis;
 	
-	Sessao(Filme filme, String inicio, String fim, Sala sala, double preco, boolean is3d, Date duracao, int disp){
+	Sessao(Filme filme, String inicio, String fim, Sala sala, double preco, boolean is3d, Date duracao, int disp)
+	{
+		this.filme = filme;
+		this.horarioDeInicio = inicio;
+		this.horarioDeFim = fim;
+		this.sala = sala;
+		this.preco = preco;
+		this.eh3d = is3d;
+		this.duracao = duracao;
+		this.lugaresDisponiveis = disp;
 
 	}
 
@@ -37,7 +46,7 @@ public class Sessao {
 	}
 
 	public void setHorarioDeFim(String horarioDeFim) {
-		this.horarioDeFim = horarioDeFim;
+			this.horarioDeFim = horarioDeFim;
 	}
 
 	public Sala getSala() {
@@ -53,7 +62,8 @@ public class Sessao {
 	}
 
 	public void setPreco(double preco) {
-		this.preco = preco;
+		if (preco>0)
+			this.preco = preco;
 	}
 
 	public boolean isEh3d() {
@@ -70,6 +80,7 @@ public class Sessao {
 
 	public void setDuracao(Date duracao) {
 		this.duracao = duracao;
+		horarioDeFim = horarioDeInicio+duracao;
 	}
 
 	public int getLugaresDisponiveis() {
@@ -77,6 +88,7 @@ public class Sessao {
 	}
 
 	public void setLugaresDisponiveis(int lugaresDisponiveis) {
+		if(lugaresDisponiveis>0)
 		this.lugaresDisponiveis = lugaresDisponiveis;
 	}
 	

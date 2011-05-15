@@ -1,14 +1,14 @@
 package objetos;
-import java.sql.Date;
+import java.util.Date;
 
-public class RegistroVenda {
+public class RegistroVenda extends Registrador {
+
+	void registrarVenda(Filme filme, String hora, Sala sala, Date data, double preco){
+		//TODO deve lançar excessão de IO
+	}
 	
-	void registrarVenda(Filme filme,Date hora, Sala sala, Date data, double preco){
+	void registrarVendaErrada(Filme filme, String hora, Sala sala, Date data, double preco){
 		
 	}
 	
-	void registrarVendaErrada(Filme filme,Date hora, Sala sala, Date data, double preco){
-		
-	}
-
 }
