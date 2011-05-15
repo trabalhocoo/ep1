@@ -1,6 +1,6 @@
 package objetos;
 
-public class Usuario {
+public class Usuario implements Serializable {
 	private String nome;
 	private int registro;
 	private boolean ehAdministrador;
@@ -9,10 +9,8 @@ public class Usuario {
 	
 	//Faltava colocar o construtor do usuário.
 	//Agora não falta mais ;)
-	Usuario(String nomenome, int registroregistro, 
-			boolean admadm, String loginlogin,
-			String senhasenha)
-	{
+	Usuario(String nomenome, int registroregistro, boolean admadm, String loginlogin, String senhasenha){
+		
 		nome=nomenome;
 		registro=registroregistro;
 		ehAdministrador=admadm;

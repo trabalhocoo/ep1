@@ -1,8 +1,9 @@
 package objetos;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Sessao {
+public class Sessao implements Serializable {
 	private Filme filme;
 	private String horarioDeInicio;
 	private String horarioDeFim;

@@ -1,6 +1,8 @@
 package objetos;
 
-public class Filme {
+import java.io.Serializable;
+
+public class Filme implements Serializable {
 	private String nome;
 	private int faixaEtaria;
 	private double duracao;
