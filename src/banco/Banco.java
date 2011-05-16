@@ -32,7 +32,7 @@ public class Banco {
 	/**
 	 * fazer essa coisa depois. Ele deve obter coisas do banco de dados
 	 */
-	public void gravarDados() {
+	public static void gravarDados() {
 		try {
 			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
 			ObjectOutputStream objarqCaixas = new ObjectOutputStream(
@@ -71,7 +71,7 @@ public class Banco {
 		}
 	}
 
-	void recuperarDados() {
+	public static void recuperarDados() {
 		try {
 			FileInputStream fluxoCaixas = new FileInputStream("Caixas.txt");
 			ObjectInputStream objarqCaixas = new ObjectInputStream(fluxoCaixas);
