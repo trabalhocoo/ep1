@@ -1,8 +1,9 @@
 package visualizacao;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
+
+import controlador.Controlador;
 
 import banco.Banco;
 
@@ -42,11 +43,11 @@ public class InterfaceCinema {
 		int numeroRegistro = obterInteiro();
 		Usuario usuarioAAlterar = Banco.obterUsuario(numeroRegistro);
 		arrayListDeUsuario.add(usuarioAAlterar);
-		System.out.println ("Digite o numero correspondente do parâmetro que voce deseja alterar: ");
+		System.out.println ("Digite o numero correspondente do parï¿½metro que voce deseja alterar: ");
 		System.out.println ("0- nome \n1- administrador 2- senha");
 		int numero = obterInteiro();
 		if (numero == 0){
-			System.out.println ("Digite o novo nome do usuário: ");
+			System.out.println ("Digite o novo nome do usuï¿½rio: ");
 			String novoNome = obterString();
 			arrayListDeUsuario.add(novoNome);
 		}
@@ -55,7 +56,7 @@ public class InterfaceCinema {
 		}
 		
 		if (numero == 1){
-			System.out.println ("Digite se o usuário e administrador: ");
+			System.out.println ("Digite se o usuï¿½rio e administrador: ");
 			boolean ehAdmin = obterBoolean();
 			arrayListDeUsuario.add(ehAdmin);
 		}
@@ -64,7 +65,7 @@ public class InterfaceCinema {
 		}
 		
 		if (numero == 2){
-			System.out.println ("Digite a nova senha do usuário: ");
+			System.out.println ("Digite a nova senha do usuï¿½rio: ");
 			String senha = obterString();
 			arrayListDeUsuario.add(senha);
 		}
@@ -76,13 +77,15 @@ public class InterfaceCinema {
 	
 	public static Sessao removerSessao(){
 		System.out.println ("");
+		//Implementar isso
+		return null;
 	}
 		
 	public static ArrayList adicionarFilme(){
 		ArrayList <Object> arrayListDeFilme = new ArrayList <Object> ();
 		System.out.println ("Digite o nome do filme: ");
 		arrayListDeFilme.add(obterString());
-		System.out.println ("Digite a faixa etária do filme:"); 
+		System.out.println ("Digite a faixa etï¿½ria do filme:"); 
 		arrayListDeFilme.add(obterInteiro());
 		System.out.println ("Digite a duracao do filme:");
 		arrayListDeFilme.add(obterString());
@@ -94,13 +97,13 @@ public class InterfaceCinema {
 		arrayListDeFilme.add(obterString());
 		System.out.println ("Digite a estreia do filme:");
 		arrayListDeFilme.add (obterString());
-		System.out.println ("Digite se o filme é 3D: ");
+		System.out.println ("Digite se o filme ï¿½ 3D: ");
 		arrayListDeFilme.add(obterBoolean());
 		return arrayListDeFilme;
 	}	
 	
 	public static ArrayList alterarFilme(){
-		ArrayList <Object> arrayListDeFilme = new ArrayList <Object> ();
+		ArrayList arrayListDeFilme = new ArrayList();
 		System.out.println ("Digite o nome do filme que deseja alterar: ");
 		String nomeDoFilme = obterString();
 		//Falta metodo obter filme no banco
@@ -108,7 +111,7 @@ public class InterfaceCinema {
 		//modificarFilme(Filme filme, String nome, int faixaEtaria, Date horaInicio, 
 		//Date duracao, String Diretor, String genero, Date dataEstreia
 		arrayListDeFilme.add(filme);
-		System.out.println ("Digite o numero correspondente do parâmetro que voce deseja alterar: ");
+		System.out.println ("Digite o numero correspondente do parï¿½metro que voce deseja alterar: ");
 		//String nome, int faixa, Date duracao, String diretor, String sinopse, 
 		//String genero, String estreia, boolean is3d
 		System.out.println ("0- nome \n1- administrador 2- senha");
@@ -143,13 +146,14 @@ public class InterfaceCinema {
 
 	public static ArrayList adicionarUsuario(){
 		Scanner sc = new Scanner (System.in);
+		//Ei, esse scaner numca Ã© utilizado!!!!!
 		ArrayList <Object> arrayListDeUsuario = new ArrayList <Object> ();
-		System.out.println ("Digite o nome do Usuário: ");
+		System.out.println ("Digite o nome do Usuï¿½rio: ");
 		arrayListDeUsuario.add(obterString());
-		System.out.println ("Digite se o usuário é administrador: ");
+		System.out.println ("Digite se o usuï¿½rio ï¿½ administrador: ");
 		arrayListDeUsuario.add(obterBoolean());
 		arrayListDeUsuario.add("login temporario");
-		System.out.println ("Digite a senha do usuário: ");
+		System.out.println ("Digite a senha do usuï¿½rio: ");
 		arrayListDeUsuario.add(obterString());
 		return arrayListDeUsuario;
 	}
@@ -157,12 +161,12 @@ public class InterfaceCinema {
 	
 	public static ArrayList alterarSala(){
 		ArrayList <Object> arrayListDaSala = new ArrayList <Object> ();
-		System.out.println ("Digite o número da sala:");
+		System.out.println ("Digite o nï¿½mero da sala:");
 		int numeroDaSala = obterInteiro();
 		//Falta metodo obterSala no banco
 		Sala sala = Banco.obterSala(numeroDaSala);
 		arrayListDaSala.add(sala);
-		System.out.println ("Digite o numero correspondente do parâmetro que voce deseja alterar: \n");
+		System.out.println ("Digite o numero correspondente do parï¿½metro que voce deseja alterar: \n");
 		System.out.println ("0- capacidade \n1- numero 2- login 3- 3D");
 		int numeroAAlterar = obterInteiro();
 		if (numeroAAlterar == 0){
@@ -174,7 +178,7 @@ public class InterfaceCinema {
 			arrayListDaSala.add(sala.getCapacidade());
 		}
 		if (numeroAAlterar == 1){
-			System.out.println ("Digite o novo número da sala:");
+			System.out.println ("Digite o novo nï¿½mero da sala:");
 			int numero = obterInteiro();
 			arrayListDaSala.add(numero);
 		}
@@ -194,7 +198,7 @@ public class InterfaceCinema {
 	}
 	
 	//falta tratar excecao de tipo
-	public static String obterString (){
+	private static String obterString(){
 		Scanner sc = new Scanner(System.in);
 		String string = sc.next();
 		return string;
@@ -214,6 +218,7 @@ public class InterfaceCinema {
 		boolean bool = sc.nextBoolean();
 		return bool;
 	}
+
 	
 	
 }

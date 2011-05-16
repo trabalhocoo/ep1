@@ -7,14 +7,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.TreeSet;
 
-import objetos.Administrador;
 import objetos.Caixa;
 import objetos.Filme;
 import objetos.Sala;
@@ -27,7 +23,7 @@ public class Banco {
 
 	private static ArrayList<Filme> filmes;
 	private TreeSet<Sala> salas;
-	private TreeSet<Caixa> caixas;
+	private TreeSet<Caixa> caixas;//TODO usar o caixas
 	private static TreeSet<Usuario> usuarios;
 	private static TreeSet<Sessao> sessoes;
 
@@ -38,6 +34,7 @@ public class Banco {
 	 */
 	public void gravarDados (){
 		try {
+			//TODO e os caixas?????
 			FileOutputStream fluxoSalas = new FileOutputStream("Sala.txt");
 			ObjectOutputStream objarq = new ObjectOutputStream(fluxoSalas);
 			objarq.writeObject(salas);
@@ -45,8 +42,8 @@ public class Banco {
 
 			FileOutputStream fluxoSessoes = new FileOutputStream("Sessoes.txt");
 			ObjectOutputStream objarqSessoes = new ObjectOutputStream(fluxoSessoes);
-			objarq.writeObject(sessoes);
-			objarq.close();
+			objarqSessoes.writeObject(sessoes);
+			objarqSessoes.close();
 
 			FileOutputStream fluxoUsuarios = new FileOutputStream("Usuarios.txt");
 			ObjectOutputStream objarqUsuarios = new ObjectOutputStream(fluxoUsuarios);
@@ -67,10 +64,11 @@ public class Banco {
 
 	void recuperarDados (){
 		try {
-			FileInputStream fluxo = new FileInputStream("Filmes.txt");
-			ObjectInputStream objarq = new ObjectInputStream(fluxo);
-			filmes = (ArrayList<Filme>) objarq.readObject();
-			objarq.close();
+			//TODO e os caixas?
+			FileInputStream fluxoFilmes = new FileInputStream("Filmes.txt");
+			ObjectInputStream objarqFilmes = new ObjectInputStream(fluxoFilmes);
+			filmes = (ArrayList<Filme>) objarqFilmes.readObject();
+			objarqFilmes.close();
 			
 			FileInputStream fluxoUsuario = new FileInputStream("Usuarios.txt");
 			ObjectInputStream objarqUsuario = new ObjectInputStream(fluxoUsuario);
@@ -88,7 +86,7 @@ public class Banco {
 			objarqSessoes.close();
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("Arquivo não encontrado");
+			System.out.println("Arquivo nï¿½o encontrado");
 		}
 		catch(IOException ioExc) {
 			System.out.println(ioExc.getMessage());
@@ -213,7 +211,7 @@ public class Banco {
 	}
 
 	/**
-	 * DEVE GERAR EXCESSÃO caso naum consiga remover
+	 * DEVE GERAR EXCESSï¿½O caso naum consiga remover
 	 * 
 	 * @param usuario
 	 * @return
@@ -260,6 +258,16 @@ public class Banco {
 	public static ArrayList<Filme> getFilmes() {
 		// TODO Auto-generated method stub
 		return filmes;
+	}
+
+	public static Filme obterFilme(String nomeDoFilme) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static Sala obterSala(int numeroDaSala) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
