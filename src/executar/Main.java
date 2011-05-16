@@ -25,6 +25,9 @@ public class Main {
 			logado = Controlador.isLogado();
 		}while(!logado);
 		Exibir.exibirMenu(tipoUser);
+		
+		int opcao = InterfaceCinema.recebeOpcao();
+		Controlador.executaOpcao(opcao);
 	}
 
 }
