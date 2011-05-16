@@ -1,6 +1,8 @@
 package objetos;
 
-public class Sala {
+import java.io.Serializable;
+
+public class Sala implements Serializable {
 	private int capacidade;
 	private int numero;
 	private boolean is3d;
