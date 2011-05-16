@@ -14,6 +14,8 @@ import objetos.Usuario;
 
 public class InterfaceCinema {
 	
+	public static Scanner scanPrincipal = new Scanner(System.in);
+	
 	public static Usuario removerUsuario() {
 		System.out
 				.println("Digite o numero do registro de usuario que voce que remover: ");
@@ -184,17 +186,20 @@ public class InterfaceCinema {
 
 	// falta tratar excecao de tipo
 	private static String obterString() {
-		Scanner sc = new Scanner(System.in);
-		String string = sc.next();
+		//Scanner sc1 = new Scanner(System.in);
+		//String string = sc1.next();
+		//sc1.close();
+		String string = scanPrincipal.next();
 		return string;
 	}
 
 	// falta tratar excecao de tipo
 	//NÃO ESQUECER DE FECHAR OS FLUXOS
 	private static int obterInteiro() {
-		Scanner sc = new Scanner(System.in);
-		int inteiro = sc.nextInt();
-		sc.close();
+		//Scanner sc = new Scanner(System.in);
+		//int inteiro = sc.nextInt();
+		//sc.close();
+		int inteiro = scanPrincipal.nextInt();
 		return inteiro;
 	}
 
