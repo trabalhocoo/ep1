@@ -13,23 +13,7 @@ import objetos.Sessao;
 import objetos.Usuario;
 
 public class InterfaceCinema {
-	/*
-	 * Sessao sessaoAAlterar = InterfaceCinema.alterarSessao();
-	 */
-	public static boolean logar() {// tratar as excecoes
-		System.out.println("Digite o seu login");
-		int login = obterInteiro();
-		System.out.println("Digite a sua senha");
-		String senha = obterString();
-		boolean ehAdimin = Controlador.logar(login, senha);
-		return (ehAdimin);
-	}
 
-	public static boolean ehAdmin() {
-		// nao sei por que tem esse metodo
-		// TODO implementar
-		return false;
-	}
 
 	public static Usuario removerUsuario() {
 		System.out
@@ -77,7 +61,8 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList removerSessao() {
-		//TODO deve perguntar ao usuario qual é o horario de inicio e a sala da sessao e retornar isso num arrayList
+		// TODO deve perguntar ao usuario qual é o horario de inicio e a sala da
+		// sessao e retornar isso num arrayList
 		System.out.println("");
 		// Implementar isso
 		return null;
@@ -206,9 +191,11 @@ public class InterfaceCinema {
 	}
 
 	// falta tratar excecao de tipo
+	//NÃO ESQUECER DE FECHAR OS FLUXOS
 	private static int obterInteiro() {
 		Scanner sc = new Scanner(System.in);
 		int inteiro = sc.nextInt();
+		sc.close();
 		return inteiro;
 	}
 
@@ -221,8 +208,23 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList alterarSessao() {
-		// TODO Deve retornar um arrayList com os dados da sessao: filme, horaInicio, horaFim, sala, preco
+		// TODO Deve retornar um arrayList com os dados da sessao: filme,
+		// horaInicio, horaFim, sala, preco
 		return null;
+	}
+
+	public static ArrayList obterDadosLogin() {
+		// TODO tratar excessões
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Digite seu numero de registro:");
+		int registro = obterInteiro();
+		System.out.println();
+		System.out.println("Digite sua senha: ");
+		String senha = obterString();
+		ArrayList dadosLogin = new ArrayList();
+		dadosLogin.add(registro);
+		dadosLogin.add(senha);
+		return dadosLogin;
 	}
 
 }
