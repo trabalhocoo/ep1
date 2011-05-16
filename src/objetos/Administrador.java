@@ -24,8 +24,9 @@ public class Administrador extends Usuario implements Serializable {
 		super(nome, adm, login, senha);
 	}
 
-	void adicionarSessao(Filme filme, Date hora, Sala sala, double preco,
-			boolean is3d) {
+	//Filme filme, Date hora, Sala sala, double preco, boolean is3d
+	void adicionarSessao() {
+		ArrayList dadosSessao = InterfaceCinema.obterDadosSessao();
 		long fim_horario = (long) (hora.getTime() + filme.getDuracao());
 		// falta nao sei como fazer isso teria que somar o horario do inicio
 		// +tempo de filme

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.TreeSet;
@@ -124,7 +125,7 @@ public class Banco {
 	}
 
 	public static boolean modificarSessao(Sessao sessao, Filme filme,
-			Date horaInicio, long horaFim, Sala sala, double preco) {
+			Calendar horaInicio, Calendar horaFim, Sala sala, double preco) {
 		Iterator<Sessao> it = sessoes.iterator();
 		Sessao sessaoEncontrada = null;
 		// essa contrucao eh usada para nao dar currentModificationException
@@ -298,7 +299,7 @@ public class Banco {
 		return null;
 	}
 
-	public static Sessao obterSessao(Date hora, int numeroDaSala) {
+	public static Sessao obterSessao(Calendar hora, int numeroDaSala) {
 		for (Sessao sessao : sessoes) {
 			if (sessao.getHorarioDeInicio().equals(hora)
 					&& sessao.getSala().getNumero() == numeroDaSala) {
