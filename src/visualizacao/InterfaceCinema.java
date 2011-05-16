@@ -76,7 +76,8 @@ public class InterfaceCinema {
 		return arrayListDeUsuario;
 	}
 
-	public static Sessao removerSessao() {
+	public static ArrayList removerSessao() {
+		//TODO deve perguntar ao usuario qual é o horario de inicio e a sala da sessao e retornar isso num arrayList
 		System.out.println("");
 		// Implementar isso
 		return null;
@@ -219,8 +220,8 @@ public class InterfaceCinema {
 		return bool;
 	}
 
-	public static Sessao alterarSessao() {
-		// TODO Auto-generated method stub
+	public static ArrayList alterarSessao() {
+		// TODO Deve retornar um arrayList com os dados da sessao: filme, horaInicio, horaFim, sala, preco
 		return null;
 	}
 

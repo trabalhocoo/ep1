@@ -23,7 +23,7 @@ public class Banco {
 
 	private static ArrayList<Filme> filmes;
 	private static TreeSet<Sala> salas;
-	private TreeSet<Caixa> caixas;
+	private static TreeSet<Caixa> caixas;
 	private static TreeSet<Usuario> usuarios;
 	private static TreeSet<Sessao> sessoes;
 
@@ -114,7 +114,7 @@ public class Banco {
 		sessoes.add(sessao);
 	}
 
-	boolean modificarSessao(Sessao sessao, Filme filme, Date horaInicio,
+	public static boolean modificarSessao(Sessao sessao, Filme filme, Date horaInicio,
 			long horaFim, Sala sala, double preco) {
 		Iterator<Sessao> it = sessoes.iterator();
 		Sessao sessaoEncontrada = null;
@@ -135,7 +135,7 @@ public class Banco {
 		return false;
 	}
 
-	boolean removerSessao(Sessao sessao) {
+	public static boolean removerSessao(Sessao sessao) {
 		Iterator<Sessao> it = sessoes.iterator();
 		while (it.hasNext()) {
 			if (it.next().equals(sessao)) {
@@ -146,11 +146,11 @@ public class Banco {
 		return false;
 	}
 
-	void addSala(Sala sala) {
+	public static void addSala(Sala sala) {
 		salas.add(sala);
 	}
 
-	boolean modificarSala(Sala sala, int capacidade, int numero, boolean is3d) {
+	public static boolean modificarSala(Sala sala, int capacidade, int numero, boolean is3d) {
 		Iterator<Sala> it = salas.iterator();
 		Sala salaEncontrada = null;
 		//essa construção é usada para não dar CurrentModificationException
@@ -179,7 +179,7 @@ public class Banco {
 		return false;
 	}
 
-	void adicionarFilme(Filme filme) {
+	public static void adicionarFilme(Filme filme) {
 		filmes.add(filme);
 	}
 
@@ -212,7 +212,7 @@ public class Banco {
 		return false;
 	}
 
-	boolean removerFilme(Filme filme) {
+	public static boolean removerFilme(Filme filme) {
 		Iterator<Filme> it = filmes.iterator();
 		while (it.hasNext()) {
 			if (it.next().equals(filme)) {
@@ -223,11 +223,11 @@ public class Banco {
 		return false;
 	}
 
-	void addUsuario(Usuario usuario) {
+	public static void addUsuario(Usuario usuario) {
 		usuarios.add(usuario);
 	}
 
-	boolean removerUsuario(Usuario usuario) {
+	public static boolean removerUsuario(Usuario usuario) {
 		Iterator<Usuario> it = usuarios.iterator();
 		while (it.hasNext()) {
 			if (it.next().equals(usuario)) {
@@ -238,7 +238,7 @@ public class Banco {
 		return false;
 	}
 
-	boolean modificarUsuario(Usuario usuario, String nome, boolean ehAdmin,
+	public static boolean modificarUsuario(Usuario usuario, String nome, boolean ehAdmin,
 			String login, String senha) {
 		Iterator<Usuario> it = usuarios.iterator();
 		Usuario usuarioEncontrado = null;
@@ -287,6 +287,56 @@ public class Banco {
 			}
 		}
 		return null;
+	}
+
+	public static Sessao obterSessao(Date hora, int numeroDaSala) {
+		for(Sessao sessao : sessoes){
+			if(sessao.getHorarioDeInicio().equals(hora) && sessao.getSala().getNumero() == numeroDaSala){
+				return sessao;
+			}
+		}
+		return null;
+	}
+
+	public static boolean addCaixa(Caixa caixaNova) {
+		boolean resultado = caixas.add(caixaNova);
+		return resultado;
+	}
+
+	public static boolean removerCaixa(int caixa) {
+		Iterator<Caixa> it = caixas.iterator();
+		while (it.hasNext()) {
+			if (it.next().getNumCaixa() == caixa) {
+				it.remove();
+				return true;
+			}
+		}
+		return false;
+	}
+	//String nome, int faixa, Date duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d
+	public static boolean modificarFilme(Filme filmeAAlterar, String nome, int faixa,
+			Date duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d) {
+		Iterator<Filme> it = filmes.iterator();
+		Filme filmeEncontrado = null;
+		// essa contrucao eh usada para nao dar currentModificationException
+		while (it.hasNext()) {
+			filmeEncontrado = it.next();
+			if (filmeAAlterar.equals(filmeEncontrado))
+				break;
+		}
+		if (filmeAAlterar.equals(filmeEncontrado)) {
+			filmeEncontrado.setDataDeEstreia(estreia);
+			filmeEncontrado.setDiretor(diretor);
+			filmeEncontrado.setDuracao(duracao);
+			filmeEncontrado.setFaixaEtaria(faixa);
+			filmeEncontrado.setGenero(genero);
+			filmeEncontrado.setIs3d(is3d);
+			filmeEncontrado.setNome(nome);
+			filmeEncontrado.setSinopse(sinopse);
+			return true;
+		}
+		return false;
+		
 	}
 
 }
