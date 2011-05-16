@@ -13,8 +13,7 @@ import objetos.Sessao;
 import objetos.Usuario;
 
 public class InterfaceCinema {
-
-
+	
 	public static Usuario removerUsuario() {
 		System.out
 				.println("Digite o numero do registro de usuario que voce que remover: ");

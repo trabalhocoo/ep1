@@ -19,7 +19,7 @@ public class Administrador extends Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	Administrador(String nome, int registro, boolean adm, String login,
+	public Administrador(String nome, boolean adm, String login,
 			String senha) {
 		super(nome, adm, login, senha);
 	}
