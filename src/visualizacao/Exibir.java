@@ -1,5 +1,4 @@
 package visualizacao;
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import objetos.*;
@@ -47,6 +46,7 @@ public class Exibir {
 			System.out.println("14 - EXIBIR FILMES");
 			System.out.println("15 - EXIBIR SESSOES");
 			System.out.println("16 - EXIBIR SALAS");
+			//TODO fazer o resto do menu e o menu do usuario normal
 		}
 	}
 }

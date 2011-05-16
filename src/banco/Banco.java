@@ -22,8 +22,8 @@ import objetos.Usuario;
 public class Banco {
 
 	private static ArrayList<Filme> filmes;
-	private TreeSet<Sala> salas;
-	private TreeSet<Caixa> caixas;//TODO usar o caixas
+	private static TreeSet<Sala> salas;
+	private TreeSet<Caixa> caixas;
 	private static TreeSet<Usuario> usuarios;
 	private static TreeSet<Sessao> sessoes;
 
@@ -32,63 +32,76 @@ public class Banco {
 	/**
 	 * fazer essa coisa depois. Ele deve obter coisas do banco de dados
 	 */
-	public void gravarDados (){
+	public void gravarDados() {
 		try {
-			//TODO e os caixas?????
-			FileOutputStream fluxoSalas = new FileOutputStream("Sala.txt");
-			ObjectOutputStream objarq = new ObjectOutputStream(fluxoSalas);
-			objarq.writeObject(salas);
-			objarq.close();
+			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
+			ObjectOutputStream objarqCaixas = new ObjectOutputStream(
+					fluxoCaixas);
+			objarqCaixas.writeObject(caixas);
+			objarqCaixas.close();
+
+			FileOutputStream fluxoSalas = new FileOutputStream("Salas.txt");
+			ObjectOutputStream objarqSalas = new ObjectOutputStream(fluxoSalas);
+			objarqSalas.writeObject(salas);
+			objarqSalas.close();
 
 			FileOutputStream fluxoSessoes = new FileOutputStream("Sessoes.txt");
-			ObjectOutputStream objarqSessoes = new ObjectOutputStream(fluxoSessoes);
+			ObjectOutputStream objarqSessoes = new ObjectOutputStream(
+					fluxoSessoes);
 			objarqSessoes.writeObject(sessoes);
 			objarqSessoes.close();
 
-			FileOutputStream fluxoUsuarios = new FileOutputStream("Usuarios.txt");
-			ObjectOutputStream objarqUsuarios = new ObjectOutputStream(fluxoUsuarios);
+			FileOutputStream fluxoUsuarios = new FileOutputStream(
+					"Usuarios.txt");
+			ObjectOutputStream objarqUsuarios = new ObjectOutputStream(
+					fluxoUsuarios);
 			objarqUsuarios.writeObject(usuarios);
 			objarqUsuarios.close();
 
 			FileOutputStream fluxoFilmes = new FileOutputStream("Filmes.txt");
-			ObjectOutputStream objarqFilmes = new ObjectOutputStream(fluxoFilmes);
+			ObjectOutputStream objarqFilmes = new ObjectOutputStream(
+					fluxoFilmes);
 			objarqFilmes.writeObject(filmes);
-			objarqFilmes.close();			
+			objarqFilmes.close();
 		}
 
-		catch(IOException ioExc) {
+		catch (IOException ioExc) {
 			System.out.println(ioExc.getMessage());
 			ioExc.printStackTrace();
 		}
 	}
 
-	void recuperarDados (){
+	void recuperarDados() {
 		try {
-			//TODO e os caixas?
+			FileInputStream fluxoCaixas = new FileInputStream("Caixas.txt");
+			ObjectInputStream objarqCaixas = new ObjectInputStream(fluxoCaixas);
+			caixas = (TreeSet<Caixa>) objarqCaixas.readObject();
+			objarqCaixas.close();
+
 			FileInputStream fluxoFilmes = new FileInputStream("Filmes.txt");
 			ObjectInputStream objarqFilmes = new ObjectInputStream(fluxoFilmes);
 			filmes = (ArrayList<Filme>) objarqFilmes.readObject();
 			objarqFilmes.close();
-			
+
 			FileInputStream fluxoUsuario = new FileInputStream("Usuarios.txt");
-			ObjectInputStream objarqUsuario = new ObjectInputStream(fluxoUsuario);
+			ObjectInputStream objarqUsuario = new ObjectInputStream(
+					fluxoUsuario);
 			usuarios = (TreeSet<Usuario>) objarqUsuario.readObject();
 			objarqUsuario.close();
-			
+
 			FileInputStream fluxoSalas = new FileInputStream("Salas.txt");
 			ObjectInputStream objarqSalas = new ObjectInputStream(fluxoSalas);
 			salas = (TreeSet<Sala>) objarqSalas.readObject();
 			objarqSalas.close();
-			
+
 			FileInputStream fluxoSessoes = new FileInputStream("Sessoes.txt");
-			ObjectInputStream objarqSessoes = new ObjectInputStream(fluxoSessoes);
+			ObjectInputStream objarqSessoes = new ObjectInputStream(
+					fluxoSessoes);
 			sessoes = (TreeSet<Sessao>) objarqSessoes.readObject();
 			objarqSessoes.close();
-		}
-		catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo n�o encontrado");
-		}
-		catch(IOException ioExc) {
+		} catch (IOException ioExc) {
 			System.out.println(ioExc.getMessage());
 			ioExc.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -140,6 +153,7 @@ public class Banco {
 	boolean modificarSala(Sala sala, int capacidade, int numero, boolean is3d) {
 		Iterator<Sala> it = salas.iterator();
 		Sala salaEncontrada = null;
+		//essa construção é usada para não dar CurrentModificationException
 		while (it.hasNext()) {
 			salaEncontrada = it.next();
 			if (sala.equals(salaEncontrada))
@@ -169,19 +183,22 @@ public class Banco {
 		filmes.add(filme);
 	}
 
-	public static Usuario obterUsuario(int registro){
-		for(Usuario usuario: usuarios){
-			if(usuario.getRegistro() == registro){
+	public static Usuario obterUsuario(int registro) {
+		for (Usuario usuario : usuarios) {
+			if (usuario.getRegistro() == registro) {
 				return usuario;
 			}
 		}
-		return null;		
+		return null;
 	}
 
-	boolean modificarFilme(Filme filme, String nome, int faixaEtaria, Date horaInicio, Date duracao, String Diretor, String genero, Date dataEstreia) {
+	boolean modificarFilme(Filme filme, String nome, int faixaEtaria,
+			Date horaInicio, Date duracao, String Diretor, String genero,
+			Date dataEstreia) {
 		Iterator<Filme> it = filmes.iterator();
 		Filme filmeEncontrado = null;
-		while (it.hasNext()){
+		//essa construção é usada para não dar CurrentModificationException
+		while (it.hasNext()) {
 			filmeEncontrado = it.next();
 			if (filme.equals(filmeEncontrado))
 				break;
@@ -210,12 +227,6 @@ public class Banco {
 		usuarios.add(usuario);
 	}
 
-	/**
-	 * DEVE GERAR EXCESS�O caso naum consiga remover
-	 * 
-	 * @param usuario
-	 * @return
-	 */
 	boolean removerUsuario(Usuario usuario) {
 		Iterator<Usuario> it = usuarios.iterator();
 		while (it.hasNext()) {
@@ -250,25 +261,32 @@ public class Banco {
 	public static TreeSet<Sessao> getSessoes() {
 		return sessoes;
 	}
-	
+
 	public static TreeSet<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
 	public static ArrayList<Filme> getFilmes() {
-		// TODO Auto-generated method stub
 		return filmes;
 	}
 
 	public static Filme obterFilme(String nomeDoFilme) {
 		// TODO Auto-generated method stub
+		for(Filme filme : filmes){
+			if(filme.getNome().equals(nomeDoFilme)){
+				return filme;
+			}
+		}
 		return null;
 	}
 
 	public static Sala obterSala(int numeroDaSala) {
-		// TODO Auto-generated method stub
+		for(Sala sala : salas){
+			if(sala.getNumero() == numeroDaSala){
+				return sala;
+			}
+		}
 		return null;
 	}
-	
-	
+
 }

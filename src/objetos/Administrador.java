@@ -27,15 +27,15 @@ public class Administrador extends Usuario implements Serializable {
 		Sessao sessaoNova = new Sessao (filme, hora, fim, sala, preco,duracao, sala.getCapacidade());
 	}
 		
-	void alterarSessão(){
+	void alterarSessao(){
 		
 		//Filme filme, Date inicio, long fim, Sala sala, double preco, 
 		//Date duracao, int disp
 		Sessao sessaoAAlterar = InterfaceCinema.alterarSessao();
-		Banco.modificarSessao(sessaoAAlterar, filmeAAlterar, sessaoAAlterar.getHorarioDeInicio(), sessaoAAlterar.getHorarioDeFim(), sala, sessao.getPreco());
+		Banco.modificarSessao(sessaoAAlterar, sessaoAAlterar, sessaoAAlterar.getHorarioDeInicio(), sessaoAAlterar.getHorarioDeFim(), sala, sessao.getPreco());
 	}
 	
-	boolean removerSessão(){
+	boolean removerSessao(){
 		// se der tem que colocar no registro
 		//NAO SEI COMO FAZER ISSO
 		Sessao sessao = InterfaceCinema.removerSessao();
@@ -89,7 +89,7 @@ public class Administrador extends Usuario implements Serializable {
 	
 	void alterarFilme(){
 		ArrayList resposta = InterfaceCinema.alterarFilme();
-		//falta método obter filme OK
+		//falta mï¿½todo obter filme OK
 		Filme filmeAAlterar= Banco.obterFilme(resposta.get(0));
 		Banco.modificarFilme (filmeAAlterar, resposta.get(1), resposta.get(2), resposta.get(3), resposta.get(4), resposta.get(5);
 	}
@@ -111,7 +111,7 @@ public class Administrador extends Usuario implements Serializable {
 		Banco.addUsuario (novoUsuario);
 	}
 	
-	//teoricamente eu vou tirar os parametros de todos os métodos
+	//teoricamente eu vou tirar os parametros de todos os mï¿½todos
 	boolean removerUsuario(){
 		Usuario usuario = InterfaceCinema.removerUsuario();
 		return Banco.removerUsuario(usuario);
