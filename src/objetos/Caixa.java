@@ -8,7 +8,7 @@ public class Caixa {
 		numeroDaCaixa = numeroDeCaixas++;
 	}
 	
-	public int getCaixa (){
+	public int getNumCaixa (){
 		return numeroDaCaixa;
 	}
 	

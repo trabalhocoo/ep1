@@ -3,6 +3,10 @@ package objetos;
 import java.io.Serializable;
 
 public class Sala implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int capacidade;
 	private int numero;
 	private boolean is3d;
@@ -29,7 +33,7 @@ public class Sala implements Serializable {
 		this.numero = numero;
 	}
 
-	public boolean isIs3d() {
+	public boolean is3d() {
 		return is3d;
 	}
 

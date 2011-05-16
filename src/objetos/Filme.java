@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Filme implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private int faixaEtaria;
 	private Date duracao;
@@ -91,6 +95,14 @@ public class Filme implements Serializable {
 
 	public void setDataDeEstreia(String dataDeEstreia) {
 		this.dataDeEstreia = dataDeEstreia;
+	}
+
+	public boolean isIs3d() {
+		return is3d;
+	}
+
+	public void setIs3d(boolean is3d) {
+		this.is3d = is3d;
 	}
 	
 	

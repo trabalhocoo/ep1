@@ -8,16 +8,22 @@ import controlador.*;
 
 
 public class Usuario implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private int registro;
 	private boolean ehAdministrador;
 	private String login;
 	private String senha;
+	private static int numeroDeUsuarios;
 	
-	Usuario(String nomenome, int registroregistro, boolean admadm, String loginlogin, String passwd){
+	Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
 		
 		this.nome=nomenome;
-		this.registro=registroregistro;
+		numeroDeUsuarios++;
+		this.registro= numeroDeUsuarios;
 		this.ehAdministrador=admadm;
 		this.login=loginlogin;
 		this.senha=passwd;
