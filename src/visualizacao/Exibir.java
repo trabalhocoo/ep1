@@ -58,6 +58,7 @@ public class Exibir {
 			System.out.println();
 			System.out.println("21 - VENDER INGRESSO");
 			System.out.println("22 - DESLOGAR");
+			System.out.println("23 - SAIR DO PROGRAMA");
 		}else{
 			System.out.println("=====> MENU USUARIO <=====");
 			System.out.println();
@@ -67,6 +68,7 @@ public class Exibir {
 			System.out.println("3 - LISTAR SESSOES");
 			System.out.println("4 - VENDER INGRESSO");
 			System.out.println("5 - DESLOGAR");
+			System.out.println("6 - SAIR DO PROGRAMA");
 		}
 	}
 }
