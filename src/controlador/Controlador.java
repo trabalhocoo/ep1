@@ -34,4 +34,27 @@ public class Controlador{
 		Controlador.tipoUsuario = tipoUsuario;
 	}
 	
+	public static void executaOpcao(int opcao){
+		if(tipoUsuario == true){
+			
+			switch (opcao) {
+			case 1:
+				
+				break;
+	
+			default:
+				break;
+			}
+		}else{
+			switch (opcao) {
+			case 1:
+				
+				break;
+
+			default:
+				break;
+			}
+		}
+		
+	}
 }

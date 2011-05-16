@@ -231,4 +231,11 @@ public class InterfaceCinema {
 		return dadosLogin;
 	}
 
+	public static int recebeOpcao(){
+		//TODO tratar excessoes
+		System.out.println("Digite uma opcao");
+		int opcao = obterInteiro();
+		return opcao;
+	}
+	
 }
