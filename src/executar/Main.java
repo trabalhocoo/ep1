@@ -24,10 +24,13 @@ public class Main {
 			tipoUser = Controlador.tipoUsuario();
 			logado = Controlador.isLogado();
 		}while(!logado);
-		Exibir.exibirMenu(tipoUser);
 		
-		int opcao = InterfaceCinema.recebeOpcao();
-		Controlador.executaOpcao(opcao);
+		while(logado){
+			Exibir.exibirMenu(tipoUser);
+			//TODO tratar excessao
+			int opcao = InterfaceCinema.recebeOpcao();
+			Controlador.executaOpcao(opcao);
+		}
 	}
 
 }
