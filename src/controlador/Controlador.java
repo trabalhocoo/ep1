@@ -116,15 +116,15 @@ public class Controlador{
 				break;
 			case 13:
 				//Criar sessao
-				admin.adicionarSessao();
+				admin.adicionarSessao(admin);
 				break;
 			case 14:
 				//Editar sessao
-				admin.alterarSessao();
+				admin.alterarSessao(admin);
 				break;
 			case 15:
 				//Remover sessao
-				admin.removerSessao();
+				admin.removerSessao(admin);
 				break;
 			case 16:
 				//Exibir Sessoes

@@ -18,8 +18,8 @@ public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo?
 	      try{   
 	         fw = new FileWriter("registrosDeAcesso.txt",true);    
 	         fw.write(informacoesDeUsuarioEHora);
-	         fw.write(conteudo); // armazena o texto no objeto x, que aponta para o arquivo            
-	         fw.close(); // cria o arquivo               
+	         fw.write(conteudo);            
+	         fw.close();      
 	      }   
 	      // em caso de erro apreenta mensagem abaixo   
 	      catch(IOException e){   

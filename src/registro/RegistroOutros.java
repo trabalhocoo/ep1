@@ -2,6 +2,7 @@ package registro;
 import java.io.FileNotFoundException;
 
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
@@ -19,6 +20,25 @@ import objetos.Caixa;
  */
 public class RegistroOutros extends Registrador {
 	
+	public static void registrarSessao(String texto, Sessao sessao, Usuario usuario){
+		String informacoesDaSessao = "Sobre a Sessao: Filme: " + sessao.getFilme().getNome() + "Sala: " + sessao.getSala().getNumero();// teoicamente deveria ter tb o horario
+		String conteudo = texto;
+		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
+	      FileWriter fw; 
+	      try{   
+	         fw = new FileWriter("registroSessao.txt",true);    
+	         fw.write(informacoesDeUsuarioEHora);
+	         fw.write(informacoesDaSessao); 
+	         fw.write(conteudo);
+	         fw.close();              
+	      }   
+	      // em caso de erro apreenta mensagem abaixo   
+	      catch(IOException e){   
+	           System.out.println (e);
+	      }   
+	   }  
+	
+/*	
 	void registrarSessao(Sessao sessao, int tipo){
 		
 		try {
@@ -99,4 +119,5 @@ public class RegistroOutros extends Registrador {
 		}
 		
 	}
+	*/
 }

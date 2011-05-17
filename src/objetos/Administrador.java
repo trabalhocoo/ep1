@@ -9,6 +9,8 @@ import java.util.InputMismatchException;
 import java.util.ListIterator;
 import java.util.TreeSet;
 
+import registro.RegistroOutros;
+
 import visualizacao.Exibir;
 import visualizacao.InterfaceCinema;
 
@@ -27,7 +29,7 @@ public class Administrador extends Usuario implements Serializable {
 
 	// String filme, int year, int month, int date, int hourOfDay, int minute,
 	// int sala, double preco, int disp
-	public void adicionarSessao() {
+	public void adicionarSessao(Usuario usuario) {
 		ArrayList dadosSessao = InterfaceCinema.adicionarSessao();
 		String nomeFilme = (String) dadosSessao.get(0);
 		int ano = (Integer) dadosSessao.get(1);
@@ -44,10 +46,11 @@ public class Administrador extends Usuario implements Serializable {
 		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto,
 				sala, preco, sala.getCapacidade());
 		Banco.addSessao(sessaoNova);
+		RegistroOutros.registrarSessao(" Registrou sessao ", sessaoNova, usuario);
 		System.out.println ("Sessao adicionada com sucesso.\n");
 	}
 
-	public void alterarSessao() {
+	public void alterarSessao(Usuario usuario) {
 		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
 		Calendar dataOriginal = (Calendar) dadosSessao.get(0);
 		String nomeFilme = (String) dadosSessao.get(1);
@@ -68,13 +71,15 @@ public class Administrador extends Usuario implements Serializable {
 
 		boolean alterou = Banco.modificarSessao(sessaoAAlterar, filme, inicio, salaASerUsada,
 				preco);
-		if (alterou == true)
+		if (alterou == true){
 			System.out.println ("Sessao alterada com sucesso.\n");
+			RegistroOutros.registrarSessao(" Alterou sessao ", sessaoAAlterar, usuario);
+		}
 		else
 			System.out.println ("Sessao nao encontrada.\n");
 	}
 
-	public void removerSessao() {
+	public void removerSessao(Usuario usuario) {
 		// Aqui havera o horario de inicio da sessao e a sala
 		// int year, int month, int date, int hourOfDay, int minute, int numSala
 		// e retornar nessa sequencia
@@ -91,8 +96,10 @@ public class Administrador extends Usuario implements Serializable {
 
 		Sessao sessaoARemover = Banco.obterSessao(inicio, numSala);
 		boolean removeu = Banco.removerSessao(sessaoARemover);
-		if (removeu == true)
+		if (removeu == true){
 			System.out.println ("Sessao removida com sucesso.\n");
+			RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);
+		}
 		else
 			System.out.println ("Sessao nao encontrada.\n");
 	}
