@@ -64,10 +64,23 @@ public class InterfaceCinema {
 	public static ArrayList removerSessao() {
 		// TODO 
 		//Deve pedir ao usuario:
-		//int year, int month, int date, int hourOfDay, int minute, int numSala e retornar nessa sequencia
-		System.out.println("");
-		// Implementar isso
-		return null;
+		//int year 0, int month 1, int date 2, int hourOfDay 3, int minute 4, int numSala 5 e retornar nessa sequencia
+		ArrayList <Object> arrayListaDeSessao = new ArrayList <Object> (); 
+		System.out.println("Digite a sala que deseja remover a sessao:");
+		arrayListaDeSessao.add(5, obterInteiro());
+		System.out.println("Digite o ano:");
+		arrayListaDeSessao.add(0, obterInteiro());
+		System.out.println("Digite o mes:");
+		arrayListaDeSessao.add(1, obterInteiro());
+		System.out.println("Digite o dia:");
+		arrayListaDeSessao.add(2, obterInteiro());
+		System.out.println("Digite o horario do filme no formato HHMM:");
+		int horaMinuto = obterInteiro();
+		int hora = horaMinuto/100;
+		int minuto = horaMinuto%100;
+		arrayListaDeSessao.add(3, hora);
+		arrayListaDeSessao.add(4, minuto);
+		return arrayListaDeSessao;
 	}
 
 	public static ArrayList<Object> adicionarFilme() {
@@ -105,7 +118,7 @@ public class InterfaceCinema {
 				.println("Digite o numero correspondente do par�metro que voce deseja alterar: ");
 		// String nome, int faixa, Date duracao, String diretor, String sinopse,
 		// String genero, String estreia, boolean is3d
-		System.out.println("0- nome \n1- administrador 2- senha");
+		System.out.println("0- nome 1- administrador2- senha");
 		// falta terminar
 		return arrayListDeFilme;
 	}
@@ -159,7 +172,7 @@ public class InterfaceCinema {
 		arrayListDaSala.add(sala);
 		System.out
 				.println("Digite o numero correspondente do par�metro que voce deseja alterar: \n");
-		System.out.println("0- capacidade \n1- numero 2- login 3- 3D");
+		System.out.println("0- capacidade 1- numero 2- login 3- 3D");
 		int numeroAAlterar = obterInteiro();
 		if (numeroAAlterar == 0) {
 			System.out.println("Digite a nova capacidade da sala:");
