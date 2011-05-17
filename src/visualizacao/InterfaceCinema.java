@@ -13,11 +13,12 @@ import objetos.Sessao;
 import objetos.Usuario;
 
 public class InterfaceCinema {
-	
+
 	public static Scanner scanPrincipal = new Scanner(System.in);
-	
+
 	public static Usuario removerUsuario() {
-		System.out.println("Digite o numero do registro de usuario que voce que remover: ");
+		System.out
+				.println("Digite o numero do registro de usuario que voce que remover: ");
 		int registro = obterInteiro();
 		Usuario usuario = Banco.obterUsuario(registro);
 		return usuario;
@@ -60,14 +61,33 @@ public class InterfaceCinema {
 		return arrayListDeUsuario;
 	}
 
+	public static ArrayList<Integer> removerSessao() {
+		// TODO
+		// Deve pedir ao usuario:
+		// int year, int month, int date, int hourOfDay, int minute, int numSala
+		// e retornar nessa sequencia
+		System.out.println("Digite o ano da sessão (apenas numeros)");
+		int ano = obterInteiro();
+		System.out.println("Digite o mês da sessão (apenas numeros)");
+		int mes = obterInteiro();
+		System.out.println("Digite o dia da sessão (apenas numeros)");
+		int dia = obterInteiro();
+		System.out.println("Digite a hora da sessão (apenas numeros");
+		int hora = obterInteiro();
+		System.out.println("Digite o minuto da sessão (apenas numeros)");
+		int minuto = obterInteiro();
+		System.out.println("Digite o numero da sala da sessão");
+		int numSala = obterInteiro();
 
-	public static ArrayList removerSessao() {
-		// TODO 
-		//Deve pedir ao usuario:
-		//int year, int month, int date, int hourOfDay, int minute, int numSala e retornar nessa sequencia
-		System.out.println("");
-		// Implementar isso
-		return null;
+		ArrayList<Integer> dadosSessao = new ArrayList<Integer>();
+		dadosSessao.add(ano);
+		dadosSessao.add(mes);
+		dadosSessao.add(dia);
+		dadosSessao.add(hora);
+		dadosSessao.add(minuto);
+		dadosSessao.add(numSala);
+
+		return dadosSessao;
 	}
 
 	public static ArrayList<Object> adicionarFilme() {
@@ -138,7 +158,7 @@ public class InterfaceCinema {
 	public static ArrayList<Object> adicionarUsuario() {
 		Scanner sc = new Scanner(System.in);
 		// Ei, esse scaner numca é utilizado!!!!!
-		//Usar o metodo
+		// Usar o metodo
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out.println("Digite o nome do Usu�rio: ");
 		arrayListDeUsuario.add(obterString());
@@ -151,16 +171,21 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList<Object> alterarSala() {
-		ArrayList<Object> arrayListDaSala = new ArrayList<Object>();
-		System.out.println("Digite o n�mero da sala:");
-		int numeroDaSala = obterInteiro();
-		// Falta metodo obterSala no banco
 		Sala sala = Banco.obterSala(numeroDaSala);
-		arrayListDaSala.add(sala);
 		System.out
-				.println("Digite o numero correspondente do par�metro que voce deseja alterar: \n");
-		System.out.println("0- capacidade \n1- numero 2- login 3- 3D");
+				.println("Digite o numero correspondente do par�metro que voce deseja alterar: ");
+		System.out.println("0- capacidade 1- numero 2- login 3- 3D");
 		int numeroAAlterar = obterInteiro();
+		switch (numeroAAlterar) {
+		case 0:
+			System.out.println("Digite a nova capacidade da sala:");
+			int capacidade = obterInteiro();
+			sala.setNumero(numero)
+			break;
+
+		default:
+			break;
+		}
 		if (numeroAAlterar == 0) {
 			System.out.println("Digite a nova capacidade da sala:");
 			int capacidade = obterInteiro();
@@ -193,7 +218,7 @@ public class InterfaceCinema {
 	}
 
 	// falta tratar excecao de tipo
-	//NÃO ESQUECER DE FECHAR OS FLUXOS
+	// NÃO ESQUECER DE FECHAR OS FLUXOS
 	private static int obterInteiro() {
 		int inteiro = scanPrincipal.nextInt();
 		return inteiro;
@@ -207,9 +232,10 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList<Sessao> alterarSessao() {
-		//Retorna um arrayList com os dados da sessao: 
-		//Filme filme, ano, mes, dia, hora, minuto, int numSala, double preco, int disp
-		//depois o outro método vai criar o Calendar
+		// Retorna um arrayList com os dados da sessao:
+		// Filme filme, ano, mes, dia, hora, minuto, int numSala, double preco,
+		// int disp
+		// depois o outro método vai criar o Calendar
 		System.out.println("Digite o novo nome do filme");
 		String nome = scanPrincipal.next();
 		System.out.println("Digite o novo ano para a sessão (apenas numeros)");
@@ -228,7 +254,7 @@ public class InterfaceCinema {
 		double preco = scanPrincipal.nextDouble();
 		System.out.println("Digite a quantidade de lugares disponíveis");
 		int disp = scanPrincipal.nextInt();
-		
+
 		ArrayList dadosSessao = new ArrayList();
 		dadosSessao.add(nome);
 		dadosSessao.add(ano);
@@ -239,7 +265,7 @@ public class InterfaceCinema {
 		dadosSessao.add(numSala);
 		dadosSessao.add(preco);
 		dadosSessao.add(disp);
-		
+
 		return dadosSessao;
 	}
 
@@ -256,8 +282,8 @@ public class InterfaceCinema {
 		return dadosLogin;
 	}
 
-	public static int recebeOpcao(){
-		//TODO tratar excessoes
+	public static int recebeOpcao() {
+		// TODO tratar excessoes
 		System.out.println("Digite uma opcao");
 		int opcao = obterInteiro();
 		return opcao;
@@ -265,8 +291,9 @@ public class InterfaceCinema {
 
 	public static ArrayList<Sessao> obterDadosSessao() {
 		// TODO Auto-generated method stub
-		//deve pedir ao usuario o ano, o mes, o dia, hora, minutos e o numero da  sala, e retornar nessa ordem
+		// deve pedir ao usuario o ano, o mes, o dia, hora, minutos e o numero
+		// da sala, e retornar nessa ordem
 		return null;
 	}
-	
+
 }
