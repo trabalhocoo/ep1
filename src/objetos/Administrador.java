@@ -205,7 +205,6 @@ public class Administrador extends Usuario implements Serializable {
 	}
 
 	public void removerSala() {
-		// TODO Auto-generated method stub
 		Integer numSala = InterfaceCinema.removerSala();
 		Sala salaASair = Banco.obterSala(numSala);
 		Banco.removerSala(salaASair);
@@ -220,7 +219,6 @@ public class Administrador extends Usuario implements Serializable {
 	}
 
 	public void exibirCaixas() {
-		// TODO Auto-generated method stub
 		TreeSet<Caixa> listaCaixas = Banco.getCaixas();
 		Exibir.exibirCaixas(listaCaixas);
 	}
