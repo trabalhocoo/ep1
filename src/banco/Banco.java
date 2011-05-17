@@ -106,7 +106,8 @@ public class Banco {
 			try {
 				gravarPrimeiraExec();
 			} catch (IOException e1) {
-				System.out.println("Impossivel criar arquivos para primeira execução");
+				System.out
+						.println("Impossivel criar arquivos para primeira execução");
 				e1.printStackTrace();
 			}
 		} catch (IOException ioExc) {
@@ -117,8 +118,6 @@ public class Banco {
 			System.out.println("Nao ha registro de filmes");
 		}
 	}
-
-
 
 	public static void addSessao(Sessao sessao) {
 		sessoes.add(sessao);
@@ -259,11 +258,27 @@ public class Banco {
 				break;
 		}
 		if (usuario.equals(usuarioEncontrado)) {
-			usuarioEncontrado.setNome(nome);
-			usuarioEncontrado.setEhAdministrador(ehAdmin);
-			usuarioEncontrado.setLogin(login);
-			usuarioEncontrado.setSenha(senha);
-			return true;
+			if (usuario.isEhAdministrador() != ehAdmin) {
+				//esse if é resposavel por fazer um admin virar usuario e vice-versa
+				if (usuario.isEhAdministrador()) {
+					int registroTemp = usuarioEncontrado.getRegistro();
+					usuarioEncontrado = null;
+					usuarioEncontrado = new Usuario(nome, ehAdmin, login, senha);
+					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios()- 1);
+					usuarioEncontrado.setRegistro(registroTemp);
+				}else{
+					int registroTemp = usuarioEncontrado.getRegistro();
+					usuarioEncontrado = null;
+					usuarioEncontrado = new Administrador(nome, ehAdmin, login, senha);
+					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios() - 1);
+					usuarioEncontrado.setRegistro(registroTemp);
+				}
+			} else {
+				usuarioEncontrado.setNome(nome);
+				usuarioEncontrado.setLogin(login);
+				usuarioEncontrado.setSenha(senha);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -350,7 +365,7 @@ public class Banco {
 		}
 		return false;
 	}
-	
+
 	private static void gravarPrimeiraExec() throws IOException {
 		// TODO Auto-generated method stub
 		FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
@@ -366,26 +381,25 @@ public class Banco {
 		objarqSessoes.close();
 
 		FileOutputStream fluxoFilmes = new FileOutputStream("Filmes.txt");
-		ObjectOutputStream objarqFilmes = new ObjectOutputStream(
-				fluxoFilmes);
+		ObjectOutputStream objarqFilmes = new ObjectOutputStream(fluxoFilmes);
 		objarqFilmes.close();
-		
+
 		FileOutputStream fluxoUsuarios = new FileOutputStream("Usuarios.txt");
 		ObjectOutputStream objarqUsuarios = new ObjectOutputStream(
 				fluxoUsuarios);
-		
+
 		filmes = new ArrayList<Filme>();
 		salas = new TreeSet<Sala>();
 		caixas = new TreeSet<Caixa>();
 		usuarios = new TreeSet<Usuario>();
 		sessoes = new TreeSet<Sessao>();
-		
-		
-		Administrador admin = new Administrador("Admin", true, "Admin", "123456");
+
+		Administrador admin = new Administrador("Admin", true, "Admin",
+				"123456");
 		addUsuario(admin);
 		objarqUsuarios.writeObject(usuarios);
 		objarqUsuarios.close();
-		
+
 		gravarDados();
 	}
 

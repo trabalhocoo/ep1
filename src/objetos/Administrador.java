@@ -27,7 +27,7 @@ public class Administrador extends Usuario implements Serializable {
 	// String filme, int year, int month, int date, int hourOfDay, int minute,
 	// int sala, double preco, int disp
 	public void adicionarSessao() {
-		ArrayList dadosSessao = InterfaceCinema.obterDadosSessao();
+		ArrayList dadosSessao = InterfaceCinema.adicionarSessao();
 		String nomeFilme = (String) dadosSessao.get(0);
 		int ano = (Integer) dadosSessao.get(1);
 		int mes = (Integer) dadosSessao.get(2);
@@ -36,25 +36,27 @@ public class Administrador extends Usuario implements Serializable {
 		int minuto = (Integer) dadosSessao.get(5);
 		int numSala = (Integer) dadosSessao.get(6);
 		double preco = (Double) dadosSessao.get(7);
-		
+
 		Filme filme = Banco.obterFilme(nomeFilme);
 		Sala sala = Banco.obterSala(numSala);
-		
-		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto, sala, preco, sala.getCapacidade());
+
+		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto,
+				sala, preco, sala.getCapacidade());
 		Banco.addSessao(sessaoNova);
 	}
 
 	public void alterarSessao() {
 		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
-		String nomeFilme = (String) dadosSessao.get(0);
-		int ano = (Integer) dadosSessao.get(1);
-		int mes = (Integer) dadosSessao.get(2);
-		int dia = (Integer) dadosSessao.get(3);
-		int hora = (Integer) dadosSessao.get(4);
-		int minuto = (Integer) dadosSessao.get(5);
-		int numSala = (Integer) dadosSessao.get(6);
-		double preco = (Double) dadosSessao.get(7);
-		int disp = (Integer) dadosSessao.get(8);
+		Calendar dataOriginal = (Calendar) dadosSessao.get(0);
+		String nomeFilme = (String) dadosSessao.get(1);
+		int ano = (Integer) dadosSessao.get(2);
+		int mes = (Integer) dadosSessao.get(3);
+		int dia = (Integer) dadosSessao.get(4);
+		int hora = (Integer) dadosSessao.get(5);
+		int minuto = (Integer) dadosSessao.get(6);
+		int numSala = (Integer) dadosSessao.get(7);
+		double preco = (Double) dadosSessao.get(8);
+		int disp = (Integer) dadosSessao.get(9);
 
 		Filme filme = Banco.obterFilme(nomeFilme);
 		Calendar inicio = Calendar.getInstance();
@@ -122,13 +124,20 @@ public class Administrador extends Usuario implements Serializable {
 	}
 
 	public void adicionarFilme() {
+		// String nome, int faixa, Date duracao, String diretor, String sinopse,
+		// String genero, String estreia, boolean is3d
 		ArrayList<Object> resposta = InterfaceCinema.adicionarFilme();
+		String nome = (String) resposta.get(0);
 		int faixa = (Integer) resposta.get(1);
-		boolean eh3d = (Boolean) resposta.get(7);
 		Date duracao = (Date) resposta.get(2);
-		Filme filmeNovo = new Filme(resposta.get(0).toString(), faixa, duracao,
-				resposta.get(3).toString(), resposta.get(4).toString(),
-				resposta.get(5).toString(), resposta.get(6).toString(), eh3d);
+		String diretor = (String) resposta.get(3);
+		String sinopse = (String) resposta.get(4);
+		String genero = (String) resposta.get(5);
+		String estreia = (String) resposta.get(6);
+		boolean eh3d = (Boolean) resposta.get(7);
+
+		Filme filmeNovo = new Filme(nome, faixa, duracao, diretor, sinopse,
+				genero, estreia, eh3d);
 		Banco.adicionarFilme(filmeNovo);
 	}
 
@@ -176,17 +185,17 @@ public class Administrador extends Usuario implements Serializable {
 	}
 
 	public void alterarUsuario() {
+		// 0: usuario, 1: nome, 2: ehadmin, 3: senha
 		ArrayList<Object> resposta = InterfaceCinema.alterarUsuario();
-		boolean ehAdmin = (Boolean) resposta.get(2);
-		String login = "0";
-		if (ehAdmin == true) {
-			login = "1";
-		}
-		
-		//Cuidado com os índices. ArrayList começa em 0
+
 		Usuario usuarioAAlterar = (Usuario) resposta.get(0);
-		Banco.modificarUsuario(usuarioAAlterar, resposta.get(1).toString(),
-				ehAdmin, login, resposta.get(3).toString());
+		String nome = (String) resposta.get(1);
+		boolean ehAdmin = (Boolean) resposta.get(2);
+		String senha = (String) resposta.get(3);
+
+		// Cuidado com os índices. ArrayList começa em 0
+		Banco.modificarUsuario(usuarioAAlterar, nome, ehAdmin,
+				usuarioAAlterar.getLogin(), senha);
 	}
 
 	public void removerSala() {

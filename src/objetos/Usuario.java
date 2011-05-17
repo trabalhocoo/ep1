@@ -21,6 +21,14 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	private String senha;
 	private static int numeroDeUsuarios;
 	
+	public static int getNumeroDeUsuarios() {
+		return numeroDeUsuarios;
+	}
+
+	public static void setNumeroDeUsuarios(int numeroDeUsuarios) {
+		Usuario.numeroDeUsuarios = numeroDeUsuarios;
+	}
+
 	public Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
 		
 		this.nome=nomenome;
@@ -103,7 +111,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	}
 
 	public void venderIngresso() {
-		ArrayList dadosSessaoASerVendida = InterfaceCinema.obterDadosSessao();
+		ArrayList dadosSessaoASerVendida = InterfaceCinema.adicionarSessao();
 		
 		Calendar horaInicio = Calendar.getInstance();
 		//Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp
