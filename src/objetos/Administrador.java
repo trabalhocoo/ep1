@@ -108,18 +108,21 @@ public class Administrador extends Usuario implements Serializable {
 
 	public void exibirUsuarios() {// listar os usuarios existentes
 		TreeSet<Usuario> listaUsuarios = Banco.getUsuarios();
+		System.out.println ("Lista de usuarios:");
 		Exibir.exibirUsuarios(listaUsuarios);
 	}
 
 	public boolean adicionarCaixa() {
 		Caixa caixaNova = new Caixa();
 		// falta metodo adicionar caixa OK
+		System.out.println ("Caixa adicionado com sucesso");
 		return Banco.addCaixa(caixaNova);
 	}
 
 	public boolean removerCaixa() {
 		int caixa = InterfaceCinema.removerCaixa();
 		// falta removerCaixa(int) no banco OK
+		System.out.println ("Caixa removido com sucesso");
 		return Banco.removerCaixa(caixa);
 	}
 
@@ -139,6 +142,7 @@ public class Administrador extends Usuario implements Serializable {
 		Filme filmeNovo = new Filme(nome, faixa, duracao, diretor, sinopse,
 				genero, estreia, eh3d);
 		Banco.adicionarFilme(filmeNovo);
+		System.out.println ("Filme adicionado com sucesso");
 	}
 
 	public void alterarFilme() {
@@ -156,10 +160,12 @@ public class Administrador extends Usuario implements Serializable {
 
 		Banco.modificarFilme(filmeAAlterar, nomeDoFilme, faixaEtaria, duracao,
 				diretor, sinopse, genero, estreia, is3d);
+		System.out.println ("Filme alterado com sucesso");
 	}
 
 	public boolean removerFilme() {
 		Filme filme = InterfaceCinema.removerFilme();
+		System.out.println ("Filme removido com sucesso");
 		return Banco.removerFilme(filme);
 	}
 
@@ -181,12 +187,14 @@ public class Administrador extends Usuario implements Serializable {
 			novoUsuario = new Usuario(nome, adm, login, senha);
 		}
 		Banco.addUsuario(novoUsuario);
+		System.out.println ("Usuario criado com sucesso.Registro: " + novoUsuario.getRegistro());
 	}
 
 	
 	public boolean removerUsuario() {
 		int registro = InterfaceCinema.removerUsuario();
 		Usuario usuario = Banco.obterUsuario(registro);
+		System.out.println ("Usuario removido com sucesso");
 		return Banco.removerUsuario(usuario);
 	}
 
@@ -202,12 +210,14 @@ public class Administrador extends Usuario implements Serializable {
 		// Cuidado com os índices. ArrayList começa em 0
 		Banco.modificarUsuario(usuarioAAlterar, nome, ehAdmin,
 				usuarioAAlterar.getLogin(), senha);
+		System.out.println ("Usuario alterado com sucesso");
 	}
 
 	public void removerSala() {
 		Integer numSala = InterfaceCinema.removerSala();
 		Sala salaASair = Banco.obterSala(numSala);
 		Banco.removerSala(salaASair);
+		System.out.println ("Sala removida com sucesso");
 	}
 
 	public void alterarCaixa() {
@@ -215,6 +225,7 @@ public class Administrador extends Usuario implements Serializable {
 		int numero = (Integer) dadosCaixas.get(0);
 		double dinheiro = (Double) dadosCaixas.get(1);
 		Banco.modificarCaixa(numero, dinheiro);
+		System.out.println ("Caixa alterado com sucesso");
 
 	}
 

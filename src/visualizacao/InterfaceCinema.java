@@ -305,6 +305,7 @@ public class InterfaceCinema {
 		boolean continueLoop = true;
 		do {
 			try {
+				Scanner scanPrincipal = new Scanner(System.in);
 				inteiro = scanPrincipal.nextInt();
 				continueLoop = false;
 			} catch (InputMismatchException inputMismatchException) {
@@ -321,11 +322,12 @@ public class InterfaceCinema {
 		boolean bool = false;
 		do {
 			try {
+				Scanner scanPrincipal = new Scanner(System.in);
 				bool = scanPrincipal.nextBoolean();
 				continueLoop = false;
 			} catch (InputMismatchException inputMismatchException) {
 				System.err.printf("\nException: %s\n", inputMismatchException);
-				System.out.println("Digite true ou false. Tente novamente \n");
+				System.out.printf("Digite true ou false. Digite novamente \n");
 			}
 		} while (continueLoop);
 		return bool;
@@ -482,6 +484,7 @@ public class InterfaceCinema {
 		boolean continueLoop = true;
 		do {
 			try {
+				Scanner scanPrincipal = new Scanner(System.in);
 				real = scanPrincipal.nextDouble();
 				continueLoop = false;
 			} catch (InputMismatchException inputMismatchException) {

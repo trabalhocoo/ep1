@@ -17,20 +17,28 @@ public class Main {
 		Banco.recuperarDados();
 		boolean logado = Controlador.isLogado();
 		boolean tipoUser;
-		do{
-			System.out.println("Favor Logar, vagabundo!");
-			ArrayList loginSenha = InterfaceCinema.obterDadosLogin();
-			Controlador.logar((Integer) loginSenha.get(0), (String) loginSenha.get(1));
-			tipoUser = Controlador.tipoUsuario();
-			logado = Controlador.isLogado();
-		}while(!logado);
+		boolean reiniciar = true;
+		Controlador.setReiniciar(reiniciar);
 		
-		while(logado != false){
-			Exibir.exibirMenu(tipoUser);
-			//TODO tratar excessao
-			int opcao = InterfaceCinema.recebeOpcao();
-			Controlador.executaOpcao(opcao);
-		}
+		do {
+			do{
+				System.out.println("Favor Logar, vagabundo!");
+				ArrayList loginSenha = InterfaceCinema.obterDadosLogin();
+				Controlador.logar((Integer) loginSenha.get(0), (String) loginSenha.get(1));
+				tipoUser = Controlador.tipoUsuario();
+				logado = Controlador.isLogado();
+			}while(!logado);
+		
+			while(logado == true){
+				Exibir.exibirMenu(tipoUser);
+				//TODO tratar excessao
+				int opcao = InterfaceCinema.recebeOpcao();
+				Controlador.executaOpcao(opcao);
+				logado = Controlador.isLogado();
+			}
+			
+			reiniciar = Controlador.precisaReiniciar();
+		} while(reiniciar == true);
 	}
 
 }
