@@ -104,22 +104,86 @@ public class InterfaceCinema {
 		return arrayListDeFilme;
 	}
 
-	public static ArrayList<Filme> alterarFilme() {
-		ArrayList arrayListDeFilme = new ArrayList();
+	public static ArrayList alterarFilme() {
+		ArrayList <Object> arrayListDeFilme = new ArrayList <Object> ();
 		System.out.println("Digite o nome do filme que deseja alterar: ");
 		String nomeDoFilme = obterString();
 		// Falta metodo obter filme no banco
+		//Banco.modificarFilme(filmeAAlterar, nomeDoFilme, faixaEtaria, duracao,
+		//	diretor, sinopse, genero, estreia, is3d)
 		Filme filme = Banco.obterFilme(nomeDoFilme);
-		// modificarFilme(Filme filme, String nome, int faixaEtaria, Date
-		// horaInicio,
-		// Date duracao, String Diretor, String genero, Date dataEstreia
 		arrayListDeFilme.add(filme);
 		System.out
 				.println("Digite o numero correspondente do par�metro que voce deseja alterar: ");
-		// String nome, int faixa, Date duracao, String diretor, String sinopse,
-		// String genero, String estreia, boolean is3d
-		System.out.println("0- nome 1- administrador2- senha");
-		// falta terminar
+		// String nome 0, int faixa 1, Date duracao 2, String diretor 3, String sinopse 4,
+		// String genero 5, String estreia 6, boolean is3d 7
+		System.out.println("0- nome 1- faixa etaria 2- duracao 3- diretor 4- sinopse 5- genero 6- data da estreia 7- 3D\n");
+		int opcao = recebeOpcao();
+		if (opcao == 0){
+			System.out.println("Digite o nome do filme: ");
+			arrayListDeFilme.add(1,obterString());
+		}
+		else {
+			arrayListDeFilme.add(1, filme.getNome());
+		}
+		if (opcao == 1){
+			System.out.println("Digite a faixa et�ria do filme:");
+			arrayListDeFilme.add(2, obterString());
+		}
+		else {
+			arrayListDeFilme.add(2, filme.getFaixaEtaria());
+		}
+		
+		if (opcao == 2){
+			System.out.println("Digite a duracao do filme:");
+			arrayListDeFilme.add(3, obterString());
+		}
+		else {
+			arrayListDeFilme.add(3, filme.getDuracao());
+		}
+		
+		if (opcao == 3){
+			System.out.println("Digite o nome do diretor do filme:");
+			arrayListDeFilme.add(4, obterString());
+		}
+		else {
+			arrayListDeFilme.add(4, filme.getDiretor());
+		}
+		
+		if (opcao == 4){
+			System.out.println("Digite a sinopse do filme:");
+			arrayListDeFilme.add(5, obterString());
+		}
+		else {
+			arrayListDeFilme.add(5, filme.getSinopse());
+		}
+		
+		if (opcao == 5){
+			System.out.println("Digite o genero do filme::");
+			arrayListDeFilme.add(6, obterString());
+		}
+		else {
+			arrayListDeFilme.add(6,filme.getGenero());
+		}
+		
+		if (opcao == 6){
+			System.out.println("Digite a estreia do filme:");
+			arrayListDeFilme.add(7, obterString());
+		}
+		else {
+			arrayListDeFilme.add(7, filme.getDataDeEstreia());
+		}
+		
+		if (opcao == 7){
+			System.out.println("Digite se o filme e 3D:");
+			System.out.println("true- sim false- nao\n");
+			arrayListDeFilme.add(8, obterBoolean());
+		}
+		else {
+			arrayListDeFilme.add(8, filme.isIs3d());
+		}
+		System.out.println("Digite se o filme � 3D: ");
+		arrayListDeFilme.add(obterBoolean());
 		return arrayListDeFilme;
 	}
 
