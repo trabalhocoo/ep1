@@ -40,7 +40,8 @@ public class Administrador extends Usuario implements Serializable {
 
 	public void alterarSessao() {
 		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
-		Filme filme = (Filme) dadosSessao.get(0);
+		String nomeFilme = (String) dadosSessao.get(0);
+		Filme filme = Banco.obterFilme(nomeFilme);
 		int ano = (Integer) dadosSessao.get(1);
 		int mes = (Integer) dadosSessao.get(2);
 		int dia = (Integer) dadosSessao.get(3);

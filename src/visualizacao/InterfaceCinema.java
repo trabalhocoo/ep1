@@ -207,16 +207,44 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList<Sessao> alterarSessao() {
-		// TODO Deve retornar um arrayList com os dados da sessao: 
+		//Retorna um arrayList com os dados da sessao: 
 		//Filme filme, ano, mes, dia, hora, minuto, int numSala, double preco, int disp
 		//depois o outro método vai criar o Calendar
+		System.out.println("Digite o novo nome do filme");
+		String nome = scanPrincipal.next();
+		System.out.println("Digite o novo ano para a sessão (apenas numeros)");
+		int ano = scanPrincipal.nextInt();
+		System.out.println("Digite o nome mês para a sessão (apenas numeros)");
+		int mes = scanPrincipal.nextInt();
+		System.out.println("Digite o novo dia do mês para a sessão");
+		int dia = scanPrincipal.nextInt();
+		System.out.println("Digite a nova hora para a sessão");
+		int hora = scanPrincipal.nextInt();
+		System.out.println("Digite o novo minuto para a sessão");
+		int minuto = scanPrincipal.nextInt();
+		System.out.println("Digite o novo numero de sala para a sessão");
+		int numSala = scanPrincipal.nextInt();
+		System.out.println("Digite o novo preço para essa sessão");
+		double preco = scanPrincipal.nextDouble();
+		System.out.println("Digite a quantidade de lugares disponíveis");
+		int disp = scanPrincipal.nextInt();
 		
-		return null;
+		ArrayList dadosSessao = new ArrayList();
+		dadosSessao.add(nome);
+		dadosSessao.add(ano);
+		dadosSessao.add(mes);
+		dadosSessao.add(dia);
+		dadosSessao.add(hora);
+		dadosSessao.add(minuto);
+		dadosSessao.add(numSala);
+		dadosSessao.add(preco);
+		dadosSessao.add(disp);
+		
+		return dadosSessao;
 	}
 
 	public static ArrayList<Object> obterDadosLogin() {
 		// TODO tratar excessões
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Digite seu numero de registro:");
 		int registro = obterInteiro();
 		System.out.println();
