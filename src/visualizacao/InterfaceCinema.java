@@ -62,8 +62,9 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList removerSessao() {
-		// TODO deve perguntar ao usuario qual é o horario de inicio e a sala da
-		// sessao e retornar isso num arrayList
+		// TODO 
+		//Deve pedir ao usuario:
+		//int year, int month, int date, int hourOfDay, int minute, int numSala e retornar nessa sequencia
 		System.out.println("");
 		// Implementar isso
 		return null;

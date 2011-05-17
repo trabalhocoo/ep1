@@ -61,9 +61,19 @@ public class Administrador extends Usuario implements Serializable {
 
 	public void removerSessao() {
 		// Aqui havera o horario de inicio da sessao e a sala
+		//int year, int month, int date, int hourOfDay, int minute, int numSala e retornar nessa sequencia
 		ArrayList dadosSessao = InterfaceCinema.removerSessao();
-		Sessao sessaoARemover = Banco.obterSessao((Date) dadosSessao.get(0),
-				(Integer) dadosSessao.get(1));
+		int ano = (Integer) dadosSessao.get(0);
+		int mes = (Integer) dadosSessao.get(1);
+		int dia = (Integer) dadosSessao.get(2);
+		int hora = (Integer) dadosSessao.get(3);
+		int minutos = (Integer) dadosSessao.get(4);
+		int numSala = (Integer) dadosSessao.get(5);
+		
+		Calendar inicio = Calendar.getInstance();
+		inicio.set(ano, mes, dia, hora, minutos);
+			
+		Sessao sessaoARemover = Banco.obterSessao(inicio, numSala);
 		Banco.removerSessao(sessaoARemover);
 	}
 	
