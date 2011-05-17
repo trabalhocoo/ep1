@@ -105,7 +105,10 @@ public class Usuario implements Serializable {
 	public void venderIngresso() {
 		ArrayList dadosSessaoASerVendida = InterfaceCinema.obterDadosSessao();
 		
-		Calendar horaInicio = Calendar
+		Calendar horaInicio = Calendar.getInstance();
+		//Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp
+		
+		
 		
 		
 	}
