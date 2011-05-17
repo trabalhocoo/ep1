@@ -36,11 +36,11 @@ public class Banco {
 	 */
 	public static void gravarDados() {
 		try {
-			/*FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
+			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
 			ObjectOutputStream objarqCaixas = new ObjectOutputStream(
 					fluxoCaixas);
 			objarqCaixas.writeObject(caixas);
-			objarqCaixas.close();*/
+			objarqCaixas.close();
 
 			FileOutputStream fluxoSalas = new FileOutputStream("Salas.txt");
 			ObjectOutputStream objarqSalas = new ObjectOutputStream(fluxoSalas);
@@ -75,10 +75,10 @@ public class Banco {
 
 	public static void recuperarDados() {
 		try {
-			/*FileInputStream fluxoCaixas = new FileInputStream("Caixas.txt");
+			FileInputStream fluxoCaixas = new FileInputStream("Caixas.txt");
 			ObjectInputStream objarqCaixas = new ObjectInputStream(fluxoCaixas);
 			caixas = (TreeSet<Caixa>) objarqCaixas.readObject();
-			objarqCaixas.close();*/
+			objarqCaixas.close();
 
 			FileInputStream fluxoFilmes = new FileInputStream("Filmes.txt");
 			ObjectInputStream objarqFilmes = new ObjectInputStream(fluxoFilmes);
@@ -398,8 +398,7 @@ public class Banco {
 		usuarios = new TreeSet<Usuario>();
 		sessoes = new TreeSet<Sessao>();
 
-		Administrador admin = new Administrador("Admin", true, "Admin",
-				"123456");
+		Administrador admin = new Administrador("Admin", true, "Admin",	"123456");
 		addUsuario(admin);
 		objarqUsuarios.writeObject(usuarios);
 		objarqUsuarios.close();
