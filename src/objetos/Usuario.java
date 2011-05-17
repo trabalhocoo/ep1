@@ -19,7 +19,7 @@ public class Usuario implements Serializable {
 	private String senha;
 	private static int numeroDeUsuarios;
 	
-	Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
+	public Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
 		
 		this.nome=nomenome;
 		numeroDeUsuarios++;
@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
 		this.senha=passwd;
 	}
 	
-	void exibirSessoes(){
+	public void exibirSessoes(){
 		TreeSet<Sessao> listaSessoes = Banco.getSessoes();
 		Exibir.exibirSessoes(listaSessoes);
 	}
@@ -96,7 +96,7 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 	
-	void deslogar(){
+	public void deslogar(){
 		Controlador.setLogado(false);
 	}
 }
