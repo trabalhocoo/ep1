@@ -59,7 +59,7 @@ public class Controlador{
 		System.exit(0);
 	}
 	
-	public static void executaOpcao(int opcao) throws ParseException{
+	public static void executaOpcao(int opcao){
 		if(tipoUsuario == true){
 			Administrador admin = (Administrador)usuarioLogado;
 			switch (opcao) {
@@ -152,6 +152,7 @@ public class Controlador{
 				sairDoPrograma();
 				break;
 			default:
+				System.out.println ("Digite uma opcao valida.Tente novamente\n");
 				break;
 			}
 		}else{
@@ -181,6 +182,7 @@ public class Controlador{
 				sairDoPrograma();
 				break;
 			default:
+				System.out.println ("Digite uma opcao valida.Tente novamente\n");
 				break;
 			}
 		}

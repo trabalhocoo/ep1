@@ -14,7 +14,7 @@ public class Main {
 	 * @param args
 	 * @throws ParseException 
 	 */
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		//Ei, o banco deveria estar sendo carregado primeiro
 		boolean logado = Controlador.isLogado();
 		boolean tipoUser;
