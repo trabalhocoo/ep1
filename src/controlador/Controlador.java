@@ -21,6 +21,7 @@ public class Controlador{
 		return false;
 	}
 	
+	//nao ta funcionando. Sera que é melhor colocar em outro lugar?
 	public static void deslogar(){
 		tipoUsuario = false;
 		isLogado = false;
