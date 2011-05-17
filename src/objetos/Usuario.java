@@ -9,7 +9,7 @@ import banco.*;
 import controlador.*;
 
 
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, Comparable<Usuario> {
 	/**
 	 * 
 	 */
@@ -111,5 +111,15 @@ public class Usuario implements Serializable {
 		
 		
 		
+	}
+
+	@Override
+	public int compareTo(Usuario o) {
+		if(registro < o.registro){
+			return -1;
+		}else if(registro == o.registro){
+			return 0;
+		}
+		return 1;
 	}
 }

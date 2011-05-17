@@ -156,9 +156,6 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList<Object> adicionarUsuario() {
-		Scanner sc = new Scanner(System.in);
-		// Ei, esse scaner numca é utilizado!!!!!
-		// Usar o metodo
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out.println("Digite o nome do Usu�rio: ");
 		arrayListDeUsuario.add(obterString());
