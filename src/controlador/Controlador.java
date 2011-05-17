@@ -163,11 +163,11 @@ public class Controlador{
 				break;
 			case 2:
 				//Exibir sessoes em usuario
-				usuarioLogado.exibirSessoes();
+				usuarioLogado.exibirSalas();
 				break;
 			case 3:
 				//Exibir salas em usuario
-				usuarioLogado.exibirSalas();
+				usuarioLogado.exibirSessoes();
 				break;
 			case 4:
 				//TODO Exibir filmes em usuario

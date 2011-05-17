@@ -5,14 +5,14 @@ import objetos.*;
 
 public class Exibir {
 	
-	public static void exibirSessoes(TreeSet<Sessao> sessoes){
+	public static void exibirSessoes(TreeSet <Sessao> sessoes){
 		for(Sessao sessao : sessoes)
-			System.out.println("Filme: " +sessao.getFilme()+ " Hora de inicio: " +sessao.getHorarioDeInicio()+ " Sala: " +sessao.getSala()+ " Preco: " +sessao.getPreco());
+			System.out.println("Filme: " + sessao.getFilme().getNome()+ "\tHora de inicio: " + sessao.getHorarioDeInicio().HOUR_OF_DAY + ":" + sessao.getHorarioDeInicio().MINUTE + "\tSala: " +sessao.getSala().getNumero()+ "\tPreco: " +sessao.getPreco());
 	}
 	
 	public static void exibirFilmes(ArrayList<Filme> listaFilmes){
 		for(Filme filme : listaFilmes)
-			System.out.println("Titulo: " +filme.getNome()+ " Duracao: " +filme.getDuracao());
+			System.out.println("Titulo: " +filme.getNome()+ "\tDuracao: " +filme.getDuracao());
 	}	
 	
 	public static void exibirUsuarios(TreeSet<Usuario> usuarios){
@@ -22,13 +22,13 @@ public class Exibir {
 				tipoUser = "admin";
 			else
 				tipoUser = "user comum";
-			System.out.println("Nome: " +user.getNome()+ " #registro: " +user.getRegistro()+ " Tipo de Usuario: " +tipoUser);
+			System.out.println("Nome: " +user.getNome()+ "\t#registro: " +user.getRegistro()+ "\tTipo de Usuario: " +tipoUser);
 		}
 	}
 	
 	public static void exibirSalas(TreeSet<Sala> listaSalas) {
 		for(Sala sala : listaSalas){
-			System.out.println("Numero: " + sala.getNumero() + " Capacidade: " + sala.getCapacidade());
+			System.out.println("Numero: " + sala.getNumero() + "\tCapacidade: " + sala.getCapacidade());
 		}
 		
 	}
@@ -80,7 +80,7 @@ public class Exibir {
 
 	public static void exibirCaixas(TreeSet<Caixa> listaDeCaixas) {
 		for(Caixa caixa : listaDeCaixas){
-			System.out.println("Número " + caixa.getNumCaixa() + " Dinheiro: " + caixa.getDinheiro());
+			System.out.println("Número " + caixa.getNumCaixa() + "\tDinheiro: " + caixa.getDinheiro());
 		}
 		
 	}

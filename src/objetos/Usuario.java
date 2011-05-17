@@ -41,16 +41,19 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	
 	public void exibirSessoes(){
 		TreeSet<Sessao> listaSessoes = Banco.getSessoes();
+		System.out.println ("Lista de sessoes:");
 		Exibir.exibirSessoes(listaSessoes);
 	}
 	
 	public void exibirFilmes(){
 		ArrayList<Filme> listaFilmes = Banco.getFilmes();
+		System.out.println ("Lista de filmes:");
 		Exibir.exibirFilmes(listaFilmes);
 	}
 	
 	public void exibirSalas(){
 		TreeSet<Sala> listaSalas = Banco.getSalas();
+		System.out.println ("Lista de salas:");
 		Exibir.exibirSalas(listaSalas);
 	}
 	
@@ -115,10 +118,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		
 		Calendar horaInicio = Calendar.getInstance();
 		//Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp
-		
-		
-		
-		
+			
 	}
 
 	@Override
