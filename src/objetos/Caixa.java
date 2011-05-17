@@ -1,8 +1,10 @@
 package objetos;
 
+import java.io.Serializable;
 
 
-public class Caixa{
+
+public class Caixa implements Serializable{
 	private static int numeroDeCaixas =0;
 	private int numeroDaCaixa;
 	private double dinheiro;
