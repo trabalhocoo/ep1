@@ -7,6 +7,7 @@ public class Controlador{
 	private static boolean isLogado;
 	private static boolean tipoUsuario;
 	private static Usuario usuarioLogado;
+	private static boolean reiniciar;
 
 	public static boolean logar(int registro, String senha){
 		Usuario user = Banco.obterUsuario(registro);
@@ -33,6 +34,14 @@ public class Controlador{
 
 	public static void setLogado(boolean isLogado) {
 		Controlador.isLogado = isLogado;
+	}
+
+	public static boolean precisaReiniciar() {
+		return reiniciar;
+	}
+
+	public static void setReiniciar(boolean reiniciar) {
+		Controlador.reiniciar = reiniciar;
 	}
 
 	public static boolean tipoUsuario() {
