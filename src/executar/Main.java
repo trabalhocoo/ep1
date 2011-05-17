@@ -25,7 +25,7 @@ public class Main {
 			logado = Controlador.isLogado();
 		}while(!logado);
 		
-		while(logado){
+		while(logado != false){
 			Exibir.exibirMenu(tipoUser);
 			//TODO tratar excessao
 			int opcao = InterfaceCinema.recebeOpcao();
