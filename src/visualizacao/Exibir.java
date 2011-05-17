@@ -26,6 +26,13 @@ public class Exibir {
 		}
 	}
 	
+	public static void exibirSalas(TreeSet<Sala> listaSalas) {
+		for(Sala sala : listaSalas){
+			System.out.println("Numero: " + sala.getNumero() + " Capacidade: " + sala.getCapacidade());
+		}
+		
+	}
+	
 	public static void exibirMenu(boolean tipoUser){
 		//sempre que for true é admin
 		if(tipoUser == true){
@@ -56,8 +63,8 @@ public class Exibir {
 			System.out.println("19 - REMOVER CAIXA");
 			System.out.println("20 - LISTAR CAIXAS");
 			System.out.println();
-			System.out.println("21 - VENDER INGRESSO");
-			System.out.println("22 - DESLOGAR");
+			System.out.println("21 - DESLOGAR");
+			System.out.println("22 - SAIR DO PROGRAMA");
 		}else{
 			System.out.println("=====> MENU USUARIO <=====");
 			System.out.println();
@@ -67,6 +74,16 @@ public class Exibir {
 			System.out.println("3 - LISTAR SESSOES");
 			System.out.println("4 - VENDER INGRESSO");
 			System.out.println("5 - DESLOGAR");
+			System.out.println("6 - SAIR DO PROGRAMA");
 		}
 	}
+
+	public static void exibirCaixas(TreeSet<Caixa> listaDeCaixas) {
+		for(Caixa caixa : listaDeCaixas){
+			System.out.println("Número " + caixa.getNumCaixa() + " Dinheiro: " + caixa.getDinheiro());
+		}
+		
+	}
+
+	
 }

@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.TreeSet;
 
+import objetos.Administrador;
 import objetos.Caixa;
 import objetos.Filme;
 import objetos.Sala;
@@ -100,9 +102,16 @@ public class Banco {
 			sessoes = (TreeSet<Sessao>) objarqSessoes.readObject();
 			objarqSessoes.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("Arquivo n�o encontrado");
+			System.out.println("Arquivo n�o encontrado, criando os primeiros");
+			try {
+				gravarPrimeiraExec();
+			} catch (IOException e1) {
+				System.out
+						.println("Impossivel criar arquivos para primeira execução");
+				e1.printStackTrace();
+			}
 		} catch (IOException ioExc) {
-			System.out.println(ioExc.getMessage());
+			System.out.println(ioExc.getMessage() + " ferrou");
 			ioExc.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -110,12 +119,12 @@ public class Banco {
 		}
 	}
 
-	void addSessao(Sessao sessao) {
+	public static void addSessao(Sessao sessao) {
 		sessoes.add(sessao);
 	}
 
-	public static boolean modificarSessao(Sessao sessao, Filme filme, Date horaInicio,
-			long horaFim, Sala sala, double preco) {
+	public static boolean modificarSessao(Sessao sessao, Filme filme,
+			Calendar horaInicio, Sala sala, double preco) {
 		Iterator<Sessao> it = sessoes.iterator();
 		Sessao sessaoEncontrada = null;
 		// essa contrucao eh usada para nao dar currentModificationException
@@ -127,7 +136,6 @@ public class Banco {
 		if (sessao.equals(sessaoEncontrada)) {
 			sessaoEncontrada.setFilme(filme);
 			sessaoEncontrada.setHorarioDeInicio(horaInicio);
-			sessaoEncontrada.setHorarioDeFim(horaFim);
 			sessaoEncontrada.setSala(sala);
 			sessaoEncontrada.setPreco(preco);
 			return true;
@@ -150,10 +158,11 @@ public class Banco {
 		salas.add(sala);
 	}
 
-	public static boolean modificarSala(Sala sala, int capacidade, int numero, boolean is3d) {
+	public static boolean modificarSala(Sala sala, int capacidade, int numero,
+			boolean is3d) {
 		Iterator<Sala> it = salas.iterator();
 		Sala salaEncontrada = null;
-		//essa construção é usada para não dar CurrentModificationException
+		// essa construção é usada para não dar CurrentModificationException
 		while (it.hasNext()) {
 			salaEncontrada = it.next();
 			if (sala.equals(salaEncontrada))
@@ -168,7 +177,7 @@ public class Banco {
 		return false;
 	}
 
-	boolean removerSala(Sala sala) {
+	public static boolean removerSala(Sala sala) {
 		Iterator<Sala> it = salas.iterator();
 		while (it.hasNext()) {
 			if (it.next().equals(sala)) {
@@ -197,7 +206,7 @@ public class Banco {
 			Date dataEstreia) {
 		Iterator<Filme> it = filmes.iterator();
 		Filme filmeEncontrado = null;
-		//essa construção é usada para não dar CurrentModificationException
+		// essa construção é usada para não dar CurrentModificationException
 		while (it.hasNext()) {
 			filmeEncontrado = it.next();
 			if (filme.equals(filmeEncontrado))
@@ -238,8 +247,8 @@ public class Banco {
 		return false;
 	}
 
-	public static boolean modificarUsuario(Usuario usuario, String nome, boolean ehAdmin,
-			String login, String senha) {
+	public static boolean modificarUsuario(Usuario usuario, String nome,
+			boolean ehAdmin, String login, String senha) {
 		Iterator<Usuario> it = usuarios.iterator();
 		Usuario usuarioEncontrado = null;
 		// essa contrucao eh usada para nao dar currentModificationException
@@ -249,11 +258,29 @@ public class Banco {
 				break;
 		}
 		if (usuario.equals(usuarioEncontrado)) {
-			usuarioEncontrado.setNome(nome);
-			usuarioEncontrado.setEhAdministrador(ehAdmin);
-			usuarioEncontrado.setLogin(login);
-			usuarioEncontrado.setSenha(senha);
-			return true;
+			if (usuario.isEhAdministrador() != ehAdmin) {
+				// esse if é resposavel por fazer um admin virar usuario e
+				// vice-versa
+				if (usuario.isEhAdministrador()) {
+					int registroTemp = usuarioEncontrado.getRegistro();
+					usuarioEncontrado = null;
+					usuarioEncontrado = new Usuario(nome, ehAdmin, login, senha);
+					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios() - 1);
+					usuarioEncontrado.setRegistro(registroTemp);
+				} else {
+					int registroTemp = usuarioEncontrado.getRegistro();
+					usuarioEncontrado = null;
+					usuarioEncontrado = new Administrador(nome, ehAdmin, login,
+							senha);
+					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios() - 1);
+					usuarioEncontrado.setRegistro(registroTemp);
+				}
+			} else {
+				usuarioEncontrado.setNome(nome);
+				usuarioEncontrado.setLogin(login);
+				usuarioEncontrado.setSenha(senha);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -271,9 +298,8 @@ public class Banco {
 	}
 
 	public static Filme obterFilme(String nomeDoFilme) {
-		// TODO Auto-generated method stub
-		for(Filme filme : filmes){
-			if(filme.getNome().equals(nomeDoFilme)){
+		for (Filme filme : filmes) {
+			if (filme.getNome().equals(nomeDoFilme)) {
 				return filme;
 			}
 		}
@@ -281,17 +307,18 @@ public class Banco {
 	}
 
 	public static Sala obterSala(int numeroDaSala) {
-		for(Sala sala : salas){
-			if(sala.getNumero() == numeroDaSala){
+		for (Sala sala : salas) {
+			if (sala.getNumero() == numeroDaSala) {
 				return sala;
 			}
 		}
 		return null;
 	}
 
-	public static Sessao obterSessao(Date hora, int numeroDaSala) {
-		for(Sessao sessao : sessoes){
-			if(sessao.getHorarioDeInicio().equals(hora) && sessao.getSala().getNumero() == numeroDaSala){
+	public static Sessao obterSessao(Calendar hora, int numeroDaSala) {
+		for (Sessao sessao : sessoes) {
+			if (sessao.getHorarioDeInicio().equals(hora)
+					&& sessao.getSala().getNumero() == numeroDaSala) {
 				return sessao;
 			}
 		}
@@ -313,9 +340,12 @@ public class Banco {
 		}
 		return false;
 	}
-	//String nome, int faixa, Date duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d
-	public static boolean modificarFilme(Filme filmeAAlterar, String nome, int faixa,
-			Date duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d) {
+
+	// String nome, int faixa, Date duracao, String diretor, String sinopse,
+	// String genero, String estreia, boolean is3d
+	public static boolean modificarFilme(Filme filmeAAlterar, String nome,
+			int faixa, Date duracao, String diretor, String sinopse,
+			String genero, String estreia, boolean is3d) {
 		Iterator<Filme> it = filmes.iterator();
 		Filme filmeEncontrado = null;
 		// essa contrucao eh usada para nao dar currentModificationException
@@ -336,7 +366,69 @@ public class Banco {
 			return true;
 		}
 		return false;
-		
+	}
+
+	private static void gravarPrimeiraExec() throws IOException {
+		// TODO Auto-generated method stub
+		FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
+		ObjectOutputStream objarqCaixas = new ObjectOutputStream(fluxoCaixas);
+		objarqCaixas.close();
+
+		FileOutputStream fluxoSalas = new FileOutputStream("Salas.txt");
+		ObjectOutputStream objarqSalas = new ObjectOutputStream(fluxoSalas);
+		objarqSalas.close();
+
+		FileOutputStream fluxoSessoes = new FileOutputStream("Sessoes.txt");
+		ObjectOutputStream objarqSessoes = new ObjectOutputStream(fluxoSessoes);
+		objarqSessoes.close();
+
+		FileOutputStream fluxoFilmes = new FileOutputStream("Filmes.txt");
+		ObjectOutputStream objarqFilmes = new ObjectOutputStream(fluxoFilmes);
+		objarqFilmes.close();
+
+		FileOutputStream fluxoUsuarios = new FileOutputStream("Usuarios.txt");
+		ObjectOutputStream objarqUsuarios = new ObjectOutputStream(
+				fluxoUsuarios);
+
+		filmes = new ArrayList<Filme>();
+		salas = new TreeSet<Sala>();
+		caixas = new TreeSet<Caixa>();
+		usuarios = new TreeSet<Usuario>();
+		sessoes = new TreeSet<Sessao>();
+
+		Administrador admin = new Administrador("Admin", true, "Admin",
+				"123456");
+		addUsuario(admin);
+		objarqUsuarios.writeObject(usuarios);
+		objarqUsuarios.close();
+
+		gravarDados();
+	}
+
+	public static TreeSet<Sala> getSalas() {
+		return salas;
+	}
+
+	public static boolean modificarCaixa(int numero, double dinheiro) {
+		Iterator<Caixa> it = caixas.iterator();
+		Caixa caixaEncontrado = null;
+		// essa contrucao eh usada para nao dar currentModificationException
+		while (it.hasNext()) {
+			caixaEncontrado = it.next();
+			if (caixaEncontrado.equals(caixaEncontrado))
+				break;
+		}
+		if (caixaEncontrado.equals(caixaEncontrado)) {
+			caixaEncontrado.setDinheiro(dinheiro);
+			caixaEncontrado.setNumeroDaCaixa(numero);
+			return true;
+		}
+		return false;
+
+	}
+
+	public static TreeSet<Caixa> getCaixas() {
+		return caixas;
 	}
 
 }
