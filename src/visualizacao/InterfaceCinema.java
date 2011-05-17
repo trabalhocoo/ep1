@@ -241,6 +241,7 @@ public class InterfaceCinema {
 
 	public static ArrayList obterDadosSessao() {
 		// TODO Auto-generated method stub
+		//deve pedir ao usuario a hora e a sala
 		return null;
 	}
 	
