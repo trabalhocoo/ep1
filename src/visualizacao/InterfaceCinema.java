@@ -214,6 +214,7 @@ public class InterfaceCinema {
 	public static ArrayList alterarSessao() {
 		// TODO Deve retornar um arrayList com os dados da sessao: filme,
 		// horaInicio, horaFim, sala, preco
+		
 		return null;
 	}
 
@@ -236,6 +237,11 @@ public class InterfaceCinema {
 		System.out.println("Digite uma opcao");
 		int opcao = obterInteiro();
 		return opcao;
+	}
+
+	public static ArrayList obterDadosSessao() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

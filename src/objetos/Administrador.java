@@ -19,13 +19,13 @@ public class Administrador extends Usuario implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Administrador(String nome, boolean adm, String login,
-			String senha) {
+	public Administrador(String nome, boolean adm, String login, String senha) {
 		super(nome, adm, login, senha);
 	}
 
-	//Filme filme, Date hora, Sala sala, double preco, boolean is3d
-	void adicionarSessao() {
+	// Filme filme, Date hora, Sala sala, double preco, boolean is3d
+	public void adicionarSessao() {
+		//TODO fazer esta coisa funcionar
 		ArrayList dadosSessao = InterfaceCinema.obterDadosSessao();
 		long fim_horario = (long) (hora.getTime() + filme.getDuracao());
 		// falta nao sei como fazer isso teria que somar o horario do inicio
@@ -37,18 +37,23 @@ public class Administrador extends Usuario implements Serializable {
 				sala.getCapacidade());
 	}
 
-	void alterarSessao() {
+	public void alterarSessao() {
 		// Filme filme, Date inicio, long fim, Sala sala, double preco,
 		// Date duracao, int disp
 		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
-		Sessao sessaoAAlterar = Banco.obterSessao((Date) dadosSessao.get(1),
-				(Integer) dadosSessao.get(6));
-		Banco.modificarSessao(sessaoAAlterar, (Filme) dadosSessao.get(0),
+		Filme filme = (Filme) dadosSessao.get(0);
+		Calendar inicio = (Calendar) dadosSessao.get(1);
+		int numSala = (Integer) dadosSessao.get(6);
+		
+		
+		Sessao sessaoAAlterar = Banco.obterSessao(inicio,
+				numSala);
+		Banco.modificarSessao(sessaoAAlterar, filme,
 				(Date) dadosSessao.get(1), (Long) dadosSessao.get(2),
 				(Sala) dadosSessao.get(3), (Double) dadosSessao.get(4));
 	}
 
-	void removerSessao() {
+	public void removerSessao() {
 		// Aqui havera o horario de inicio da sessao e a sala
 		ArrayList dadosSessao = InterfaceCinema.removerSessao();
 		Sessao sessaoARemover = Banco.obterSessao((Date) dadosSessao.get(0),
@@ -66,7 +71,7 @@ public class Administrador extends Usuario implements Serializable {
 		Banco.addSala(salaNova);
 	}
 
-	void alterarSala() {
+	public void alterarSala() {
 		ArrayList<Object> resposta = InterfaceCinema.alterarSala();
 		Sala sala = (Sala) resposta.get(0);
 		int capacidade = (Integer) resposta.get(1);
@@ -75,24 +80,24 @@ public class Administrador extends Usuario implements Serializable {
 		Banco.modificarSala(sala, capacidade, numero, eh3d);
 	}
 
-	void exibirUsuarios() {// listar os usuarios existentes
+	public void exibirUsuarios() {// listar os usuarios existentes
 		TreeSet<Usuario> listaUsuarios = Banco.getUsuarios();
 		Exibir.exibirUsuarios(listaUsuarios);
 	}
 
-	boolean adicionarCaixa() {
+	public boolean adicionarCaixa() {
 		Caixa caixaNova = new Caixa();
 		// falta metodo adicionar caixa OK
 		return Banco.addCaixa(caixaNova);
 	}
 
-	boolean removerCaixa() {
+	public boolean removerCaixa() {
 		int caixa = InterfaceCinema.removerCaixa();
 		// falta removerCaixa(int) no banco OK
 		return Banco.removerCaixa(caixa);
 	}
 
-	void adicionarFilme() {
+	public void adicionarFilme() {
 		ArrayList<Object> resposta = InterfaceCinema.adicionarFilme();
 		int faixa = (Integer) resposta.get(1);
 		boolean eh3d = (Boolean) resposta.get(7);
@@ -103,43 +108,49 @@ public class Administrador extends Usuario implements Serializable {
 		Banco.adicionarFilme(filmeNovo);
 	}
 
-	void alterarFilme() {
-		// String nome, int faixa, Date duracao, String diretor, String sinopse,
-		// String genero, String estreia, boolean is3d
-		ArrayList resposta = InterfaceCinema.alterarFilme();
-		Filme filmeAAlterar = Banco.obterFilme((String) resposta.get(0));
-		Banco.modificarFilme(filmeAAlterar, (String) resposta.get(0),
-				(Integer) resposta.get(1), (Date) resposta.get(2),
-				(String) resposta.get(3), (String) resposta.get(4),
-				(String) resposta.get(5), (String) resposta.get(6),
-				(Boolean) resposta.get(7));
+	public void alterarFilme() {
+		ArrayList dadosFilme = InterfaceCinema.alterarFilme();
+		String nomeDoFilme = (String) dadosFilme.get(0);
+		Filme filmeAAlterar = Banco.obterFilme(nomeDoFilme);
+
+		int faixaEtaria = (Integer) dadosFilme.get(1);
+		Date duracao = (Date) dadosFilme.get(2);
+		String diretor = (String) dadosFilme.get(3);
+		String sinopse = (String) dadosFilme.get(4);
+		String genero = (String) dadosFilme.get(5);
+		String estreia = (String) dadosFilme.get(6);
+		boolean is3d = (Boolean) dadosFilme.get(7);
+
+		Banco.modificarFilme(filmeAAlterar, nomeDoFilme, faixaEtaria, duracao,
+				diretor, sinopse, genero, estreia, is3d);
 	}
 
-	boolean removerFilme() {
+	public boolean removerFilme() {
 		Filme filme = InterfaceCinema.removerFilme();
 		return Banco.removerFilme(filme);
 	}
 
-	void adicionarUsuario() {
-		ArrayList resposta = InterfaceCinema.adicionarUsuario();
+	public void adicionarUsuario() {
+		ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
+		//TODO mexer isso, tem algo estranho
 		// String nomenome, boolean admadm, String loginlogin, String passwd
-		boolean adm = (Boolean) resposta.get(1);
+		boolean adm = (Boolean) dadosUsuario.get(1);
 		String login = "0";
 		if (adm == true) {
 			login = "1";
 		}
-		Usuario novoUsuario = new Usuario(resposta.get(0).toString(), adm,
-				login, resposta.get(3).toString());
+		Usuario novoUsuario = new Usuario(dadosUsuario.get(0).toString(), adm,
+				login, dadosUsuario.get(3).toString());
 		Banco.addUsuario(novoUsuario);
 	}
 
 	// teoricamente eu vou tirar os parametros de todos os m�todos
-	boolean removerUsuario() {
+	public boolean removerUsuario() {
 		Usuario usuario = InterfaceCinema.removerUsuario();
 		return Banco.removerUsuario(usuario);
 	}
 
-	void alterarUsuario() {
+	public void alterarUsuario() {
 		ArrayList<Object> resposta = InterfaceCinema.alterarUsuario();
 		boolean ehAdmin = (Boolean) resposta.get(2);
 		String login = "0";
