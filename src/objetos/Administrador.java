@@ -41,10 +41,17 @@ public class Administrador extends Usuario implements Serializable {
 	public void alterarSessao() {
 		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
 		Filme filme = (Filme) dadosSessao.get(0);
-		Calendar inicio = (Calendar) dadosSessao.get(1);
-		int numSala = (Integer) dadosSessao.get(2);
-		double preco = (Double) dadosSessao.get(3);
-		int disp = (Integer) dadosSessao.get(4);
+		int ano = (Integer) dadosSessao.get(1);
+		int mes = (Integer) dadosSessao.get(2);
+		int dia = (Integer) dadosSessao.get(3);
+		int hora = (Integer) dadosSessao.get(4);
+		int minuto = (Integer) dadosSessao.get(5);
+		int numSala = (Integer) dadosSessao.get(6);
+		double preco = (Double) dadosSessao.get(7);
+		int disp = (Integer) dadosSessao.get(8);
+		
+		Calendar inicio = Calendar.getInstance();
+		inicio.set(ano, mes, dia, hora, minuto);
 		
 		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
 		Sala salaASerUsada = Banco.obterSala(numSala);

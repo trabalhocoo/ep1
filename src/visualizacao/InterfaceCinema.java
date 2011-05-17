@@ -206,7 +206,7 @@ public class InterfaceCinema {
 
 	public static ArrayList alterarSessao() {
 		// TODO Deve retornar um arrayList com os dados da sessao: 
-		//Filme filme, ano, mes dia, hora, minuto, int numSala, double preco, int disp
+		//Filme filme, ano, mes, dia, hora, minuto, int numSala, double preco, int disp
 		//depois o outro método vai criar o Calendar
 		
 		return null;
