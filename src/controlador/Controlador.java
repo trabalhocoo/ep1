@@ -79,7 +79,7 @@ public class Controlador{
 				admin.removerFilme();
 				break;
 			case 8:
-				//TODO Exibir filme
+				//Exibir filme
 				admin.exibirFilmes();
 			case 9:
 				//Criar Sala
@@ -90,11 +90,11 @@ public class Controlador{
 				admin.alterarSala();
 				break;
 			case 11:
-				//TODO Remover Sala
+				//Remover Sala
 				admin.removerSala();
 				break;
 			case 12:
-				//TODO Exibir Salas
+				//Exibir Salas
 				admin.exibirSalas();
 			case 13:
 				//Criar sessao
@@ -109,7 +109,7 @@ public class Controlador{
 				admin.removerSessao();
 				break;
 			case 16:
-				//TODO Exibir Sessoes
+				//Exibir Sessoes
 				admin.exibirSessoes();
 			case 17:
 				//Criar Caixa
@@ -124,7 +124,7 @@ public class Controlador{
 				admin.removerCaixa();
 				break;
 			case 20:
-				//TODO Exibir caixas
+				//Exibir caixas
 				admin.exibirCaixas();
 				break;
 			case 21:
@@ -132,7 +132,7 @@ public class Controlador{
 				deslogar();
 				break;
 			case 22:
-				//TODO Sair do Programa
+				//Sair do Programa
 				sairDoPrograma();
 				break;
 			default:
@@ -141,15 +141,15 @@ public class Controlador{
 		}else{
 			switch (opcao) {
 			case 1:
-				//TODO Exibir filmes em usuario
+				//Exibir filmes em usuario
 				usuarioLogado.exibirFilmes();
 				break;
 			case 2:
-				//TODO Exibir sessoes em usuario
+				//Exibir sessoes em usuario
 				usuarioLogado.exibirSessoes();
 				break;
 			case 3:
-				//TODO Exibir salas em usuario
+				//Exibir salas em usuario
 				usuarioLogado.exibirSalas();
 				break;
 			case 4:
@@ -161,7 +161,7 @@ public class Controlador{
 				deslogar();
 				break;
 			case 6:
-				//TODO Sair do Programa
+				//Sair do Programa
 				sairDoPrograma();
 				break;
 			default:
