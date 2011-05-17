@@ -1,8 +1,10 @@
 package objetos;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.TreeSet;
 import visualizacao.Exibir;
+import visualizacao.InterfaceCinema;
 import banco.*;
 import controlador.*;
 
@@ -101,7 +103,10 @@ public class Usuario implements Serializable {
 	}
 
 	public void venderIngresso() {
-		// TODO Auto-generated method stub
+		ArrayList dadosSessaoASerVendida = InterfaceCinema.obterDadosSessao();
+		
+		Calendar horaInicio = Calendar
+		
 		
 	}
 }
