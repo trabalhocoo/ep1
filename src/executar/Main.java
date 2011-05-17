@@ -1,4 +1,5 @@
 package executar;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import banco.Banco;
@@ -11,16 +12,17 @@ public class Main {
 
 	/**
 	 * @param args
+	 * @throws ParseException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		//Ei, o banco deveria estar sendo carregado primeiro
-		Banco.recuperarDados();
 		boolean logado = Controlador.isLogado();
 		boolean tipoUser;
 		boolean reiniciar = true;
 		Controlador.setReiniciar(reiniciar);
 		
 		do {
+			Banco.recuperarDados();
 			do{
 				System.out.println("Favor Logar, vagabundo!");
 				ArrayList loginSenha = InterfaceCinema.obterDadosLogin();

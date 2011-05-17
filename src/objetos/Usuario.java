@@ -19,7 +19,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	private boolean ehAdministrador;
 	private String login;
 	private String senha;
-	private static int numeroDeUsuarios =1;
+	private static int numeroDeUsuarios =2;
 	
 	public static int getNumeroDeUsuarios() {
 		return numeroDeUsuarios;
@@ -32,11 +32,11 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	public Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
 		
 		this.nome=nomenome;
-		numeroDeUsuarios++;
 		this.registro= numeroDeUsuarios;
 		this.ehAdministrador=admadm;
 		this.login=loginlogin;
 		this.senha=passwd;
+		numeroDeUsuarios++;
 	}
 	
 	public void exibirSessoes(){

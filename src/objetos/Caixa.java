@@ -1,6 +1,8 @@
 package objetos;
 
-public class Caixa {
+
+
+public class Caixa{
 	private static int numeroDeCaixas =0;
 	private int numeroDaCaixa;
 	private double dinheiro;

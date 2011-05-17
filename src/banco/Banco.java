@@ -36,11 +36,11 @@ public class Banco {
 	 */
 	public static void gravarDados() {
 		try {
-			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
+			/*FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
 			ObjectOutputStream objarqCaixas = new ObjectOutputStream(
 					fluxoCaixas);
 			objarqCaixas.writeObject(caixas);
-			objarqCaixas.close();
+			objarqCaixas.close();*/
 
 			FileOutputStream fluxoSalas = new FileOutputStream("Salas.txt");
 			ObjectOutputStream objarqSalas = new ObjectOutputStream(fluxoSalas);
@@ -75,10 +75,10 @@ public class Banco {
 
 	public static void recuperarDados() {
 		try {
-			FileInputStream fluxoCaixas = new FileInputStream("Caixas.txt");
+			/*FileInputStream fluxoCaixas = new FileInputStream("Caixas.txt");
 			ObjectInputStream objarqCaixas = new ObjectInputStream(fluxoCaixas);
 			caixas = (TreeSet<Caixa>) objarqCaixas.readObject();
-			objarqCaixas.close();
+			objarqCaixas.close();*/
 
 			FileInputStream fluxoFilmes = new FileInputStream("Filmes.txt");
 			ObjectInputStream objarqFilmes = new ObjectInputStream(fluxoFilmes);
@@ -202,7 +202,7 @@ public class Banco {
 	}
 
 	boolean modificarFilme(Filme filme, String nome, int faixaEtaria,
-			Date horaInicio, Date duracao, String Diretor, String genero,
+			Date horaInicio, int duracao, String Diretor, String genero,
 			Date dataEstreia) {
 		Iterator<Filme> it = filmes.iterator();
 		Filme filmeEncontrado = null;
@@ -344,7 +344,7 @@ public class Banco {
 	// String nome, int faixa, Date duracao, String diretor, String sinopse,
 	// String genero, String estreia, boolean is3d
 	public static boolean modificarFilme(Filme filmeAAlterar, String nome,
-			int faixa, Date duracao, String diretor, String sinopse,
+			int faixa, int duracao, String diretor, String sinopse,
 			String genero, String estreia, boolean is3d) {
 		Iterator<Filme> it = filmes.iterator();
 		Filme filmeEncontrado = null;

@@ -1,4 +1,6 @@
 package controlador;
+import java.text.ParseException;
+
 import objetos.Administrador;
 import objetos.Usuario;
 import banco.*;
@@ -19,10 +21,10 @@ public class Controlador{
 				return true;
 			}
 		}
+		
 		return false;
 	}
-	
-	//nao ta funcionando. Sera que é melhor colocar em outro lugar?
+
 	public static void deslogar(){
 		tipoUsuario = false;
 		isLogado = false;
@@ -57,7 +59,7 @@ public class Controlador{
 		System.exit(0);
 	}
 	
-	public static void executaOpcao(int opcao){
+	public static void executaOpcao(int opcao) throws ParseException{
 		if(tipoUsuario == true){
 			Administrador admin = (Administrador)usuarioLogado;
 			switch (opcao) {
@@ -76,6 +78,7 @@ public class Controlador{
 			case 4:
 				//Exibir usuarios
 				admin.exibirUsuarios();
+				break;
 			case 5:
 				//Criar filme
 				admin.adicionarFilme();
@@ -91,6 +94,7 @@ public class Controlador{
 			case 8:
 				//Exibir filme
 				admin.exibirFilmes();
+				break;
 			case 9:
 				//Criar Sala
 				admin.adicionarSala();
@@ -106,6 +110,7 @@ public class Controlador{
 			case 12:
 				//Exibir Salas
 				admin.exibirSalas();
+				break;
 			case 13:
 				//Criar sessao
 				admin.adicionarSessao();
@@ -121,6 +126,7 @@ public class Controlador{
 			case 16:
 				//Exibir Sessoes
 				admin.exibirSessoes();
+				break;
 			case 17:
 				//Criar Caixa
 				admin.adicionarCaixa();

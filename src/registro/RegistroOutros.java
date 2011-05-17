@@ -1,5 +1,6 @@
 package registro;
 import java.io.FileNotFoundException;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -9,7 +10,7 @@ import objetos.Filme;
 import objetos.Sala;
 import objetos.Sessao;
 import objetos.Usuario;
-
+import objetos.Caixa;
 
 /**
  * 
@@ -25,7 +26,6 @@ public class RegistroOutros extends Registrador {
 			ObjectOutputStream objarq = new ObjectOutputStream(fluxo);
 			objarq.writeObject(sessao);
 			objarq.writeObject(tipo);
-			objarq.writeObject("\n");
 			objarq.close();
 		}
 		catch(IOException ioExc) {
@@ -41,7 +41,6 @@ public class RegistroOutros extends Registrador {
 			ObjectOutputStream objarq = new ObjectOutputStream(fluxo);
 			objarq.writeObject(sala);
 			objarq.writeObject(tipo);
-			objarq.writeObject("\n");
 			objarq.close();
 		}
 		catch(IOException ioExc) {
@@ -59,7 +58,6 @@ public class RegistroOutros extends Registrador {
 			ObjectOutputStream objarq = new ObjectOutputStream(fluxo);
 			objarq.writeObject(filme);
 			objarq.writeObject(tipo);
-			objarq.writeObject("\n");
 			objarq.close();
 		}
 		catch(IOException ioExc) {

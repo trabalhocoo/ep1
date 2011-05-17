@@ -10,7 +10,7 @@ public class Filme implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nome;
 	private int faixaEtaria;
-	private Date duracao;
+	private int duracao;
 	private String diretor;
 	private String sinopse;
 	private String genero;
@@ -30,7 +30,7 @@ public class Filme implements Serializable {
 	 * Quem vai tratar se os parâmetros estão errados? Será o contrutor? Acho que não
 	 */
 	
-	Filme(String nome, int faixa, Date duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d){
+	Filme(String nome, int faixa, int duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d){
 		this.nome = nome;
 		faixaEtaria = faixa;
 		this.duracao = duracao;
@@ -57,11 +57,11 @@ public class Filme implements Serializable {
 		this.faixaEtaria = faixaEtaria;
 	}
 
-	public Date getDuracao() {
+	public int getDuracao() {
 		return duracao;
 	}
 
-	public void setDuracao(Date duracao) {
+	public void setDuracao(int duracao) {
 		this.duracao = duracao;
 	}
 

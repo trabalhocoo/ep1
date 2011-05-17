@@ -1,5 +1,7 @@
 package visualizacao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -84,13 +86,17 @@ public class InterfaceCinema {
 		ArrayList<Object> arrayListaDeSessao = new ArrayList<Object>();
 		System.out
 				.println("Digite o numero da sala que deseja remover a sessao:");
-		arrayListaDeSessao.add(5, obterInteiro());
+		int numeroSala= obterInteiro();
+		arrayListaDeSessao.add(5, numeroSala);
 		System.out.println("Digite o ano:");
-		arrayListaDeSessao.add(0, obterInteiro());
+		int ano = obterInteiro();
+		arrayListaDeSessao.add(0, ano);
 		System.out.println("Digite o mes:");
-		arrayListaDeSessao.add(1, obterInteiro());
+		int mes = obterInteiro();
+		arrayListaDeSessao.add(1, mes);
 		System.out.println("Digite o dia:");
-		arrayListaDeSessao.add(2, obterInteiro());
+		int dia = obterInteiro();
+		arrayListaDeSessao.add(2, dia);
 		System.out.println("Digite o horario do filme no formato HHMM:");
 		int horaMinuto = obterInteiro();
 		int hora = horaMinuto / 100;
@@ -103,28 +109,36 @@ public class InterfaceCinema {
 	/*
 	 * OK
 	 */
-	public static ArrayList<Object> adicionarFilme() {
+	public static ArrayList<Object> adicionarFilme() throws ParseException {
 		// String nome, int faixa, Date duracao, String diretor, String sinopse,
 		// String genero, String estreia, boolean is3d
 		ArrayList<Object> arrayListDeFilme = new ArrayList<Object>();
 		System.out.println("Digite o nome do filme: ");
-		arrayListDeFilme.add(obterString());
+		String nome = obterString();
+		arrayListDeFilme.add(nome);
 		System.out.println("Digite a faixa et�ria do filme:");
-		arrayListDeFilme.add(obterInteiro());
+		int faixa = obterInteiro();
+		arrayListDeFilme.add(faixa);
 		System.out
-				.println("Digite a duracao do filme (em minutos, apenas numeros):");
-		arrayListDeFilme.add(obterString());
-		System.out.println("Digite o nome do diretor do filme:");
-		arrayListDeFilme.add(obterString());
-		System.out.println("Digite a sinopse do filme:");
-		arrayListDeFilme.add(obterString());
-		System.out.println("Digite o genero do filme:");
-		arrayListDeFilme.add(obterString());
+				.println("Digite a duracao do filme (em minutos, apenas numeros)\n:");
+		int duracao = obterInteiro();
+		arrayListDeFilme.add(duracao);
+		System.out.println("Digite o nome do diretor do filme:\n");
+		String diretor = obterString();
+		arrayListDeFilme.add(diretor);
+		System.out.println("Digite a sinopse do filme:\n");
+		String sinopse = obterString();
+		arrayListDeFilme.add(sinopse);
+		System.out.println("Digite o genero do filme:\n");
+		String genero = obterString();
+		arrayListDeFilme.add(genero);
 		System.out.println("Digite a estreia do filme:");
-		arrayListDeFilme.add(obterString());
+		String estreia = obterString();
+		arrayListDeFilme.add(estreia);
 		System.out.println("Digite se a sala e 3D:");
 		System.out.println("true- sim\nfalse- nao\n");
-		arrayListDeFilme.add(obterBoolean());
+		boolean sala3D = obterBoolean();
+		arrayListDeFilme.add(sala3D);
 		return arrayListDeFilme;
 	}
 
@@ -151,56 +165,60 @@ public class InterfaceCinema {
 		int opcao = recebeOpcao();
 		if (opcao == 0) {
 			System.out.println("Digite o nome do filme: ");
-			arrayListDeFilme.add(1, obterString());
+			String nome = obterString();
+			arrayListDeFilme.add(1, nome);
 		} else
 			arrayListDeFilme.add(1, filme.getNome());
 
 		if (opcao == 1) {
 			System.out.println("Digite a faixa et�ria do filme:");
-			arrayListDeFilme.add(2, obterString());
+			String faixa = obterString();
+			arrayListDeFilme.add(2, faixa);
 		} else
 			arrayListDeFilme.add(2, filme.getFaixaEtaria());
 
 		if (opcao == 2) {
 			System.out.println("Digite a duracao do filme:");
-			arrayListDeFilme.add(3, obterString());
+			int duracao = obterInteiro();
+			arrayListDeFilme.add(3, duracao);
 		} else
 			arrayListDeFilme.add(3, filme.getDuracao());
 
 		if (opcao == 3) {
 			System.out.println("Digite o nome do diretor do filme:");
-			arrayListDeFilme.add(4, obterString());
+			String diretor = obterString();
+			arrayListDeFilme.add(4, diretor);
 		} else
 			arrayListDeFilme.add(4, filme.getDiretor());
 
 		if (opcao == 4) {
 			System.out.println("Digite a sinopse do filme:");
-			arrayListDeFilme.add(5, obterString());
+			String sinopse = obterString();
+			arrayListDeFilme.add(5, sinopse);
 		} else
 			arrayListDeFilme.add(5, filme.getSinopse());
 
 		if (opcao == 5) {
 			System.out.println("Digite o genero do filme::");
-			arrayListDeFilme.add(6, obterString());
+			String genero = obterString();
+			arrayListDeFilme.add(6, genero);
 		} else
 			arrayListDeFilme.add(6, filme.getGenero());
 
 		if (opcao == 6) {
 			System.out.println("Digite a estreia do filme:");
-			arrayListDeFilme.add(7, obterString());
+			String estreia = obterString();
+			arrayListDeFilme.add(7, estreia);
 		} else
 			arrayListDeFilme.add(7, filme.getDataDeEstreia());
 
 		if (opcao == 7) {
 			System.out.println("Digite se o filme e 3D:");
 			System.out.println("true- sim false- nao");
-			arrayListDeFilme.add(8, obterBoolean());
+			boolean filme3D = obterBoolean();
+			arrayListDeFilme.add(8, filme3D);
 		} else
 			arrayListDeFilme.add(8, filme.isIs3d());
-
-		System.out.println("Digite se o filme � 3D: ");
-		System.out.println("true- sim false- nao");
-		arrayListDeFilme.add(obterBoolean());
 
 		return arrayListDeFilme;
 	}
@@ -211,12 +229,15 @@ public class InterfaceCinema {
 	public static ArrayList<Object> adicionarSala() {
 		ArrayList<Object> arrayListDeSala = new ArrayList<Object>();
 		System.out.println("Digite a capacidade da sala: ");
-		arrayListDeSala.add(obterInteiro());
+		int capacidade = obterInteiro();
+		arrayListDeSala.add(capacidade);
 		System.out.println("Digite o numero da sala:");
-		arrayListDeSala.add(obterInteiro());
+		int numero = obterInteiro();
+		arrayListDeSala.add(numero);
 		System.out.println("Digite se a sala e 3D:");
 		System.out.println("true- sim false- nao");
-		arrayListDeSala.add(obterBoolean());
+		boolean sala = obterBoolean();
+		arrayListDeSala.add(sala);
 		return arrayListDeSala;
 	}
 
@@ -245,13 +266,16 @@ public class InterfaceCinema {
 	public static ArrayList<Object> adicionarUsuario() {
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out.println("Digite o nome do Usu�rio: ");
-		arrayListDeUsuario.add(obterString());
+		String nome = obterString();
+		arrayListDeUsuario.add(nome);
 		System.out.println("Digite a permissao do usuario: ");
 		System.out.println("true- admin\nfalse- usuario\n");
-		arrayListDeUsuario.add(obterBoolean());
+		boolean permissao = obterBoolean();
+		arrayListDeUsuario.add(permissao);
 		arrayListDeUsuario.add("login temporario");
 		System.out.println("Digite a senha do usu�rio: ");
-		arrayListDeUsuario.add(obterString());
+		String senha = obterString();
+		arrayListDeUsuario.add(senha);
 		return arrayListDeUsuario;
 	}
 
@@ -507,9 +531,11 @@ public class InterfaceCinema {
 		// TODO Auto-generated method stub
 		ArrayList dadosCaixa = new ArrayList();
 		System.out.println("Digite o novo numero do Caixa");
-		dadosCaixa.add(0, obterInteiro());
+		int numeroDoCaixa = obterInteiro();
+		dadosCaixa.add(0, numeroDoCaixa);
 		System.out.println("Digite o dinheiro no Caixa");
-		dadosCaixa.add(1, obterDouble());
+		double dinheiro = obterDouble();
+		dadosCaixa.add(1, dinheiro);
 	
 		return dadosCaixa;
 	}

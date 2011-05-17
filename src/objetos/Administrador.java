@@ -2,6 +2,7 @@ package objetos;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.InputMismatchException;
@@ -126,13 +127,13 @@ public class Administrador extends Usuario implements Serializable {
 		return Banco.removerCaixa(caixa);
 	}
 
-	public void adicionarFilme() {
+	public void adicionarFilme() throws ParseException {
 		// String nome, int faixa, Date duracao, String diretor, String sinopse,
 		// String genero, String estreia, boolean is3d
 		ArrayList<Object> resposta = InterfaceCinema.adicionarFilme();
 		String nome = (String) resposta.get(0);
 		int faixa = (Integer) resposta.get(1);
-		Date duracao = (Date) resposta.get(2);
+		int duracao = (Integer) resposta.get(2);
 		String diretor = (String) resposta.get(3);
 		String sinopse = (String) resposta.get(4);
 		String genero = (String) resposta.get(5);
@@ -151,7 +152,7 @@ public class Administrador extends Usuario implements Serializable {
 		Filme filmeAAlterar = Banco.obterFilme(nomeDoFilme);
 
 		int faixaEtaria = (Integer) dadosFilme.get(1);
-		Date duracao = (Date) dadosFilme.get(2);
+		int duracao = (Integer) dadosFilme.get(2);
 		String diretor = (String) dadosFilme.get(3);
 		String sinopse = (String) dadosFilme.get(4);
 		String genero = (String) dadosFilme.get(5);
