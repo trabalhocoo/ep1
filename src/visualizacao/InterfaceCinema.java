@@ -17,14 +17,13 @@ public class InterfaceCinema {
 	public static Scanner scanPrincipal = new Scanner(System.in);
 	
 	public static Usuario removerUsuario() {
-		System.out
-				.println("Digite o numero do registro de usuario que voce que remover: ");
+		System.out.println("Digite o numero do registro de usuario que voce que remover: ");
 		int registro = obterInteiro();
 		Usuario usuario = Banco.obterUsuario(registro);
 		return usuario;
 	}
 
-	public static ArrayList alterarUsuario() {
+	public static ArrayList<Object> alterarUsuario() {
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out
 				.println("Digite o numero do registro de usuario que voce deseja alterar: ");
@@ -61,6 +60,7 @@ public class InterfaceCinema {
 		return arrayListDeUsuario;
 	}
 
+
 	public static ArrayList removerSessao() {
 		// TODO 
 		//Deve pedir ao usuario:
@@ -70,7 +70,7 @@ public class InterfaceCinema {
 		return null;
 	}
 
-	public static ArrayList adicionarFilme() {
+	public static ArrayList<Object> adicionarFilme() {
 		ArrayList<Object> arrayListDeFilme = new ArrayList<Object>();
 		System.out.println("Digite o nome do filme: ");
 		arrayListDeFilme.add(obterString());
@@ -91,7 +91,7 @@ public class InterfaceCinema {
 		return arrayListDeFilme;
 	}
 
-	public static ArrayList alterarFilme() {
+	public static ArrayList<Filme> alterarFilme() {
 		ArrayList arrayListDeFilme = new ArrayList();
 		System.out.println("Digite o nome do filme que deseja alterar: ");
 		String nomeDoFilme = obterString();
@@ -110,7 +110,7 @@ public class InterfaceCinema {
 		return arrayListDeFilme;
 	}
 
-	public static ArrayList adicionarSala() {
+	public static ArrayList<Object> adicionarSala() {
 		ArrayList<Object> arrayListDeSala = new ArrayList<Object>();
 		System.out.println("Digite a capacidade da sala: ");
 		arrayListDeSala.add(obterInteiro());
@@ -135,9 +135,10 @@ public class InterfaceCinema {
 		return numeroDoCaixa;
 	}
 
-	public static ArrayList adicionarUsuario() {
+	public static ArrayList<Object> adicionarUsuario() {
 		Scanner sc = new Scanner(System.in);
 		// Ei, esse scaner numca é utilizado!!!!!
+		//Usar o metodo
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out.println("Digite o nome do Usu�rio: ");
 		arrayListDeUsuario.add(obterString());
@@ -149,7 +150,7 @@ public class InterfaceCinema {
 		return arrayListDeUsuario;
 	}
 
-	public static ArrayList alterarSala() {
+	public static ArrayList<Object> alterarSala() {
 		ArrayList<Object> arrayListDaSala = new ArrayList<Object>();
 		System.out.println("Digite o n�mero da sala:");
 		int numeroDaSala = obterInteiro();
@@ -205,7 +206,7 @@ public class InterfaceCinema {
 		return bool;
 	}
 
-	public static ArrayList alterarSessao() {
+	public static ArrayList<Sessao> alterarSessao() {
 		// TODO Deve retornar um arrayList com os dados da sessao: 
 		//Filme filme, ano, mes, dia, hora, minuto, int numSala, double preco, int disp
 		//depois o outro método vai criar o Calendar
@@ -213,7 +214,7 @@ public class InterfaceCinema {
 		return null;
 	}
 
-	public static ArrayList obterDadosLogin() {
+	public static ArrayList<Object> obterDadosLogin() {
 		// TODO tratar excessões
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Digite seu numero de registro:");
@@ -221,7 +222,7 @@ public class InterfaceCinema {
 		System.out.println();
 		System.out.println("Digite sua senha: ");
 		String senha = obterString();
-		ArrayList dadosLogin = new ArrayList();
+		ArrayList<Object> dadosLogin = new ArrayList<Object>();
 		dadosLogin.add(registro);
 		dadosLogin.add(senha);
 		return dadosLogin;
@@ -234,7 +235,7 @@ public class InterfaceCinema {
 		return opcao;
 	}
 
-	public static ArrayList obterDadosSessao() {
+	public static ArrayList<Sessao> obterDadosSessao() {
 		// TODO Auto-generated method stub
 		//deve pedir ao usuario o ano, o mes, o dia, hora, minutos e o numero da  sala, e retornar nessa ordem
 		return null;
