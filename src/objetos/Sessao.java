@@ -17,7 +17,7 @@ public class Sessao implements Serializable {
 	private int lugaresDisponiveis;
 	public static int tempoIntervalo = 15;
 	
-	Sessao(Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, Date duracao, int disp)
+	Sessao(Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp)
 	{
 		this.filme = filme;
 		this.sala = sala;
@@ -67,6 +67,7 @@ public class Sessao implements Serializable {
 	}
 
 	public void setHorarioDeInicio(Calendar horaInicio) {
+		//TODO deve atualizar automaticamente a hora de fim
 		horarioDeInicio = horaInicio; 
 	}
 

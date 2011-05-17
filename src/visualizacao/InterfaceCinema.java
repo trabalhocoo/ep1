@@ -205,15 +205,15 @@ public class InterfaceCinema {
 
 	// falta tratar excecao de tipo
 	private static boolean obterBoolean() {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("(Digite true ou false)");
-		boolean bool = sc.nextBoolean();
+		boolean bool = scanPrincipal.nextBoolean();
 		return bool;
 	}
 
 	public static ArrayList alterarSessao() {
-		// TODO Deve retornar um arrayList com os dados da sessao: filme,
-		// horaInicio, horaFim, sala, preco
+		// TODO Deve retornar um arrayList com os dados da sessao: 
+		//Filme filme, Calendar horaInicio, int numSala, double preco, int disp
+		//deixa esse cara mesmo processar a hora de inicio perguntado ano, mes dia, hora, minuto
 		
 		return null;
 	}

@@ -3,6 +3,7 @@ package objetos;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.ListIterator;
 import java.util.TreeSet;
@@ -25,7 +26,7 @@ public class Administrador extends Usuario implements Serializable {
 
 	// Filme filme, Date hora, Sala sala, double preco, boolean is3d
 	public void adicionarSessao() {
-		//TODO fazer esta coisa funcionar
+		// TODO fazer esta coisa funcionar
 		ArrayList dadosSessao = InterfaceCinema.obterDadosSessao();
 		long fim_horario = (long) (hora.getTime() + filme.getDuracao());
 		// falta nao sei como fazer isso teria que somar o horario do inicio
@@ -38,20 +39,18 @@ public class Administrador extends Usuario implements Serializable {
 	}
 
 	public void alterarSessao() {
-		// Filme filme, Date inicio, long fim, Sala sala, double preco,
-		// Date duracao, int disp
 		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
 		Filme filme = (Filme) dadosSessao.get(0);
 		Calendar inicio = (Calendar) dadosSessao.get(1);
-		int numSala = (Integer) dadosSessao.get(6);
+		int numSala = (Integer) dadosSessao.get(2);
+		double preco = (Double) dadosSessao.get(3);
+		int disp = (Integer) dadosSessao.get(4);
 		
-		
-		Sessao sessaoAAlterar = Banco.obterSessao(inicio,
-				numSala);
-		Banco.modificarSessao(sessaoAAlterar, filme,
-				(Date) dadosSessao.get(1), (Long) dadosSessao.get(2),
-				(Sala) dadosSessao.get(3), (Double) dadosSessao.get(4));
+		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
+		Sala salaASerUsada = Banco.obterSala(numSala);
+		Banco.modificarSessao(sessaoAAlterar, filme, inicio, salaASerUsada, preco);
 	}
+
 
 	public void removerSessao() {
 		// Aqui havera o horario de inicio da sessao e a sala
@@ -132,7 +131,7 @@ public class Administrador extends Usuario implements Serializable {
 
 	public void adicionarUsuario() {
 		ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
-		//TODO mexer isso, tem algo estranho
+		// TODO mexer isso, tem algo estranho
 		// String nomenome, boolean admadm, String loginlogin, String passwd
 		boolean adm = (Boolean) dadosUsuario.get(1);
 		String login = "0";
