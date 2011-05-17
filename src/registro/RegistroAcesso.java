@@ -1,6 +1,7 @@
 package registro;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
@@ -9,7 +10,25 @@ import objetos.Usuario;
 
 
 public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo? >_<
+	
+	public static void registrarAcesso(String texto, Usuario usuario){
+		String conteudo = texto;
+		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
+	      FileWriter fw; 
+	      try{   
+	         fw = new FileWriter("registrosDeAcesso.txt",true);    
+	         fw.write(informacoesDeUsuarioEHora);
+	         fw.write(conteudo); // armazena o texto no objeto x, que aponta para o arquivo            
+	         fw.close(); // cria o arquivo               
+	      }   
+	      // em caso de erro apreenta mensagem abaixo   
+	      catch(IOException e){   
+	           System.out.println (e);
+	      }   
+	   }  
 
+	
+/*
 	void registrarAcesso(Usuario usuario, String hora){
 		try {
 			FileOutputStream fluxo = new FileOutputStream("usuarioEntrada.txt");
@@ -30,7 +49,9 @@ public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo?
 
 		}
 
-		void registrarSaida(Usuario usuario, String hora){
+	
+	
+		/*void registrarSaida(Usuario usuario, String hora){
 			
 			try {
 				FileOutputStream fluxo = new FileOutputStream("usuarioSaida.txt");
@@ -49,6 +70,7 @@ public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo?
 
 		}
 
+
 		void registrarLoginFalho(String usuario, String hora){//qq eh login falho?Eh qdo errou?pra q guardar?
 			
 			try {
@@ -63,5 +85,5 @@ public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo?
 				System.out.println(ioExc.getMessage());
 				ioExc.printStackTrace();
 			}
-		}
+			*/
 	}
