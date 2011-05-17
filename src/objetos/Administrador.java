@@ -113,7 +113,7 @@ public class Administrador extends Usuario implements Serializable {
 		Sala salaNova = new Sala(capacidade, numero, eh3d);
 		Banco.addSala(salaNova);
 		System.out.println ("Sala adicionada com sucesso.\n");
-		RegistroOutros.registrarSala(" Adicionou sala ", salaNova, usuario);
+		RegistroOutros.registrarSala(" Adicionou sala \n", salaNova, usuario);
 	}
 
 	public void alterarSala(Usuario usuario) {

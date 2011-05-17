@@ -18,7 +18,7 @@ public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo?
 	      try{   
 	         fw = new FileWriter("registroAcesso.txt",true);    
 	         fw.write(informacoesDeUsuarioEHora);
-	         fw.write(conteudo);            
+	         fw.write(conteudo + System.getProperty("line.separator"));
 	         fw.close();      
 	      }   
 	      // em caso de erro apreenta mensagem abaixo   

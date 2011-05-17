@@ -19,7 +19,7 @@ public class Controlador{
 			if(user.getSenha().equals(senha)){
 				isLogado = true;
 				tipoUsuario = user.isEhAdministrador();
-				RegistroAcesso.registrarAcesso("--Usuario entrou no sistema--", user);
+				RegistroAcesso.registrarAcesso(" Usuario entrou no sistema ", user);
 				return true;
 			}
 		}
@@ -28,9 +28,10 @@ public class Controlador{
 	}
 
 	public static void deslogar(Usuario usuario){
-		RegistroAcesso.registrarAcesso("-- Usuario saiu do sistema-- ", usuario);
+		RegistroAcesso.registrarAcesso(" Usuario saiu do sistema ", usuario);
 		tipoUsuario = false;
 		isLogado = false;
+		Banco.gravarDados();
 	}
 	
 	public static boolean isLogado() {
