@@ -171,21 +171,14 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList<Object> alterarSala() {
+		ArrayList<Object> arrayListDaSala = new ArrayList<Object>();
+		System.out.println("Digite o numero da sala");
+		int numeroDaSala = obterInteiro();
 		Sala sala = Banco.obterSala(numeroDaSala);
 		System.out
 				.println("Digite o numero correspondente do par�metro que voce deseja alterar: ");
 		System.out.println("0- capacidade 1- numero 2- login 3- 3D");
 		int numeroAAlterar = obterInteiro();
-		switch (numeroAAlterar) {
-		case 0:
-			System.out.println("Digite a nova capacidade da sala:");
-			int capacidade = obterInteiro();
-			sala.setNumero(numero)
-			break;
-
-		default:
-			break;
-		}
 		if (numeroAAlterar == 0) {
 			System.out.println("Digite a nova capacidade da sala:");
 			int capacidade = obterInteiro();
@@ -216,6 +209,11 @@ public class InterfaceCinema {
 		String string = scanPrincipal.next();
 		return string;
 	}
+	
+	private static double obterDouble() {
+		double real = scanPrincipal.nextDouble();
+		return real;
+	}
 
 	// falta tratar excecao de tipo
 	// NÃO ESQUECER DE FECHAR OS FLUXOS
@@ -237,21 +235,21 @@ public class InterfaceCinema {
 		// int disp
 		// depois o outro método vai criar o Calendar
 		System.out.println("Digite o novo nome do filme");
-		String nome = scanPrincipal.next();
+		String nome = obterString();
 		System.out.println("Digite o novo ano para a sessão (apenas numeros)");
-		int ano = scanPrincipal.nextInt();
+		int ano = obterInteiro();
 		System.out.println("Digite o nome mês para a sessão (apenas numeros)");
-		int mes = scanPrincipal.nextInt();
+		int mes = obterInteiro();
 		System.out.println("Digite o novo dia do mês para a sessão");
-		int dia = scanPrincipal.nextInt();
+		int dia = obterInteiro();
 		System.out.println("Digite a nova hora para a sessão");
-		int hora = scanPrincipal.nextInt();
+		int hora = obterInteiro();
 		System.out.println("Digite o novo minuto para a sessão");
-		int minuto = scanPrincipal.nextInt();
+		int minuto = obterInteiro();
 		System.out.println("Digite o novo numero de sala para a sessão");
-		int numSala = scanPrincipal.nextInt();
+		int numSala = obterInteiro();
 		System.out.println("Digite o novo preço para essa sessão");
-		double preco = scanPrincipal.nextDouble();
+		double preco = obterDouble();
 		System.out.println("Digite a quantidade de lugares disponíveis");
 		int disp = scanPrincipal.nextInt();
 
@@ -268,6 +266,8 @@ public class InterfaceCinema {
 
 		return dadosSessao;
 	}
+
+	
 
 	public static ArrayList<Object> obterDadosLogin() {
 		// TODO tratar excessões
