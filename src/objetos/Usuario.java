@@ -32,7 +32,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	public Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
 		numeroDeUsuarios++;
 		this.nome=nomenome;
-		this.registro= numeroDeUsuarios;
+		this.registro= getNumeroDeUsuarios();
 		this.ehAdministrador=admadm;
 		this.login=loginlogin;
 		this.senha=passwd;

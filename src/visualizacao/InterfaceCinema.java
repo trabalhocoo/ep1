@@ -55,10 +55,6 @@ public class InterfaceCinema {
 		if (numero == 1) {
 			System.out.println("Digite a nova permissao do usuario: \n");
 			System.out.println("true- admin \nfalse- usuario\n");
-			// DUVIDA E se o usuario nao for admin mas passar a ser? A gente o
-			// remove e depois cria outro usuario como admin???
-			// duvida extremamente pertinente. Acho que não há outra forma de
-			// fazer isso, e foi o que eu implementei no Banco
 			boolean ehAdmin = obterBoolean();
 			arrayListDeUsuario.add(ehAdmin);
 		} else {
@@ -276,6 +272,7 @@ public class InterfaceCinema {
 		System.out.println("Digite a senha do usu�rio: \n");
 		String senha = obterString();
 		arrayListDeUsuario.add(senha);
+		System.out.println ("Usuario adicionado com sucesso!");
 		return arrayListDeUsuario;
 	}
 

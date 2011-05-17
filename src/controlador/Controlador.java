@@ -100,15 +100,15 @@ public class Controlador{
 				break;
 			case 9:
 				//Criar Sala
-				admin.adicionarSala(admin);
+				admin.adicionarSala(usuarioLogado);
 				break;
 			case 10:
 				//Editar Sala
-				admin.alterarSala(admin);
+				admin.alterarSala(usuarioLogado);
 				break;
 			case 11:
 				//Remover Sala
-				admin.removerSala(admin);
+				admin.removerSala(usuarioLogado);
 				break;
 			case 12:
 				//Exibir Salas
@@ -116,15 +116,15 @@ public class Controlador{
 				break;
 			case 13:
 				//Criar sessao
-				admin.adicionarSessao(admin);
+				admin.adicionarSessao(usuarioLogado);
 				break;
 			case 14:
 				//Editar sessao
-				admin.alterarSessao(admin);
+				admin.alterarSessao(usuarioLogado);
 				break;
 			case 15:
 				//Remover sessao
-				admin.removerSessao(admin);
+				admin.removerSessao(usuarioLogado);
 				break;
 			case 16:
 				//Exibir Sessoes

@@ -101,6 +101,7 @@ public class Banco {
 					fluxoSessoes);
 			sessoes = (TreeSet<Sessao>) objarqSessoes.readObject();
 			objarqSessoes.close();
+			Usuario.setNumeroDeUsuarios(usuarios.size());
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo n�o encontrado, criando os primeiros");
 			try {
@@ -234,6 +235,7 @@ public class Banco {
 
 	public static void addUsuario(Usuario usuario) {
 		usuarios.add(usuario);
+		System.out.println("oOOOOOOOOOOOOOOOOOOOOo");
 	}
 
 	public static boolean removerUsuario(Usuario usuario) {
