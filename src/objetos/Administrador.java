@@ -167,17 +167,23 @@ public class Administrador extends Usuario implements Serializable {
 		ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
 		// TODO mexer isso, tem algo estranho
 		// String nomenome, boolean admadm, String loginlogin, String passwd
+		String nome = (String) dadosUsuario.get(0);
 		boolean adm = (Boolean) dadosUsuario.get(1);
+		String senha = (String) dadosUsuario.get(3);
 		String login = "0";
 		if (adm == true) {
 			login = "1";
 		}
-		Usuario novoUsuario = new Usuario(dadosUsuario.get(0).toString(), adm,
-				login, dadosUsuario.get(3).toString());
+		Usuario novoUsuario;
+		if (adm) {
+			novoUsuario = new Administrador(nome, adm, login, senha);
+		} else {
+			novoUsuario = new Usuario(nome, adm, login, senha);
+		}
 		Banco.addUsuario(novoUsuario);
 	}
 
-	// teoricamente eu vou tirar os parametros de todos os m�todos
+	
 	public boolean removerUsuario() {
 		int registro = InterfaceCinema.removerUsuario();
 		Usuario usuario = Banco.obterUsuario(registro);
@@ -200,17 +206,23 @@ public class Administrador extends Usuario implements Serializable {
 
 	public void removerSala() {
 		// TODO Auto-generated method stub
-
+		Integer numSala = InterfaceCinema.removerSala();
+		Sala salaASair = Banco.obterSala(numSala);
+		Banco.removerSala(salaASair);
 	}
 
 	public void alterarCaixa() {
-		// TODO Auto-generated method stub
+		ArrayList dadosCaixas = InterfaceCinema.alterarCaixa();
+		int numero = (Integer) dadosCaixas.get(0);
+		double dinheiro = (Double) dadosCaixas.get(1);
+		Banco.modificarCaixa(numero, dinheiro);
 
 	}
 
 	public void exibirCaixas() {
 		// TODO Auto-generated method stub
-
+		TreeSet<Caixa> listaCaixas = Banco.getCaixas();
+		Exibir.exibirCaixas(listaCaixas);
 	}
 
 }

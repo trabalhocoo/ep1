@@ -78,5 +78,12 @@ public class Exibir {
 		}
 	}
 
+	public static void exibirCaixas(TreeSet<Caixa> listaDeCaixas) {
+		for(Caixa caixa : listaDeCaixas){
+			System.out.println("Número " + caixa.getNumCaixa() + " Dinheiro: " + caixa.getDinheiro());
+		}
+		
+	}
+
 	
 }

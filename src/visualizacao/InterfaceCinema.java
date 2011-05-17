@@ -491,5 +491,24 @@ public class InterfaceCinema {
 		} while (continueLoop);
 		return real;
 	}
+	
+	
+
+	public static Integer removerSala() {
+		System.out.println("Qual é o número da sala a ser eliminada?");
+		int numSala = obterInteiro();
+		return numSala;
+	}
+
+	public static ArrayList alterarCaixa() {
+		// TODO Auto-generated method stub
+		ArrayList dadosCaixa = new ArrayList();
+		System.out.println("Digite o novo numero do Caixa");
+		dadosCaixa.add(0, obterInteiro());
+		System.out.println("Digite o dinheiro no Caixa");
+		dadosCaixa.add(1, obterDouble());
+	
+		return dadosCaixa;
+	}
 
 }

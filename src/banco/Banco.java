@@ -177,7 +177,7 @@ public class Banco {
 		return false;
 	}
 
-	boolean removerSala(Sala sala) {
+	public static boolean removerSala(Sala sala) {
 		Iterator<Sala> it = salas.iterator();
 		while (it.hasNext()) {
 			if (it.next().equals(sala)) {
@@ -259,17 +259,19 @@ public class Banco {
 		}
 		if (usuario.equals(usuarioEncontrado)) {
 			if (usuario.isEhAdministrador() != ehAdmin) {
-				//esse if é resposavel por fazer um admin virar usuario e vice-versa
+				// esse if é resposavel por fazer um admin virar usuario e
+				// vice-versa
 				if (usuario.isEhAdministrador()) {
 					int registroTemp = usuarioEncontrado.getRegistro();
 					usuarioEncontrado = null;
 					usuarioEncontrado = new Usuario(nome, ehAdmin, login, senha);
-					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios()- 1);
+					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios() - 1);
 					usuarioEncontrado.setRegistro(registroTemp);
-				}else{
+				} else {
 					int registroTemp = usuarioEncontrado.getRegistro();
 					usuarioEncontrado = null;
-					usuarioEncontrado = new Administrador(nome, ehAdmin, login, senha);
+					usuarioEncontrado = new Administrador(nome, ehAdmin, login,
+							senha);
 					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios() - 1);
 					usuarioEncontrado.setRegistro(registroTemp);
 				}
@@ -405,6 +407,28 @@ public class Banco {
 
 	public static TreeSet<Sala> getSalas() {
 		return salas;
+	}
+
+	public static boolean modificarCaixa(int numero, double dinheiro) {
+		Iterator<Caixa> it = caixas.iterator();
+		Caixa caixaEncontrado = null;
+		// essa contrucao eh usada para nao dar currentModificationException
+		while (it.hasNext()) {
+			caixaEncontrado = it.next();
+			if (caixaEncontrado.equals(caixaEncontrado))
+				break;
+		}
+		if (caixaEncontrado.equals(caixaEncontrado)) {
+			caixaEncontrado.setDinheiro(dinheiro);
+			caixaEncontrado.setNumeroDaCaixa(numero);
+			return true;
+		}
+		return false;
+
+	}
+
+	public static TreeSet<Caixa> getCaixas() {
+		return caixas;
 	}
 
 }
