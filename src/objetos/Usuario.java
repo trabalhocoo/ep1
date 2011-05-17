@@ -19,7 +19,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	private boolean ehAdministrador;
 	private String login;
 	private String senha;
-	private static int numeroDeUsuarios =2;
+	private static int numeroDeUsuarios =0;
 	
 	public static int getNumeroDeUsuarios() {
 		return numeroDeUsuarios;
