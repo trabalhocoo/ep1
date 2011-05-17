@@ -235,7 +235,6 @@ public class Banco {
 
 	public static void addUsuario(Usuario usuario) {
 		usuarios.add(usuario);
-		System.out.println("oOOOOOOOOOOOOOOOOOOOOo");
 	}
 
 	public static boolean removerUsuario(Usuario usuario) {
