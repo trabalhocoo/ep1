@@ -36,7 +36,25 @@ public class RegistroOutros extends Registrador {
 	      catch(IOException e){   
 	           System.out.println (e);
 	      }   
-	   }  
+	   }
+	
+	public static void registrarSala(String texto, Sala sala, Usuario usuario){
+		String informacoesDaSala = "Sala: " + sala.getNumero() + "Capacidade: " + sala.getCapacidade();// teoicamente deveria ter tb o horario
+		String conteudo = texto;
+		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
+	      FileWriter fw; 
+	      try{   
+	         fw = new FileWriter("registroSala.txt",true);    
+	         fw.write(informacoesDeUsuarioEHora);
+	         fw.write(informacoesDaSala); 
+	         fw.write(conteudo);
+	         fw.close();              
+	      }   
+	      // em caso de erro apreenta mensagem abaixo   
+	      catch(IOException e){   
+	           System.out.println (e);
+	      }   
+	   }
 	
 /*	
 	void registrarSessao(Sessao sessao, int tipo){

@@ -98,13 +98,13 @@ public class Administrador extends Usuario implements Serializable {
 		boolean removeu = Banco.removerSessao(sessaoARemover);
 		if (removeu == true){
 			System.out.println ("Sessao removida com sucesso.\n");
-			RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);
+			RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);//Duvida pode ser assim?? com null
 		}
 		else
 			System.out.println ("Sessao nao encontrada.\n");
 	}
 
-	public static void adicionarSala() {
+	public static void adicionarSala(Usuario usuario) {
 		ArrayList resposta = InterfaceCinema.adicionarSala();
 		// int capacidade, int numero, boolean is3d
 		int capacidade = (Integer) resposta.get(0);
@@ -113,17 +113,20 @@ public class Administrador extends Usuario implements Serializable {
 		Sala salaNova = new Sala(capacidade, numero, eh3d);
 		Banco.addSala(salaNova);
 		System.out.println ("Sala adicionada com sucesso.\n");
+		RegistroOutros.registrarSala(" Adicionou sala ", salaNova, usuario);
 	}
 
-	public void alterarSala() {
+	public void alterarSala(Usuario usuario) {
 		ArrayList<Object> resposta = InterfaceCinema.alterarSala();
 		Sala sala = (Sala) resposta.get(0);
 		int capacidade = (Integer) resposta.get(1);
 		int numero = (Integer) resposta.get(2);
 		boolean eh3d = (Boolean) resposta.get(3);
 		boolean alterou = Banco.modificarSala(sala, capacidade, numero, eh3d);
-		if (alterou == true)
+		if (alterou == true){
 			System.out.println ("Sala alterada com sucesso.\n");
+			RegistroOutros.registrarSala(" Alterou sala ", sala, usuario);
+		}
 		else 
 			System.out.println ("Sala nao encontrada.\n");
 	}
@@ -255,12 +258,14 @@ public class Administrador extends Usuario implements Serializable {
 			System.out.println ("Usuario ano encontrado.\n");
 	}
 
-	public void removerSala() {
+	public void removerSala(Usuario usuario) {
 		Integer numSala = InterfaceCinema.removerSala();
 		Sala salaASair = Banco.obterSala(numSala);
 		boolean removeu = Banco.removerSala(salaASair);
-		if (removeu == true)
+		if (removeu == true){
 			System.out.println ("Sala removida com sucesso.\n");
+			RegistroOutros.registrarSala(" Removeu sala ", null, usuario); //Duvida, pode ser assim??
+		} 
 		else 
 			System.out.println ("Sala nao encontrada.\n");
 	}

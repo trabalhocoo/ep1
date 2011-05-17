@@ -16,7 +16,7 @@ public class RegistroAcesso extends Registrador {//serah q o q eu fiz tah certo?
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
 	      try{   
-	         fw = new FileWriter("registrosDeAcesso.txt",true);    
+	         fw = new FileWriter("registroAcesso.txt",true);    
 	         fw.write(informacoesDeUsuarioEHora);
 	         fw.write(conteudo);            
 	         fw.close();      

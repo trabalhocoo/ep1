@@ -100,15 +100,15 @@ public class Controlador{
 				break;
 			case 9:
 				//Criar Sala
-				admin.adicionarSala();
+				admin.adicionarSala(admin);
 				break;
 			case 10:
 				//Editar Sala
-				admin.alterarSala();
+				admin.alterarSala(admin);
 				break;
 			case 11:
 				//Remover Sala
-				admin.removerSala();
+				admin.removerSala(admin);
 				break;
 			case 12:
 				//Exibir Salas

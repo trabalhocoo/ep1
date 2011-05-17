@@ -24,7 +24,7 @@ public class Main {
 		do {
 			Banco.recuperarDados();
 			do{
-				System.out.println("Favor Logar, vagabundo!");
+				System.out.println("Favor digitar seu login (numero de registro):");
 				ArrayList loginSenha = InterfaceCinema.obterDadosLogin();
 				Controlador.logar((Integer) loginSenha.get(0), (String) loginSenha.get(1));
 				tipoUser = Controlador.tipoUsuario();
