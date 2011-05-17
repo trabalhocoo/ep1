@@ -1,6 +1,7 @@
 package visualizacao;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controlador.Controlador;
@@ -17,7 +18,7 @@ public class InterfaceCinema {
 	public static Scanner scanPrincipal = new Scanner(System.in);
 	
 	public static Usuario removerUsuario() {
-		System.out.println("Digite o numero do registro de usuario que voce que remover: ");
+		System.out.println("Digite o numero do registro de usuario que deseja remover: ");
 		int registro = obterInteiro();
 		Usuario usuario = Banco.obterUsuario(registro);
 		return usuario;
@@ -26,13 +27,13 @@ public class InterfaceCinema {
 	public static ArrayList<Object> alterarUsuario() {
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out
-				.println("Digite o numero do registro de usuario que voce deseja alterar: ");
+				.println("Digite o numero do registro de usuario que deseja alterar: ");
 		int numeroRegistro = obterInteiro();
 		Usuario usuarioAAlterar = Banco.obterUsuario(numeroRegistro);
 		arrayListDeUsuario.add(usuarioAAlterar);
 		System.out
-				.println("Digite o numero correspondente do par�metro que voce deseja alterar: ");
-		System.out.println("0- nome \n1- administrador 2- senha");
+				.println("Digite o numero correspondente do par�metro que deseja alterar: ");
+		System.out.println("0- nome 1- administrador 2- senha");
 		int numero = obterInteiro();
 		if (numero == 0) {
 			System.out.println("Digite o novo nome do usu�rio: ");
@@ -43,7 +44,9 @@ public class InterfaceCinema {
 		}
 
 		if (numero == 1) {
-			System.out.println("Digite se o usu�rio e administrador: ");
+			System.out.println("Digite a nova permissao do usuario: ");
+			System.out.println("true- admin\nfalse- usuario\n");
+			//DUVIDA E se o usuario nao for admin mas passar a ser? A gente o remove e depois cria outro usuario como admin??? 
 			boolean ehAdmin = obterBoolean();
 			arrayListDeUsuario.add(ehAdmin);
 		} else {
@@ -99,7 +102,8 @@ public class InterfaceCinema {
 		arrayListDeFilme.add(obterString());
 		System.out.println("Digite a estreia do filme:");
 		arrayListDeFilme.add(obterString());
-		System.out.println("Digite se o filme � 3D: ");
+		System.out.println("Digite se a sala e 3D:");
+		System.out.println("true- sim\nfalse- nao\n");
 		arrayListDeFilme.add(obterBoolean());
 		return arrayListDeFilme;
 	}
@@ -117,7 +121,7 @@ public class InterfaceCinema {
 				.println("Digite o numero correspondente do par�metro que voce deseja alterar: ");
 		// String nome 0, int faixa 1, Date duracao 2, String diretor 3, String sinopse 4,
 		// String genero 5, String estreia 6, boolean is3d 7
-		System.out.println("0- nome 1- faixa etaria 2- duracao 3- diretor 4- sinopse 5- genero 6- data da estreia 7- 3D\n");
+		System.out.println("0- nome 1- faixa etaria 2- duracao 3- diretor 4- sinopse 5- genero 6- data da estreia 7- 3D");
 		int opcao = recebeOpcao();
 		if (opcao == 0){
 			System.out.println("Digite o nome do filme: ");
@@ -176,13 +180,14 @@ public class InterfaceCinema {
 		
 		if (opcao == 7){
 			System.out.println("Digite se o filme e 3D:");
-			System.out.println("true- sim false- nao\n");
+			System.out.println("true- sim false- nao");
 			arrayListDeFilme.add(8, obterBoolean());
 		}
 		else {
 			arrayListDeFilme.add(8, filme.isIs3d());
 		}
 		System.out.println("Digite se o filme � 3D: ");
+		System.out.println("true- sim false- nao");
 		arrayListDeFilme.add(obterBoolean());
 		return arrayListDeFilme;
 	}
@@ -194,6 +199,7 @@ public class InterfaceCinema {
 		System.out.println("Digite o numero da sala:");
 		arrayListDeSala.add(obterInteiro());
 		System.out.println("Digite se a sala e 3D:");
+		System.out.println("true- sim false- nao");
 		arrayListDeSala.add(obterBoolean());
 		return arrayListDeSala;
 	}
@@ -213,13 +219,12 @@ public class InterfaceCinema {
 	}
 
 	public static ArrayList<Object> adicionarUsuario() {
-		Scanner sc = new Scanner(System.in);
-		// Ei, esse scaner numca é utilizado!!!!!
 		//Usar o metodo
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out.println("Digite o nome do Usu�rio: ");
 		arrayListDeUsuario.add(obterString());
-		System.out.println("Digite se o usu�rio � administrador: ");
+		System.out.println("Digite a permissao do usuario: ");
+		System.out.println("true- admin\nfalse- usuario\n");
 		arrayListDeUsuario.add(obterBoolean());
 		arrayListDeUsuario.add("login temporario");
 		System.out.println("Digite a senha do usu�rio: ");
@@ -235,7 +240,7 @@ public class InterfaceCinema {
 		Sala sala = Banco.obterSala(numeroDaSala);
 		arrayListDaSala.add(sala);
 		System.out
-				.println("Digite o numero correspondente do par�metro que voce deseja alterar: \n");
+				.println("Digite o numero correspondente do par�metro que voce deseja alterar:");
 		System.out.println("0- capacidade 1- numero 2- login 3- 3D");
 		int numeroAAlterar = obterInteiro();
 		if (numeroAAlterar == 0) {
@@ -272,23 +277,72 @@ public class InterfaceCinema {
 	// falta tratar excecao de tipo
 	//NÃO ESQUECER DE FECHAR OS FLUXOS
 	private static int obterInteiro() {
-		int inteiro = scanPrincipal.nextInt();
+		int inteiro = -1;
+		boolean continueLoop = true;
+		do{
+			try{
+				inteiro = scanPrincipal.nextInt();
+				continueLoop=false;
+			}
+			catch (InputMismatchException inputMismatchException )
+			{
+				System.err.printf( "\nException: %s\n", inputMismatchException );
+				System.out.println("Forneca inteiros. Tente novamente \n");
+			}
+		} while (continueLoop);
+		
 		return inteiro;
 	}
 
-	// falta tratar excecao de tipo
 	private static boolean obterBoolean() {
-		System.out.println("(Digite true ou false)");
-		boolean bool = scanPrincipal.nextBoolean();
+		boolean continueLoop = true;
+		boolean bool= false;
+		do{
+			try{
+				bool = scanPrincipal.nextBoolean();
+				continueLoop=false;
+			}
+			catch (InputMismatchException inputMismatchException )
+			{
+				System.err.printf( "\nException: %s\n", inputMismatchException );
+				System.out.println("Digite true ou false. Tente novamente \n");
+			}
+		} while (continueLoop);
 		return bool;
 	}
 
-	public static ArrayList<Sessao> alterarSessao() {
+	public static ArrayList alterarSessao() {
 		// TODO Deve retornar um arrayList com os dados da sessao: 
-		//Filme filme, ano, mes, dia, hora, minuto, int numSala, double preco, int disp
+		//Filme filme 0, ano 1, mes 2, dia 3, hora 4, minuto 5, int numSala 6, double preco 7, int disp 8
 		//depois o outro método vai criar o Calendar
+		ArrayList <Object> arrayListDeSessao = new ArrayList <Object> ();
+		System.out.println ("Digite a sala da sessao que deseja alterar:");
+		arrayListDeSessao.add(6, obterInteiro());
+		/*alterando Elaine
 		
-		return null;
+		
+		Sessao sessao = Banco.obterSessao(hora, numeroDaSala)
+		System.out.println ("Digite o numero correspondente do parametro que deseja alterar da sessao: \n");
+		System.out.println("0- filme 1- inicio 2- fim 3- sala 4- preco 5- duracao 6- lugares disponiveis");
+		int opcao = recebeOpcao();
+		if (opcao == 0){
+			System.out.println("Digite o nome do filme: ");
+			arrayListDeFilme.add(1,obterString());
+		}
+		else {
+			arrayListDeFilme.add(1, filme.getNome());
+		}
+		
+		
+		System.out.println("Digite o horario de inicio da sessao que deseja remover:");
+		arrayListDeSessao.add(1,obterString());
+		//Filme filme, Date inicio, long fim, Sala sala, double preco, Date duracao, 
+		//int disp
+		System.out.println ("Digite a sala de exibicao:");
+		int salaDeExibicao = obterInteiro();
+		Sessao sessaoAAlterar = Banco.obterSessao((Date) arrayListDeSessao.get(1),salaDeExibicao);
+		*/
+		return arrayListDeSessao;
 	}
 
 	public static ArrayList<Object> obterDadosLogin() {
