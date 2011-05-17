@@ -56,9 +56,8 @@ public class Exibir {
 			System.out.println("19 - REMOVER CAIXA");
 			System.out.println("20 - LISTAR CAIXAS");
 			System.out.println();
-			System.out.println("21 - VENDER INGRESSO");
-			System.out.println("22 - DESLOGAR");
-			System.out.println("23 - SAIR DO PROGRAMA");
+			System.out.println("21 - DESLOGAR");
+			System.out.println("22 - SAIR DO PROGRAMA");
 		}else{
 			System.out.println("=====> MENU USUARIO <=====");
 			System.out.println();

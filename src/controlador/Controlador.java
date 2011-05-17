@@ -21,6 +21,11 @@ public class Controlador{
 		return false;
 	}
 	
+	public static void deslogar(){
+		tipoUsuario = false;
+		isLogado = false;
+	}
+	
 	public static boolean isLogado() {
 		return isLogado;
 	}
@@ -35,6 +40,11 @@ public class Controlador{
 
 	public static void setTipoUsuario(boolean tipoUsuario) {
 		Controlador.tipoUsuario = tipoUsuario;
+	}
+
+	public static void sairDoPrograma(){
+		Banco.gravarDados();
+		System.exit(0);
 	}
 	
 	public static void executaOpcao(int opcao){
@@ -56,15 +66,104 @@ public class Controlador{
 			case 4:
 				//Exibir usuarios
 				admin.exibirUsuarios();
+			case 5:
+				//Criar filme
+				admin.adicionarFilme();
+				break;
+			case 6:
+				//Editar filme
+				admin.alterarFilme();
+				break;
+			case 7:
+				//Remover filme
+				admin.removerFilme();
+				break;
+			case 8:
+				//TODO Exibir filme
+				admin.exibirFilmes();
+			case 9:
+				//Criar Sala
+				admin.adicionarSala();
+				break;
+			case 10:
+				//Editar Sala
+				admin.alterarSala();
+				break;
+			case 11:
+				//TODO Remover Sala
+				admin.removerSala();
+				break;
+			case 12:
+				//TODO Exibir Salas
+				admin.exibirSalas();
+			case 13:
+				//Criar sessao
+				admin.adicionarSessao();
+				break;
+			case 14:
+				//Editar sessao
+				admin.alterarSessao();
+				break;
+			case 15:
+				//Remover sessao
+				admin.removerSessao();
+				break;
+			case 16:
+				//TODO Exibir Sessoes
+				admin.exibirSessoes();
+			case 17:
+				//Criar Caixa
+				admin.adicionarCaixa();
+				break;
+			case 18:
+				//TODO Alterar Caixa
+				admin.alterarCaixa();
+				break;
+			case 19:
+				//Remover caixa
+				admin.removerCaixa();
+				break;
+			case 20:
+				//TODO Exibir caixas
+				admin.exibirCaixas();
+				break;
+			case 21:
+				//Deslogar
+				deslogar();
+				break;
+			case 22:
+				//TODO Sair do Programa
+				sairDoPrograma();
+				break;
 			default:
 				break;
 			}
 		}else{
 			switch (opcao) {
 			case 1:
-				
+				//TODO Exibir filmes em usuario
+				usuarioLogado.exibirFilmes();
 				break;
-
+			case 2:
+				//TODO Exibir sessoes em usuario
+				usuarioLogado.exibirSessoes();
+				break;
+			case 3:
+				//TODO Exibir salas em usuario
+				usuarioLogado.exibirSalas();
+				break;
+			case 4:
+				//TODO Exibir filmes em usuario
+				usuarioLogado.venderIngresso();
+				break;
+			case 5:
+				//Deslogar
+				deslogar();
+				break;
+			case 6:
+				//TODO Sair do Programa
+				sairDoPrograma();
+				break;
 			default:
 				break;
 			}
