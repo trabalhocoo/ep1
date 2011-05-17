@@ -186,9 +186,6 @@ public class InterfaceCinema {
 
 	// falta tratar excecao de tipo
 	private static String obterString() {
-		//Scanner sc1 = new Scanner(System.in);
-		//String string = sc1.next();
-		//sc1.close();
 		String string = scanPrincipal.next();
 		return string;
 	}
@@ -196,9 +193,6 @@ public class InterfaceCinema {
 	// falta tratar excecao de tipo
 	//NÃO ESQUECER DE FECHAR OS FLUXOS
 	private static int obterInteiro() {
-		//Scanner sc = new Scanner(System.in);
-		//int inteiro = sc.nextInt();
-		//sc.close();
 		int inteiro = scanPrincipal.nextInt();
 		return inteiro;
 	}
@@ -212,8 +206,8 @@ public class InterfaceCinema {
 
 	public static ArrayList alterarSessao() {
 		// TODO Deve retornar um arrayList com os dados da sessao: 
-		//Filme filme, Calendar horaInicio, int numSala, double preco, int disp
-		//deixa esse cara mesmo processar a hora de inicio perguntado ano, mes dia, hora, minuto
+		//Filme filme, ano, mes dia, hora, minuto, int numSala, double preco, int disp
+		//depois o outro método vai criar o Calendar
 		
 		return null;
 	}
