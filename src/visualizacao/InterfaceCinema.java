@@ -16,15 +16,15 @@ public class InterfaceCinema {
 
 	public static Scanner scanPrincipal = new Scanner(System.in);
 
-	public static Usuario removerUsuario() {
+	public static int removerUsuario() {
 		System.out
 				.println("Digite o numero do registro de usuario que voce que remover: ");
 		int registro = obterInteiro();
-		Usuario usuario = Banco.obterUsuario(registro);
-		return usuario;
+		return registro;
 	}
 
 	public static ArrayList<Object> alterarUsuario() {
+		//0: usuario, 1: nome, 2: ehadmin, 3: senha
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out
 				.println("Digite o numero do registro de usuario que voce deseja alterar: ");
@@ -58,6 +58,7 @@ public class InterfaceCinema {
 		} else {
 			arrayListDeUsuario.add(usuarioAAlterar.getSenha());
 		}
+		
 		return arrayListDeUsuario;
 	}
 

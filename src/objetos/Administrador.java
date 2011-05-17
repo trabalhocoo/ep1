@@ -170,7 +170,8 @@ public class Administrador extends Usuario implements Serializable {
 
 	// teoricamente eu vou tirar os parametros de todos os m�todos
 	public boolean removerUsuario() {
-		Usuario usuario = InterfaceCinema.removerUsuario();
+		int registro = InterfaceCinema.removerUsuario();
+		Usuario usuario = Banco.obterUsuario(registro);
 		return Banco.removerUsuario(usuario);
 	}
 
@@ -181,7 +182,9 @@ public class Administrador extends Usuario implements Serializable {
 		if (ehAdmin == true) {
 			login = "1";
 		}
-		Usuario usuarioAAlterar = (Usuario) resposta.get(1);
+		
+		//Cuidado com os índices. ArrayList começa em 0
+		Usuario usuarioAAlterar = (Usuario) resposta.get(0);
 		Banco.modificarUsuario(usuarioAAlterar, resposta.get(1).toString(),
 				ehAdmin, login, resposta.get(3).toString());
 	}
