@@ -99,4 +99,9 @@ public class Usuario implements Serializable {
 	public void deslogar(){
 		Controlador.setLogado(false);
 	}
+
+	public void venderIngresso() {
+		// TODO Auto-generated method stub
+		
+	}
 }

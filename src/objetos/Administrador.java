@@ -59,6 +59,7 @@ public class Administrador extends Usuario implements Serializable {
 				(Integer) dadosSessao.get(1));
 		Banco.removerSessao(sessaoARemover);
 	}
+	
 
 	public static void adicionarSala() {
 		ArrayList resposta = InterfaceCinema.adicionarSala();
@@ -159,6 +160,21 @@ public class Administrador extends Usuario implements Serializable {
 		Usuario usuarioAAlterar = (Usuario) resposta.get(1);
 		Banco.modificarUsuario(usuarioAAlterar, resposta.get(1).toString(),
 				ehAdmin, login, resposta.get(3).toString());
+	}
+
+	public void removerSala() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void alterarCaixa() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void exibirCaixas() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
