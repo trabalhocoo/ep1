@@ -34,12 +34,17 @@ public class Usuario implements Serializable {
 		Exibir.exibirSessoes(listaSessoes);
 	}
 	
-	void exibirFilmes(){
+	public void exibirFilmes(){
 		ArrayList<Filme> listaFilmes = Banco.getFilmes();
 		Exibir.exibirFilmes(listaFilmes);
 	}
 	
-	boolean vender(Sessao sessao){
+	public void exibirSalas(){
+		TreeSet<Sala> listaSalas = Banco.getSalas();
+		Exibir.exibirSalas(listaSalas);
+	}
+	
+	public boolean vender(Sessao sessao){
 		int lugareDispo = sessao.getLugaresDisponiveis();
 		if(lugareDispo == 0){
 			System.out.println("Sessao esta cheia");

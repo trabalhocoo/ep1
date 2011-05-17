@@ -26,6 +26,13 @@ public class Exibir {
 		}
 	}
 	
+	public static void exibirSalas(TreeSet<Sala> listaSalas) {
+		for(Sala sala : listaSalas){
+			System.out.println("Numero: " + sala.getNumero() + " Capacidade: " + sala.getCapacidade());
+		}
+		
+	}
+	
 	public static void exibirMenu(boolean tipoUser){
 		//sempre que for true é admin
 		if(tipoUser == true){
@@ -71,4 +78,6 @@ public class Exibir {
 			System.out.println("6 - SAIR DO PROGRAMA");
 		}
 	}
+
+	
 }
