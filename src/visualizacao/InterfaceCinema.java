@@ -24,6 +24,7 @@ public class InterfaceCinema {
 		return usuario;
 	}
 
+	
 	public static ArrayList<Object> alterarUsuario() {
 		ArrayList<Object> arrayListDeUsuario = new ArrayList<Object>();
 		System.out

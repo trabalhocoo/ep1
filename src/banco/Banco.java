@@ -120,7 +120,7 @@ public class Banco {
 
 
 
-	void addSessao(Sessao sessao) {
+	public static void addSessao(Sessao sessao) {
 		sessoes.add(sessao);
 	}
 

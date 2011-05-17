@@ -24,23 +24,29 @@ public class Administrador extends Usuario implements Serializable {
 		super(nome, adm, login, senha);
 	}
 
-	// Filme filme, Date hora, Sala sala, double preco, boolean is3d
+	// String filme, int year, int month, int date, int hourOfDay, int minute,
+	// int sala, double preco, int disp
 	public void adicionarSessao() {
-		// TODO fazer esta coisa funcionar
 		ArrayList dadosSessao = InterfaceCinema.obterDadosSessao();
-		long fim_horario = (long) (hora.getTime() + filme.getDuracao());
-		// falta nao sei como fazer isso teria que somar o horario do inicio
-		// +tempo de filme
-		long duracao_final = fim - hora.getTime();
-		Date duracao = new Date(duracao_final);
-		// nao sei como manipular horas
-		Sessao sessaoNova = new Sessao(filme, hora, fim, sala, preco, duracao,
-				sala.getCapacidade());
+		String nomeFilme = (String) dadosSessao.get(0);
+		int ano = (Integer) dadosSessao.get(1);
+		int mes = (Integer) dadosSessao.get(2);
+		int dia = (Integer) dadosSessao.get(3);
+		int hora = (Integer) dadosSessao.get(4);
+		int minuto = (Integer) dadosSessao.get(5);
+		int numSala = (Integer) dadosSessao.get(6);
+		double preco = (Double) dadosSessao.get(7);
+		
+		Filme filme = Banco.obterFilme(nomeFilme);
+		Sala sala = Banco.obterSala(numSala);
+		
+		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto, sala, preco, sala.getCapacidade());
+		Banco.addSessao(sessaoNova);
 	}
 
 	public void alterarSessao() {
 		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
-		Filme filme = (Filme) dadosSessao.get(0);
+		String nomeFilme = (String) dadosSessao.get(0);
 		int ano = (Integer) dadosSessao.get(1);
 		int mes = (Integer) dadosSessao.get(2);
 		int dia = (Integer) dadosSessao.get(3);
@@ -49,34 +55,35 @@ public class Administrador extends Usuario implements Serializable {
 		int numSala = (Integer) dadosSessao.get(6);
 		double preco = (Double) dadosSessao.get(7);
 		int disp = (Integer) dadosSessao.get(8);
-		
+
+		Filme filme = Banco.obterFilme(nomeFilme);
 		Calendar inicio = Calendar.getInstance();
 		inicio.set(ano, mes, dia, hora, minuto);
-		
 		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
 		Sala salaASerUsada = Banco.obterSala(numSala);
-		Banco.modificarSessao(sessaoAAlterar, filme, inicio, salaASerUsada, preco);
-	}
 
+		Banco.modificarSessao(sessaoAAlterar, filme, inicio, salaASerUsada,
+				preco);
+	}
 
 	public void removerSessao() {
 		// Aqui havera o horario de inicio da sessao e a sala
-		//int year, int month, int date, int hourOfDay, int minute, int numSala e retornar nessa sequencia
-		ArrayList dadosSessao = InterfaceCinema.removerSessao();
-		int ano = (Integer) dadosSessao.get(0);
-		int mes = (Integer) dadosSessao.get(1);
-		int dia = (Integer) dadosSessao.get(2);
-		int hora = (Integer) dadosSessao.get(3);
-		int minutos = (Integer) dadosSessao.get(4);
-		int numSala = (Integer) dadosSessao.get(5);
-		
+		// int year, int month, int date, int hourOfDay, int minute, int numSala
+		// e retornar nessa sequencia
+		ArrayList<Integer> dadosSessao = InterfaceCinema.removerSessao();
+		int ano = dadosSessao.get(0);
+		int mes = dadosSessao.get(1);
+		int dia = dadosSessao.get(2);
+		int hora = dadosSessao.get(3);
+		int minutos = dadosSessao.get(4);
+		int numSala = dadosSessao.get(5);
+
 		Calendar inicio = Calendar.getInstance();
 		inicio.set(ano, mes, dia, hora, minutos);
-			
+
 		Sessao sessaoARemover = Banco.obterSessao(inicio, numSala);
 		Banco.removerSessao(sessaoARemover);
 	}
-	
 
 	public static void adicionarSala() {
 		ArrayList resposta = InterfaceCinema.adicionarSala();
@@ -181,17 +188,17 @@ public class Administrador extends Usuario implements Serializable {
 
 	public void removerSala() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void alterarCaixa() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void exibirCaixas() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
