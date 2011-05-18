@@ -41,13 +41,22 @@ public class Administrador extends Usuario implements Serializable {
 		double preco = (Double) dadosSessao.get(7);
 
 		Filme filme = Banco.obterFilme(nomeFilme);
+		if(filme == null){
+			System.out.println("O Filme que você escolheu não existe. Tente novamente");
+			return;
+		}
 		Sala sala = Banco.obterSala(numSala);
+		if(sala == null){
+			System.out.println("A sala que você escolheu não existe. Tente novamente");
+			return;
+		}
 
 		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto,
 				sala, preco, sala.getCapacidade());
 		Banco.addSessao(sessaoNova);
-		RegistroOutros.registrarSessao(" Registrou sessao ", sessaoNova, usuario);
-		System.out.println ("Sessao adicionada com sucesso.\n");
+		RegistroOutros.registrarSessao(" Registrou sessao ", sessaoNova,
+				usuario);
+		System.out.println("Sessao adicionada com sucesso.\n");
 	}
 
 	public void alterarSessao(Usuario usuario) {
@@ -69,14 +78,14 @@ public class Administrador extends Usuario implements Serializable {
 		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
 		Sala salaASerUsada = Banco.obterSala(numSala);
 
-		boolean alterou = Banco.modificarSessao(sessaoAAlterar, filme, inicio, salaASerUsada,
-				preco);
-		if (alterou == true){
-			System.out.println ("Sessao alterada com sucesso.\n");
-			RegistroOutros.registrarSessao(" Alterou sessao ", sessaoAAlterar, usuario);
-		}
-		else
-			System.out.println ("Sessao nao encontrada.\n");
+		boolean alterou = Banco.modificarSessao(sessaoAAlterar, filme, inicio,
+				salaASerUsada, preco);
+		if (alterou == true) {
+			System.out.println("Sessao alterada com sucesso.\n");
+			RegistroOutros.registrarSessao(" Alterou sessao ", sessaoAAlterar,
+					usuario);
+		} else
+			System.out.println("Sessao nao encontrada.\n");
 	}
 
 	public void removerSessao(Usuario usuario) {
@@ -96,12 +105,11 @@ public class Administrador extends Usuario implements Serializable {
 
 		Sessao sessaoARemover = Banco.obterSessao(inicio, numSala);
 		boolean removeu = Banco.removerSessao(sessaoARemover);
-		if (removeu == true){
-			System.out.println ("Sessao removida com sucesso.\n");
-			RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);//Duvida pode ser assim?? com null
-		}
-		else
-			System.out.println ("Sessao nao encontrada.\n");
+		if (removeu == true) {
+			System.out.println("Sessao removida com sucesso.\n");
+			RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);
+		} else
+			System.out.println("Sessao nao encontrada.\n");
 	}
 
 	public static void adicionarSala(Usuario usuario) {
@@ -112,7 +120,7 @@ public class Administrador extends Usuario implements Serializable {
 		boolean eh3d = (Boolean) resposta.get(2);
 		Sala salaNova = new Sala(capacidade, numero, eh3d);
 		Banco.addSala(salaNova);
-		System.out.println ("Sala adicionada com sucesso.\n");
+		System.out.println("Sala adicionada com sucesso.\n");
 		RegistroOutros.registrarSala(" Adicionou sala \n", salaNova, usuario);
 	}
 
@@ -123,37 +131,34 @@ public class Administrador extends Usuario implements Serializable {
 		int numero = (Integer) resposta.get(2);
 		boolean eh3d = (Boolean) resposta.get(3);
 		boolean alterou = Banco.modificarSala(sala, capacidade, numero, eh3d);
-		if (alterou == true){
-			System.out.println ("Sala alterada com sucesso.\n");
+		if (alterou == true) {
+			System.out.println("Sala alterada com sucesso.\n");
 			RegistroOutros.registrarSala(" Alterou sala ", sala, usuario);
-		}
-		else 
-			System.out.println ("Sala nao encontrada.\n");
+		} else
+			System.out.println("Sala nao encontrada.\n");
 	}
 
 	public void exibirUsuarios() {// listar os usuarios existentes
 		TreeSet<Usuario> listaUsuarios = Banco.getUsuarios();
-		System.out.println ("Lista de usuarios:");
+		System.out.println("Lista de usuarios:");
 		Exibir.exibirUsuarios(listaUsuarios);
 	}
 
 	public boolean adicionarCaixa() {
 		Caixa caixaNova = new Caixa();
-		// falta metodo adicionar caixa OK
-		System.out.println ("Caixa adicionado com sucesso.\n");
+		System.out.println("Caixa adicionado com sucesso.\n");
 		return Banco.addCaixa(caixaNova);
 	}
 
 	public boolean removerCaixa() {
 		int caixa = InterfaceCinema.removerCaixa();
-		// falta removerCaixa(int) no banco OK
 		boolean removeu = Banco.removerCaixa(caixa);
 		if (removeu == true)
-			System.out.println ("Caixa removido com sucesso.\n");
+			System.out.println("Caixa removido com sucesso.\n");
 		else
-			System.out.println ("Caixa nao encontrado.\n");
+			System.out.println("Caixa nao encontrado.\n");
 		return removeu;
-			
+
 	}
 
 	public void adicionarFilme() {
@@ -172,7 +177,7 @@ public class Administrador extends Usuario implements Serializable {
 		Filme filmeNovo = new Filme(nome, faixa, duracao, diretor, sinopse,
 				genero, estreia, eh3d);
 		Banco.adicionarFilme(filmeNovo);
-		System.out.println ("Filme adicionado com sucesso.\n");
+		System.out.println("Filme adicionado com sucesso.\n");
 	}
 
 	public void alterarFilme() {
@@ -188,27 +193,26 @@ public class Administrador extends Usuario implements Serializable {
 		String estreia = (String) dadosFilme.get(6);
 		boolean is3d = (Boolean) dadosFilme.get(7);
 
-		boolean alterou = Banco.modificarFilme(filmeAAlterar, nomeDoFilme, faixaEtaria, duracao,
-				diretor, sinopse, genero, estreia, is3d);
+		boolean alterou = Banco.modificarFilme(filmeAAlterar, nomeDoFilme,
+				faixaEtaria, duracao, diretor, sinopse, genero, estreia, is3d);
 		if (alterou == true)
-			System.out.println ("Filme alterado com sucesso.\n");
-		else 
-			System.out.println ("Filme nao encontrado.\n");
+			System.out.println("Filme alterado com sucesso.\n");
+		else
+			System.out.println("Filme nao encontrado.\n");
 	}
 
 	public boolean removerFilme() {
 		Filme filme = InterfaceCinema.removerFilme();
 		boolean removeu = Banco.removerFilme(filme);
-		if (removeu==true) 
-			System.out.println ("Filme removido com sucesso.\n");
+		if (removeu == true)
+			System.out.println("Filme removido com sucesso.\n");
 		else
-		System.out.println ("Filme nao encontrado.\n");
-	return removeu;
+			System.out.println("Filme nao encontrado.\n");
+		return removeu;
 	}
 
 	public void adicionarUsuario() {
 		ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
-		// TODO mexer isso, tem algo estranho
 		// String nomenome, boolean admadm, String loginlogin, String passwd
 		String nome = (String) dadosUsuario.get(0);
 		boolean adm = (Boolean) dadosUsuario.get(1);
@@ -224,19 +228,19 @@ public class Administrador extends Usuario implements Serializable {
 			novoUsuario = new Usuario(nome, adm, login, senha);
 		}
 		Banco.addUsuario(novoUsuario);
-		System.out.println ("Usuario criado com sucesso.Registro: " + novoUsuario.getRegistro() + "\n");
+		System.out.println("Usuario criado com sucesso.Registro: "
+				+ novoUsuario.getRegistro() + "\n");
 	}
 
-	
 	public boolean removerUsuario() {
 		int registro = InterfaceCinema.removerUsuario();
 		Usuario usuario = Banco.obterUsuario(registro);
-		
+
 		boolean removeu = Banco.removerUsuario(usuario);
 		if (removeu == true)
-			System.out.println ("Usuario removido com sucesso.\n");
+			System.out.println("Usuario removido com sucesso.\n");
 		else
-			System.out.println ("Usuario nao encontrado.\n");
+			System.out.println("Usuario nao encontrado.\n");
 		return removeu;
 	}
 
@@ -249,25 +253,23 @@ public class Administrador extends Usuario implements Serializable {
 		boolean ehAdmin = (Boolean) resposta.get(2);
 		String senha = (String) resposta.get(3);
 
-		// Cuidado com os Ã­ndices. ArrayList comeÃ§a em 0
-		boolean modificou = Banco.modificarUsuario(usuarioAAlterar, nome, ehAdmin,
-				usuarioAAlterar.getLogin(), senha);
+		boolean modificou = Banco.modificarUsuario(usuarioAAlterar, nome,
+				ehAdmin, usuarioAAlterar.getLogin(), senha);
 		if (modificou == true)
-			System.out.println ("Usuario alterado com sucesso.\n");
+			System.out.println("Usuario alterado com sucesso.\n");
 		else
-			System.out.println ("Usuario ano encontrado.\n");
+			System.out.println("Usuario ano encontrado.\n");
 	}
 
 	public void removerSala(Usuario usuario) {
 		Integer numSala = InterfaceCinema.removerSala();
 		Sala salaASair = Banco.obterSala(numSala);
 		boolean removeu = Banco.removerSala(salaASair);
-		if (removeu == true){
-			System.out.println ("Sala removida com sucesso.\n");
-			RegistroOutros.registrarSala(" Removeu sala ", null, usuario); //Duvida, pode ser assim??
-		} 
-		else 
-			System.out.println ("Sala nao encontrada.\n");
+		if (removeu == true) {
+			System.out.println("Sala removida com sucesso.\n");
+			RegistroOutros.registrarSala(" Removeu sala ", null, usuario);
+		} else
+			System.out.println("Sala nao encontrada.\n");
 	}
 
 	public void alterarCaixa() {
@@ -276,15 +278,15 @@ public class Administrador extends Usuario implements Serializable {
 		double dinheiro = (Double) dadosCaixas.get(1);
 		boolean alterou = Banco.modificarCaixa(numero, dinheiro);
 		if (alterou == true)
-			System.out.println ("Caixa alterado com sucesso.\n");
-		else 
-			System.out.println ("Caixa nao encontrado.\n");			
+			System.out.println("Caixa alterado com sucesso.\n");
+		else
+			System.out.println("Caixa nao encontrado.\n");
 
 	}
 
 	public void exibirCaixas() {
 		TreeSet<Caixa> listaCaixas = Banco.getCaixas();
-		System.out.println ("Lista de Caixas:");
+		System.out.println("Lista de Caixas:");
 		Exibir.exibirCaixas(listaCaixas);
 	}
 

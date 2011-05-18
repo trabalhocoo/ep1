@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 
 
-public class Caixa implements Serializable{
+public class Caixa implements Serializable, Comparable<Caixa>{
 	/**
 	 * 
 	 */
@@ -35,6 +35,16 @@ public class Caixa implements Serializable{
 	
 	public int getNumCaixa (){
 		return numeroDaCaixa;
+	}
+
+	@Override
+	public int compareTo(Caixa arg0) {
+		if(arg0.getNumCaixa() > getNumCaixa()){
+			return -1;
+		}else if(arg0.getNumeroDaCaixa() == getNumCaixa() ){
+			return 0;
+		}
+		return 1;
 	}
 	
 }

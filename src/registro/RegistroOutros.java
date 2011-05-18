@@ -39,7 +39,7 @@ public class RegistroOutros extends Registrador {
 	   }
 	
 	public static void registrarSala(String texto, Sala sala, Usuario usuario){
-		String informacoesDaSala = "Sala: " + sala.getNumero() + "Capacidade: " + sala.getCapacidade();// teoicamente deveria ter tb o horario
+		String informacoesDaSala = "Sala: " + sala.getNumero() + " Capacidade: " + sala.getCapacidade();// teoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
@@ -57,7 +57,7 @@ public class RegistroOutros extends Registrador {
 	   }
 	
 	public static void registrarFilme(String texto, Filme filme, Usuario usuario){
-		String informacoesDoFilme = "Filme: " + filme.getNome() + "Genero: " + filme.getGenero();// teoicamente deveria ter tb o horario
+		String informacoesDoFilme = "Filme: " + filme.getNome() + " Genero: " + filme.getGenero();// teoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
@@ -75,7 +75,7 @@ public class RegistroOutros extends Registrador {
 	   }
 	
 	public static void registrarUsuario(String texto, Usuario usuario, Usuario usuarioNovo){
-		String informacoesDoNovoUsuario = "Novo usuario: " + usuarioNovo.getNome() + "Registro: " + usuarioNovo.getRegistro();// teoicamente deveria ter tb o horario
+		String informacoesDoNovoUsuario = "Novo usuario: " + usuarioNovo.getNome() + " Registro: " + usuarioNovo.getRegistro();// teoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 

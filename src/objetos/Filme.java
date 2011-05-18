@@ -38,7 +38,7 @@ public class Filme implements Serializable {
 		this.sinopse = sinopse;
 		this.genero = genero;
 		dataDeEstreia = estreia;
-		this.is3d = is3d;//Modifiquei o filme
+		this.is3d = is3d;
 	}
 
 	public String getNome() {

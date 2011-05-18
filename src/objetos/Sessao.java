@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Sessao implements Serializable {
+public class Sessao implements Serializable, Comparable<Sessao> {
 	/**
 	 * 
 	 */
@@ -77,6 +77,17 @@ public class Sessao implements Serializable {
 
 	public Calendar getHorarioDeInicio() {
 		return horarioDeInicio;
+	}
+
+	@Override
+	public int compareTo(Sessao o) {
+		// TODO Auto-generated method stub
+		if(o.getHorarioDeInicio().after(getHorarioDeInicio())){
+			return -1;
+		}else if(o.getHorarioDeInicio().equals(getHorarioDeInicio())){
+			return 0;
+		}
+		return 1;
 	}
 
 }

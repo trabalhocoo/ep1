@@ -15,7 +15,6 @@ public class Main {
 	 * @throws ParseException 
 	 */
 	public static void main(String[] args) {
-		//Ei, o banco deveria estar sendo carregado primeiro
 		boolean logado = Controlador.isLogado();
 		boolean tipoUser;
 		boolean reiniciar = true;
@@ -33,7 +32,6 @@ public class Main {
 		
 			while(logado == true){
 				Exibir.exibirMenu(tipoUser);
-				//TODO tratar excessao
 				int opcao = InterfaceCinema.recebeOpcao();
 				Controlador.executaOpcao(opcao);
 				logado = Controlador.isLogado();

@@ -9,7 +9,7 @@ import objetos.Filme;
 import objetos.Sala;
 
 
-public class RegistroVenda extends Registrador {//o q eh esse Registrador? O_O
+public class RegistroVenda extends Registrador {
 
 	void registrarVenda(Filme filme, String hora, Sala sala, Date data, double preco){
 		try {

@@ -19,8 +19,6 @@ import objetos.Sala;
 import objetos.Sessao;
 import objetos.Usuario;
 
-//Eu tive uma ideia pro banco: a gente poderia
-//colocar já de cara um vetore 
 public class Banco {
 
 	private static ArrayList<Filme> filmes;
@@ -29,11 +27,6 @@ public class Banco {
 	private static TreeSet<Usuario> usuarios;
 	private static TreeSet<Sessao> sessoes;
 
-	// colocar os atributos. NÃ£o sei quais collections serÃ£o
-
-	/**
-	 * fazer essa coisa depois. Ele deve obter coisas do banco de dados
-	 */
 	public static void gravarDados() {
 		try {
 			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
@@ -108,11 +101,11 @@ public class Banco {
 				gravarPrimeiraExec();
 			} catch (IOException e1) {
 				System.out
-						.println("Impossivel criar arquivos para primeira execução");
+						.println("Impossivel criar arquivos para primeira execucao");
 				e1.printStackTrace();
 			}
 		} catch (IOException ioExc) {
-			System.out.println(ioExc.getMessage() + " ferrou");
+			System.out.println(ioExc.getMessage() + "Falha de IO");
 			ioExc.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
