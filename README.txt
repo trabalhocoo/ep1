@@ -1,13 +1,6 @@
-Trabalho de COO
-nova linha
-aaaa
-=D
+Ola professora.
 
-TESTE DO KURECK EM CASA
-
-Mudei um monte de coisas e coloquei carinhas =) Bah
-
-Controlador
-Main
-Exibir	
+O usuario inicial é:
+usuario: 1
+senha: 123456
 		

@@ -7,12 +7,12 @@ public class Exibir {
 	
 	public static void exibirSessoes(TreeSet <Sessao> sessoes){
 		for(Sessao sessao : sessoes)
-			System.out.println("Filme: " + sessao.getFilme().getNome()+ "\tHora de inicio: " + sessao.getHorarioDeInicio().HOUR_OF_DAY + ":" + sessao.getHorarioDeInicio().MINUTE + "\tSala: " +sessao.getSala().getNumero()+ "\tPreco: " +sessao.getPreco());
+			System.out.println("Filme: " + sessao.getFilme().getNome()+ "\tHora de inicio: " + sessao.getHorarioDeInicio().getTime() + "\tSala: " +sessao.getSala().getNumero()+ "\tPreco: " +sessao.getPreco());
 	}
 	
 	public static void exibirFilmes(ArrayList<Filme> listaFilmes){
 		for(Filme filme : listaFilmes)
-			System.out.println("Titulo: " +filme.getNome()+ "\tDuracao: " +filme.getDuracao());
+			System.out.println("Titulo: " +filme.getNome()+ "\tDuracao: " +filme.getDuracao() + "\tGenero: " + filme.getGenero());
 	}	
 	
 	public static void exibirUsuarios(TreeSet<Usuario> usuarios){
