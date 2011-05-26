@@ -42,12 +42,12 @@ public class Administrador extends Usuario implements Serializable {
 
 		Filme filme = Banco.obterFilme(nomeFilme);
 		if(filme == null){
-			System.out.println("O Filme que você escolheu não existe. Tente novamente");
+			System.out.println("O Filme que vocï¿½ escolheu nï¿½o existe. Tente novamente");
 			return;
 		}
 		Sala sala = Banco.obterSala(numSala);
 		if(sala == null){
-			System.out.println("A sala que você escolheu não existe. Tente novamente");
+			System.out.println("A sala que vocï¿½ escolheu nï¿½o existe. Tente novamente");
 			return;
 		}
 
@@ -185,15 +185,16 @@ public class Administrador extends Usuario implements Serializable {
 		String nomeDoFilme = (String) dadosFilme.get(0);
 		Filme filmeAAlterar = Banco.obterFilme(nomeDoFilme);
 
-		int faixaEtaria = (Integer) dadosFilme.get(1);
-		int duracao = (Integer) dadosFilme.get(2);
-		String diretor = (String) dadosFilme.get(3);
-		String sinopse = (String) dadosFilme.get(4);
-		String genero = (String) dadosFilme.get(5);
-		String estreia = (String) dadosFilme.get(6);
-		boolean is3d = (Boolean) dadosFilme.get(7);
+		String novoNome = (String) dadosFilme.get(1);
+		int faixaEtaria = (Integer) dadosFilme.get(2);
+		int duracao = (Integer) dadosFilme.get(3);
+		String diretor = (String) dadosFilme.get(4);
+		String sinopse = (String) dadosFilme.get(5);
+		String genero = (String) dadosFilme.get(6);
+		String estreia = (String) dadosFilme.get(7);
+		boolean is3d = (Boolean) dadosFilme.get(8);
 
-		boolean alterou = Banco.modificarFilme(filmeAAlterar, nomeDoFilme,
+		boolean alterou = Banco.modificarFilme(filmeAAlterar, novoNome,
 				faixaEtaria, duracao, diretor, sinopse, genero, estreia, is3d);
 		if (alterou == true)
 			System.out.println("Filme alterado com sucesso.\n");

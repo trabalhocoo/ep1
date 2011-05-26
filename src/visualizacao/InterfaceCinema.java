@@ -150,7 +150,7 @@ public class InterfaceCinema {
 		// duracao,
 		// diretor, sinopse, genero, estreia, is3d)
 		Filme filme = Banco.obterFilme(nomeDoFilme);
-		arrayListDeFilme.add(filme);
+		arrayListDeFilme.add(0, nomeDoFilme);
 		System.out
 				.println("Digite o numero correspondente do par�metro que voce deseja alterar:\n");
 		// String nome 0, int faixa 1, Date duracao 2, String diretor 3, String
@@ -168,7 +168,7 @@ public class InterfaceCinema {
 
 		if (opcao == 1) {
 			System.out.println("Digite a faixa et�ria do filme:\n");
-			String faixa = obterString();
+			int faixa = obterInteiro();
 			arrayListDeFilme.add(2, faixa);
 		} else
 			arrayListDeFilme.add(2, filme.getFaixaEtaria());
