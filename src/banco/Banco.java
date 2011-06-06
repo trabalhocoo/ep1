@@ -19,8 +19,6 @@ import objetos.Sala;
 import objetos.Sessao;
 import objetos.Usuario;
 
-//Eu tive uma ideia pro banco: a gente poderia
-//colocar já de cara um vetore 
 public class Banco {
 
 	private static ArrayList<Filme> filmes;
@@ -29,11 +27,6 @@ public class Banco {
 	private static TreeSet<Usuario> usuarios;
 	private static TreeSet<Sessao> sessoes;
 
-	// colocar os atributos. NÃ£o sei quais collections serÃ£o
-
-	/**
-	 * fazer essa coisa depois. Ele deve obter coisas do banco de dados
-	 */
 	public static void gravarDados() {
 		try {
 			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
@@ -101,17 +94,18 @@ public class Banco {
 					fluxoSessoes);
 			sessoes = (TreeSet<Sessao>) objarqSessoes.readObject();
 			objarqSessoes.close();
+			Usuario.setNumeroDeUsuarios(usuarios.size());
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo n�o encontrado, criando os primeiros");
 			try {
 				gravarPrimeiraExec();
 			} catch (IOException e1) {
 				System.out
-						.println("Impossivel criar arquivos para primeira execução");
+						.println("Impossivel criar arquivos para primeira execucao");
 				e1.printStackTrace();
 			}
 		} catch (IOException ioExc) {
-			System.out.println(ioExc.getMessage() + " ferrou");
+			System.out.println(ioExc.getMessage() + "Falha de IO");
 			ioExc.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -202,7 +196,7 @@ public class Banco {
 	}
 
 	boolean modificarFilme(Filme filme, String nome, int faixaEtaria,
-			Date horaInicio, Date duracao, String Diretor, String genero,
+			Date horaInicio, int duracao, String Diretor, String genero,
 			Date dataEstreia) {
 		Iterator<Filme> it = filmes.iterator();
 		Filme filmeEncontrado = null;
@@ -344,7 +338,7 @@ public class Banco {
 	// String nome, int faixa, Date duracao, String diretor, String sinopse,
 	// String genero, String estreia, boolean is3d
 	public static boolean modificarFilme(Filme filmeAAlterar, String nome,
-			int faixa, Date duracao, String diretor, String sinopse,
+			int faixa, int duracao, String diretor, String sinopse,
 			String genero, String estreia, boolean is3d) {
 		Iterator<Filme> it = filmes.iterator();
 		Filme filmeEncontrado = null;
@@ -396,8 +390,7 @@ public class Banco {
 		usuarios = new TreeSet<Usuario>();
 		sessoes = new TreeSet<Sessao>();
 
-		Administrador admin = new Administrador("Admin", true, "Admin",
-				"123456");
+		Administrador admin = new Administrador("Admin", true, "Admin",	"123456");
 		addUsuario(admin);
 		objarqUsuarios.writeObject(usuarios);
 		objarqUsuarios.close();

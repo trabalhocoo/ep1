@@ -19,7 +19,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	private boolean ehAdministrador;
 	private String login;
 	private String senha;
-	private static int numeroDeUsuarios =1;
+	private static int numeroDeUsuarios =0;
 	
 	public static int getNumeroDeUsuarios() {
 		return numeroDeUsuarios;
@@ -30,10 +30,9 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	}
 
 	public Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
-		
-		this.nome=nomenome;
 		numeroDeUsuarios++;
-		this.registro= numeroDeUsuarios;
+		this.nome=nomenome;
+		this.registro= getNumeroDeUsuarios();
 		this.ehAdministrador=admadm;
 		this.login=loginlogin;
 		this.senha=passwd;
@@ -41,16 +40,19 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	
 	public void exibirSessoes(){
 		TreeSet<Sessao> listaSessoes = Banco.getSessoes();
+		System.out.println ("Lista de sessoes:");
 		Exibir.exibirSessoes(listaSessoes);
 	}
 	
 	public void exibirFilmes(){
 		ArrayList<Filme> listaFilmes = Banco.getFilmes();
+		System.out.println ("Lista de filmes:");
 		Exibir.exibirFilmes(listaFilmes);
 	}
 	
 	public void exibirSalas(){
 		TreeSet<Sala> listaSalas = Banco.getSalas();
+		System.out.println ("Lista de salas:");
 		Exibir.exibirSalas(listaSalas);
 	}
 	
@@ -115,10 +117,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		
 		Calendar horaInicio = Calendar.getInstance();
 		//Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp
-		
-		
-		
-		
+			
 	}
 
 	@Override

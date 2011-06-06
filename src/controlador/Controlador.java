@@ -1,6 +1,9 @@
 package controlador;
+import java.text.ParseException;
+
 import objetos.Administrador;
 import objetos.Usuario;
+import registro.RegistroAcesso;
 import banco.*;
 
 public class Controlador{
@@ -16,16 +19,19 @@ public class Controlador{
 			if(user.getSenha().equals(senha)){
 				isLogado = true;
 				tipoUsuario = user.isEhAdministrador();
+				RegistroAcesso.registrarAcesso(" Usuario entrou no sistema ", user);
 				return true;
 			}
 		}
+		
 		return false;
 	}
-	
-	//nao ta funcionando. Sera que é melhor colocar em outro lugar?
-	public static void deslogar(){
+
+	public static void deslogar(Usuario usuario){
+		RegistroAcesso.registrarAcesso(" Usuario saiu do sistema ", usuario);
 		tipoUsuario = false;
 		isLogado = false;
+		Banco.gravarDados();
 	}
 	
 	public static boolean isLogado() {
@@ -76,6 +82,7 @@ public class Controlador{
 			case 4:
 				//Exibir usuarios
 				admin.exibirUsuarios();
+				break;
 			case 5:
 				//Criar filme
 				admin.adicionarFilme();
@@ -91,36 +98,39 @@ public class Controlador{
 			case 8:
 				//Exibir filme
 				admin.exibirFilmes();
+				break;
 			case 9:
 				//Criar Sala
-				admin.adicionarSala();
+				admin.adicionarSala(usuarioLogado);
 				break;
 			case 10:
 				//Editar Sala
-				admin.alterarSala();
+				admin.alterarSala(usuarioLogado);
 				break;
 			case 11:
 				//Remover Sala
-				admin.removerSala();
+				admin.removerSala(usuarioLogado);
 				break;
 			case 12:
 				//Exibir Salas
 				admin.exibirSalas();
+				break;
 			case 13:
 				//Criar sessao
-				admin.adicionarSessao();
+				admin.adicionarSessao(usuarioLogado);
 				break;
 			case 14:
 				//Editar sessao
-				admin.alterarSessao();
+				admin.alterarSessao(usuarioLogado);
 				break;
 			case 15:
 				//Remover sessao
-				admin.removerSessao();
+				admin.removerSessao(usuarioLogado);
 				break;
 			case 16:
 				//Exibir Sessoes
 				admin.exibirSessoes();
+				break;
 			case 17:
 				//Criar Caixa
 				admin.adicionarCaixa();
@@ -139,13 +149,14 @@ public class Controlador{
 				break;
 			case 21:
 				//Deslogar
-				deslogar();
+				deslogar(admin);
 				break;
 			case 22:
 				//Sair do Programa
 				sairDoPrograma();
 				break;
 			default:
+				System.out.println ("Digite uma opcao valida.Tente novamente\n");
 				break;
 			}
 		}else{
@@ -156,11 +167,11 @@ public class Controlador{
 				break;
 			case 2:
 				//Exibir sessoes em usuario
-				usuarioLogado.exibirSessoes();
+				usuarioLogado.exibirSalas();
 				break;
 			case 3:
 				//Exibir salas em usuario
-				usuarioLogado.exibirSalas();
+				usuarioLogado.exibirSessoes();
 				break;
 			case 4:
 				//TODO Exibir filmes em usuario
@@ -168,13 +179,14 @@ public class Controlador{
 				break;
 			case 5:
 				//Deslogar
-				deslogar();
+				deslogar(usuarioLogado);
 				break;
 			case 6:
 				//Sair do Programa
 				sairDoPrograma();
 				break;
 			default:
+				System.out.println ("Digite uma opcao valida.Tente novamente\n");
 				break;
 			}
 		}
