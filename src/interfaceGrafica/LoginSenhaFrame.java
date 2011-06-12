@@ -90,7 +90,7 @@ public class LoginSenhaFrame extends JFrame{
 						//incluir sua janela
 					} else {
 						UsuarioFrame usfr = new UsuarioFrame();
-						usfr.setVisible(true);
+						usfr.showIt("Usuário");
 					}
 					hideIt();
 				}
@@ -104,7 +104,6 @@ public class LoginSenhaFrame extends JFrame{
 	public void showIt(){
 		this.setVisible(true);
 	}
-	/*
 	// Makes the frame visible and sets the title text.
 	public void showIt(String title){
 	this.setTitle(title);
@@ -118,7 +117,6 @@ public class LoginSenhaFrame extends JFrame{
 	this.setLocation(x,y);
 	this.setVisible(true);
 	}
-	*/
 	
 	// Makes the frame invisible.
 	public void hideIt(){
