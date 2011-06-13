@@ -87,10 +87,11 @@ public class LoginSenhaFrame extends JFrame{
 				}
 				else {
 					if (tipoUser){
-						//incluir sua janela
+						AdminFrame admfr = new AdminFrame();
+						admfr.showIt("Menu Admin");
 					} else {
 						UsuarioFrame usfr = new UsuarioFrame();
-						usfr.showIt("Usuário");
+						usfr.showIt("Menu Usuário");
 					}
 					hideIt();
 				}
