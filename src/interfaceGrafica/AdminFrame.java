@@ -1,15 +1,31 @@
 package interfaceGrafica;
 import javax.swing.*;
+import java.awt.Color;
+import java.awt.Container;
+
+
+import objetos.Usuario;
+
+import controlador.Controlador;
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AdminFrame extends JFrame {
+	private static Usuario usuarioLogado;
 	private JTextField textField;
-	public AdminFrame() {
+	final JLabel lblNewLabel_1;
+	
+	public AdminFrame(final Usuario usuarioLogado) {
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.setSize(550,380);
 		this.setLocation(200,200);
+		this.setBackground(Color.blue);
+		this.setForeground(Color.pink);
+		getContentPane().setBackground(Color.white);
+
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -128,6 +144,10 @@ public class AdminFrame extends JFrame {
 		label_21.setBounds(354, 244, 114, 14);
 		getContentPane().add(label_21);
 		
+		lblNewLabel_1 = new JLabel("");//vazio por enquanto
+		lblNewLabel_1.setBounds(38, 50, 298, 14);
+		getContentPane().add(lblNewLabel_1);
+		
 		textField = new JTextField();
 		textField.setBounds(178, 23, 86, 20);
 		getContentPane().add(textField);
@@ -137,7 +157,114 @@ public class AdminFrame extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int login = Integer.parseInt(textField.getText());
-				
+				switch (login) {
+				case 1:
+					//Criar usuario
+					CriarUsuarioFrame usufr = new CriarUsuarioFrame(usuarioLogado);
+					usufr.showIt("Criar Usuário");
+					hideIt();
+					break;
+				case 2:
+					//Editar usuario
+					//EditarUsuarioFrame usufr = new EditarUsuarioFrame();
+					//usufr.showIt("Editar Usuário");
+					break;
+				case 3:
+					//Remover usuario
+					//CriarUsuarioFrame usufr = new CriarUsuarioFrame();
+					//usufr.showIt("Remover Usuário");
+					break;
+				case 4:
+					//Exibir usuarios
+					//ExibirUsuarioFrame usufr = new ExibirUsuarioFrame();
+					//usufr.showIt("Criar Usuario");
+					break;
+				case 5:
+					//Criar filme
+					//CriarFilmeFrame filme = new CriarFilmeFrame();
+					//filme.showIt();
+					break;
+					/*
+				case 6:
+					//Editar filme
+					admin.alterarFilme();
+					break;
+				case 7:
+					//Remover filme
+					admin.removerFilme();
+					break;
+				case 8:
+					//Exibir filme
+					admin.exibirFilmes();
+					break;
+				case 9:
+					//Criar Sala
+					admin.adicionarSala(usuarioLogado);
+					break;
+				case 10:
+					//Editar Sala
+					admin.alterarSala(usuarioLogado);
+					break;
+				case 11:
+					//Remover Sala
+					admin.removerSala(usuarioLogado);
+					break;
+				case 12:
+					//Exibir Salas
+					admin.exibirSalas();
+					break;
+				case 13:
+					//Criar sessao
+					admin.adicionarSessao(usuarioLogado);
+					break;
+				case 14:
+					//Editar sessao
+					admin.alterarSessao(usuarioLogado);
+					break;
+				case 15:
+					//Remover sessao
+					admin.removerSessao(usuarioLogado);
+					break;
+				case 16:
+					//Exibir Sessoes
+					admin.exibirSessoes();
+					break;
+				case 17:
+					//Criar Caixa
+					admin.adicionarCaixa();
+					break;
+				case 18:
+					//TODO Alterar Caixa
+					admin.alterarCaixa();
+					break;
+				case 19:
+					//Remover caixa
+					admin.removerCaixa();
+					break;
+				case 20:
+					//Exibir caixas
+					admin.exibirCaixas();
+					break;
+					*/
+				case 21:
+					//Deslogar
+					Controlador.deslogar(usuarioLogado);
+					LoginSenhaFrame logSen = new LoginSenhaFrame();
+					logSen.showIt("Identificação");
+					hideIt();
+					break;
+				case 22:
+					//Sair do Programa
+					Controlador.sairDoPrograma();
+					break;
+				default:
+					lblNewLabel_1.setOpaque(false);
+					lblNewLabel_1.setForeground(Color.red);
+					textField.setText("");
+					lblNewLabel_1.setText("Digite uma opção válida.Tente novamente");
+					//System.out.println ("Digite uma opcao valida.Tente novamente\n");
+					break;
+				}
 			}
 		});
 		btnNewButton.setBounds(274, 24, 52, 20);

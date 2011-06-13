@@ -18,6 +18,7 @@ public class LoginSenhaFrame extends JFrame{
 		this.setLocation(200,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(Color.white);
 		
 		JLabel lblNewLabel = new JLabel("DIGITE SEU LOGIN E SENHA:");
 		lblNewLabel.setBounds(40, 39, 213, 14);
@@ -69,6 +70,7 @@ public class LoginSenhaFrame extends JFrame{
 				Banco.recuperarDados();
 				int login = Integer.parseInt(textField.getText());
 				String senha = passwordField.getText();
+				Usuario usuario;
 				//System.out.println (tipoUser);
 				try{
 					logou = Controlador.logar(login, senha);
@@ -78,6 +80,7 @@ public class LoginSenhaFrame extends JFrame{
 				}
 				tipoUser = Controlador.tipoUsuario();
 				logado = Controlador.isLogado();
+				usuario = Controlador.obterUsuario(login, senha);
 				if(!logou){
 					lblNewLabel_1.setOpaque(false);
 					lblNewLabel_1.setForeground(Color.red);
@@ -87,10 +90,10 @@ public class LoginSenhaFrame extends JFrame{
 				}
 				else {
 					if (tipoUser){
-						AdminFrame admfr = new AdminFrame();
+						AdminFrame admfr = new AdminFrame(usuario);
 						admfr.showIt("Menu Admin");
 					} else {
-						UsuarioFrame usfr = new UsuarioFrame();
+						UsuarioFrame usfr = new UsuarioFrame(usuario);
 						usfr.showIt("Menu Usuário");
 					}
 					hideIt();

@@ -15,16 +15,18 @@ public class UsuarioFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	
 	
-	public UsuarioFrame (){
+	public UsuarioFrame (final Usuario usuarioLogado){
+		this.usuarioLogado = usuarioLogado;
 		this.setSize(550,380);
 		this.setLocation(200,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		getContentPane().setBackground(Color.white);
 		
 		JButton btnNewButton = new JButton("LISTAR FILMES");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				usuarioLogado.exibirFilmes();
+				//usuarioLogado.exibirFilmes();
 			}
 		});
 		btnNewButton.setBounds(54, 70, 142, 32);
@@ -48,10 +50,23 @@ public class UsuarioFrame extends JFrame{
 		getContentPane().add(button_2);
 		
 		JButton button_3 = new JButton("DESLOGAR");
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controlador.deslogar(usuarioLogado);
+				LoginSenhaFrame logSen = new LoginSenhaFrame();
+				logSen.showIt("Identificação");
+				hideIt();
+			}
+		});
 		button_3.setBounds(297, 143, 142, 32);
 		getContentPane().add(button_3);
 		
 		JButton button_4 = new JButton("SAIR DO PROGRAMA");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Controlador.sairDoPrograma();
+			}
+		});
 		button_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		button_4.setBounds(297, 217, 142, 32);
 		getContentPane().add(button_4);
