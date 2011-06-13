@@ -514,4 +514,29 @@ public class InterfaceCinema {
 		return dadosCaixa;
 	}
 
+	public static ArrayList venderIngresso() {
+		ArrayList dadosDeSessao = new ArrayList();
+
+		System.out.println("Digite o ano da sessão (apenas numeros)\n");
+		int ano = obterInteiro();
+		System.out.println("Digite o mes da sessao (apenas numeros)\n");
+		int mes = obterInteiro();
+		System.out.println("Digite o dia da sessao\n");
+		int dia = obterInteiro();
+		System.out.println("Digite o horario do filme no formato HHMM:\n");
+		int horaMinuto = obterInteiro();
+		int hora = horaMinuto / 100;
+		int minuto = horaMinuto % 100;
+		System.out.println("Digite o numero da sala:\n");
+		int sala = obterInteiro();
+		System.out.println("Digite a quantidade de ingressos:\n");
+		int quantidade = obterInteiro();
+		Calendar dataOriginal = Calendar.getInstance();
+		dataOriginal.set(ano, mes, dia, hora, minuto);
+		dadosDeSessao.add(dataOriginal);
+		dadosDeSessao.add(sala);
+		dadosDeSessao.add(quantidade);
+		return dadosDeSessao;
+	}
+
 }

@@ -26,6 +26,10 @@ public class Controlador{
 		
 		return false;
 	}
+	
+	public static Usuario obterUsuario (int registro, String senha){
+		return Banco.obterUsuario(registro);
+	}
 
 	public static void deslogar(Usuario usuario){
 		RegistroAcesso.registrarAcesso(" Usuario saiu do sistema ", usuario);

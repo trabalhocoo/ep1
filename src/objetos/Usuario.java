@@ -113,8 +113,19 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	}
 
 	public void venderIngresso() {
-		ArrayList dadosSessaoASerVendida = InterfaceCinema.adicionarSessao();
-		
+		ArrayList dadosSessaoASerVendida = InterfaceCinema.venderIngresso();
+		Calendar inicio = (Calendar) dadosSessaoASerVendida.get(0);
+		int numSala = (Integer) dadosSessaoASerVendida.get(1);
+		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida.get(2); 
+		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
+		int quantidadeFinal = sessaoAAlterar.getLugaresDisponiveis()- quantidadeDeIngressosASerVendida;
+		if (quantidadeFinal>=0){
+		sessaoAAlterar.setLugaresDisponiveis(quantidadeFinal);
+		System.out.println ("Ingressos vendidos com sucesso!");
+		}
+		else {
+			System.out.println ("Forneca um numero menor que "+ quantidadeFinal );
+		}
 		Calendar horaInicio = Calendar.getInstance();
 		//Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp
 			
