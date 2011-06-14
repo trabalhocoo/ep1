@@ -73,7 +73,7 @@ public class Controlador{
 			switch (opcao) {
 			case 1:
 				//Criar usuario
-				admin.adicionarUsuario();
+				//admin.adicionarUsuario();
 				break;
 			case 2:
 				//Editar usuario
