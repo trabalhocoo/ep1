@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 public class LoginSenhaFrame extends JFrame{
 	private JTextField textField;
 	private JPasswordField passwordField;
+	JLabel imageLabel = new JLabel();
 	
 	public LoginSenhaFrame()
 	{
@@ -19,6 +20,10 @@ public class LoginSenhaFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.white);
+		// add the image label
+        //ImageIcon ii = new ImageIcon(this.getClass().getResource("cinema.jpg"));
+        //imageLabel.setIcon(ii);
+        //this.add(imageLabel);
 		
 		JLabel lblNewLabel = new JLabel("DIGITE SEU LOGIN E SENHA:");
 		lblNewLabel.setBounds(40, 39, 213, 14);

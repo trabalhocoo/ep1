@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Container;
 
 
+import objetos.Administrador;
 import objetos.Usuario;
 
 import controlador.Controlador;
@@ -19,6 +20,7 @@ public class AdminFrame extends JFrame {
 	final JLabel lblNewLabel_1;
 	
 	public AdminFrame(final Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.setSize(550,380);
 		this.setLocation(200,200);

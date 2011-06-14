@@ -3,19 +3,23 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Container;
 
+import objetos.Administrador;
 import objetos.Usuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class CriarUsuarioFrame extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private static Usuario usuarioLogado;
+	private JComboBox comboBox;
 	
 	
 	public CriarUsuarioFrame(final Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
+		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
 		this.setLocation(200,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,11 +31,11 @@ public class CriarUsuarioFrame extends JFrame {
 		getContentPane().add(lblCriarUsurio);
 		
 		JLabel lblNome = new JLabel("Nome do usuário:");
-		lblNome.setBounds(27, 88, 110, 14);
+		lblNome.setBounds(23, 88, 110, 14);
 		getContentPane().add(lblNome);
 		
 		JLabel lblPermissoDeUsurio = new JLabel("Permiss\u00E3o de usu\u00E1rio:");
-		lblPermissoDeUsurio.setBounds(33, 144, 134, 20);
+		lblPermissoDeUsurio.setBounds(23, 144, 134, 20);
 		getContentPane().add(lblPermissoDeUsurio);
 		
 		JLabel label = new JLabel("");
@@ -43,7 +47,7 @@ public class CriarUsuarioFrame extends JFrame {
 		getContentPane().add(lblNewLabel_1);
 		
 		String[] options = {"", "Admin", "Usuario"};   
-		JComboBox comboBox = new JComboBox(options);
+		comboBox = new JComboBox(options);
 		comboBox.setSelectedIndex(0); 
 		comboBox.setBackground(Color.white);
 		//comboBox.addActionListener();  
@@ -51,12 +55,12 @@ public class CriarUsuarioFrame extends JFrame {
 		getContentPane().add(comboBox);
 		
 		textField = new JTextField();
-		textField.setBounds(155, 85, 240, 20);
+		textField.setBounds(163, 85, 240, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel label_1 = new JLabel("Senha do usuário:");
-		label_1.setBounds(33, 204, 110, 14);
+		label_1.setBounds(23, 204, 110, 14);
 		getContentPane().add(label_1);
 		
 		textField_1 = new JTextField();
@@ -64,11 +68,56 @@ public class CriarUsuarioFrame extends JFrame {
 		textField_1.setBounds(163, 201, 104, 20);
 		getContentPane().add(textField_1);
 		
+		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
+		lblNewLabel_2.setBounds(38, 50, 298, 14);
+		getContentPane().add(lblNewLabel_2);
+		
 		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					String nome = textField.getText();
+					String senha = textField_1.getText();
+					String permissao = "Admin";
+					ArrayList dadosUsuario = new ArrayList();
+					dadosUsuario.add(nome);
+					if(permissao.equals("Admin")){
+						dadosUsuario.add(true);
+						System.out.println (permissao + "de admin");
+					}
+					else if (permissao.equals("Usuario")){
+						dadosUsuario.add(false);
+						System.out.println (permissao +"de usuario");
+					}
+					else {
+					lblNewLabel_2.setOpaque(false);
+					lblNewLabel_2.setForeground(Color.red);
+					lblNewLabel_2.setText("Por favor, escolher uma permissão de usuário");
+					}
+					dadosUsuario.add(2);
+					dadosUsuario.add(senha);
+					admin.adicionarUsuario(dadosUsuario);
+					lblNewLabel_2.setOpaque(false);
+					lblNewLabel_2.setForeground(Color.red);
+					lblNewLabel_2.setText("Usuario Criado com sucesso.");
+				}
+				catch (Exception e){
+					System.out.print(e);
+				}
+				
+			}
+		});
 		btnAdicionar.setBounds(70, 259, 89, 23);
 		getContentPane().add(btnAdicionar);
 		
 		JButton btnLimparCampos = new JButton("Limpar campos");
+		btnLimparCampos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField_1.setText("");
+				comboBox.setSelectedIndex(0);
+				textField.setText("");
+			}
+		});
 		btnLimparCampos.setBounds(209, 259, 123, 23);
 		getContentPane().add(btnLimparCampos);
 		

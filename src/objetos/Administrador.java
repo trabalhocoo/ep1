@@ -212,8 +212,8 @@ public class Administrador extends Usuario implements Serializable {
 		return removeu;
 	}
 
-	public void adicionarUsuario() {
-		ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
+	public void adicionarUsuario(ArrayList dadosUsuario) {
+		//ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
 		// String nomenome, boolean admadm, String loginlogin, String passwd
 		String nome = (String) dadosUsuario.get(0);
 		boolean adm = (Boolean) dadosUsuario.get(1);
