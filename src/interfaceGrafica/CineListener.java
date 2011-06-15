@@ -21,8 +21,8 @@ public class CineListener implements ActionListener{
 		if(actionCommand.equals("LISTAR FILMES")){	
 			System.out.println("Clicou no listar filmes");
 			String out = userFrame.getUsuario().exibirFilmesString();
-			TextDisplayFrame txtdisplay = new TextDisplayFrame(out);
-			txtdisplay.setVisible(true);
+			//TextDisplayFrame txtdisplay = new TextDisplayFrame(out);
+			//txtdisplay.setVisible(true);
 		}
 		if(actionCommand.equals("LISTAR SALAS")){
 			System.out.println("Clicou no listar salas");

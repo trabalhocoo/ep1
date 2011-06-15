@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class AdminFrame extends JFrame {
 	private static Administrador usuarioLogado;
@@ -178,8 +179,8 @@ public class AdminFrame extends JFrame {
 					break;
 				case 4:
 					//Exibir usuarios
-					String out = usuarioLogado.exibirUsuariosString();
-					TextDisplayFrame txtDisp = new TextDisplayFrame(out);
+					String[][] out = usuarioLogado.exibirUsuariosString();
+					TextDisplayFrame txtDisp = new TextDisplayFrame(out, "usuario");
 					txtDisp.setVisible(true);
 					break;
 				case 5:
