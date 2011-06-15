@@ -17,7 +17,7 @@ public class CriarUsuarioFrame extends JFrame {
 	private JComboBox comboBox;
 	
 	
-	public CriarUsuarioFrame(final Usuario usuarioLogado) {
+	public CriarUsuarioFrame(final Administrador usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);

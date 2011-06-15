@@ -15,12 +15,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AdminFrame extends JFrame {
-	private static Usuario usuarioLogado;
+	private static Administrador usuarioLogado;
 	private JTextField textField;
 	final JLabel lblNewLabel_1;
 	
-	public AdminFrame(final Usuario usuarioLogado) {
-		this.usuarioLogado = usuarioLogado;
+	public AdminFrame(final Administrador usuario) {
+		usuarioLogado = usuario;
 		getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 12));
 		this.setSize(550,380);
 		this.setLocation(200,200);
@@ -178,8 +178,9 @@ public class AdminFrame extends JFrame {
 					break;
 				case 4:
 					//Exibir usuarios
-					//ExibirUsuarioFrame usufr = new ExibirUsuarioFrame();
-					//usufr.showIt("Criar Usuario");
+					String out = usuarioLogado.exibirUsuariosString();
+					TextDisplayFrame txtDisp = new TextDisplayFrame(out);
+					txtDisp.setVisible(true);
 					break;
 				case 5:
 					//Criar filme

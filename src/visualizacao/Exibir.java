@@ -33,6 +33,19 @@ public class Exibir {
 		}
 	}
 	
+	public static String exibirUsuariosString(TreeSet<Usuario> usuarios){
+		String output = "";
+		for(Usuario user: usuarios){
+			String tipoUser;
+			if(user.isEhAdministrador())
+				tipoUser = "admin";
+			else
+				tipoUser = "user comum";
+			output += "Nome: " +user.getNome()+ "\t#registro: " +user.getRegistro()+ "\tTipo de Usuario: " +tipoUser+"\n";
+		}
+		return output;
+	}
+	
 	public static void exibirSalas(TreeSet<Sala> listaSalas) {
 		for(Sala sala : listaSalas){
 			System.out.println("Numero: " + sala.getNumero() + "\tCapacidade: " + sala.getCapacidade());

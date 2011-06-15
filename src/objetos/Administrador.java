@@ -143,6 +143,12 @@ public class Administrador extends Usuario implements Serializable {
 		System.out.println("Lista de usuarios:");
 		Exibir.exibirUsuarios(listaUsuarios);
 	}
+	
+	public String exibirUsuariosString() {// listar os usuarios existentes
+		TreeSet<Usuario> listaUsuarios = Banco.getUsuarios();
+		System.out.println("Lista de usuarios:");
+		return Exibir.exibirUsuariosString(listaUsuarios);
+	}
 
 	public boolean adicionarCaixa() {
 		Caixa caixaNova = new Caixa();

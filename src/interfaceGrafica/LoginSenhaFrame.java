@@ -95,7 +95,7 @@ public class LoginSenhaFrame extends JFrame{
 				}
 				else {
 					if (tipoUser){
-						AdminFrame admfr = new AdminFrame(usuario);
+						AdminFrame admfr = new AdminFrame((Administrador)usuario);
 						admfr.showIt("Menu Admin");
 					} else {
 						UsuarioFrame usfr = new UsuarioFrame(usuario);
