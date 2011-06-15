@@ -196,11 +196,14 @@ public class AdminFrame extends JFrame {
 				case 7:
 					//Remover filme
 					admin.removerFilme();
-					break;
+					break;*/
 				case 8:
 					//Exibir filme
-					admin.exibirFilmes();
+					String[][] outFilme = usuarioLogado.exibirFilmesTabela();
+					TextDisplayFrame txtDispFilme = new TextDisplayFrame(outFilme, "filme");
+					txtDispFilme.setVisible(true);
 					break;
+				/*
 				case 9:
 					//Criar Sala
 					admin.adicionarSala(usuarioLogado);
@@ -213,10 +216,14 @@ public class AdminFrame extends JFrame {
 					//Remover Sala
 					admin.removerSala(usuarioLogado);
 					break;
+				*/
 				case 12:
 					//Exibir Salas
-					admin.exibirSalas();
+					String[][] outSala = usuarioLogado.exibirSalasTabela();
+					TextDisplayFrame txtDispSala = new TextDisplayFrame(outSala, "sala");
+					txtDispSala.setVisible(true);
 					break;
+				/*
 				case 13:
 					//Criar sessao
 					admin.adicionarSessao(usuarioLogado);
@@ -229,10 +236,14 @@ public class AdminFrame extends JFrame {
 					//Remover sessao
 					admin.removerSessao(usuarioLogado);
 					break;
+					*/
 				case 16:
 					//Exibir Sessoes
-					admin.exibirSessoes();
+					String[][] outSessao = usuarioLogado.exibirSessoesTabela();
+					TextDisplayFrame txtDispSessao = new TextDisplayFrame(outSessao, "sessao");
+					txtDispSessao.setVisible(true);
 					break;
+				/*
 				case 17:
 					//Criar Caixa
 					admin.adicionarCaixa();
