@@ -36,22 +36,22 @@ public class AdminFrame extends JFrame {
 		lblDigiteAOpo.setBounds(38, 24, 206, 19);
 		getContentPane().add(lblDigiteAOpo);
 		
-		JLabel label = new JLabel("1 - Criar usuário");
+		JLabel label = new JLabel("1 - Criar usuario");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label.setBounds(38, 71, 114, 14);
 		getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel("2 - Editar usuário");
+		JLabel label_1 = new JLabel("2 - Editar usuï¿½rio");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_1.setBounds(38, 96, 114, 14);
 		getContentPane().add(label_1);
 		
-		JLabel label_2 = new JLabel("3 - Deletar usuário");
+		JLabel label_2 = new JLabel("3 - Deletar usuï¿½rio");
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(38, 121, 114, 14);
 		getContentPane().add(label_2);
 		
-		JLabel label_3 = new JLabel("4 - Listar usuário");
+		JLabel label_3 = new JLabel("4 - Listar usuï¿½rio");
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setBounds(38, 144, 114, 14);
 		getContentPane().add(label_3);
@@ -71,7 +71,7 @@ public class AdminFrame extends JFrame {
 		label_6.setBounds(201, 71, 114, 14);
 		getContentPane().add(label_6);
 		
-		JLabel label_7 = new JLabel("15 - Remover sessão");
+		JLabel label_7 = new JLabel("15 - Remover sessï¿½o");
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_7.setBounds(354, 71, 158, 14);
 		getContentPane().add(label_7);
@@ -101,17 +101,17 @@ public class AdminFrame extends JFrame {
 		label_12.setBounds(201, 169, 114, 14);
 		getContentPane().add(label_12);
 		
-		JLabel label_13 = new JLabel("13 - Criar sessão");
+		JLabel label_13 = new JLabel("13 - Criar sessï¿½o");
 		label_13.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_13.setBounds(201, 194, 114, 14);
 		getContentPane().add(label_13);
 		
-		JLabel label_14 = new JLabel("14 - Editar sessão");
+		JLabel label_14 = new JLabel("14 - Editar sessï¿½o");
 		label_14.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_14.setBounds(201, 219, 114, 14);
 		getContentPane().add(label_14);
 		
-		JLabel label_15 = new JLabel("16 - Listar sessão");
+		JLabel label_15 = new JLabel("16 - Listar sessï¿½o");
 		label_15.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_15.setBounds(354, 96, 114, 14);
 		getContentPane().add(label_15);
@@ -163,18 +163,18 @@ public class AdminFrame extends JFrame {
 				case 1:
 					//Criar usuario
 					CriarUsuarioFrame usufr = new CriarUsuarioFrame(usuarioLogado);
-					usufr.showIt("Criar Usuário");
+					usufr.showIt("Criar Usuï¿½rio");
 					hideIt();
 					break;
 				case 2:
 					//Editar usuario
 					//EditarUsuarioFrame usufr = new EditarUsuarioFrame();
-					//usufr.showIt("Editar Usuário");
+					//usufr.showIt("Editar Usuï¿½rio");
 					break;
 				case 3:
 					//Remover usuario
 					//CriarUsuarioFrame usufr = new CriarUsuarioFrame();
-					//usufr.showIt("Remover Usuário");
+					//usufr.showIt("Remover Usuï¿½rio");
 					break;
 				case 4:
 					//Exibir usuarios
@@ -252,7 +252,7 @@ public class AdminFrame extends JFrame {
 					//Deslogar
 					Controlador.deslogar(usuarioLogado);
 					LoginSenhaFrame logSen = new LoginSenhaFrame();
-					logSen.showIt("Identificação");
+					logSen.showIt("Identificaï¿½ï¿½o");
 					hideIt();
 					break;
 				case 22:
@@ -263,7 +263,7 @@ public class AdminFrame extends JFrame {
 					lblNewLabel_1.setOpaque(false);
 					lblNewLabel_1.setForeground(Color.red);
 					textField.setText("");
-					lblNewLabel_1.setText("Digite uma opção válida.Tente novamente");
+					lblNewLabel_1.setText("Digite uma opï¿½ï¿½o vï¿½lida.Tente novamente");
 					//System.out.println ("Digite uma opcao valida.Tente novamente\n");
 					break;
 				}

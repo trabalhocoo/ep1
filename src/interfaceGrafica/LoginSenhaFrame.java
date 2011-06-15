@@ -66,7 +66,7 @@ public class LoginSenhaFrame extends JFrame{
 		
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//teria que logar e perguntar qual é o usuario que logou e depois decidir se aparece o usuarioframe ou adminframe
+				//teria que logar e perguntar qual ï¿½ o usuario que logou e depois decidir se aparece o usuarioframe ou adminframe
 				boolean logou = false;
 				boolean logado = Controlador.isLogado();
 				boolean tipoUser;
@@ -91,7 +91,7 @@ public class LoginSenhaFrame extends JFrame{
 					lblNewLabel_1.setForeground(Color.red);
 					textField.setText("");
 					passwordField.setText("");
-					lblNewLabel_1.setText("O login e/ou senha inválidos");
+					lblNewLabel_1.setText("O login e/ou senha invï¿½lidos");
 				}
 				else {
 					if (tipoUser){
@@ -99,7 +99,7 @@ public class LoginSenhaFrame extends JFrame{
 						admfr.showIt("Menu Admin");
 					} else {
 						UsuarioFrame usfr = new UsuarioFrame(usuario);
-						usfr.showIt("Menu Usuário");
+						usfr.showIt("Menu Usuario");
 					}
 					hideIt();
 				}

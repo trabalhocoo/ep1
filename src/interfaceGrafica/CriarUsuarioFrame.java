@@ -30,7 +30,7 @@ public class CriarUsuarioFrame extends JFrame {
 		lblCriarUsurio.setBounds(23, 21, 134, 20);
 		getContentPane().add(lblCriarUsurio);
 		
-		JLabel lblNome = new JLabel("Nome do usuário:");
+		JLabel lblNome = new JLabel("Nome do usuï¿½rio:");
 		lblNome.setBounds(23, 88, 110, 14);
 		getContentPane().add(lblNome);
 		
@@ -59,7 +59,7 @@ public class CriarUsuarioFrame extends JFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel label_1 = new JLabel("Senha do usuário:");
+		JLabel label_1 = new JLabel("Senha do usuï¿½rio:");
 		label_1.setBounds(23, 204, 110, 14);
 		getContentPane().add(label_1);
 		
@@ -76,23 +76,24 @@ public class CriarUsuarioFrame extends JFrame {
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
+					int option = comboBox.getSelectedIndex();
 					String nome = textField.getText();
 					String senha = textField_1.getText();
 					String permissao = "Admin";
 					ArrayList dadosUsuario = new ArrayList();
 					dadosUsuario.add(nome);
-					if(permissao.equals("Admin")){
+					if(option == 1){
 						dadosUsuario.add(true);
 						System.out.println (permissao + "de admin");
 					}
-					else if (permissao.equals("Usuario")){
+					else if (option == 2){
 						dadosUsuario.add(false);
 						System.out.println (permissao +"de usuario");
 					}
 					else {
 					lblNewLabel_2.setOpaque(false);
 					lblNewLabel_2.setForeground(Color.red);
-					lblNewLabel_2.setText("Por favor, escolher uma permissão de usuário");
+					lblNewLabel_2.setText("Por favor, escolher uma permissï¿½o de usuï¿½rio");
 					}
 					dadosUsuario.add(2);
 					dadosUsuario.add(senha);
@@ -125,7 +126,7 @@ public class CriarUsuarioFrame extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminFrame usfr = new AdminFrame(usuarioLogado);
-				usfr.showIt("Menu Usuário");
+				usfr.showIt("Menu Usuï¿½rio");
 				hideIt();
 			}
 		});
