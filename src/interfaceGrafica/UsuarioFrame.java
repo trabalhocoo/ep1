@@ -23,20 +23,17 @@ public class UsuarioFrame extends JFrame{
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.white);
 		
-		JButton btnNewButton = new JButton("LISTAR FILMES");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				//usuarioLogado.exibirFilmes();
-			}
-		});
-		btnNewButton.setBounds(54, 70, 142, 32);
-		getContentPane().add(btnNewButton);
+		JButton listarFilmesBtn = new JButton("LISTAR FILMES");
+		listarFilmesBtn.setBounds(54, 70, 142, 32);
+		getContentPane().add(listarFilmesBtn);
+		listarFilmesBtn.addActionListener(new CineListener(this));
+		
 		
 		JButton button = new JButton("LISTAR SALAS");
 		button.setBounds(54, 143, 142, 32);
 		getContentPane().add(button);
 		
-		JButton button_1 = new JButton("LISTAR SESSÕES");
+		JButton button_1 = new JButton("LISTAR SESSOES");
 		button_1.setBounds(54, 217, 142, 32);
 		getContentPane().add(button_1);
 		
@@ -54,7 +51,7 @@ public class UsuarioFrame extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				Controlador.deslogar(usuarioLogado);
 				LoginSenhaFrame logSen = new LoginSenhaFrame();
-				logSen.showIt("Identificação");
+				logSen.showIt("Identificaï¿½ï¿½o");
 				hideIt();
 			}
 		});
