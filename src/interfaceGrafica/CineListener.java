@@ -2,6 +2,7 @@ package interfaceGrafica;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
 import controlador.Controlador;
 
@@ -13,11 +14,15 @@ public class CineListener implements ActionListener{
 		userFrame = userfr;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
-		if(actionCommand.equals("LISTAR FILMES")){
+		if(actionCommand.equals("LISTAR FILMES")){	
 			System.out.println("Clicou no listar filmes");
+			String out = userFrame.getUsuario().exibirFilmesString();
+			TextDisplayFrame txtdisplay = new TextDisplayFrame(out);
+			txtdisplay.setVisible(true);
 		}
 		if(actionCommand.equals("LISTAR SALAS")){
 			System.out.println("Clicou no listar salas");

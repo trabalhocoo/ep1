@@ -13,6 +13,13 @@ public class Exibir {
 	public static void exibirFilmes(ArrayList<Filme> listaFilmes){
 		for(Filme filme : listaFilmes)
 			System.out.println("Titulo: " +filme.getNome()+ "\tDuracao: " +filme.getDuracao() + "\tGenero: " + filme.getGenero());
+	}
+	
+	public static String exibirFilmesString(ArrayList<Filme> listaFilmes){
+		String output = "Teste";
+		for(Filme filme : listaFilmes)
+			output += "Titulo: " +filme.getNome()+ "\tDuracao: " +filme.getDuracao() + "\tGenero: " + filme.getGenero();
+		return output;
 	}	
 	
 	public static void exibirUsuarios(TreeSet<Usuario> usuarios){

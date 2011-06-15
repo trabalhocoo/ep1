@@ -2,20 +2,15 @@ package interfaceGrafica;
 import javax.swing.*;
 
 import objetos.Usuario;
-
 import java.awt.*;
-
-import controlador.Controlador;
-
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
 
 public class UsuarioFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	
-	public UsuarioFrame (final Usuario usuarioLogado){
-		this.usuarioLogado = usuarioLogado;
+	public UsuarioFrame (final Usuario usuario){
+		usuarioLogado = usuario;
 		this.setSize(550,380);
 		this.setLocation(200,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
