@@ -1,4 +1,5 @@
 package visualizacao;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.TreeSet;
 import objetos.*;
@@ -9,6 +10,22 @@ public class Exibir {
 		for(Sessao sessao : sessoes)
 			System.out.println("Filme: " + sessao.getFilme().getNome()+ "\tHora de inicio: " + sessao.getHorarioDeInicio().getTime() + "\tSala: " +sessao.getSala().getNumero()+ "\tPreco: " +sessao.getPreco());
 	}
+	
+	public static String[][] exibirSessoesTabela(TreeSet <Sessao> sessoes){
+		String[][] sessao = new String[sessoes.size()][4];
+		int i = 0;
+		for(Sessao tipo : sessoes){
+			for(int j=0; j < 4; j++){
+				Date data = (Date) tipo.getHorarioDeInicio().getTime();
+				sessao[i][0] = tipo.getFilme().getNome();
+				sessao[i][1] = String.valueOf(data);
+				sessao[i][2] = String.valueOf(tipo.getSala().getNumero());
+				sessao[i][3] = String.valueOf(tipo.getPreco());
+			}
+			i++;
+		}
+		return sessao;
+	}	
 	
 	public static void exibirFilmes(ArrayList<Filme> listaFilmes){
 		for(Filme filme : listaFilmes)
@@ -65,7 +82,39 @@ public class Exibir {
 		for(Sala sala : listaSalas){
 			System.out.println("Numero: " + sala.getNumero() + "\tCapacidade: " + sala.getCapacidade());
 		}
-		
+	}
+	
+	public static String[][] exibirSalasTabela(TreeSet<Sala> listaSalas){
+		String[][] salas = new String[listaSalas.size()][2];
+		int i = 0;
+		for(Sala sala : listaSalas){
+			for(int j=0; j < 2; j++){
+				int capacidade =  sala.getCapacidade();
+				salas[i][0] = String.valueOf(sala.getNumero());
+				salas[i][1] = String.valueOf(capacidade);
+			}
+			i++;
+		}
+		return salas;
+	}
+	
+	public static void exibirCaixas(TreeSet<Caixa> listaDeCaixas) {
+		for(Caixa caixa : listaDeCaixas){
+			System.out.println("Número " + caixa.getNumCaixa() + "\tDinheiro: " + caixa.getDinheiro());
+		}	
+	}
+	
+	public static String[][] exibirCaixasTabela(TreeSet<Caixa> listaDeCaixas){
+		String[][] caixas = new String[listaDeCaixas.size()][2];
+		int i = 0;
+		for(Caixa caixa : listaDeCaixas){
+			for(int j=0; j < 2; j++){
+				caixas[i][0] = String.valueOf(caixa.getNumCaixa());
+				caixas[i][1] = String.valueOf(caixa.getDinheiro());
+			}
+			i++;
+		}
+		return caixas;
 	}
 	
 	public static void exibirMenu(boolean tipoUser){
@@ -93,13 +142,6 @@ public class Exibir {
 			System.out.println("5 - DESLOGAR");
 			System.out.println("6 - SAIR DO PROGRAMA");
 		}
-	}
-
-	public static void exibirCaixas(TreeSet<Caixa> listaDeCaixas) {
-		for(Caixa caixa : listaDeCaixas){
-			System.out.println("Número " + caixa.getNumCaixa() + "\tDinheiro: " + caixa.getDinheiro());
-		}
-		
 	}
 
 	

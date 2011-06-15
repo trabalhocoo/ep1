@@ -26,12 +26,19 @@ public class CineListener implements ActionListener{
 		}
 		if(actionCommand.equals("LISTAR SALAS")){
 			System.out.println("Clicou no listar salas");
+			String[][] out = userFrame.getUsuario().exibirSalasTabela();
+			TextDisplayFrame txtdisplay = new TextDisplayFrame(out, "sala");
+			txtdisplay.setVisible(true);
+			
 		}
 		if(actionCommand.equals("LISTAR SESSOES")){
 			System.out.println("Clicou no listar sessoes");
+			String[][] out = userFrame.getUsuario().exibirSessoesTabela();
+			TextDisplayFrame txtdisplay = new TextDisplayFrame(out, "sessao");
+			txtdisplay.setVisible(true);
 		}
 		if(actionCommand.equals("VENDER INGRESSO")){
-			System.out.println("Clicou no vender ingresso");
+			System.out.println("Clicou no vender ingresso");	
 		}
 		if(actionCommand.equals("DESLOGAR")){
 			System.out.println("Clicou no deslogar");

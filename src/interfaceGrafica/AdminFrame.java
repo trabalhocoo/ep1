@@ -244,12 +244,14 @@ public class AdminFrame extends JFrame {
 				case 19:
 					//Remover caixa
 					admin.removerCaixa();
-					break;
+					break;*/
 				case 20:
 					//Exibir caixas
-					admin.exibirCaixas();
+					String[][] outCaixa = usuarioLogado.exibirCaixasTabela();
+					TextDisplayFrame txtDispCaixa = new TextDisplayFrame(outCaixa, "caixa");
+					txtDispCaixa.setVisible(true);
 					break;
-					*/
+					
 				case 21:
 					//Deslogar
 					Controlador.deslogar(usuarioLogado);

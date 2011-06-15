@@ -13,7 +13,7 @@ public class TextDisplayFrame extends JFrame{
 	private JTable table;
 	private String[] userColumnNames = {"Nome", "No. Registro", "Tipo de usuario"};
 	private String[] filmColumnNames = {"Titulo", "Duracao", "Genero"};
-	private String[] sessaoColumnNames = {"Filme", "Hora Inicio", "Genero"};
+	private String[] sessaoColumnNames = {"Filme", "Hora Inicio", "Sala", "Preco"};
 	private String[] salaColumnNames = {"Numero", "Capacidade"};
 	private String[] caixaColumnNames = {"Numero", "Dinheiro"};
 	private String[] column;
@@ -32,12 +32,13 @@ public class TextDisplayFrame extends JFrame{
 			columnName = getUserColumnName();
 		if(tipo.equalsIgnoreCase("filme"))
 			columnName = getFilmColumnName();
-		if(tipo.equalsIgnoreCase("sessao"))
-			columnName = getSessaoColumnName();
+		if(tipo.equalsIgnoreCase("sessao")){
+			return getSessaoColumnName();
+		}
 		if(tipo.equalsIgnoreCase("sala"))
-			columnName = getSalaColumnName();
+			return getSalaColumnName();
 		if(tipo.equalsIgnoreCase("caixa"))
-			columnName = getCaixaColumnName();
+			return getCaixaColumnName();
 		return columnName;
 	}
 	

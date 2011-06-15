@@ -44,6 +44,12 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		Exibir.exibirSessoes(listaSessoes);
 	}
 	
+	public String[][] exibirSessoesTabela(){
+		TreeSet<Sessao> listaSessoes = Banco.getSessoes();
+		System.out.println ("Lista de sessoes:");
+		return Exibir.exibirSessoesTabela(listaSessoes);
+	}
+	
 	public void exibirFilmes(){
 		ArrayList<Filme> listaFilmes = Banco.getFilmes();
 		System.out.println ("Lista de filmes:");
@@ -60,6 +66,12 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		TreeSet<Sala> listaSalas = Banco.getSalas();
 		System.out.println ("Lista de salas:");
 		Exibir.exibirSalas(listaSalas);
+	}
+	
+	public String [][] exibirSalasTabela(){
+		TreeSet<Sala> listaSalas = Banco.getSalas();
+		System.out.println ("Lista de salas:");
+		return Exibir.exibirSalasTabela(listaSalas);
 	}
 	
 	public boolean vender(Sessao sessao){

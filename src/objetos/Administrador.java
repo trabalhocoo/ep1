@@ -296,5 +296,11 @@ public class Administrador extends Usuario implements Serializable {
 		System.out.println("Lista de Caixas:");
 		Exibir.exibirCaixas(listaCaixas);
 	}
+	
+	public String[][] exibirCaixasTabela() {
+		TreeSet<Caixa> listaCaixas = Banco.getCaixas();
+		System.out.println("Lista de Caixas:");
+		return Exibir.exibirCaixasTabela(listaCaixas);
+	}
 
 }
