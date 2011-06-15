@@ -3,6 +3,8 @@ package interfaceGrafica;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import controlador.Controlador;
+
 public class CineListener implements ActionListener{
 	
 	public UsuarioFrame userFrame;
@@ -28,9 +30,14 @@ public class CineListener implements ActionListener{
 		}
 		if(actionCommand.equals("DESLOGAR")){
 			System.out.println("Clicou no deslogar");
+			Controlador.deslogar(userFrame.getUsuario());
+			LoginSenhaFrame logSen = new LoginSenhaFrame();
+			logSen.showIt("Identificacao");
+			userFrame.hideIt();
 		}
 		if(actionCommand.equals("SAIR DO PROGRAMA")){
 			System.out.println("Clicou no sair do programa");
+			Controlador.sairDoPrograma();
 		}
 	}
 

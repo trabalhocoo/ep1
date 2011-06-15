@@ -14,7 +14,6 @@ import java.awt.event.ActionEvent;
 public class UsuarioFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	
-	
 	public UsuarioFrame (final Usuario usuarioLogado){
 		this.usuarioLogado = usuarioLogado;
 		this.setSize(550,380);
@@ -28,45 +27,32 @@ public class UsuarioFrame extends JFrame{
 		getContentPane().add(listarFilmesBtn);
 		listarFilmesBtn.addActionListener(new CineListener(this));
 		
+		JButton listarSalasBtn = new JButton("LISTAR SALAS");
+		listarSalasBtn.setBounds(54, 143, 142, 32);
+		getContentPane().add(listarSalasBtn);
+		listarSalasBtn.addActionListener(new CineListener(this));
 		
-		JButton button = new JButton("LISTAR SALAS");
-		button.setBounds(54, 143, 142, 32);
-		getContentPane().add(button);
+		JButton listarSessoesBtn = new JButton("LISTAR SESSOES");
+		listarSessoesBtn.setBounds(54, 217, 142, 32);
+		getContentPane().add(listarSessoesBtn);
+		listarSessoesBtn.addActionListener(new CineListener(this));
 		
-		JButton button_1 = new JButton("LISTAR SESSOES");
-		button_1.setBounds(54, 217, 142, 32);
-		getContentPane().add(button_1);
+		JButton venderBtn = new JButton("VENDER INGRESSO");
+		venderBtn.setBounds(297, 70, 142, 32);
+		getContentPane().add(venderBtn);
+		venderBtn.addActionListener(new CineListener(this));
 		
-		JButton button_2 = new JButton("VENDER INGRESSO");
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		button_2.setBounds(297, 70, 142, 32);
-		getContentPane().add(button_2);
+		JButton deslogarBtn = new JButton("DESLOGAR");
+		deslogarBtn.setBounds(297, 143, 142, 32);
+		getContentPane().add(deslogarBtn);
+		deslogarBtn.addActionListener(new CineListener(this));
 		
-		JButton button_3 = new JButton("DESLOGAR");
-		button_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Controlador.deslogar(usuarioLogado);
-				LoginSenhaFrame logSen = new LoginSenhaFrame();
-				logSen.showIt("Identifica��o");
-				hideIt();
-			}
-		});
-		button_3.setBounds(297, 143, 142, 32);
-		getContentPane().add(button_3);
+		JButton sairBtn = new JButton("SAIR DO PROGRAMA");
+		sairBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		sairBtn.setBounds(297, 217, 142, 32);
+		getContentPane().add(sairBtn);
+		sairBtn.addActionListener(new CineListener(this));
 		
-		JButton button_4 = new JButton("SAIR DO PROGRAMA");
-		button_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Controlador.sairDoPrograma();
-			}
-		});
-		button_4.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		button_4.setBounds(297, 217, 142, 32);
-		getContentPane().add(button_4);
 	}
 	
 	// Makes the frame visible.
@@ -88,9 +74,12 @@ public class UsuarioFrame extends JFrame{
 	// Makes the frame visible and sets the title text
 	// and the position of the window.
 	public void showIt(String title,int x, int y){
-	this.setTitle(title);
-	this.setLocation(x,y);
-	this.setVisible(true);
+		this.setTitle(title);
+		this.setLocation(x,y);
+		this.setVisible(true);
 	}
 	
+	public Usuario getUsuario(){
+		return usuarioLogado;
+	}
 }
