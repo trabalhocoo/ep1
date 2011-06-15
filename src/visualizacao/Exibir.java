@@ -15,11 +15,19 @@ public class Exibir {
 			System.out.println("Titulo: " +filme.getNome()+ "\tDuracao: " +filme.getDuracao() + "\tGenero: " + filme.getGenero());
 	}
 	
-	public static String exibirFilmesString(ArrayList<Filme> listaFilmes){
-		String output = "Teste";
-		for(Filme filme : listaFilmes)
-			output += "Titulo: " +filme.getNome()+ "\tDuracao: " +filme.getDuracao() + "\tGenero: " + filme.getGenero();
-		return output;
+	public static String[][] exibirFilmesTabela(ArrayList<Filme> listaFilmes){
+		String[][] filmes = new String[listaFilmes.size()][3];
+		int i = 0;
+		for(Filme filme : listaFilmes){
+			for(int j=0; j < 3; j++){
+				int duracao =  filme.getDuracao();
+				filmes[i][0] = filme.getNome();
+				filmes[i][1] = String.valueOf(duracao);
+				filmes[i][2] = filme.getGenero();
+			}
+			i++;
+		}
+		return filmes;
 	}	
 	
 	public static void exibirUsuarios(TreeSet<Usuario> usuarios){
@@ -33,11 +41,11 @@ public class Exibir {
 		}
 	}
 	
-	public static String[][] exibirUsuariosString(TreeSet<Usuario> usuarios){
+	public static String[][] exibirUsuariosTabela(TreeSet<Usuario> usuarios){
 		String[][] users = new String[usuarios.size()][3];
 		int i = 0;
 		for(Usuario user: usuarios){
-			for(int j=0; j<3; j++){
+			for(int j=0; j < 3; j++){
 				String tipoUser;
 				if(user.isEhAdministrador())
 					tipoUser = "admin";

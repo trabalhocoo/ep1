@@ -179,7 +179,7 @@ public class AdminFrame extends JFrame {
 					break;
 				case 4:
 					//Exibir usuarios
-					String[][] out = usuarioLogado.exibirUsuariosString();
+					String[][] out = usuarioLogado.exibirUsuariosTabela();
 					TextDisplayFrame txtDisp = new TextDisplayFrame(out, "usuario");
 					txtDisp.setVisible(true);
 					break;

@@ -20,9 +20,9 @@ public class CineListener implements ActionListener{
 		String actionCommand = e.getActionCommand();
 		if(actionCommand.equals("LISTAR FILMES")){	
 			System.out.println("Clicou no listar filmes");
-			String out = userFrame.getUsuario().exibirFilmesString();
-			//TextDisplayFrame txtdisplay = new TextDisplayFrame(out);
-			//txtdisplay.setVisible(true);
+			String[][] out = userFrame.getUsuario().exibirFilmesTabela();
+			TextDisplayFrame txtdisplay = new TextDisplayFrame(out, "filme");
+			txtdisplay.setVisible(true);
 		}
 		if(actionCommand.equals("LISTAR SALAS")){
 			System.out.println("Clicou no listar salas");

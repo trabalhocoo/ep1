@@ -50,10 +50,10 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		Exibir.exibirFilmes(listaFilmes);
 	}
 	
-	public String exibirFilmesString(){
+	public String[][] exibirFilmesTabela(){
 		ArrayList<Filme> listaFilmes = Banco.getFilmes();
 		System.out.println ("Lista de filmes:");
-		return Exibir.exibirFilmesString(listaFilmes);
+		return Exibir.exibirFilmesTabela(listaFilmes);
 	}
 	
 	public void exibirSalas(){
