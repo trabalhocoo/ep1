@@ -17,7 +17,7 @@ public class CriarUsuarioFrame extends JFrame {
 	private JComboBox comboBox;
 	
 	
-	public CriarUsuarioFrame(final Administrador usuarioLogado) {
+	public CriarUsuarioFrame(final Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
@@ -26,15 +26,15 @@ public class CriarUsuarioFrame extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.white); //mudar a cor
 		
-		JLabel lblCriarUsurio = new JLabel("1- CRIAR USU\u00C1RIO");
+		JLabel lblCriarUsurio = new JLabel("1- CRIAR USUARIO");
 		lblCriarUsurio.setBounds(23, 21, 134, 20);
 		getContentPane().add(lblCriarUsurio);
 		
-		JLabel lblNome = new JLabel("Nome do usu�rio:");
+		JLabel lblNome = new JLabel("Nome do usuario:");
 		lblNome.setBounds(23, 88, 110, 14);
 		getContentPane().add(lblNome);
 		
-		JLabel lblPermissoDeUsurio = new JLabel("Permiss\u00E3o de usu\u00E1rio:");
+		JLabel lblPermissoDeUsurio = new JLabel("Permissao de usuario:");
 		lblPermissoDeUsurio.setBounds(23, 144, 134, 20);
 		getContentPane().add(lblPermissoDeUsurio);
 		
@@ -59,7 +59,7 @@ public class CriarUsuarioFrame extends JFrame {
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel label_1 = new JLabel("Senha do usu�rio:");
+		JLabel label_1 = new JLabel("Senha do usuario:");
 		label_1.setBounds(23, 204, 110, 14);
 		getContentPane().add(label_1);
 		
@@ -69,7 +69,7 @@ public class CriarUsuarioFrame extends JFrame {
 		getContentPane().add(textField_1);
 		
 		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(38, 50, 298, 14);
+		lblNewLabel_2.setBounds(23, 50, 298, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
@@ -79,28 +79,35 @@ public class CriarUsuarioFrame extends JFrame {
 					int option = comboBox.getSelectedIndex();
 					String nome = textField.getText();
 					String senha = textField_1.getText();
-					String permissao = "Admin";
+					String permissao = (String)comboBox.getSelectedItem();
+
 					ArrayList dadosUsuario = new ArrayList();
 					dadosUsuario.add(nome);
 					if(option == 1){
 						dadosUsuario.add(true);
-						System.out.println (permissao + "de admin");
+						//System.out.println (permissao);
 					}
 					else if (option == 2){
 						dadosUsuario.add(false);
-						System.out.println (permissao +"de usuario");
+						//System.out.println (permissao);
+					}
+					
+					if(option ==0 || nome.equals("")|| senha.equals("")){
+						lblNewLabel_2.setOpaque(false);
+						lblNewLabel_2.setForeground(Color.red);
+						lblNewLabel_2.setText("Por favor, digite todos os campos.");
 					}
 					else {
-					lblNewLabel_2.setOpaque(false);
-					lblNewLabel_2.setForeground(Color.red);
-					lblNewLabel_2.setText("Por favor, escolher uma permiss�o de usu�rio");
+						dadosUsuario.add(2);
+						dadosUsuario.add(senha);
+						admin.adicionarUsuario(dadosUsuario);
+						lblNewLabel_2.setOpaque(false);
+						lblNewLabel_2.setForeground(Color.red);
+						lblNewLabel_2.setText("Usuario criado com sucesso. Login: " + usuarioLogado.getNumeroDeUsuarios() + " Senha: " + senha); 
+						textField_1.setText("");
+						comboBox.setSelectedIndex(0);
+						textField.setText("");
 					}
-					dadosUsuario.add(2);
-					dadosUsuario.add(senha);
-					admin.adicionarUsuario(dadosUsuario);
-					lblNewLabel_2.setOpaque(false);
-					lblNewLabel_2.setForeground(Color.red);
-					lblNewLabel_2.setText("Usuario Criado com sucesso.");
 				}
 				catch (Exception e){
 					System.out.print(e);
@@ -125,9 +132,9 @@ public class CriarUsuarioFrame extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				AdminFrame usfr = new AdminFrame(usuarioLogado);
-				usfr.showIt("Menu Usu�rio");
-				hideIt();
+				AdminFrame usfr = new AdminFrame(admin);
+				usfr.showIt("Menu Admin");
+				dispose();
 			}
 		});
 		btnVoltar.setBounds(387, 259, 89, 23);
