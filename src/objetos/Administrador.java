@@ -239,8 +239,7 @@ public class Administrador extends Usuario implements Serializable {
 				+ novoUsuario.getRegistro() + "\n");
 	}
 
-	public boolean removerUsuario() {
-		int registro = InterfaceCinema.removerUsuario();
+	public boolean removerUsuario(int registro) {
 		Usuario usuario = Banco.obterUsuario(registro);
 
 		boolean removeu = Banco.removerUsuario(usuario);

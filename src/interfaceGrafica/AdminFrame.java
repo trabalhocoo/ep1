@@ -32,7 +32,7 @@ public class AdminFrame extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JLabel lblDigiteAOpo = new JLabel("Digite a op\u00E7\u00E3o desejada:");
+		JLabel lblDigiteAOpo = new JLabel("Digite a opcao desejada:");
 		lblDigiteAOpo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblDigiteAOpo.setBounds(38, 24, 206, 19);
 		getContentPane().add(lblDigiteAOpo);
@@ -42,17 +42,17 @@ public class AdminFrame extends JFrame {
 		label.setBounds(38, 71, 114, 14);
 		getContentPane().add(label);
 		
-		JLabel label_1 = new JLabel("2 - Editar usuï¿½rio");
+		JLabel label_1 = new JLabel("2 - Editar usuario");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_1.setBounds(38, 96, 114, 14);
 		getContentPane().add(label_1);
 		
-		JLabel label_2 = new JLabel("3 - Deletar usuï¿½rio");
+		JLabel label_2 = new JLabel("3 - Remover usuario");
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_2.setBounds(38, 121, 114, 14);
 		getContentPane().add(label_2);
 		
-		JLabel label_3 = new JLabel("4 - Listar usuï¿½rio");
+		JLabel label_3 = new JLabel("4 - Listar usuario");
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setBounds(38, 144, 114, 14);
 		getContentPane().add(label_3);
@@ -72,7 +72,7 @@ public class AdminFrame extends JFrame {
 		label_6.setBounds(201, 71, 114, 14);
 		getContentPane().add(label_6);
 		
-		JLabel label_7 = new JLabel("15 - Remover sessï¿½o");
+		JLabel label_7 = new JLabel("15 - Remover sessao");
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_7.setBounds(354, 71, 158, 14);
 		getContentPane().add(label_7);
@@ -102,17 +102,17 @@ public class AdminFrame extends JFrame {
 		label_12.setBounds(201, 169, 114, 14);
 		getContentPane().add(label_12);
 		
-		JLabel label_13 = new JLabel("13 - Criar sessï¿½o");
+		JLabel label_13 = new JLabel("13 - Criar sessao");
 		label_13.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_13.setBounds(201, 194, 114, 14);
 		getContentPane().add(label_13);
 		
-		JLabel label_14 = new JLabel("14 - Editar sessï¿½o");
+		JLabel label_14 = new JLabel("14 - Editar sessao");
 		label_14.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_14.setBounds(201, 219, 114, 14);
 		getContentPane().add(label_14);
 		
-		JLabel label_15 = new JLabel("16 - Listar sessï¿½o");
+		JLabel label_15 = new JLabel("16 - Listar sessao");
 		label_15.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_15.setBounds(354, 96, 114, 14);
 		getContentPane().add(label_15);
@@ -159,6 +159,9 @@ public class AdminFrame extends JFrame {
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if (textField.getText().equals("")){
+					textField.setText("23");
+				}
 				int login = Integer.parseInt(textField.getText());
 				switch (login) {
 				case 1:
@@ -169,13 +172,15 @@ public class AdminFrame extends JFrame {
 					break;
 				case 2:
 					//Editar usuario
-					//EditarUsuarioFrame usufr = new EditarUsuarioFrame();
-					//usufr.showIt("Editar Usuï¿½rio");
+					EditarUsuarioFrame editarUsuFr = new EditarUsuarioFrame(usuarioLogado);
+					editarUsuFr.showIt("Editar Usuário");
+					dispose();
 					break;
 				case 3:
 					//Remover usuario
-					//CriarUsuarioFrame usufr = new CriarUsuarioFrame();
-					//usufr.showIt("Remover Usuï¿½rio");
+					RemoverUsuarioFrame remUsuFr = new RemoverUsuarioFrame(usuarioLogado);
+					remUsuFr.showIt("Remover Usuário");
+					dispose();
 					break;
 				case 4:
 					//Exibir usuarios
@@ -267,7 +272,7 @@ public class AdminFrame extends JFrame {
 					//Deslogar
 					Controlador.deslogar(usuarioLogado);
 					LoginSenhaFrame logSen = new LoginSenhaFrame();
-					logSen.showIt("Identificaï¿½ï¿½o");
+					logSen.showIt("Identificacao");
 					hideIt();
 					break;
 				case 22:
@@ -278,7 +283,7 @@ public class AdminFrame extends JFrame {
 					lblNewLabel_1.setOpaque(false);
 					lblNewLabel_1.setForeground(Color.red);
 					textField.setText("");
-					lblNewLabel_1.setText("Digite uma opï¿½ï¿½o vï¿½lida.Tente novamente");
+					lblNewLabel_1.setText("Digite uma opcao valida. Tente novamente.");
 					//System.out.println ("Digite uma opcao valida.Tente novamente\n");
 					break;
 				}

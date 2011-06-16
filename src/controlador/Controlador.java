@@ -81,7 +81,7 @@ public class Controlador{
 				break;
 			case 3:
 				//Remover usuario
-				admin.removerUsuario();
+				//admin.removerUsuario();
 				break;
 			case 4:
 				//Exibir usuarios

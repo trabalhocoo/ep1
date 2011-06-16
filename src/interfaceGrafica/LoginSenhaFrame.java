@@ -1,7 +1,9 @@
 package interfaceGrafica;
 import javax.swing.*;
+
 import objetos.*;
 import java.awt.*;
+
 import banco.Banco;
 import controlador.*;
 
@@ -15,40 +17,47 @@ public class LoginSenhaFrame extends JFrame{
 	
 	public LoginSenhaFrame()
 	{
-		this.setSize(250,250);
+		this.setSize(550,380);
 		this.setLocation(200,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.white);
-		// add the image label
-        //ImageIcon ii = new ImageIcon(this.getClass().getResource("cinema.jpg"));
-        //imageLabel.setIcon(ii);
-        //this.add(imageLabel);
-		
+		// add the image 
+	
+		JPanel panel1 = new JPanel();
+	    ImageIcon pic = new ImageIcon("C:/Documents and Settings/Gisele/My Documents/Elaine/Github/ep1/src/interfaceGrafica/cinema.jpg");
+	    panel1.add(new JLabel(pic));
+	    panel1.setBounds(20, 76, 236, 233);
+	    this.getContentPane().add(panel1);
+	    
+	    
 		JLabel lblNewLabel = new JLabel("DIGITE SEU LOGIN E SENHA:");
-		lblNewLabel.setBounds(40, 39, 213, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(266, 91, 213, 14);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(40, 79, 46, 14);
+		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLogin.setBounds(296, 135, 46, 21);
 		getContentPane().add(lblLogin);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(40, 110, 46, 14);
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblSenha.setBounds(296, 183, 46, 14);
 		getContentPane().add(lblSenha);
 		
 		textField = new JTextField();
-		textField.setBounds(85, 76, 86, 20);
+		textField.setBounds(352, 137, 86, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(85, 107, 86, 20);
+		passwordField.setBounds(352, 182, 86, 20);
 		getContentPane().add(passwordField);
 		//senha = passwordField.getPassword().toString();
 		
 		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(95, 141, 63, 20);
+		btnOk.setBounds(363, 227, 63, 20);
 		getContentPane().add(btnOk);
 		
 		JLabel label = new JLabel("");
@@ -60,6 +69,11 @@ public class LoginSenhaFrame extends JFrame{
 		final JLabel lblNewLabel_1 = new JLabel("");//vazio por enquanto
 		lblNewLabel_1.setBounds(40, 172, 200, 14);
 		getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblSicocine = new JLabel("Sicocine");
+		lblSicocine.setFont(new Font("QuigleyWiggly", Font.PLAIN, 43));
+		lblSicocine.setBounds(198, 27, 228, 22);
+		getContentPane().add(lblSicocine);
 		
 		
 		
@@ -91,7 +105,7 @@ public class LoginSenhaFrame extends JFrame{
 					lblNewLabel_1.setForeground(Color.red);
 					textField.setText("");
 					passwordField.setText("");
-					lblNewLabel_1.setText("O login e/ou senha inv�lidos");
+					lblNewLabel_1.setText("O login e/ou senha invalidos");
 				}
 				else {
 					if (tipoUser){
