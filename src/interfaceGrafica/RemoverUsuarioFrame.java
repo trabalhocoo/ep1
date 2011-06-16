@@ -29,7 +29,7 @@ public class RemoverUsuarioFrame extends JFrame{
 		getContentPane().add(lblDigiteONumero);
 		
 		textField = new JTextField();
-		textField.setBounds(318, 82, 53, 20);
+		textField.setBounds(387, 82, 53, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
 		
@@ -51,7 +51,7 @@ public class RemoverUsuarioFrame extends JFrame{
 					lblNewLabel_2.setText("Usuario nao encontrado.");
 			}
 		});
-		btnNewButton.setBounds(381, 81, 58, 23);
+		btnNewButton.setBounds(448, 81, 58, 23);
 		getContentPane().add(btnNewButton);
 		
 		

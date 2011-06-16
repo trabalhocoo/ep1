@@ -67,7 +67,7 @@ public class LoginSenhaFrame extends JFrame{
 		getContentPane().add(label);
 		
 		final JLabel lblNewLabel_1 = new JLabel("");//vazio por enquanto
-		lblNewLabel_1.setBounds(40, 172, 200, 14);
+		lblNewLabel_1.setBounds(296, 270, 200, 14);
 		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblSicocine = new JLabel("Sicocine");
@@ -105,7 +105,7 @@ public class LoginSenhaFrame extends JFrame{
 					lblNewLabel_1.setForeground(Color.red);
 					textField.setText("");
 					passwordField.setText("");
-					lblNewLabel_1.setText("O login e/ou senha invalidos");
+					lblNewLabel_1.setText("O login e/ou senha invalidos.");
 				}
 				else {
 					if (tipoUser){
