@@ -33,7 +33,7 @@ public class LoginSenhaFrame extends JFrame{
 	    
 		JLabel lblNewLabel = new JLabel("DIGITE SEU LOGIN E SENHA:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(266, 91, 213, 14);
+		lblNewLabel.setBounds(296, 91, 213, 14);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblLogin = new JLabel("Login:");
@@ -72,7 +72,7 @@ public class LoginSenhaFrame extends JFrame{
 		
 		JLabel lblSicocine = new JLabel("Sicocine");
 		lblSicocine.setFont(new Font("QuigleyWiggly", Font.PLAIN, 43));
-		lblSicocine.setBounds(198, 27, 228, 22);
+		lblSicocine.setBounds(198, 27, 228, 38);
 		getContentPane().add(lblSicocine);
 		
 		
