@@ -14,6 +14,8 @@ public class LoginSenhaFrame extends JFrame{
 	private JTextField textField;
 	private JPasswordField passwordField;
 	JLabel imageLabel = new JLabel();
+	private String filepath = "/interfaceGrafica/";
+	private String imagefile = "cinema.jpg";
 	
 	public LoginSenhaFrame()
 	{
@@ -24,11 +26,12 @@ public class LoginSenhaFrame extends JFrame{
 		getContentPane().setBackground(Color.white);
 		// add the image 
 	
-		JPanel panel1 = new JPanel();
-	    ImageIcon pic = new ImageIcon("C:/Documents and Settings/Gisele/My Documents/Elaine/Github/ep1/src/interfaceGrafica/cinema.jpg");
-	    panel1.add(new JLabel(pic));
-	    panel1.setBounds(20, 76, 236, 233);
-	    this.getContentPane().add(panel1);
+	    //ImageIcon pic = new ImageIcon(filepath+imagefile);
+	    JLabel pictureLabel = new JLabel(new ImageIcon(LoginSenhaFrame.class.getResource("/interfaceGrafica/cinema.jpg")));
+	    //panel1.setBounds(20, 76, 236, 233);
+	    pictureLabel.setBounds(20, 76, 236, 233);
+	    this.getContentPane().add(pictureLabel);
+	    //pack();
 	    
 	    
 		JLabel lblNewLabel = new JLabel("DIGITE SEU LOGIN E SENHA:");

@@ -8,7 +8,8 @@ import visualizacao.Exibir;
 import visualizacao.InterfaceCinema;
 import controlador.*;
 
-public class Main {
+
+public class Main{
 
 	/**
 	 * @param args

@@ -173,13 +173,13 @@ public class AdminFrame extends JFrame {
 				case 2:
 					//Editar usuario
 					EditarUsuarioFrame editarUsuFr = new EditarUsuarioFrame(usuarioLogado);
-					editarUsuFr.showIt("Editar Usuário");
+					editarUsuFr.showIt("Editar Usuï¿½rio");
 					dispose();
 					break;
 				case 3:
 					//Remover usuario
 					RemoverUsuarioFrame remUsuFr = new RemoverUsuarioFrame(usuarioLogado);
-					remUsuFr.showIt("Remover Usuário");
+					remUsuFr.showIt("Remover Usuï¿½rio");
 					dispose();
 					break;
 				case 4:
