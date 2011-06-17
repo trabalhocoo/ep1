@@ -77,7 +77,7 @@ public class Controlador{
 				break;
 			case 2:
 				//Editar usuario
-				admin.alterarUsuario();
+				//admin.alterarUsuario();
 				break;
 			case 3:
 				//Remover usuario

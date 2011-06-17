@@ -118,7 +118,7 @@ public class LoginSenhaFrame extends JFrame{
 						UsuarioFrame usfr = new UsuarioFrame(usuario);
 						usfr.showIt("Menu Usuario");
 					}
-					hideIt();
+					dispose();
 				}
 			}
 		});

@@ -235,24 +235,25 @@ public class Administrador extends Usuario implements Serializable {
 			novoUsuario = new Usuario(nome, adm, login, senha);
 		}
 		Banco.addUsuario(novoUsuario);
-		System.out.println("Usuario criado com sucesso.Registro: "
-				+ novoUsuario.getRegistro() + "\n");
+		/*System.out.println("Usuario criado com sucesso.Registro: "
+				+ novoUsuario.getRegistro() + "\n");*/
 	}
 
 	public boolean removerUsuario(int registro) {
 		Usuario usuario = Banco.obterUsuario(registro);
 
 		boolean removeu = Banco.removerUsuario(usuario);
+		/*
 		if (removeu == true)
 			System.out.println("Usuario removido com sucesso.\n");
 		else
-			System.out.println("Usuario nao encontrado.\n");
+			System.out.println("Usuario nao encontrado.\n");*/
 		return removeu;
 	}
 
-	public void alterarUsuario() {
+	public boolean alterarUsuario(ArrayList<Object> resposta) {
 		// 0: usuario, 1: nome, 2: ehadmin, 3: senha
-		ArrayList<Object> resposta = InterfaceCinema.alterarUsuario();
+		//ArrayList<Object> resposta = InterfaceCinema.alterarUsuario();
 
 		Usuario usuarioAAlterar = (Usuario) resposta.get(0);
 		String nome = (String) resposta.get(1);
@@ -261,10 +262,7 @@ public class Administrador extends Usuario implements Serializable {
 
 		boolean modificou = Banco.modificarUsuario(usuarioAAlterar, nome,
 				ehAdmin, usuarioAAlterar.getLogin(), senha);
-		if (modificou == true)
-			System.out.println("Usuario alterado com sucesso.\n");
-		else
-			System.out.println("Usuario ano encontrado.\n");
+		return modificou;
 	}
 
 	public void removerSala(Usuario usuario) {

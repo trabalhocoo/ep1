@@ -190,7 +190,7 @@ public class AdminFrame extends JFrame {
 					break;
 				case 5:
 					//Criar filme
-					//CriarFilmeFrame filme = new CriarFilmeFrame();
+					CriarFilmeFrame filme = new CriarFilmeFrame();
 					//filme.showIt();
 					break;
 					/*
