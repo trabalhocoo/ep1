@@ -167,13 +167,13 @@ public class AdminFrame extends JFrame {
 				case 1:
 					//Criar usuario
 					CriarUsuarioFrame usufr = new CriarUsuarioFrame(usuarioLogado);
-					usufr.showIt("Criar Usu�rio");
+					usufr.showIt("Criar Usuario");
 					hideIt();
 					break;
 				case 2:
 					//Editar usuario
 					EditarUsuarioFrame editarUsuFr = new EditarUsuarioFrame(usuarioLogado);
-					editarUsuFr.showIt("Editar Usu�rio");
+					editarUsuFr.showIt("Editar Usuario");
 					dispose();
 					break;
 				case 3:
@@ -190,8 +190,8 @@ public class AdminFrame extends JFrame {
 					break;
 				case 5:
 					//Criar filme
-					CriarFilmeFrame filme = new CriarFilmeFrame();
-					//filme.showIt();
+					CriarFilmeFrame filme = new CriarFilmeFrame(usuarioLogado);
+					filme.showIt("Criar Filme");
 					break;
 					/*
 				case 6:
@@ -208,11 +208,12 @@ public class AdminFrame extends JFrame {
 					TextDisplayFrame txtDispFilme = new TextDisplayFrame(outFilme, "filme");
 					txtDispFilme.setVisible(true);
 					break;
-				/*
 				case 9:
 					//Criar Sala
-					admin.adicionarSala(usuarioLogado);
+					CriarSalaFrame sala = new CriarSalaFrame(usuarioLogado);
+					sala.showIt ("Criar Sala");
 					break;
+					/*
 				case 10:
 					//Editar Sala
 					admin.alterarSala(usuarioLogado);
