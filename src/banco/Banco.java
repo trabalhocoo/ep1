@@ -21,11 +21,22 @@ import objetos.Usuario;
 
 public class Banco {
 
+	private static Banco instance;
+	
 	private static ArrayList<Filme> filmes;
 	private static TreeSet<Sala> salas;
 	private static TreeSet<Caixa> caixas;
 	private static TreeSet<Usuario> usuarios;
 	private static TreeSet<Sessao> sessoes;
+	
+	private Banco(){}
+	
+	public static synchronized Banco getInstance(){
+		if(instance == null){
+			instance = new Banco();
+		}
+		return instance;
+	}
 
 	public static void gravarDados() {
 		try {
@@ -195,7 +206,7 @@ public class Banco {
 		return null;
 	}
 
-	boolean modificarFilme(Filme filme, String nome, int faixaEtaria,
+	static boolean modificarFilme(Filme filme, String nome, int faixaEtaria,
 			Date horaInicio, int duracao, String Diretor, String genero,
 			Date dataEstreia) {
 		Iterator<Filme> it = filmes.iterator();
