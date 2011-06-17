@@ -50,6 +50,10 @@ public class Administrador extends Usuario implements Serializable {
 			System.out.println("A sala que vocï¿½ escolheu nï¿½o existe. Tente novamente");
 			return;
 		}
+		if(filme.isIs3d() == true && sala.is3d() == false){
+			System.out.println("Esta sala não suporta um filme em 3d");
+			return;
+		}
 
 		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto,
 				sala, preco, sala.getCapacidade());
