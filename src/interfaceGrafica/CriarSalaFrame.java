@@ -2,6 +2,7 @@ package interfaceGrafica;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import objetos.*;
@@ -12,8 +13,8 @@ public class CriarSalaFrame extends JFrame{
 	private JTextField textcapacidade;
 	
 	
-	public CriarSalaFrame(final Usuario usuarioLogado) {
-		this.usuarioLogado = usuarioLogado;
+	public CriarSalaFrame(final Usuario usr) {
+		usuarioLogado = usr;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
 		this.setLocation(200,200);
@@ -26,10 +27,6 @@ public class CriarSalaFrame extends JFrame{
 		JLabel lblPorFavorPreencha = new JLabel("Por favor preencha as informacoes abaixo sobre a sala que deseja criar:");
 		lblPorFavorPreencha.setBounds(55, 81, 421, 14);
 		getContentPane().add(lblPorFavorPreencha);
-		
-		
-		
-		
 		
 		//Botao voltar
 		JButton btnVoltar = new JButton("Voltar");
@@ -72,7 +69,7 @@ public class CriarSalaFrame extends JFrame{
 		chckbxSalad.setBackground(Color.white);
 		getContentPane().add(chckbxSalad);
 		
-//Botao para limpar campos
+		//Botao para limpar campos
 		JButton btnLimparCampos = new JButton("Limpar campos");
 		btnLimparCampos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -82,10 +79,24 @@ public class CriarSalaFrame extends JFrame{
 				textnumeroDaSala.setText("");
 			}
 		});
-		btnLimparCampos.setBounds(209, 259, 123, 23);
+		btnLimparCampos.setBounds(216, 259, 123, 23);
 		getContentPane().add(btnLimparCampos);
 		
-		
+		JButton criarSalaBtn = new JButton("Criar sala");
+		criarSalaBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int capacidade = Integer.parseInt(textcapacidade.getText());
+				int numeroSala = Integer.parseInt(textnumeroDaSala.getText());
+				boolean tres_d = chckbxSalad.isSelected();
+				ArrayList<Object> sala = new ArrayList<Object>();
+				sala.add(capacidade);
+				sala.add(numeroSala);
+				sala.add(tres_d);
+				admin.adicionarSala(sala);
+			}
+		});
+		criarSalaBtn.setBounds(55, 259, 123, 23);
+		getContentPane().add(criarSalaBtn);
 	}
 	
 	// Makes the frame visible.

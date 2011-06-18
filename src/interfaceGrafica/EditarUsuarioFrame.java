@@ -20,8 +20,8 @@ public class EditarUsuarioFrame extends JFrame{
 	private JTextField textField_2;
 	private JComboBox comboBox;
 	
-	public EditarUsuarioFrame(final Usuario usuarioLogado) {
-		this.usuarioLogado = usuarioLogado;
+	public EditarUsuarioFrame(final Usuario usrLogado) {
+		usuarioLogado = usrLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
 		this.setLocation(200,200);

@@ -9,17 +9,17 @@ import banco.*;
 import controlador.*;
 
 
-public class Usuario implements Serializable, Comparable<Usuario> {
+public abstract class Usuario implements Serializable, Comparable<Usuario> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String nome;
-	private int registro;
-	private boolean ehAdministrador;
-	private String login;
-	private String senha;
-	private static int numeroDeUsuarios = 0;
+	protected static final long serialVersionUID = 1L;
+	protected String nome;
+	protected int registro;
+	protected boolean ehAdministrador;
+	protected String login;
+	protected String senha;
+	protected static int numeroDeUsuarios = 0;
 	
 	public static int getNumeroDeUsuarios() {
 		return numeroDeUsuarios;
@@ -30,9 +30,9 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	}
 
 	public Usuario(String nomenome, boolean admadm, String loginlogin, String passwd){
-		numeroDeUsuarios++;
+		
 		this.nome=nomenome;
-		this.registro= getNumeroDeUsuarios();
+		this.registro= getNumeroDeUsuarios() + 1;
 		this.ehAdministrador=admadm;
 		this.login=loginlogin;
 		this.senha=passwd;
@@ -129,7 +129,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	public void deslogar(){
 		Controlador.setLogado(false);
 	}
-
+	
 	public void venderIngresso() {
 		ArrayList dadosSessaoASerVendida = InterfaceCinema.venderIngresso();
 		Calendar inicio = (Calendar) dadosSessaoASerVendida.get(0);
@@ -148,7 +148,6 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		//Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp
 			
 	}
-
 	@Override
 	public int compareTo(Usuario o) {
 		if(registro < o.registro){

@@ -18,6 +18,7 @@ import objetos.Filme;
 import objetos.Sala;
 import objetos.Sessao;
 import objetos.Usuario;
+import objetos.Vendedor;
 
 public class Banco {
 
@@ -267,25 +268,33 @@ public class Banco {
 				// esse if é resposavel por fazer um admin virar usuario e
 				// vice-versa
 				if (usuario.isEhAdministrador()) {
-					int registroTemp = usuarioEncontrado.getRegistro();
+					/*int registroTemp = usuarioEncontrado.getRegistro();
 					usuarioEncontrado = null;
-					usuarioEncontrado = new Usuario(nome, ehAdmin, login, senha);
+					usuarioEncontrado = new Vendedor(nome, ehAdmin, login, senha);
 					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios() - 1);
-					usuarioEncontrado.setRegistro(registroTemp);
+					usuarioEncontrado.setRegistro(registroTemp);*/
+					Administrador temp = (Administrador) usuario;
+					usuario = temp.getUserDecorado();
+					usuario.setEhAdministrador(false);
+					removerUsuario(usuarioEncontrado);
+					addUsuario(usuario);
 				} else {
+					/*
 					int registroTemp = usuarioEncontrado.getRegistro();
 					usuarioEncontrado = null;
-					usuarioEncontrado = new Administrador(nome, ehAdmin, login,
-							senha);
+					usuarioEncontrado = new Vendedor(nome, ehAdmin, login, senha);
+					usuarioEncontrado = new Administrador(usuarioEncontrado);
 					Usuario.setNumeroDeUsuarios(Usuario.getNumeroDeUsuarios() - 1);
-					usuarioEncontrado.setRegistro(registroTemp);
+					usuarioEncontrado.setRegistro(registroTemp);*/
+					usuario = new Administrador(usuario);
+					removerUsuario(usuarioEncontrado);
+					addUsuario(usuario);
 				}
-			} else {
-				usuarioEncontrado.setNome(nome);
-				usuarioEncontrado.setLogin(login);
-				usuarioEncontrado.setSenha(senha);
-				return true;
-			}
+			} 
+			usuario.setNome(nome);
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
+			return true;
 		}
 		return false;
 	}
@@ -401,7 +410,8 @@ public class Banco {
 		usuarios = new TreeSet<Usuario>();
 		sessoes = new TreeSet<Sessao>();
 
-		Administrador admin = new Administrador("Admin", true, "Admin",	"123456");
+		Usuario aux = new Vendedor("Admin", true, "Admin",	"123456");
+		Administrador admin = new Administrador(aux);
 		addUsuario(admin);
 		objarqUsuarios.writeObject(usuarios);
 		objarqUsuarios.close();

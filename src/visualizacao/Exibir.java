@@ -85,13 +85,19 @@ public class Exibir {
 	}
 	
 	public static String[][] exibirSalasTabela(TreeSet<Sala> listaSalas){
-		String[][] salas = new String[listaSalas.size()][2];
+		String[][] salas = new String[listaSalas.size()][3];
 		int i = 0;
 		for(Sala sala : listaSalas){
 			for(int j=0; j < 2; j++){
 				int capacidade =  sala.getCapacidade();
-				salas[i][0] = String.valueOf(sala.getNumero());
-				salas[i][1] = String.valueOf(capacidade);
+				String tres_d;
+				if(sala.is3d())
+					tres_d = "sim";
+				else
+					tres_d = "nao";
+				salas[i][0] = String.valueOf(capacidade);
+				salas[i][1] = String.valueOf(sala.getNumero());
+				salas[i][2] = String.valueOf(tres_d);
 			}
 			i++;
 		}

@@ -181,6 +181,7 @@ public class AdminFrame extends JFrame {
 					RemoverUsuarioFrame remUsuFr = new RemoverUsuarioFrame(usuarioLogado);
 					remUsuFr.showIt("Remover Usu�rio");
 					dispose();
+					hideIt();
 					break;
 				case 4:
 					//Exibir usuarios
@@ -192,6 +193,7 @@ public class AdminFrame extends JFrame {
 					//Criar filme
 					CriarFilmeFrame filme = new CriarFilmeFrame(usuarioLogado);
 					filme.showIt("Criar Filme");
+					hideIt();
 					break;
 					/*
 				case 6:
@@ -212,28 +214,36 @@ public class AdminFrame extends JFrame {
 					//Criar Sala
 					CriarSalaFrame sala = new CriarSalaFrame(usuarioLogado);
 					sala.showIt ("Criar Sala");
+					hideIt();
 					break;
-					/*
+					
 				case 10:
 					//Editar Sala
-					admin.alterarSala(usuarioLogado);
+					EditarSalaFrame edSala = new EditarSalaFrame(usuarioLogado);
+					edSala.showIt("Editar sala");
+					hideIt();
 					break;
 				case 11:
 					//Remover Sala
-					admin.removerSala(usuarioLogado);
+					RemoverSalaFrame delSala = new RemoverSalaFrame(usuarioLogado);
+					delSala.showIt("Remover sala");
+					hideIt();
 					break;
-				*/
+				
 				case 12:
 					//Exibir Salas
 					String[][] outSala = usuarioLogado.exibirSalasTabela();
 					TextDisplayFrame txtDispSala = new TextDisplayFrame(outSala, "sala");
 					txtDispSala.setVisible(true);
 					break;
-				/*
+				
 				case 13:
 					//Criar sessao
-					admin.adicionarSessao(usuarioLogado);
+					CriarSessaoFrame sessao = new CriarSessaoFrame(usuarioLogado);
+					sessao.showIt("Criar Sessao");
+					hideIt();
 					break;
+				/*
 				case 14:
 					//Editar sessao
 					admin.alterarSessao(usuarioLogado);

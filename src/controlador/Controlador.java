@@ -89,7 +89,7 @@ public class Controlador{
 				break;
 			case 5:
 				//Criar filme
-				admin.adicionarFilme();
+				//admin.adicionarFilme();
 				break;
 			case 6:
 				//Editar filme
@@ -105,15 +105,15 @@ public class Controlador{
 				break;
 			case 9:
 				//Criar Sala
-				admin.adicionarSala(usuarioLogado);
+				//admin.adicionarSala(usuarioLogado);
 				break;
 			case 10:
 				//Editar Sala
-				admin.alterarSala(usuarioLogado);
+				//admin.alterarSala(usuarioLogado);
 				break;
 			case 11:
 				//Remover Sala
-				admin.removerSala(usuarioLogado);
+				//admin.removerSala(usuarioLogado);
 				break;
 			case 12:
 				//Exibir Salas

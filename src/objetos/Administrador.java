@@ -16,15 +16,25 @@ import visualizacao.InterfaceCinema;
 
 import banco.Banco;
 
-public class Administrador extends Usuario implements Serializable {
+public class Administrador extends Decorator implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Usuario userDecorado;
+	
+	
 
-	public Administrador(String nome, boolean adm, String login, String senha) {
-		super(nome, adm, login, senha);
+	public Usuario getUserDecorado() {
+		return userDecorado;
+	}
+
+	public Administrador(Usuario userDecorado) {
+		super(userDecorado.getNome(), true, userDecorado.getLogin(), userDecorado.getSenha());
+		this.userDecorado = userDecorado;
+		this.setRegistro(getRegistro()-1);
+		
 	}
 
 	// String filme, int year, int month, int date, int hourOfDay, int minute,
@@ -51,7 +61,7 @@ public class Administrador extends Usuario implements Serializable {
 			return;
 		}
 		if(filme.isIs3d() == true && sala.is3d() == false){
-			System.out.println("Esta sala não suporta um filme em 3d");
+			System.out.println("Esta sala nï¿½o suporta um filme em 3d");
 			return;
 		}
 
@@ -116,30 +126,30 @@ public class Administrador extends Usuario implements Serializable {
 			System.out.println("Sessao nao encontrada.\n");
 	}
 
-	public static void adicionarSala(Usuario usuario) {
-		ArrayList resposta = InterfaceCinema.adicionarSala();
+	public void adicionarSala(ArrayList sala) {
 		// int capacidade, int numero, boolean is3d
-		int capacidade = (Integer) resposta.get(0);
-		int numero = (Integer) resposta.get(1);
-		boolean eh3d = (Boolean) resposta.get(2);
+		int capacidade = (Integer) sala.get(0);
+		int numero = (Integer) sala.get(1);
+		boolean eh3d = (Boolean) sala.get(2);
 		Sala salaNova = new Sala(capacidade, numero, eh3d);
 		Banco.addSala(salaNova);
 		System.out.println("Sala adicionada com sucesso.\n");
-		RegistroOutros.registrarSala(" Adicionou sala \n", salaNova, usuario);
+		//RegistroOutros.registrarSala(" Adicionou sala \n", salaNova, usuario);
 	}
 
-	public void alterarSala(Usuario usuario) {
-		ArrayList<Object> resposta = InterfaceCinema.alterarSala();
-		Sala sala = (Sala) resposta.get(0);
-		int capacidade = (Integer) resposta.get(1);
-		int numero = (Integer) resposta.get(2);
-		boolean eh3d = (Boolean) resposta.get(3);
+	public boolean alterarSala(ArrayList salaAdd) {
+		Sala sala = (Sala) salaAdd.get(0);
+		int capacidade = (Integer) salaAdd.get(1);
+		int numero = (Integer) salaAdd.get(2);
+		boolean eh3d = (Boolean) salaAdd.get(3);
 		boolean alterou = Banco.modificarSala(sala, capacidade, numero, eh3d);
 		if (alterou == true) {
 			System.out.println("Sala alterada com sucesso.\n");
-			RegistroOutros.registrarSala(" Alterou sala ", sala, usuario);
+			//RegistroOutros.registrarSala(" Alterou sala ", sala, usuario);
+			return alterou;
 		} else
 			System.out.println("Sala nao encontrada.\n");
+			return false;
 	}
 
 	public void exibirUsuarios() {// listar os usuarios existentes
@@ -171,18 +181,17 @@ public class Administrador extends Usuario implements Serializable {
 
 	}
 
-	public void adicionarFilme() {
+	public void adicionarFilme(ArrayList dadosFilme) {
 		// String nome, int faixa, Date duracao, String diretor, String sinopse,
 		// String genero, String estreia, boolean is3d
-		ArrayList<Object> resposta = InterfaceCinema.adicionarFilme();
-		String nome = (String) resposta.get(0);
-		int faixa = (Integer) resposta.get(1);
-		int duracao = (Integer) resposta.get(2);
-		String diretor = (String) resposta.get(3);
-		String sinopse = (String) resposta.get(4);
-		String genero = (String) resposta.get(5);
-		String estreia = (String) resposta.get(6);
-		boolean eh3d = (Boolean) resposta.get(7);
+		String nome = (String) dadosFilme.get(0);
+		int faixa = (Integer) dadosFilme.get(1);
+		int duracao = (Integer) dadosFilme.get(2);
+		String diretor = (String) dadosFilme.get(3);
+		String sinopse = (String) dadosFilme.get(4);
+		String genero = (String) dadosFilme.get(5);
+		String estreia = (String) dadosFilme.get(6);
+		boolean eh3d = (Boolean) dadosFilme.get(7);
 
 		Filme filmeNovo = new Filme(nome, faixa, duracao, diretor, sinopse,
 				genero, estreia, eh3d);
@@ -228,15 +237,17 @@ public class Administrador extends Usuario implements Serializable {
 		String nome = (String) dadosUsuario.get(0);
 		boolean adm = (Boolean) dadosUsuario.get(1);
 		String senha = (String) dadosUsuario.get(3);
+		
 		String login = "0";
 		if (adm == true) {
 			login = "1";
 		}
 		Usuario novoUsuario;
 		if (adm) {
-			novoUsuario = new Administrador(nome, adm, login, senha);
+			novoUsuario = new Vendedor(nome, adm, login, senha);
+			novoUsuario = new Administrador(novoUsuario);
 		} else {
-			novoUsuario = new Usuario(nome, adm, login, senha);
+			novoUsuario = new Vendedor(nome, adm, login, senha);
 		}
 		Banco.addUsuario(novoUsuario);
 		/*System.out.println("Usuario criado com sucesso.Registro: "
@@ -269,15 +280,16 @@ public class Administrador extends Usuario implements Serializable {
 		return modificou;
 	}
 
-	public void removerSala(Usuario usuario) {
-		Integer numSala = InterfaceCinema.removerSala();
-		Sala salaASair = Banco.obterSala(numSala);
-		boolean removeu = Banco.removerSala(salaASair);
-		if (removeu == true) {
-			System.out.println("Sala removida com sucesso.\n");
-			RegistroOutros.registrarSala(" Removeu sala ", null, usuario);
-		} else
-			System.out.println("Sala nao encontrada.\n");
+	public boolean removerSala(int registro) {
+		Sala sala = Banco.obterSala(registro);
+
+		boolean removeu = Banco.removerSala(sala);
+		/*
+		if (removeu == true)
+			System.out.println("Usuario removido com sucesso.\n");
+		else
+			System.out.println("Usuario nao encontrado.\n");*/
+		return removeu;
 	}
 
 	public void alterarCaixa() {

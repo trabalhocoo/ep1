@@ -2,7 +2,6 @@ package interfaceGrafica;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 import controlador.Controlador;
 
@@ -14,7 +13,6 @@ public class CineListener implements ActionListener{
 		userFrame = userfr;
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();

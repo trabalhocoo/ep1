@@ -14,7 +14,7 @@ public class TextDisplayFrame extends JFrame{
 	private String[] userColumnNames = {"Nome", "No. Registro", "Tipo de usuario"};
 	private String[] filmColumnNames = {"Titulo", "Duracao", "Genero"};
 	private String[] sessaoColumnNames = {"Filme", "Hora Inicio", "Sala", "Preco"};
-	private String[] salaColumnNames = {"Numero", "Capacidade"};
+	private String[] salaColumnNames = {"Capacidade", "Numero", "3d"};
 	private String[] caixaColumnNames = {"Numero", "Dinheiro"};
 	private String[] column;
 	public TextDisplayFrame(String[][] exibir, String tipo){
