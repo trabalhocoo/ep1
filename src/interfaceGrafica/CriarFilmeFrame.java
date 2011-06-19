@@ -165,13 +165,17 @@ public class CriarFilmeFrame extends JFrame{
 				else {
 					try{
 						String nome = textNomeDoFilme.getText();
-						int faixa = comboFaixa.getSelectedIndex();
+						int faixa;
+						if (comboFaixa.getSelectedIndex() == 1)
+							faixa = 0;
+						else 
+							faixa = Integer.parseInt((String) comboFaixa.getSelectedItem());
+						//System.out.println ("Faixa: " + faixa);
 						int duracao = Integer.parseInt(textDuracao.getText());
 						String diretor = textDiretor.getText();
 						String sinopse = textSinopse.getText();
 						String genero = textGenero.getText();
 						String estreia = textEstreia.getText();
-						//String permissao = chckbxSalad.getSele();
 						boolean eh3D = chckbxSalad.isSelected();
 					    
 
@@ -233,6 +237,4 @@ public class CriarFilmeFrame extends JFrame{
 		this.setLocation(x,y);
 		this.setVisible(true);
 	}
-	
-	
 }

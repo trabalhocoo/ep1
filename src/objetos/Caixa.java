@@ -1,6 +1,10 @@
 package objetos;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.TreeSet;
+
+import banco.Banco;
 
 
 
@@ -12,11 +16,28 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 	private static int numeroDeCaixas = 0;
 	private int numeroDaCaixa;
 	private double dinheiro;
+	private boolean estaEmUso;
+
+	
+	public Caixa(){
+		numeroDaCaixa = numeroDeCaixas+1;
+		dinheiro = 0;
+		numeroDeCaixas = numeroDeCaixas+1;
+		estaEmUso = false;
+	} 
+		
 	
 	public double getDinheiro() {
 		return dinheiro;
 	}
 
+	public boolean getEstaEmUso(){
+		return estaEmUso;
+	}
+	public void setEstaEmUso(boolean ESTA){
+		estaEmUso = ESTA;
+	}
+	
 	public int getNumeroDaCaixa() {
 		return numeroDaCaixa;
 	}
@@ -27,10 +48,6 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 
 	public void setDinheiro(double dinheiro) {
 		this.dinheiro = dinheiro;
-	}
-
-	public Caixa (){
-		numeroDaCaixa = numeroDeCaixas++;
 	}
 	
 	public int getNumCaixa (){

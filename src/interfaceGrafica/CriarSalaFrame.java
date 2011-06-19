@@ -51,6 +51,10 @@ public class CriarSalaFrame extends JFrame{
 		lblcapacidade.setBounds(55, 152, 102, 14);
 		getContentPane().add(lblcapacidade);
 		
+		final JLabel avisoLabel = new JLabel("");//vazio por enquanto
+		avisoLabel.setBounds(40, 64, 458, 14);
+		getContentPane().add(avisoLabel);
+		
 		//campo para preenchimento do numero da sala
 		textnumeroDaSala = new JTextField();
 		textnumeroDaSala.setBounds(178, 118, 86, 20);
@@ -93,6 +97,9 @@ public class CriarSalaFrame extends JFrame{
 				sala.add(numeroSala);
 				sala.add(tres_d);
 				admin.adicionarSala(sala);
+				avisoLabel.setOpaque(false);
+				avisoLabel.setForeground(Color.red);
+				avisoLabel.setText("Sala adicionada com sucesso");
 			}
 		});
 		criarSalaBtn.setBounds(55, 259, 123, 23);

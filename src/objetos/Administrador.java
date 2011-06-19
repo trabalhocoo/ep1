@@ -199,7 +199,7 @@ public class Administrador extends Decorator implements Serializable {
 		//System.out.println("Filme adicionado com sucesso.\n");
 	}
 
-	public void alterarFilme(ArrayList dadosFilme) {
+	public boolean alterarFilme(ArrayList dadosFilme) {
 		String nomeDoFilme = (String) dadosFilme.get(0);
 		Filme filmeAAlterar = Banco.obterFilme(nomeDoFilme);
 
@@ -214,10 +214,7 @@ public class Administrador extends Decorator implements Serializable {
 
 		boolean alterou = Banco.modificarFilme(filmeAAlterar, novoNome,
 				faixaEtaria, duracao, diretor, sinopse, genero, estreia, is3d);
-		if (alterou == true)
-			System.out.println("Filme alterado com sucesso.\n");
-		else
-			System.out.println("Filme nao encontrado.\n");
+		return alterou;
 	}
 
 	public boolean removerFilme() {

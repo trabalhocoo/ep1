@@ -22,9 +22,10 @@ import visualizacao.Exibir;
 public class CriarSessaoFrame extends JFrame {
 	private static Usuario usuarioLogado;
 	private JTextField textNomeDoFilme;
-	private JTextField textSala;
-	private JTextField textDisponibilidade;
 	private JComboBox comboBox;
+	private JComboBox comboSala;
+	private JLabel disponibilidade;
+	private JTextField precoField;
 
 	public CriarSessaoFrame(final Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
@@ -67,7 +68,7 @@ public class CriarSessaoFrame extends JFrame {
 
 		// label preco
 		JLabel lblPreco = new JLabel("Preco:");
-		lblPreco.setBounds(55, 170, 102, 14);
+		lblPreco.setBounds(55, 170, 51, 14);
 		getContentPane().add(lblPreco);
 
 		// label dispo
@@ -75,37 +76,76 @@ public class CriarSessaoFrame extends JFrame {
 		lblDispo.setBounds(55, 134, 145, 14);
 		getContentPane().add(lblDispo);
 
-		// Arrumar os campos ano, mes, dia para podermos usar em um campo só e o
+		// Arrumar os campos ano, mes, dia para podermos usar em um campo sï¿½ e o
 		// mesmo para o campo hora e minutos
 
 		// campo para preenchimento do nome do Filme //sem comboBox
 
 		String[][] dadosFilmes = Exibir.exibirFilmesTabela(Banco.getFilmes());
-		String[] options = new String[dadosFilmes.length + 1];
+		String[] optionsFilmes = new String[dadosFilmes.length + 1];
+
+		optionsFilmes[0] = "";
 		if (Banco.getFilmes() != null) {
-			options [0] = "";
 			for (int i = 0; i < dadosFilmes.length; i++) {
-				options[i + 1] = dadosFilmes[i][0];
+				optionsFilmes[i + 1] = dadosFilmes[i][0];
 			}
-			comboBox = new JComboBox(options);
+			comboBox = new JComboBox(optionsFilmes);
 			comboBox.setSelectedIndex(0);
-			comboBox.setBackground(Color.white);
-			// comboBox.addActionListener();
-			comboBox.setBounds(202, 89, 94, 20);
-			getContentPane().add(comboBox);
+		} else {
+			comboBox = new JComboBox();
 		}
-		// campo para preenchimento da duracao
-		textSala = new JTextField();
-		textSala.setBounds(200, 131, 96, 20);
-		getContentPane().add(textSala);
-		textSala.setColumns(10);
 
-		// campo para preenchimento da sinopse
-		textDisponibilidade = new JTextField();
-		textDisponibilidade.setBounds(400, 89, 114, 20);
-		getContentPane().add(textDisponibilidade);
-		textDisponibilidade.setColumns(10);
+		comboBox.setBackground(Color.white);
+		// comboBox.addActionListener();
+		comboBox.setBounds(202, 89, 94, 20);
+		getContentPane().add(comboBox);
 
+		disponibilidade = new JLabel("");
+		disponibilidade.setBounds(212, 134, 70, 15);
+		getContentPane().add(disponibilidade);
+
+		String[][] dadosSalas = Exibir.exibirSalasTabela(Banco.getSalas());
+		String[] optionsSala = new String[dadosSalas.length + 1];
+
+		optionsSala[0] = "";
+		if (Banco.getSalas() != null) {
+			for (int i = 0; i < dadosSalas.length; i++) {
+				optionsSala[i + 1] = dadosSalas[i][1];
+			}
+			comboSala = new JComboBox(optionsSala);
+			comboSala.setSelectedIndex(0);
+		} else {
+			comboSala = new JComboBox();
+		}
+		comboSala.setBackground(Color.white);
+		comboSala.setBounds(426, 87, 89, 24);
+		getContentPane().add(comboSala);
+		
+		precoField = new JTextField();
+		precoField.setBounds(104, 168, 53, 19);
+		getContentPane().add(precoField);
+		precoField.setColumns(10);
+
+		comboSala.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String dadosNoCampoSala = (String) comboSala.getSelectedItem();
+				if (dadosNoCampoSala != "") {
+					int nroDaSala = Integer.parseInt(dadosNoCampoSala);
+					Sala salaSelecionada = Banco.obterSala(nroDaSala);
+					if (salaSelecionada != null) {
+						Integer capacidade = salaSelecionada.getCapacidade();
+						disponibilidade.setText(capacidade.toString());
+					} else {
+						disponibilidade.setText("");
+					}
+				}else{
+					disponibilidade.setText("");
+				}
+
+			}
+
+		});
 	}
 
 	// Makes the frame visible.

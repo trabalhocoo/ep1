@@ -2,17 +2,22 @@ package interfaceGrafica;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
+import banco.Banco;
+
 import objetos.Administrador;
+import objetos.Filme;
 import objetos.Usuario;
 
 public class RemoverFilmeFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	private JTextField textField;
+	private JComboBox listaDeFilmes;
 	
-	public RemoverFilmeFrame() {
+	public RemoverFilmeFrame(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
@@ -22,11 +27,21 @@ public class RemoverFilmeFrame extends JFrame{
 		getContentPane().setBackground(Color.white); //mudar a cor
 		
 		JLabel lblDigiteONumero = new JLabel("Escolha o filme que deseja remover:");
-		lblDigiteONumero.setBounds(22, 38, 483, 14);
+		lblDigiteONumero.setBounds(21, 82, 483, 14);
 		getContentPane().add(lblDigiteONumero);
 		
 		
-		
+
+		//guardar o arraylist de nomes de filme
+		ArrayList <Filme> listaFilmes = Banco.getFilmes();
+		String[] options = new String [listaFilmes.size()+1];
+		options[0]="";
+		for (int i = 0; i<listaFilmes.size(); i++){
+			options[i+1]=listaFilmes.get(i).getNome();
+		}
+		listaDeFilmes = new JComboBox(options);
+		listaDeFilmes.setBounds(226, 50, 201, 20);
+		getContentPane().add(listaDeFilmes);
 		
 		//voltar
 		JButton btnVoltar = new JButton("Voltar");
