@@ -338,6 +338,11 @@ public class Banco {
 		}
 		return null;
 	}
+	
+	public static Sessao obterSessao(int numero){
+		//TODO implementar
+		return null;
+	}
 
 	public static boolean addCaixa(Caixa caixaNova) {
 		boolean resultado = caixas.add(caixaNova);

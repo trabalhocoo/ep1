@@ -52,7 +52,7 @@ public class AdminFrame extends JFrame {
 		label_2.setBounds(38, 121, 114, 14);
 		getContentPane().add(label_2);
 		
-		JLabel label_3 = new JLabel("4 - Listar usuario");
+		JLabel label_3 = new JLabel("4 - Listar usuarios");
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_3.setBounds(38, 144, 114, 14);
 		getContentPane().add(label_3);
@@ -67,7 +67,7 @@ public class AdminFrame extends JFrame {
 		label_5.setBounds(38, 194, 114, 14);
 		getContentPane().add(label_5);
 		
-		JLabel label_6 = new JLabel("8 - Listar filme");
+		JLabel label_6 = new JLabel("8 - Listar filmes");
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_6.setBounds(201, 71, 114, 14);
 		getContentPane().add(label_6);
@@ -112,7 +112,7 @@ public class AdminFrame extends JFrame {
 		label_14.setBounds(201, 219, 114, 14);
 		getContentPane().add(label_14);
 		
-		JLabel label_15 = new JLabel("16 - Listar sessao");
+		JLabel label_15 = new JLabel("16 - Listar sessoes");
 		label_15.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_15.setBounds(354, 96, 114, 14);
 		getContentPane().add(label_15);
@@ -122,7 +122,7 @@ public class AdminFrame extends JFrame {
 		label_16.setBounds(354, 121, 114, 14);
 		getContentPane().add(label_16);
 		
-		JLabel label_17 = new JLabel("18 - Editar caixas");
+		JLabel label_17 = new JLabel("18 - Editar caixa");
 		label_17.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		label_17.setBounds(354, 146, 114, 14);
 		getContentPane().add(label_17);
@@ -266,13 +266,13 @@ public class AdminFrame extends JFrame {
 					TextDisplayFrame txtDispSessao = new TextDisplayFrame(outSessao, "sessao");
 					txtDispSessao.setVisible(true);
 					break;
-				/*
 				case 17:
 					//Criar Caixa
 					CriarCaixaFrame caixa = new CriarCaixaFrame(usuarioLogado);
 					caixa.showIt("Criar Usuario");
 					hideIt();
 					break;
+					/*
 				case 18:
 					//TODO Alterar Caixa
 					AlterarCaixaFrame alterarCaixa = new AlterarCaixa(usuarioLogado);

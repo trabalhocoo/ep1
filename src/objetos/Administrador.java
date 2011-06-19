@@ -39,8 +39,7 @@ public class Administrador extends Decorator implements Serializable {
 
 	// String filme, int year, int month, int date, int hourOfDay, int minute,
 	// int sala, double preco, int disp
-	public void adicionarSessao(Usuario usuario) {
-		ArrayList dadosSessao = InterfaceCinema.adicionarSessao();
+	public void adicionarSessao(Usuario usuario, ArrayList dadosSessao ) {
 		String nomeFilme = (String) dadosSessao.get(0);
 		int ano = (Integer) dadosSessao.get(1);
 		int mes = (Integer) dadosSessao.get(2);
@@ -166,7 +165,7 @@ public class Administrador extends Decorator implements Serializable {
 
 	public boolean adicionarCaixa() {
 		Caixa caixaNova = new Caixa();
-		System.out.println("Caixa adicionado com sucesso.\n");
+		//System.out.println("Caixa adicionado com sucesso.\n");
 		return Banco.addCaixa(caixaNova);
 	}
 
@@ -217,13 +216,14 @@ public class Administrador extends Decorator implements Serializable {
 		return alterou;
 	}
 
-	public boolean removerFilme() {
-		Filme filme = InterfaceCinema.removerFilme();
+	public boolean removerFilme(String nomeDoFilme) {
+		Filme filme = Banco.obterFilme(nomeDoFilme);
 		boolean removeu = Banco.removerFilme(filme);
+		/*
 		if (removeu == true)
 			System.out.println("Filme removido com sucesso.\n");
 		else
-			System.out.println("Filme nao encontrado.\n");
+			System.out.println("Filme nao encontrado.\n");*/
 		return removeu;
 	}
 
@@ -302,7 +302,7 @@ public class Administrador extends Decorator implements Serializable {
 
 	public void exibirCaixas() {
 		TreeSet<Caixa> listaCaixas = Banco.getCaixas();
-		System.out.println("Lista de Caixas:");
+		//System.out.println("Lista de Caixas:");
 		Exibir.exibirCaixas(listaCaixas);
 	}
 	

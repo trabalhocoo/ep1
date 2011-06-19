@@ -97,7 +97,7 @@ public class Controlador{
 				break;
 			case 7:
 				//Remover filme
-				admin.removerFilme();
+				//admin.removerFilme();
 				break;
 			case 8:
 				//Exibir filme
@@ -121,7 +121,7 @@ public class Controlador{
 				break;
 			case 13:
 				//Criar sessao
-				admin.adicionarSessao(usuarioLogado);
+				//admin.adicionarSessao(usuarioLogado);
 				break;
 			case 14:
 				//Editar sessao

@@ -22,10 +22,15 @@ import visualizacao.Exibir;
 public class CriarSessaoFrame extends JFrame {
 	private static Usuario usuarioLogado;
 	private JTextField textNomeDoFilme;
-	private JComboBox comboBox;
+	private JComboBox comboBoxFilme;
 	private JComboBox comboSala;
 	private JLabel disponibilidade;
 	private JTextField precoField;
+	private JTextField horaField;
+	private JTextField minutoField;
+	private JTextField diaField;
+	private JTextField mesField;
+	private JTextField anoField;
 
 	public CriarSessaoFrame(final Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
@@ -89,16 +94,16 @@ public class CriarSessaoFrame extends JFrame {
 			for (int i = 0; i < dadosFilmes.length; i++) {
 				optionsFilmes[i + 1] = dadosFilmes[i][0];
 			}
-			comboBox = new JComboBox(optionsFilmes);
-			comboBox.setSelectedIndex(0);
+			comboBoxFilme = new JComboBox(optionsFilmes);
+			comboBoxFilme.setSelectedIndex(0);
 		} else {
-			comboBox = new JComboBox();
+			comboBoxFilme = new JComboBox();
 		}
 
-		comboBox.setBackground(Color.white);
+		comboBoxFilme.setBackground(Color.white);
 		// comboBox.addActionListener();
-		comboBox.setBounds(202, 89, 94, 20);
-		getContentPane().add(comboBox);
+		comboBoxFilme.setBounds(202, 89, 94, 20);
+		getContentPane().add(comboBoxFilme);
 
 		disponibilidade = new JLabel("");
 		disponibilidade.setBounds(212, 134, 70, 15);
@@ -120,11 +125,106 @@ public class CriarSessaoFrame extends JFrame {
 		comboSala.setBackground(Color.white);
 		comboSala.setBounds(426, 87, 89, 24);
 		getContentPane().add(comboSala);
-		
+
 		precoField = new JTextField();
 		precoField.setBounds(104, 168, 53, 19);
 		getContentPane().add(precoField);
 		precoField.setColumns(10);
+
+		JLabel lblHora = new JLabel("Hora (24 horas)");
+		lblHora.setBounds(55, 196, 119, 15);
+		getContentPane().add(lblHora);
+
+		horaField = new JTextField();
+		horaField.setBounds(55, 212, 31, 19);
+		getContentPane().add(horaField);
+		horaField.setColumns(10);
+
+		JLabel doisPontos = new JLabel(":");
+		doisPontos.setBounds(89, 214, 14, 15);
+		getContentPane().add(doisPontos);
+
+		minutoField = new JTextField();
+		minutoField.setBounds(98, 212, 39, 19);
+		getContentPane().add(minutoField);
+		minutoField.setColumns(10);
+
+		JLabel lblData = new JLabel("Data");
+		lblData.setBounds(276, 196, 70, 15);
+		getContentPane().add(lblData);
+
+		diaField = new JTextField();
+		diaField.setBounds(276, 212, 22, 19);
+		getContentPane().add(diaField);
+		diaField.setColumns(10);
+
+		JLabel label = new JLabel("/");
+		label.setBounds(299, 214, 14, 15);
+		getContentPane().add(label);
+
+		mesField = new JTextField();
+		mesField.setBounds(304, 212, 22, 19);
+		getContentPane().add(mesField);
+		mesField.setColumns(10);
+
+		JLabel label_1 = new JLabel("/");
+		label_1.setBounds(332, 214, 14, 15);
+		getContentPane().add(label_1);
+
+		anoField = new JTextField();
+		anoField.setColumns(10);
+		anoField.setBounds(342, 212, 51, 19);
+		getContentPane().add(anoField);
+
+		JButton btnLimparCampos = new JButton("Limpar Campos");
+		btnLimparCampos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				comboBoxFilme.setSelectedIndex(0);
+				comboSala.setSelectedIndex(0);
+				precoField.setText("");
+				horaField.setText("");
+				minutoField.setText("");
+				mesField.setText("");
+				diaField.setText("");
+				anoField.setText("");
+
+			}
+		});
+		btnLimparCampos.setBounds(229, 292, 117, 25);
+		getContentPane().add(btnLimparCampos);
+
+		JButton btnAdicionar = new JButton("Adicionar");
+		btnAdicionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					//TODO TERMINAR ISSO
+					String campoNomeFilme = (String) comboBoxFilme.getSelectedItem();
+					Object campoAno = Integer.parseInt(anoField.getText());
+					Object campoMes = Integer.parseInt(mesField.getText());
+					
+					/*
+						lblNewLabel_2.setOpaque(false);
+						lblNewLabel_2.setForeground(Color.red);
+						lblNewLabel_2.setText("Por favor, digite todos os campos.");
+					*/
+					
+					String nomeFilme = campoNomeFilme;
+					Filme filme = Banco.obterFilme(nomeFilme);
+					int year;
+					int month;
+					int date = Integer.parseInt(diaField.getText());
+					int hourOfDay = Integer.parseInt(horaField.getText());
+					int minute = Integer.parseInt(minutoField.getText());
+					int nroSala = Integer.parseInt((String) comboSala
+							.getSelectedItem());
+					Sala sala = Banco.obterSala(nroSala);
+					double preco = Double.parseDouble(precoField.getText());
+					int disp = sala.getCapacidade();
+					
+					
+			}
+		});
+		btnAdicionar.setBounds(55, 292, 117, 25);
+		getContentPane().add(btnAdicionar);
 
 		comboSala.addActionListener(new ActionListener() {
 			@Override
@@ -139,7 +239,7 @@ public class CriarSessaoFrame extends JFrame {
 					} else {
 						disponibilidade.setText("");
 					}
-				}else{
+				} else {
 					disponibilidade.setText("");
 				}
 

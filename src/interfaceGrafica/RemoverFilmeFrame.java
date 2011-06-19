@@ -40,8 +40,13 @@ public class RemoverFilmeFrame extends JFrame{
 			options[i+1]=listaFilmes.get(i).getNome();
 		}
 		listaDeFilmes = new JComboBox(options);
-		listaDeFilmes.setBounds(226, 50, 201, 20);
+		listaDeFilmes.setBounds(245, 79, 203, 20);
 		getContentPane().add(listaDeFilmes);
+		
+		
+		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
+		lblNewLabel_2.setBounds(23, 30, 298, 14);
+		getContentPane().add(lblNewLabel_2);
 		
 		//voltar
 		JButton btnVoltar = new JButton("Voltar");
@@ -54,6 +59,30 @@ public class RemoverFilmeFrame extends JFrame{
 		});
 		btnVoltar.setBounds(387, 259, 89, 23);
 		getContentPane().add(btnVoltar);
+		
+		JButton button = new JButton("OK");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lblNewLabel_2.setOpaque(false);
+				lblNewLabel_2.setForeground(Color.red);
+				if (listaDeFilmes.getSelectedIndex()==0){
+					lblNewLabel_2.setText("Por favor, escolha o filme que deseja remover.");
+			} else {	
+				String nomeDoFilmeASerRemovido = (String)listaDeFilmes.getSelectedItem();
+				boolean removeu = admin.removerFilme(nomeDoFilmeASerRemovido);
+				
+				if (removeu){
+					lblNewLabel_2.setText("O filme " + nomeDoFilmeASerRemovido + " foi removido com sucesso.");
+				}
+				else{
+					lblNewLabel_2.setText("O filme " + nomeDoFilmeASerRemovido + " não foi encontrado.");
+				}
+			}
+					
+			}
+		});
+		button.setBounds(458, 78, 58, 23);
+		getContentPane().add(button);
 		
 		
 	}
@@ -81,7 +110,4 @@ public class RemoverFilmeFrame extends JFrame{
 		this.setLocation(x,y);
 		this.setVisible(true);
 	}
-	
-	
-
 }

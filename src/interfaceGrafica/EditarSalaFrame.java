@@ -27,12 +27,12 @@ public class EditarSalaFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.white); //mudar a cor
 		
-		JLabel lblDigiteONumero = new JLabel("Digite o numero da sala: ");
+		JLabel lblDigiteONumero = new JLabel("Digite o numero da sala que deseja alterar: ");
 		lblDigiteONumero.setBounds(23, 85, 483, 14);
 		getContentPane().add(lblDigiteONumero);
 		
 		numSala = new JTextField();
-		numSala.setBounds(387, 82, 53, 20);
+		numSala.setBounds(295, 82, 53, 20);
 		getContentPane().add(numSala);
 		numSala.setColumns(10);
 		
@@ -57,7 +57,7 @@ public class EditarSalaFrame extends JFrame{
 		getContentPane().add(btnLimparCampos);
 		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(387, 259, 89, 23);
+		btnVoltar.setBounds(375, 259, 131, 23);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminFrame usfr = new AdminFrame(admin);
@@ -100,7 +100,7 @@ public class EditarSalaFrame extends JFrame{
 						capacidade.setText("");
 				}
 		});
-		btnAdicionar.setBounds(70, 259, 89, 23);
+		btnAdicionar.setBounds(50, 259, 123, 23);
 		getContentPane().add(btnAdicionar);
 		
 		
@@ -134,19 +134,19 @@ public class EditarSalaFrame extends JFrame{
 					}
 				}
 		});
-		btnNewButton.setBounds(448, 81, 58, 23);
+		btnNewButton.setBounds(375, 81, 58, 23);
 		getContentPane().add(btnNewButton);
 		
 		JLabel lblAlltereOsCamoos = new JLabel("Altere os campos desejados:");
 		lblAlltereOsCamoos.setBounds(23, 119, 239, 14);
 		getContentPane().add(lblAlltereOsCamoos);
 		
-		JLabel lblNome = new JLabel("Capacidade");
-		lblNome.setBounds(23, 167, 46, 14);
+		JLabel lblNome = new JLabel("Capacidade:");
+		lblNome.setBounds(23, 167, 87, 14);
 		getContentPane().add(lblNome);
 		
 		capacidade = new JTextField();
-		capacidade.setBounds(97, 164, 104, 20);
+		capacidade.setBounds(120, 164, 104, 20);
 		getContentPane().add(capacidade);
 		capacidade.setColumns(10);
 		
