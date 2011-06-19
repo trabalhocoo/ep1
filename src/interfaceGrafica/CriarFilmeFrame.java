@@ -43,53 +43,53 @@ public class CriarFilmeFrame extends JFrame{
 		//String nome, int faixa, int duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d
 		//label
 		JLabel lblPorFavorPreencha = new JLabel("Por favor preencha as informacoes abaixo sobre o filme que deseja criar:");
-		lblPorFavorPreencha.setBounds(55, 39, 433, 14);
+		lblPorFavorPreencha.setBounds(40, 39, 433, 14);
 		getContentPane().add(lblPorFavorPreencha);
 		
 		//label nome do filme
 		JLabel lblNomeDoFilme = new JLabel("Nome do filme:");
-		lblNomeDoFilme.setBounds(55, 92, 102, 14);
+		lblNomeDoFilme.setBounds(40, 92, 102, 14);
 		getContentPane().add(lblNomeDoFilme);
 		
 		//label faixa
 		JLabel lblFaixa = new JLabel("Faixa Etaria:");
-		lblFaixa.setBounds(52, 124, 126, 14);
+		lblFaixa.setBounds(40, 179, 126, 14);
 		getContentPane().add(lblFaixa);
 		
 		//label duracao
 		JLabel lblDuracao = new JLabel("Duracao (em minutos):");
-		lblDuracao.setBounds(52, 124, 126, 14);
+		lblDuracao.setBounds(40, 124, 126, 14);
 		getContentPane().add(lblDuracao);
 		
 		//label diretor 
 		JLabel lblDiretor = new JLabel("Diretor:");
-		lblDiretor.setBounds(307, 124, 102, 14);
+		lblDiretor.setBounds(289, 124, 102, 14);
 		getContentPane().add(lblDiretor);
 		
 		//label sinopse
 		JLabel lblSinopse = new JLabel("Sinopse:");
-		lblSinopse.setBounds(55, 192, 102, 14);
+		lblSinopse.setBounds(40, 219, 102, 14);
 		getContentPane().add(lblSinopse);
 		
 		//label genero
 		JLabel lblGenero = new JLabel("Genero:");
-		lblGenero.setBounds(55, 154, 102, 14);
+		lblGenero.setBounds(40, 154, 102, 14);
 		getContentPane().add(lblGenero);
 		
 		//label estreia
 		JLabel lblEstreia = new JLabel("Data da estreia :");
-		lblEstreia.setBounds(307, 92, 102, 14);
+		lblEstreia.setBounds(289, 92, 102, 14);
 		getContentPane().add(lblEstreia);
 		
 		//box para dizer se a sala eh 3D
 		final JCheckBox chckbxSalad = new JCheckBox("3D");
-		chckbxSalad.setBounds(307, 150, 97, 23);
+		chckbxSalad.setBounds(289, 150, 97, 23);
 		chckbxSalad.setBackground(Color.white);
 		getContentPane().add(chckbxSalad);
 		
 		//campo para preenchimento do nome do Filme
 		textNomeDoFilme = new JTextField();
-		textNomeDoFilme.setBounds(180, 192, 116, 85);
+		textNomeDoFilme.setBounds(165, 219, 333, 57);
 		getContentPane().add(textNomeDoFilme);
 		textNomeDoFilme.setColumns(10);
 		
@@ -97,36 +97,36 @@ public class CriarFilmeFrame extends JFrame{
 		comboFaixa = new JComboBox(options);
 		comboFaixa.setSelectedIndex(0); 
 		comboFaixa.setBackground(Color.white);
-		comboFaixa.setBounds(163, 144, 104, 20);
+		comboFaixa.setBounds(165, 176, 113, 20);
 		getContentPane().add(comboFaixa);
 		
 		//campo para preenchimento da duracao
 		textDuracao = new JTextField();
-		textDuracao.setBounds(179, 89, 114, 20);
+		textDuracao.setBounds(165, 89, 114, 20);
 		getContentPane().add(textDuracao);
 		textDuracao.setColumns(10);
 		
 		//campo para preenchimento do diretor
 		textDiretor = new JTextField();
-		textDiretor.setBounds(399, 121, 114, 20);
+		textDiretor.setBounds(381, 121, 114, 20);
 		getContentPane().add(textDiretor);
 		textDiretor.setColumns(10);
 		
 		//campo para preenchimento da sinopse
 		textSinopse = new JTextField();
-		textSinopse.setBounds(402, 89, 114, 20);
+		textSinopse.setBounds(381, 89, 114, 20);
 		getContentPane().add(textSinopse);
 		textSinopse.setColumns(10);
 		
 		//campo para preenchimento do genero
 		textGenero = new JTextField();
-		textGenero.setBounds(178, 118, 114, 20);
+		textGenero.setBounds(165, 121, 114, 20);
 		getContentPane().add(textGenero);
 		textGenero.setColumns(10);
 		
 		//campo para preenchimento da estreia
 		textEstreia = new JTextField();
-		textEstreia.setBounds(178, 149, 114, 20);
+		textEstreia.setBounds(165, 151, 114, 20);
 		getContentPane().add(textEstreia);
 		textEstreia.setColumns(10);
 		
