@@ -114,7 +114,7 @@ public class CriarFilmeFrame extends JFrame{
 		
 		//campo para preenchimento da sinopse
 		textSinopse = new JTextField();
-		textSinopse.setBounds(165, 229, 333, 50);
+		textSinopse.setBounds(165, 219, 333, 50);
 		getContentPane().add(textSinopse);
 		textSinopse.setColumns(10);
 		

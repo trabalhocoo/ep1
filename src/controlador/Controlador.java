@@ -93,7 +93,7 @@ public class Controlador{
 				break;
 			case 6:
 				//Editar filme
-				admin.alterarFilme();
+				//admin.alterarFilme();
 				break;
 			case 7:
 				//Remover filme

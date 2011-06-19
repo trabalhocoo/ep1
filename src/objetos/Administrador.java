@@ -199,8 +199,7 @@ public class Administrador extends Decorator implements Serializable {
 		//System.out.println("Filme adicionado com sucesso.\n");
 	}
 
-	public void alterarFilme() {
-		ArrayList dadosFilme = InterfaceCinema.alterarFilme();
+	public void alterarFilme(ArrayList dadosFilme) {
 		String nomeDoFilme = (String) dadosFilme.get(0);
 		Filme filmeAAlterar = Banco.obterFilme(nomeDoFilme);
 

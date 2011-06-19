@@ -195,11 +195,13 @@ public class AdminFrame extends JFrame {
 					filme.showIt("Criar Filme");
 					hideIt();
 					break;
-					/*
 				case 6:
 					//Editar filme
-					admin.alterarFilme();
+					EditarFilmeFrame edfr = new EditarFilmeFrame(usuarioLogado);
+					edfr.showIt("Editar filme");
+					dispose();
 					break;
+					/*
 				case 7:
 					//Remover filme
 					admin.removerFilme();
