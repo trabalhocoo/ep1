@@ -50,7 +50,7 @@ public class CriarSessaoFrame extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setBounds(424, 293, 89, 23);
+		btnVoltar.setBounds(356, 293, 119, 23);
 		getContentPane().add(btnVoltar);
 
 		// Filme filme, int year, int month, int date, int hourOfDay, int
@@ -68,17 +68,17 @@ public class CriarSessaoFrame extends JFrame {
 
 		// label sala
 		JLabel lblSala = new JLabel("Numero da Sala:");
-		lblSala.setBounds(304, 92, 102, 14);
+		lblSala.setBounds(286, 92, 102, 14);
 		getContentPane().add(lblSala);
 
 		// label preco
 		JLabel lblPreco = new JLabel("Preco:");
-		lblPreco.setBounds(55, 170, 51, 14);
+		lblPreco.setBounds(55, 159, 51, 14);
 		getContentPane().add(lblPreco);
 
 		// label dispo
 		JLabel lblDispo = new JLabel("Disponibilidade de lugares:");
-		lblDispo.setBounds(55, 134, 145, 14);
+		lblDispo.setBounds(55, 125, 193, 14);
 		getContentPane().add(lblDispo);
 
 		// Arrumar os campos ano, mes, dia para podermos usar em um campo s� e o
@@ -102,11 +102,11 @@ public class CriarSessaoFrame extends JFrame {
 
 		comboBoxFilme.setBackground(Color.white);
 		// comboBox.addActionListener();
-		comboBoxFilme.setBounds(202, 89, 94, 20);
+		comboBoxFilme.setBounds(149, 89, 94, 20);
 		getContentPane().add(comboBoxFilme);
 
 		disponibilidade = new JLabel("");
-		disponibilidade.setBounds(212, 134, 70, 15);
+		disponibilidade.setBounds(212, 125, 70, 15);
 		getContentPane().add(disponibilidade);
 
 		String[][] dadosSalas = Exibir.exibirSalasTabela(Banco.getSalas());
@@ -123,16 +123,16 @@ public class CriarSessaoFrame extends JFrame {
 			comboSala = new JComboBox();
 		}
 		comboSala.setBackground(Color.white);
-		comboSala.setBounds(426, 87, 89, 24);
+		comboSala.setBounds(395, 89, 89, 20); //145, 89, 94, 20
 		getContentPane().add(comboSala);
 
 		precoField = new JTextField();
-		precoField.setBounds(104, 168, 53, 19);
+		precoField.setBounds(104, 156, 53, 19);
 		getContentPane().add(precoField);
 		precoField.setColumns(10);
 
 		JLabel lblHora = new JLabel("Hora (24 horas)");
-		lblHora.setBounds(55, 196, 119, 15);
+		lblHora.setBounds(55, 186, 119, 15);
 		getContentPane().add(lblHora);
 
 		horaField = new JTextField();
@@ -190,7 +190,7 @@ public class CriarSessaoFrame extends JFrame {
 
 			}
 		});
-		btnLimparCampos.setBounds(229, 292, 117, 25);
+		btnLimparCampos.setBounds(198, 292, 134, 25);
 		getContentPane().add(btnLimparCampos);
 
 		JButton btnAdicionar = new JButton("Adicionar");

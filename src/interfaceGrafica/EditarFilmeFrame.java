@@ -20,6 +20,7 @@ public class EditarFilmeFrame extends JFrame{
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
 	private JCheckBox checkBox;
+	private final JLabel lblNewLabel_2;
 	
 	public EditarFilmeFrame(final Usuario usrLogado){
 		usuarioLogado = usrLogado;
@@ -35,7 +36,7 @@ public class EditarFilmeFrame extends JFrame{
 		
 		String[] options = {"", "Admin", "Usuario"};
 		
-		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
+		lblNewLabel_2 = new JLabel("");//vazio por enquanto
 		lblNewLabel_2.setBounds(23, 30, 298, 14);
 		getContentPane().add(lblNewLabel_2);
 		
@@ -119,7 +120,7 @@ public class EditarFilmeFrame extends JFrame{
 					lblNewLabel_2.setOpaque(false);
 					lblNewLabel_2.setForeground(Color.red);
 					if (alterou){
-						lblNewLabel_2.setText("O filme " + antigoNome + " foi alterado com sucesso.");
+						//lblNewLabel_2.setText("O filme " + antigoNome + " foi alterado com sucesso.");
 						nomeDoFilme.setText("");
 						duracao.setText("");
 						genero.setText("");
@@ -131,6 +132,7 @@ public class EditarFilmeFrame extends JFrame{
 						comboBox_1.setSelectedIndex(0);
 						EditarFilmeFrame edFr = new EditarFilmeFrame(usrLogado);
 						edFr.showIt("Editar frame");
+						edFr.editarLabelDeAviso("O filme " + antigoNome + " foi alterado com sucesso.");
 						dispose();
 						
 						
@@ -316,4 +318,11 @@ public class EditarFilmeFrame extends JFrame{
 	this.setLocation(x,y);
 	this.setVisible(true);
 	}
+	
+	public void editarLabelDeAviso (String string){
+		lblNewLabel_2.setOpaque(false);
+		lblNewLabel_2.setForeground(Color.red);
+		lblNewLabel_2.setText(string);
+	}
+	
 }

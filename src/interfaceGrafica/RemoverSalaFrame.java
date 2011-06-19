@@ -29,7 +29,7 @@ public class RemoverSalaFrame extends JFrame{
 		getContentPane().add(lblDigiteONumero);
 		
 		codSala = new JTextField();
-		codSala.setBounds(387, 82, 53, 20);
+		codSala.setBounds(294, 82, 53, 20);
 		getContentPane().add(codSala);
 		codSala.setColumns(10);
 		
@@ -51,7 +51,7 @@ public class RemoverSalaFrame extends JFrame{
 					lblNewLabel_2.setText("Sala nao encontrada.");
 			}
 		});
-		btnNewButton.setBounds(448, 81, 58, 23);
+		btnNewButton.setBounds(357, 81, 58, 23);
 		getContentPane().add(btnNewButton);
 		
 		

@@ -8,6 +8,7 @@ import objetos.*;
 
 public class CriarCaixaFrame extends JFrame{
 	private static Usuario usuarioLogado;
+	final JLabel lblNewLabel_2;
 	
 	public CriarCaixaFrame(final Usuario usr) {
 		usuarioLogado = usr;
@@ -19,7 +20,7 @@ public class CriarCaixaFrame extends JFrame{
 		getContentPane().setBackground(Color.white); //mudar a cor
 		
 		//label de aviso
-		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
+		lblNewLabel_2 = new JLabel("");//vazio por enquanto
 		lblNewLabel_2.setBounds(23, 50, 298, 14);
 		getContentPane().add(lblNewLabel_2);
 		
@@ -46,7 +47,7 @@ public class CriarCaixaFrame extends JFrame{
 		//label do numero do caixa
 		Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriadas(); 
 		JLabel numeroDoCaixa = new JLabel(numeroDeCaixasCriados.toString());
-		numeroDoCaixa.setBounds(167, 121, 46, 14);
+		numeroDoCaixa.setBounds(153, 121, 46, 14);
 		getContentPane().add(numeroDoCaixa);
 		
 		JButton criarSalaBtn = new JButton("Criar caixa");
@@ -56,16 +57,21 @@ public class CriarCaixaFrame extends JFrame{
 				lblNewLabel_2.setOpaque(false);
 				lblNewLabel_2.setForeground(Color.red);
 				if (criou){
-					Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriadas() -1;
+					Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriadas()-1;
+					System.out.println (numeroDeCaixasCriados);
 					lblNewLabel_2.setText("Caixa " + numeroDeCaixasCriados.toString() + " criado com sucesso.");
+					CriarCaixaFrame crCaixa = new CriarCaixaFrame(usr);
+					crCaixa.showIt("Criar Sala");
+					crCaixa.editarLabelDeAviso("Caixa " + numeroDeCaixasCriados.toString() + " criado com sucesso.");
+					dispose();
 				}
 				else{
-					lblNewLabel_2.setText("Ocorreu um problema. Tente novamente");
+					lblNewLabel_2.setText("Ocorreu um problema. Tente novamente.");
 				}
 					
 			}
 		});
-		criarSalaBtn.setBounds(240, 117, 102, 23);
+		criarSalaBtn.setBounds(203, 117, 97, 23);
 		getContentPane().add(criarSalaBtn);
 		
 		
@@ -100,4 +106,12 @@ public class CriarCaixaFrame extends JFrame{
 		this.setLocation(x,y);
 		this.setVisible(true);
 	}
+	
+	public void editarLabelDeAviso (String string){
+		lblNewLabel_2.setOpaque(false);
+		lblNewLabel_2.setForeground(Color.red);
+		lblNewLabel_2.setText(string);
+	}
+	
+	
 }

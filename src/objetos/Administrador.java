@@ -132,7 +132,7 @@ public class Administrador extends Decorator implements Serializable {
 		boolean eh3d = (Boolean) sala.get(2);
 		Sala salaNova = new Sala(capacidade, numero, eh3d);
 		Banco.addSala(salaNova);
-		System.out.println("Sala adicionada com sucesso.\n");
+		//System.out.println("Sala adicionada com sucesso.\n");
 		//RegistroOutros.registrarSala(" Adicionou sala \n", salaNova, usuario);
 	}
 
@@ -142,13 +142,12 @@ public class Administrador extends Decorator implements Serializable {
 		int numero = (Integer) salaAdd.get(2);
 		boolean eh3d = (Boolean) salaAdd.get(3);
 		boolean alterou = Banco.modificarSala(sala, capacidade, numero, eh3d);
-		if (alterou == true) {
+		/*if (alterou == true) {
 			System.out.println("Sala alterada com sucesso.\n");
 			//RegistroOutros.registrarSala(" Alterou sala ", sala, usuario);
-			return alterou;
 		} else
-			System.out.println("Sala nao encontrada.\n");
-			return false;
+			//System.out.println("Sala nao encontrada.\n");*/
+			return alterou;
 	}
 
 	public void exibirUsuarios() {// listar os usuarios existentes

@@ -193,7 +193,7 @@ public class CriarFilmeFrame extends JFrame{
 						admin.adicionarFilme(dadosFilme);
 						lblNewLabel_1.setOpaque(false);
 						lblNewLabel_1.setForeground(Color.red);
-						lblNewLabel_1.setText("Filme criado com sucesso. Filme: " + nome); 
+						lblNewLabel_1.setText("Filme " + nome + " criado com sucesso."); 
 						textNomeDoFilme.setText("");
 						comboFaixa.setSelectedIndex(0);
 						boolean b = false;

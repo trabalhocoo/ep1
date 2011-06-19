@@ -86,7 +86,7 @@ public class EditarSalaFrame extends JFrame{
 						arrayListDeSala.add(Integer.parseInt(capacidadeSala));
 						arrayListDeSala.add(registro);
 						arrayListDeSala.add(option);
-						System.out.println (capacidadeSala + " " + registro + " " + option);
+						//System.out.println (capacidadeSala + " " + registro + " " + option);
 						alterou = admin.alterarSala(arrayListDeSala);
 					
 					} catch (Exception e){
