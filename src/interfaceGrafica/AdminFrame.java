@@ -195,16 +195,18 @@ public class AdminFrame extends JFrame {
 					filme.showIt("Criar Filme");
 					hideIt();
 					break;
+					/*
 				case 6:
 					//Editar filme
-					EditarFilmeFrame edfr = new EditarFilmeFrame(usuarioLogado);
-					edfr.showIt("Editar filme");
-					dispose();
+					EditarFilmeFrame editarFilme = new EditarFilmeFrame(usuarioLogado);
+					editarFilme.showIt("Editar Usuario");
 					break;
-					/*
 				case 7:
 					//Remover filme
-					admin.removerFilme();
+					RemoverFilmeFrame remFilFr = new RemoverFilmeFrame(usuarioLogado);
+					remFilFr.showIt("Remover Filme");
+					dispose();
+					hideIt();
 					break;*/
 				case 8:
 					//Exibir filme
@@ -248,11 +250,15 @@ public class AdminFrame extends JFrame {
 				/*
 				case 14:
 					//Editar sessao
-					admin.alterarSessao(usuarioLogado);
+					EditarSessaoFrame editarSessao = new EditarSessaoFrame(usuarioLogado);
+					editarSessao.showIt("Editar Usuario");
 					break;
 				case 15:
 					//Remover sessao
-					admin.removerSessao(usuarioLogado);
+					RemoverSessaoFrame remSesFr = new RemoverSessaoFrame(usuarioLogado);
+					remSesFr.showIt("Remover Sessao");
+					dispose();
+					hideIt();
 					break;
 					*/
 				case 16:
@@ -264,16 +270,21 @@ public class AdminFrame extends JFrame {
 				/*
 				case 17:
 					//Criar Caixa
-					admin.adicionarCaixa();
+					CriarCaixaFrame caixa = new CriarCaixaFrame(usuarioLogado);
+					caixa.showIt("Criar Usuario");
+					hideIt();
 					break;
 				case 18:
 					//TODO Alterar Caixa
-					admin.alterarCaixa();
-					break;
+					AlterarCaixaFrame alterarCaixa = new AlterarCaixa(usuarioLogado);
+					alterarCaixa.showIt("Editar Usuario");
+					break;*/
 				case 19:
 					//Remover caixa
-					admin.removerCaixa();
-					break;*/
+					RemoverCaixaFrame delCaixa = new RemoverCaixaFrame(usuarioLogado);
+					delCaixa.showIt("Remover Caixa");
+					hideIt();
+					break;
 				case 20:
 					//Exibir caixas
 					String[][] outCaixa = usuarioLogado.exibirCaixasTabela();
