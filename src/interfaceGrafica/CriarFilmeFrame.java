@@ -37,7 +37,7 @@ public class CriarFilmeFrame extends JFrame{
 				dispose();
 			}
 		});
-		btnVoltar.setBounds(424, 293, 89, 23);
+		btnVoltar.setBounds(369, 293, 123, 23);
 		getContentPane().add(btnVoltar);
 		
 		//String nome, int faixa, int duracao, String diretor, String sinopse, String genero, String estreia, boolean is3d
@@ -53,11 +53,11 @@ public class CriarFilmeFrame extends JFrame{
 		
 		//label faixa
 		JLabel lblFaixa = new JLabel("Faixa Etaria:");
-		lblFaixa.setBounds(40, 179, 126, 14);
+		lblFaixa.setBounds(40, 186, 126, 14);
 		getContentPane().add(lblFaixa);
 		
 		//label duracao
-		JLabel lblDuracao = new JLabel("Duracao (em minutos):");
+		JLabel lblDuracao = new JLabel("Duracao (em min):");
 		lblDuracao.setBounds(40, 124, 126, 14);
 		getContentPane().add(lblDuracao);
 		
@@ -89,7 +89,7 @@ public class CriarFilmeFrame extends JFrame{
 		
 		//campo para preenchimento do nome do Filme
 		textNomeDoFilme = new JTextField();
-		textNomeDoFilme.setBounds(165, 219, 333, 57);
+		textNomeDoFilme.setBounds(165, 88, 114, 23);
 		getContentPane().add(textNomeDoFilme);
 		textNomeDoFilme.setColumns(10);
 		
@@ -97,41 +97,41 @@ public class CriarFilmeFrame extends JFrame{
 		comboFaixa = new JComboBox(options);
 		comboFaixa.setSelectedIndex(0); 
 		comboFaixa.setBackground(Color.white);
-		comboFaixa.setBounds(165, 176, 113, 20);
+		comboFaixa.setBounds(165, 183, 113, 20);
 		getContentPane().add(comboFaixa);
 		
 		//campo para preenchimento da duracao
 		textDuracao = new JTextField();
-		textDuracao.setBounds(165, 89, 114, 20);
+		textDuracao.setBounds(165, 121, 114, 20);
 		getContentPane().add(textDuracao);
 		textDuracao.setColumns(10);
 		
 		//campo para preenchimento do diretor
 		textDiretor = new JTextField();
-		textDiretor.setBounds(381, 121, 114, 20);
+		textDiretor.setBounds(384, 121, 114, 20);
 		getContentPane().add(textDiretor);
 		textDiretor.setColumns(10);
 		
 		//campo para preenchimento da sinopse
 		textSinopse = new JTextField();
-		textSinopse.setBounds(381, 89, 114, 20);
+		textSinopse.setBounds(165, 229, 333, 50);
 		getContentPane().add(textSinopse);
 		textSinopse.setColumns(10);
 		
 		//campo para preenchimento do genero
 		textGenero = new JTextField();
-		textGenero.setBounds(165, 121, 114, 20);
+		textGenero.setBounds(165, 149, 114, 20);
 		getContentPane().add(textGenero);
 		textGenero.setColumns(10);
 		
 		//campo para preenchimento da estreia
 		textEstreia = new JTextField();
-		textEstreia.setBounds(165, 151, 114, 20);
+		textEstreia.setBounds(384, 89, 114, 20);
 		getContentPane().add(textEstreia);
 		textEstreia.setColumns(10);
 		
 		final JLabel lblNewLabel_1 = new JLabel("");//vazio por enquanto
-		lblNewLabel_1.setBounds(40, 172, 200, 14);
+		lblNewLabel_1.setBounds(40, 64, 458, 14);
 		getContentPane().add(lblNewLabel_1);
 		
 		//Botao para limpar campos
@@ -149,44 +149,60 @@ public class CriarFilmeFrame extends JFrame{
 				textEstreia.setText("");
 			}
 		});
-		btnLimparCampos.setBounds(276, 293, 123, 23);
+		btnLimparCampos.setBounds(209, 293, 123, 23);
 		getContentPane().add(btnLimparCampos);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
-		btnAdicionar.setBounds(55, 293, 123, 23);
+		btnAdicionar.setBounds(52, 293, 123, 23);
+		//276, 293
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try{
-					String nome = textNomeDoFilme.getText();
-					int faixa = comboFaixa.getSelectedIndex();
-					int duracao = Integer.parseInt(textDuracao.getText());
-					String diretor = textDiretor.getText();
-					String sinopse = textSinopse.getText();
-					String genero = textGenero.getText();
-					String estreia = textEstreia.getText();
+				if(textNomeDoFilme.getText().equals("") || comboFaixa.getSelectedIndex()==0 || textDuracao.getText().equals("")||textDiretor.getText().equals("") || textSinopse.getText().equals("") || textGenero.getText().equals("") || textEstreia.getText().equals("") ){
+					lblNewLabel_1.setOpaque(false);
+					lblNewLabel_1.setForeground(Color.red);
+					lblNewLabel_1.setText("Por favor, digite todos os campos.");
+				}
+				else {
+					try{
+						String nome = textNomeDoFilme.getText();
+						int faixa = comboFaixa.getSelectedIndex();
+						int duracao = Integer.parseInt(textDuracao.getText());
+						String diretor = textDiretor.getText();
+						String sinopse = textSinopse.getText();
+						String genero = textGenero.getText();
+						String estreia = textEstreia.getText();
+						//String permissao = chckbxSalad.getSele();
+						boolean eh3D = chckbxSalad.isSelected();
+					    
 
-					ArrayList dadosFilme = new ArrayList();
-					dadosFilme.add(nome);
-					
-					if(nome.equals("")){
-						lblNewLabel_1.setOpaque(false);
-						lblNewLabel_1.setForeground(Color.red);
-						lblNewLabel_1.setText("Por favor, digite todos os campos.");
-					}
-					else {
+						ArrayList dadosFilme = new ArrayList();
+						dadosFilme.add(nome);
+						dadosFilme.add(faixa);
+						dadosFilme.add(duracao);
+						dadosFilme.add(diretor);
+						dadosFilme.add(sinopse);
+						dadosFilme.add(genero);
+						dadosFilme.add(estreia);
+						dadosFilme.add(eh3D);
 						// String nome, int faixa, Date duracao, String diretor, String sinopse,
 						// String genero, String estreia, boolean is3d
-						dadosFilme.add(duracao);
 						admin.adicionarFilme(dadosFilme);
 						lblNewLabel_1.setOpaque(false);
 						lblNewLabel_1.setForeground(Color.red);
 						lblNewLabel_1.setText("Filme criado com sucesso. Filme: " + nome); 
 						textNomeDoFilme.setText("");
-						chckbxSalad.setSelected(false);
+						comboFaixa.setSelectedIndex(0);
+						boolean b = false;
+						chckbxSalad.setSelected(b);
+						textDuracao.setText("");
+						textDiretor.setText("");
+						textSinopse.setText("");
+						textGenero.setText("");
+						textEstreia.setText("");
 					}
-				}
 				catch (Exception e){
 					System.out.print(e);
+				}
 				}
 				
 			}

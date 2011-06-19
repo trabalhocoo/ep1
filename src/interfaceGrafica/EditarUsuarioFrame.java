@@ -62,7 +62,7 @@ public class EditarUsuarioFrame extends JFrame{
 		getContentPane().add(btnLimparCampos);
 		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(387, 259, 89, 23);
+		btnVoltar.setBounds(364, 259, 123, 23);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminFrame usfr = new AdminFrame(admin);
@@ -79,6 +79,7 @@ public class EditarUsuarioFrame extends JFrame{
 				boolean alterou = false;
 				lblNewLabel_2.setText("");
 					try{
+						
 						// 0: usuario, 1: nome, 2: ehadmin, 3: senha
 						int registro = Integer.parseInt(textField.getText());
 						Usuario usuarioAAlterar = Banco.obterUsuario(registro);
@@ -109,7 +110,7 @@ public class EditarUsuarioFrame extends JFrame{
 						textField.setText("");
 				}
 		});
-		btnAdicionar.setBounds(70, 259, 89, 23);
+		btnAdicionar.setBounds(52, 259, 123, 23);
 		getContentPane().add(btnAdicionar);
 		
 		

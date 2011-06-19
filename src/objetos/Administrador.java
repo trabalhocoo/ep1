@@ -196,7 +196,7 @@ public class Administrador extends Decorator implements Serializable {
 		Filme filmeNovo = new Filme(nome, faixa, duracao, diretor, sinopse,
 				genero, estreia, eh3d);
 		Banco.adicionarFilme(filmeNovo);
-		System.out.println("Filme adicionado com sucesso.\n");
+		//System.out.println("Filme adicionado com sucesso.\n");
 	}
 
 	public void alterarFilme() {

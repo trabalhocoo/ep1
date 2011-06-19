@@ -115,7 +115,7 @@ public class CriarUsuarioFrame extends JFrame {
 				
 			}
 		});
-		btnAdicionar.setBounds(70, 259, 89, 23);
+		btnAdicionar.setBounds(46, 259, 123, 23);
 		getContentPane().add(btnAdicionar);
 		
 		JButton btnLimparCampos = new JButton("Limpar campos");
@@ -137,7 +137,7 @@ public class CriarUsuarioFrame extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setBounds(387, 259, 89, 23);
+		btnVoltar.setBounds(369, 259, 123, 23);
 		getContentPane().add(btnVoltar);
 		
 	}
