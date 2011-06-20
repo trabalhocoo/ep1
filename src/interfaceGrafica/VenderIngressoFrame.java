@@ -20,7 +20,7 @@ public class VenderIngressoFrame extends JFrame{
 	private JTextField txtQuantidade;
 	private JTextField txtPoltronas;
 	public VenderIngressoFrame() {
-		getContentPane().setBackground(new Color(100, 149, 237));
+		getContentPane().setBackground(Color.WHITE);
 		setBackground(Color.ORANGE);
 		setResizable(false);
 		setTitle("--- Venda de ingressos ---");
@@ -36,56 +36,56 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(lblDigiteONmero);
 		
 		txtAno = new JTextField();
-		txtAno.setBounds(70, 88, 86, 20);
+		txtAno.setBounds(70, 88, 18, 20);
 		getContentPane().add(txtAno);
 		txtAno.setColumns(10);
 		
 		txtMes = new JTextField();
-		txtMes.setBounds(70, 112, 86, 20);
+		txtMes.setBounds(98, 88, 18, 20);
 		getContentPane().add(txtMes);
 		txtMes.setColumns(10);
 		
 		txtDia = new JTextField();
-		txtDia.setBounds(70, 136, 86, 20);
+		txtDia.setBounds(129, 88, 39, 20);
 		getContentPane().add(txtDia);
 		txtDia.setColumns(10);
 		
-		JLabel lblAno = new JLabel("Ano");
+		JLabel lblAno = new JLabel("Data");
 		lblAno.setBounds(33, 91, 46, 14);
 		getContentPane().add(lblAno);
 		
-		JLabel lblMs = new JLabel("M\u00EAs");
-		lblMs.setBounds(33, 115, 46, 14);
+		JLabel lblMs = new JLabel("/");
+		lblMs.setBounds(89, 91, 30, 14);
 		getContentPane().add(lblMs);
 		
-		JLabel lblDia = new JLabel("Dia");
-		lblDia.setBounds(33, 139, 46, 14);
+		JLabel lblDia = new JLabel("/");
+		lblDia.setBounds(119, 91, 18, 14);
 		getContentPane().add(lblDia);
 		
 		JLabel lblFilme = new JLabel("Filme");
-		lblFilme.setBounds(175, 91, 46, 14);
+		lblFilme.setBounds(33, 119, 46, 14);
 		getContentPane().add(lblFilme);
 		
 		JLabel lblHorrio = new JLabel("Hor\u00E1rio");
-		lblHorrio.setBounds(175, 115, 46, 14);
+		lblHorrio.setBounds(33, 147, 46, 14);
 		getContentPane().add(lblHorrio);
 		
 		JLabel lblSala = new JLabel("Sala");
-		lblSala.setBounds(175, 139, 46, 14);
+		lblSala.setBounds(178, 91, 46, 14);
 		getContentPane().add(lblSala);
 		
 		txtFilme = new JTextField();
-		txtFilme.setBounds(227, 88, 86, 20);
+		txtFilme.setBounds(70, 116, 98, 20);
 		getContentPane().add(txtFilme);
 		txtFilme.setColumns(10);
 		
 		txtHorario = new JTextField();
-		txtHorario.setBounds(227, 112, 86, 20);
+		txtHorario.setBounds(70, 144, 98, 20);
 		getContentPane().add(txtHorario);
 		txtHorario.setColumns(10);
 		
 		txtSala = new JTextField();
-		txtSala.setBounds(227, 136, 86, 20);
+		txtSala.setBounds(227, 88, 86, 20);
 		getContentPane().add(txtSala);
 		txtSala.setColumns(10);
 		
@@ -118,11 +118,5 @@ public class VenderIngressoFrame extends JFrame{
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.setBounds(224, 222, 89, 23);
 		getContentPane().add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("Venda de ingressos");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 19));
-		lblNewLabel.setBounds(33, 11, 175, 21);
-		getContentPane().add(lblNewLabel);
 	}
 }
