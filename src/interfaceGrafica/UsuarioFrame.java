@@ -5,7 +5,7 @@ import objetos.Usuario;
 import java.awt.*;
 import java.awt.Font;
 
-
+//estava pensando em atribuir um caixa a ele q nao estivesse sendo usado
 public class UsuarioFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	
