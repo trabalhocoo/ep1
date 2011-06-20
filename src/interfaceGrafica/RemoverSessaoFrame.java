@@ -21,7 +21,7 @@ public class RemoverSessaoFrame extends JFrame {
 	private static Usuario usuarioLogado;
 	private JTextField codSessao;
 	
-	public RemoverSessaoFrame() {
+	public RemoverSessaoFrame(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
@@ -55,12 +55,12 @@ public class RemoverSessaoFrame extends JFrame {
 				}
 				else {
 					int numeroDaSessao = Integer.parseInt(codSessao.getText());
-					boolean removeu = admin.removerSessao(admin);
+					boolean removeu = admin.removerSessao(admin,numeroDaSessao);
 					if (removeu){
-						lblErro.setText("Sessao Removida com sucesso");
+						lblErro.setText("Sessao Removida com sucesso!");
 					}
 					else
-						lblErro.setText("Sessao não encontrada");
+						lblErro.setText("Sessao não encontrada!");
 				}
 			}
 		});

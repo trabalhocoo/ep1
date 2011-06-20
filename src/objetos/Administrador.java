@@ -101,7 +101,7 @@ public class Administrador extends Decorator implements Serializable {
 			System.out.println("Sessao nao encontrada.\n");
 	}
 
-	public boolean removerSessao(Usuario usuario) {
+	public boolean removerSessao(Usuario usuario, int nroSessao) {
 		// Aqui havera o horario de inicio da sessao e a sala
 		// int year, int month, int date, int hourOfDay, int minute, int numSala
 		// e retornar nessa sequencia
@@ -116,8 +116,7 @@ public class Administrador extends Decorator implements Serializable {
 		Calendar inicio = Calendar.getInstance();
 		inicio.set(ano, mes, dia, hora, minutos);
 
-		Sessao sessaoARemover = Banco.obterSessao(inicio, numSala);
-		boolean removeu = Banco.removerSessao(sessaoARemover);
+		boolean removeu = Banco.removerSessao(nroSessao);
 		if (removeu == true) {
 			RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);
 			return true;

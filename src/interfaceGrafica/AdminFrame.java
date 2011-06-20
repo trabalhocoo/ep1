@@ -251,7 +251,7 @@ public class AdminFrame extends JFrame {
 					editarSessao.showIt("Editar Sessao");
 					hideIt();
 					break;
-				/*
+				
 				case 15:
 					//Remover sessao
 					RemoverSessaoFrame remSesFr = new RemoverSessaoFrame(usuarioLogado);
@@ -259,7 +259,7 @@ public class AdminFrame extends JFrame {
 					dispose();
 					hideIt();
 					break;
-					*/
+			
 				case 16:
 					//Exibir Sessoes
 					String[][] outSessao = usuarioLogado.exibirSessoesTabela();

@@ -127,10 +127,10 @@ public class Controlador{
 				//Editar sessao
 				admin.alterarSessao(usuarioLogado);
 				break;
-			case 15:
+			/*case 15:
 				//Remover sessao
 				admin.removerSessao(usuarioLogado);
-				break;
+				break;*/
 			case 16:
 				//Exibir Sessoes
 				admin.exibirSessoes();

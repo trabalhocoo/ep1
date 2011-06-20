@@ -41,31 +41,31 @@ public class Banco {
 
 	public static void gravarDados() {
 		try {
-			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
+			FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.cine");
 			ObjectOutputStream objarqCaixas = new ObjectOutputStream(
 					fluxoCaixas);
 			objarqCaixas.writeObject(caixas);
 			objarqCaixas.close();
 
-			FileOutputStream fluxoSalas = new FileOutputStream("Salas.txt");
+			FileOutputStream fluxoSalas = new FileOutputStream("Salas.cine");
 			ObjectOutputStream objarqSalas = new ObjectOutputStream(fluxoSalas);
 			objarqSalas.writeObject(salas);
 			objarqSalas.close();
 
-			FileOutputStream fluxoSessoes = new FileOutputStream("Sessoes.txt");
+			FileOutputStream fluxoSessoes = new FileOutputStream("Sessoes.cine");
 			ObjectOutputStream objarqSessoes = new ObjectOutputStream(
 					fluxoSessoes);
 			objarqSessoes.writeObject(sessoes);
 			objarqSessoes.close();
 
 			FileOutputStream fluxoUsuarios = new FileOutputStream(
-					"Usuarios.txt");
+					"Usuarios.cine");
 			ObjectOutputStream objarqUsuarios = new ObjectOutputStream(
 					fluxoUsuarios);
 			objarqUsuarios.writeObject(usuarios);
 			objarqUsuarios.close();
 
-			FileOutputStream fluxoFilmes = new FileOutputStream("Filmes.txt");
+			FileOutputStream fluxoFilmes = new FileOutputStream("Filmes.cine");
 			ObjectOutputStream objarqFilmes = new ObjectOutputStream(
 					fluxoFilmes);
 			objarqFilmes.writeObject(filmes);
@@ -80,28 +80,28 @@ public class Banco {
 
 	public static void recuperarDados() {
 		try {
-			FileInputStream fluxoCaixas = new FileInputStream("Caixas.txt");
+			FileInputStream fluxoCaixas = new FileInputStream("Caixas.cine");
 			ObjectInputStream objarqCaixas = new ObjectInputStream(fluxoCaixas);
 			caixas = (TreeSet<Caixa>) objarqCaixas.readObject();
 			objarqCaixas.close();
 
-			FileInputStream fluxoFilmes = new FileInputStream("Filmes.txt");
+			FileInputStream fluxoFilmes = new FileInputStream("Filmes.cine");
 			ObjectInputStream objarqFilmes = new ObjectInputStream(fluxoFilmes);
 			filmes = (ArrayList<Filme>) objarqFilmes.readObject();
 			objarqFilmes.close();
 
-			FileInputStream fluxoUsuario = new FileInputStream("Usuarios.txt");
+			FileInputStream fluxoUsuario = new FileInputStream("Usuarios.cine");
 			ObjectInputStream objarqUsuario = new ObjectInputStream(
 					fluxoUsuario);
 			usuarios = (TreeSet<Usuario>) objarqUsuario.readObject();
 			objarqUsuario.close();
 
-			FileInputStream fluxoSalas = new FileInputStream("Salas.txt");
+			FileInputStream fluxoSalas = new FileInputStream("Salas.cine");
 			ObjectInputStream objarqSalas = new ObjectInputStream(fluxoSalas);
 			salas = (TreeSet<Sala>) objarqSalas.readObject();
 			objarqSalas.close();
 
-			FileInputStream fluxoSessoes = new FileInputStream("Sessoes.txt");
+			FileInputStream fluxoSessoes = new FileInputStream("Sessoes.cine");
 			ObjectInputStream objarqSessoes = new ObjectInputStream(
 					fluxoSessoes);
 			sessoes = (TreeSet<Sessao>) objarqSessoes.readObject();
@@ -149,15 +149,17 @@ public class Banco {
 		return false;
 	}
 
-	public static boolean removerSessao(Sessao sessao) {
-		Iterator<Sessao> it = sessoes.iterator();
+	public static boolean removerSessao (int nroSessao){
+		Iterator <Sessao> it = sessoes.iterator();
+		
 		while (it.hasNext()) {
-			if (it.next().equals(sessao)) {
+			if (it.next().getNumero() == nroSessao) {
 				it.remove();
 				return true;
 			}
 		}
 		return false;
+	
 	}
 
 	public static void addSala(Sala sala) {
