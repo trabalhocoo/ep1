@@ -14,6 +14,8 @@ public class EditarCaixaFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	private JTextField numeroCaixa;
 	private Caixa caixaAAlterar;
+	private JTextField textNumeroDoCaixa;
+	private JTextField textSaldo;
 	
 	public EditarCaixaFrame (Usuario usrLogado){
 		usuarioLogado = usrLogado;
@@ -46,23 +48,104 @@ public class EditarCaixaFrame extends JFrame{
 		numeroCaixa.setBounds(359, 80, 53, 20);
 		getContentPane().add(numeroCaixa);
 		
+		final JLabel lblAviso = new JLabel("");// vazio por enquanto
+		lblAviso.setBounds(23, 50, 433, 14);
+		getContentPane().add(lblAviso);
+		
 		JButton button = new JButton("OK");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int numeroDigitado = Integer.parseInt(numeroCaixa.getText());
-				
+				caixaAAlterar = Banco.obterCaixa(numeroDigitado);
+				if(caixaAAlterar!= null){
+					Integer temp = caixaAAlterar.getNumeroDaCaixa();
+					textNumeroDoCaixa.setText(temp.toString());
+					Double temp2 = caixaAAlterar.getDinheiro(); 
+					textSaldo.setText(temp2.toString());
+				}
+				else {
+					lblAviso.setOpaque(false);
+					lblAviso.setForeground(Color.red);
+					lblAviso.setText("Caixa nao encontrado.");
+					numeroCaixa.setText("");
+				}
 			}
 		});
 		button.setBounds(431, 79, 58, 23);
 		getContentPane().add(button);
 		
+		
 		JLabel label_1 = new JLabel("Altere os campos desejados:");
 		label_1.setBounds(35, 116, 239, 14);
 		getContentPane().add(label_1);
 		
-		JLabel lblNoSeiAinda = new JLabel("N\u00E3o sei ainda o q alterar...");
-		lblNoSeiAinda.setBounds(65, 173, 249, 14);
-		getContentPane().add(lblNoSeiAinda);
+		JLabel lblNmeroDoCaixa = new JLabel("Numero do caixa: ");
+		lblNmeroDoCaixa.setBounds(35, 156, 118, 14);
+		getContentPane().add(lblNmeroDoCaixa);
+		
+		JLabel lblSaldoDoCaixa = new JLabel("Saldo do caixa: ");
+		lblSaldoDoCaixa.setBounds(35, 192, 118, 14);
+		getContentPane().add(lblSaldoDoCaixa);
+		
+		JButton button_Alterar = new JButton("Alterar");
+		button_Alterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblAviso.setOpaque(false);
+				lblAviso.setForeground(Color.red);
+				int temp1 = Integer.parseInt(numeroCaixa.getText());
+				Caixa caixaAtual = Banco.obterCaixa(temp1);
+				int temp2 = Integer.parseInt(textNumeroDoCaixa.getText());
+				Caixa pretendenteDeCaixa = Banco.obterCaixa(temp2);
+				if (numeroCaixa.getText().equals("") || textNumeroDoCaixa.getText().equals("") || textSaldo.getText().equals("")){
+					lblAviso.setText("Por favor, digite todos os campos.");
+				}
+				else if (pretendenteDeCaixa != null && !(numeroCaixa.getText().equals(textNumeroDoCaixa.getText()))){
+					lblAviso.setText("Este caixa já existe. Por favor, digite um outro numero de caixa.");
+				}
+				else {
+					ArrayList<Object> dadosCaixa = new ArrayList<Object>();
+					dadosCaixa.add(Integer.parseInt(textNumeroDoCaixa.getText()));
+					dadosCaixa.add(Double.parseDouble(textSaldo.getText()));
+					boolean alterou = admin.alterarCaixa(dadosCaixa);
+					if (alterou){
+						lblAviso.setText("Caixa alterado com sucesso.");
+						numeroCaixa.setText("");
+						textNumeroDoCaixa.setText("");
+						textSaldo.setText("");						
+						
+					}
+					else {
+						lblAviso.setText("Ocorreu um problema. Tente novamente.");
+					}
+				}
+				
+				
+			}
+		});
+		button_Alterar.setBounds(36, 259, 131, 23);
+		getContentPane().add(button_Alterar);
+		
+		JButton button_Limpar = new JButton("Limpar Campos");
+		button_Limpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblAviso.setText("");
+				numeroCaixa.setText("");
+				textNumeroDoCaixa.setText("");
+				textSaldo.setText("");
+			}
+		});
+		button_Limpar.setBounds(214, 259, 131, 23);
+		getContentPane().add(button_Limpar);
+		
+		textNumeroDoCaixa = new JTextField();
+		textNumeroDoCaixa.setBounds(147, 153, 86, 20);
+		getContentPane().add(textNumeroDoCaixa);
+		textNumeroDoCaixa.setColumns(10);
+		
+		textSaldo = new JTextField();
+		textSaldo.setColumns(10);
+		textSaldo.setBounds(147, 189, 86, 20);
+		getContentPane().add(textSaldo);
 		
 	}
 	
