@@ -38,6 +38,7 @@ public class CineListener implements ActionListener{
 		if(actionCommand.equals("VENDER INGRESSO")){
 			VenderIngressoFrame vendIng = new VenderIngressoFrame(userFrame.getUsuario(), userFrame.getCaixa());
 			vendIng.showIt("Vender Ingresso");
+			userFrame.hideIt();
 			//System.out.println("Clicou no vender ingresso");	
 		}
 		if(actionCommand.equals("DESLOGAR")){

@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.TreeSet;
 
 import javax.swing.JComboBox;
@@ -31,6 +32,7 @@ public class VenderIngressoFrame extends JFrame{
 	private JTextField txtPoltronas;
 	private Usuario usuarioLogado;
 	private Caixa caixa;
+	private JTextField textNumeroDaSessao;
 	
 	public VenderIngressoFrame(final Usuario usuarioLogado, final Caixa caixa) {
 		this.usuarioLogado = usuarioLogado;
@@ -43,8 +45,8 @@ public class VenderIngressoFrame extends JFrame{
 		setTitle("--- Venda de ingressos ---");
 		getContentPane().setLayout(null);
 		
-		JLabel lblDigiteONmero = new JLabel("Escolha a sess\u00E3o que deseja vender:");
-		lblDigiteONmero.setBounds(33, 22, 240, 14);
+		JLabel lblDigiteONmero = new JLabel("Digite o numero da sess\u00E3o que deseja vender:");
+		lblDigiteONmero.setBounds(33, 43, 277, 14);
 		getContentPane().add(lblDigiteONmero);
 		
 		txtAno = new JTextField();
@@ -87,12 +89,12 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(lblSala);
 		
 		txtFilme = new JTextField();
-		txtFilme.setBounds(93, 116, 98, 20);
+		txtFilme.setBounds(93, 116, 198, 20);
 		getContentPane().add(txtFilme);
 		txtFilme.setColumns(10);
 		
 		txtHorario = new JTextField();
-		txtHorario.setBounds(93, 144, 98, 20);
+		txtHorario.setBounds(93, 144, 198, 20);
 		getContentPane().add(txtHorario);
 		txtHorario.setColumns(10);
 		
@@ -119,34 +121,17 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(txtPoltronas);
 		txtPoltronas.setColumns(10);
 		
-		JComboBox comboBoxOpcoesSessao = new JComboBox();
-		comboBoxOpcoesSessao.setBounds(33, 40, 420, 20);
-		getContentPane().add(comboBoxOpcoesSessao);
-		
-		
-		//guardar o arraylist de nomes de filme
-		TreeSet <Sessao> listaSessoesBanco = Banco.getSessoes();
-		
-		String[] options = new String [listaSessoesBanco.size()+1];
-		options[0]="";
-		int i = 0;
-		for (Sessao sessao: listaSessoesBanco){
-			options[i+1]=sessao.getFilme().getNome();
-			System.out.println (sessao.getFilme().getNome());
-			i++;
-		}
-		comboBoxOpcoesSessao = new JComboBox(options);
 		
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				/*
-				Sessao sessao = Banco.obterSessao(Integer.parseInt(txtSessao.getText()));
+				Sessao sessao = Banco.obterSessao(Integer.parseInt(textNumeroDaSessao.getText()));
 				Integer temp =  sessao.getSala().getNumero();
 				txtSala.setText(temp.toString());
 				txtFilme.setText(sessao.getFilme().getNome());
-				*/
+				Date data = (Date) sessao.getHorarioDeInicio().getTime();
+				txtHorario.setText(data.toString());
 				
 				
 				
@@ -176,6 +161,11 @@ public class VenderIngressoFrame extends JFrame{
 		});
 		btnVoltar.setBounds(374, 294, 144, 23);
 		getContentPane().add(btnVoltar);
+		
+		textNumeroDaSessao = new JTextField();
+		textNumeroDaSessao.setBounds(334, 40, 86, 20);
+		getContentPane().add(textNumeroDaSessao);
+		textNumeroDaSessao.setColumns(10);
 		
 
 		
