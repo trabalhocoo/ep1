@@ -10,6 +10,8 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static int numeroDeSessoes = 0;
+	private int numero;
 	private Filme filme;
 	private Calendar horarioDeInicio;
 	private Calendar horarioDeFim;
@@ -30,6 +32,16 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 		horarioDeInicio.set(year, month, date, hourOfDay, minute);
 		horarioDeFim.set(year, month, date, hourOfDay, minute);
 		horarioDeFim.add(Calendar.MINUTE,tempoIntervalo);
+		numeroDeSessoes++;
+		numero = numeroDeSessoes;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 	public Filme getFilme() {
@@ -82,13 +94,21 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 
 	@Override
 	public int compareTo(Sessao o) {
-		// TODO Auto-generated method stub
+		/*
 		if(o.getHorarioDeInicio().after(getHorarioDeInicio())){
 			return -1;
 		}else if(o.getHorarioDeInicio().equals(getHorarioDeInicio())){
 			return 0;
 		}
 		return 1;
+		*/
+		if(numero < o.numero){
+			return -1;
+		}else if(numero == o.numero){
+			return 0;
+		}else{
+			return 1;
+		}
 	}
 
 }

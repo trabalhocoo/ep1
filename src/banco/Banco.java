@@ -340,7 +340,11 @@ public class Banco {
 	}
 	
 	public static Sessao obterSessao(int numero){
-		//TODO implementar
+		for(Sessao sessao : sessoes){
+			if(sessao.getNumero() == numero){
+				return sessao;
+			}
+		}
 		return null;
 	}
 
@@ -388,7 +392,6 @@ public class Banco {
 	}
 
 	private static void gravarPrimeiraExec() throws IOException {
-		// TODO Auto-generated method stub
 		FileOutputStream fluxoCaixas = new FileOutputStream("Caixas.txt");
 		ObjectOutputStream objarqCaixas = new ObjectOutputStream(fluxoCaixas);
 		objarqCaixas.close();
