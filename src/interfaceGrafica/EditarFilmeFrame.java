@@ -126,7 +126,8 @@ public class EditarFilmeFrame extends JFrame{
 						duracao.setText("");
 						genero.setText("");
 						sinopse.setText("");
-						dataDaEstreia.setText("");
+						dataDaEstreia.setText("dd/mm/aaaa");
+						dataDaEstreia.setForeground(Color.gray);
 						diretor.setText("");
 						comboBoxFaixa.setSelectedIndex(0);
 						checkBox.setSelected(false);
@@ -144,7 +145,8 @@ public class EditarFilmeFrame extends JFrame{
 						duracao.setText("");
 						genero.setText("");
 						sinopse.setText("");
-						dataDaEstreia.setText("");
+						dataDaEstreia.setText("dd/mm/aaaa");
+						dataDaEstreia.setForeground(Color.gray);
 						diretor.setText("");
 						comboBoxFaixa.setSelectedIndex(0);
 						comboBoxFilmes.setSelectedIndex(0);

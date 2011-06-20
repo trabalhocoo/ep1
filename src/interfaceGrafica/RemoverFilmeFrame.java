@@ -71,7 +71,7 @@ public class RemoverFilmeFrame extends JFrame{
 				boolean podeRemover = true;
 				String nomeDoFilmeASerRemovido = (String)listaDeFilmes.getSelectedItem();
 				for (Sessao sessao: sessoesDoBanco){
-					if (sessao.getFilme().equals(nomeDoFilmeASerRemovido) && sessao.getLugaresDisponiveis()!=sessao.getSala().getCapacidade()){
+					if (sessao.getFilme().getNome().equals(nomeDoFilmeASerRemovido) && sessao.getLugaresDisponiveis()!=sessao.getSala().getCapacidade()){
 						podeRemover = false;
 						break;
 					}
