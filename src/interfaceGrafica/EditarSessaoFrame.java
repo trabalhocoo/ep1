@@ -141,6 +141,18 @@ public class EditarSessaoFrame extends JFrame {
 					horaField.setText(new Integer(hora).toString());
 					
 					int minuto = sessaoSelecionada.getHorarioDeInicio().get(Calendar.MINUTE);
+					minutoField.setText(new Integer(minuto).toString());
+					
+					int dia = sessaoSelecionada.getHorarioDeInicio().get(Calendar.DAY_OF_MONTH);
+					diaField.setText(new Integer(dia).toString());
+					
+					int mes = sessaoSelecionada.getHorarioDeInicio().get(Calendar.MONTH);
+					mesField.setText(new Integer(mes).toString());
+					
+					int ano = sessaoSelecionada.getHorarioDeInicio().get(Calendar.YEAR);
+					anoField.setText(new Integer(ano).toString());
+					
+					
 					
 					
 				}
