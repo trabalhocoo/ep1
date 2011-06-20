@@ -12,7 +12,7 @@ public class Exibir {
 	}
 	
 	public static String[][] exibirSessoesTabela(TreeSet <Sessao> sessoes){
-		String[][] sessao = new String[sessoes.size()][4];
+		String[][] sessao = new String[sessoes.size()][5];
 		int i = 0;
 		for(Sessao tipo : sessoes){
 			for(int j=0; j < 4; j++){
@@ -21,6 +21,7 @@ public class Exibir {
 				sessao[i][1] = String.valueOf(data);
 				sessao[i][2] = String.valueOf(tipo.getSala().getNumero());
 				sessao[i][3] = String.valueOf(tipo.getPreco());
+				sessao[i][4] = String.valueOf(tipo.getNumero());
 			}
 			i++;
 		}

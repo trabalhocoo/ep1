@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import objetos.Administrador;
+import objetos.Sessao;
 import objetos.Usuario;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -60,11 +61,35 @@ public class EditarSessaoFrame extends JFrame {
 		lblEscolhaUmaSesso.setBounds(34, 44, 143, 15);
 		getContentPane().add(lblEscolhaUmaSesso);
 		
-		comboSessao = new JComboBox();
+		String[][] dadosSessao = Exibir.exibirSessoesTabela(Banco.getSessoes());
+		String[] optionsSessao = new String[dadosSessao.length + 1];
+		optionsSessao[0] = "";
+		if (Banco.getSessoes() != null) {
+			for (int i = 0; i < dadosSessao.length; i++) {
+				optionsSessao[i + 1] = dadosSessao[i][4] + "- " + dadosSessao[i][0];
+			}
+			comboSessao = new JComboBox(optionsSessao);
+			comboSessao.setSelectedIndex(0);
+		} else {
+			comboSessao = new JComboBox();
+		}
 		comboSessao.setBounds(236, 39, 143, 24);
 		getContentPane().add(comboSessao);
 		
 		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboSessao.getSelectedIndex() == 0){
+					//TODO
+				}else{
+					String opcaoSelecionada = (String) comboSessao.getSelectedItem();
+					int nroSessao = Integer.parseInt(opcaoSelecionada.split("-")[0]);
+					Sessao sessaoSelecionada = Banco.obterSessao(nroSessao);
+				//	comboBoxFilme.setSelectedIndex(anIndex);
+					//co
+				}
+			}
+		});
 		btnOk.setBounds(408, 39, 64, 25);
 		getContentPane().add(btnOk);
 		
