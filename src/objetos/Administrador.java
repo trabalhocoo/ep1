@@ -168,13 +168,12 @@ public class Administrador extends Decorator implements Serializable {
 		return Banco.addCaixa(caixaNova);
 	}
 
-	public boolean removerCaixa() {
-		int caixa = InterfaceCinema.removerCaixa();
+	public boolean removerCaixa(int caixa) {
 		boolean removeu = Banco.removerCaixa(caixa);
-		if (removeu == true)
+		/*if (removeu == true)
 			System.out.println("Caixa removido com sucesso.\n");
 		else
-			System.out.println("Caixa nao encontrado.\n");
+			System.out.println("Caixa nao encontrado.\n");*/
 		return removeu;
 
 	}

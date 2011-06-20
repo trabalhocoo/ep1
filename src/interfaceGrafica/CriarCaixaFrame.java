@@ -21,7 +21,7 @@ public class CriarCaixaFrame extends JFrame{
 		
 		//label de aviso
 		lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(23, 50, 298, 14);
+		lblNewLabel_2.setBounds(38, 68, 298, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		
@@ -45,7 +45,7 @@ public class CriarCaixaFrame extends JFrame{
 		
 		
 		//label do numero do caixa
-		Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriadas(); 
+		Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriadas() +1; 
 		JLabel numeroDoCaixa = new JLabel(numeroDeCaixasCriados.toString());
 		numeroDoCaixa.setBounds(153, 121, 46, 14);
 		getContentPane().add(numeroDoCaixa);
@@ -57,7 +57,7 @@ public class CriarCaixaFrame extends JFrame{
 				lblNewLabel_2.setOpaque(false);
 				lblNewLabel_2.setForeground(Color.red);
 				if (criou){
-					Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriadas()-1;
+					Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriadas();
 					System.out.println (numeroDeCaixasCriados);
 					lblNewLabel_2.setText("Caixa " + numeroDeCaixasCriados.toString() + " criado com sucesso.");
 					CriarCaixaFrame crCaixa = new CriarCaixaFrame(usr);

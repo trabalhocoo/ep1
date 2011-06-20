@@ -13,16 +13,16 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int numeroDeCaixas = 0;
-	private int numeroDaCaixa;
+	private static int numeroDeCaixasCriados = 0;
+	private int numeroDoCaixa;
 	private double dinheiro;
 	private boolean estaEmUso;
 
 	
 	public Caixa(){
-		numeroDaCaixa = numeroDeCaixas+1;
+		numeroDoCaixa = numeroDeCaixasCriados+1;
 		dinheiro = 0;
-		numeroDeCaixas = numeroDeCaixas+1;
+		numeroDeCaixasCriados = numeroDeCaixasCriados+1;
 		estaEmUso = false;
 	} 
 		
@@ -39,11 +39,11 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 	}
 	
 	public int getNumeroDaCaixa() {
-		return numeroDaCaixa;
+		return numeroDoCaixa;
 	}
 
 	public void setNumeroDaCaixa(int numeroDaCaixa) {
-		this.numeroDaCaixa = numeroDaCaixa;
+		this.numeroDoCaixa = numeroDaCaixa;
 	}
 
 	public void setDinheiro(double dinheiro) {
@@ -51,10 +51,10 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 	}
 	
 	public int getNumCaixa (){
-		return numeroDaCaixa;
+		return numeroDoCaixa;
 	}
 	public static int getNumeroDeCaixasCriadas(){
-		return numeroDeCaixas;
+		return numeroDeCaixasCriados;
 	}
 
 	@Override

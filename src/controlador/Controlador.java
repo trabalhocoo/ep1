@@ -145,7 +145,7 @@ public class Controlador{
 				break;
 			case 19:
 				//Remover caixa
-				admin.removerCaixa();
+				//admin.removerCaixa();
 				break;
 			case 20:
 				//Exibir caixas

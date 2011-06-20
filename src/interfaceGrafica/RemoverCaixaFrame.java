@@ -28,33 +28,33 @@ public class RemoverCaixaFrame extends JFrame {
 
 		JLabel lblDigiteONumero = new JLabel(
 				"Digite o numero do caixa que deseja remover:");
-		lblDigiteONumero.setBounds(23, 26, 483, 14);
+		lblDigiteONumero.setBounds(33, 85, 483, 14);
 		getContentPane().add(lblDigiteONumero);
 
 		codCaixa = new JTextField();
-		codCaixa.setBounds(387, 82, 53, 20);
+		codCaixa.setBounds(325, 82, 53, 20);
 		getContentPane().add(codCaixa);
 		codCaixa.setColumns(10);
 
 		final JLabel lblNewLabel_2 = new JLabel("");// vazio por enquanto
-		lblNewLabel_2.setBounds(23, 50, 298, 14);
+		lblNewLabel_2.setBounds(33, 60, 298, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int registro = Integer.parseInt(codCaixa.getText());
-				boolean removeu = admin.removerCaixa();//tem algo esquisito aki...(acho q esse metodo é gambiarra)
+				int numeroDoCaixa = Integer.parseInt(codCaixa.getText());
+				boolean removeu = admin.removerCaixa(numeroDoCaixa);//tem algo esquisito aki...(acho q esse metodo é gambiarra) Agora esta OK!!
 				lblNewLabel_2.setOpaque(false);
 				lblNewLabel_2.setForeground(Color.red);
 				if (removeu){
-					lblNewLabel_2.setText("Sala removida com sucesso.");
+					lblNewLabel_2.setText("Caixa removido com sucesso.");
 				}
 				else
-					lblNewLabel_2.setText("Sala nao encontrada.");
+					lblNewLabel_2.setText("Caixa nao encontrado.");
 			}
 		});
-		btnNewButton.setBounds(448, 81, 58, 23);
+		btnNewButton.setBounds(407, 81, 58, 23);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnVoltar = new JButton("Voltar");
@@ -65,7 +65,7 @@ public class RemoverCaixaFrame extends JFrame {
 				dispose();
 			}
 		});
-		btnVoltar.setBounds(387, 259, 89, 23);
+		btnVoltar.setBounds(368, 259, 108, 23);
 		getContentPane().add(btnVoltar);
 
 	}
