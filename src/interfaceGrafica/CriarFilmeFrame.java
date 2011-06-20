@@ -14,7 +14,7 @@ public class CriarFilmeFrame extends JFrame{
 	private JComboBox comboFaixa;
 	private JTextField textDuracao;
 	private JTextField textDiretor;
-	private JTextField textSinopse;
+	private JTextArea textSinopse;
 	private JTextField textGenero;
 	private JTextField textEstreia;
 	
@@ -112,10 +112,15 @@ public class CriarFilmeFrame extends JFrame{
 		getContentPane().add(textDiretor);
 		textDiretor.setColumns(10);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(165, 219, 333, 50);
+		getContentPane().add(scrollPane);
+		
 		//campo para preenchimento da sinopse
-		textSinopse = new JTextField();
-		textSinopse.setBounds(165, 219, 333, 50);
-		getContentPane().add(textSinopse);
+		textSinopse = new JTextArea();
+		scrollPane.setViewportView(textSinopse);
+		textSinopse.setLineWrap(true);
+		textSinopse.setRows(4);
 		textSinopse.setColumns(10);
 		
 		//campo para preenchimento do genero

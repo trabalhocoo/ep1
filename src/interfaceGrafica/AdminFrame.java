@@ -272,11 +272,11 @@ public class AdminFrame extends JFrame {
 					caixa.showIt("Criar Caixa");
 					hideIt();
 					break;
-				case 18:
+				/*case 18:
 					//Alterar Caixa
 					EditarCaixaFrame alterarCaixa = new EditarCaixaFrame(usuarioLogado);
 					alterarCaixa.showIt("Editar Caixa");
-					break;
+					break;*/
 				case 19:
 					//Remover caixa
 					RemoverCaixaFrame delCaixa = new RemoverCaixaFrame(usuarioLogado);
