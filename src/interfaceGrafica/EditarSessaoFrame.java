@@ -3,12 +3,14 @@ package interfaceGrafica;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import objetos.Administrador;
+import objetos.Sessao;
 import objetos.Usuario;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -60,21 +62,23 @@ public class EditarSessaoFrame extends JFrame {
 		lblEscolhaUmaSesso.setBounds(34, 44, 143, 15);
 		getContentPane().add(lblEscolhaUmaSesso);
 		
-		comboSessao = new JComboBox();
+		String[][] dadosSessao = Exibir.exibirSessoesTabela(Banco.getSessoes());
+		String[] optionsSessao = new String[dadosSessao.length + 1];
+		optionsSessao[0] = "";
+		if (Banco.getSessoes() != null) {
+			for (int i = 0; i < dadosSessao.length; i++) {
+				optionsSessao[i + 1] = dadosSessao[i][4] + "- " + dadosSessao[i][0];
+			}
+			comboSessao = new JComboBox(optionsSessao);
+			comboSessao.setSelectedIndex(0);
+		} else {
+			comboSessao = new JComboBox();
+		}
 		comboSessao.setBounds(236, 39, 143, 24);
 		getContentPane().add(comboSessao);
 		
-		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(408, 39, 64, 25);
-		getContentPane().add(btnOk);
-		
-		JLabel lblNovoFilme = new JLabel("Novo filme");
-		lblNovoFilme.setBounds(33, 93, 81, 23);
-		getContentPane().add(lblNovoFilme);
-		
-		
 		String[][] dadosFilmes = Exibir.exibirFilmesTabela(Banco.getFilmes());
-		String[] optionsFilmes = new String[dadosFilmes.length + 1];
+		final String[] optionsFilmes = new String[dadosFilmes.length + 1];
 
 		optionsFilmes[0] = "";
 		if (Banco.getFilmes() != null) {
@@ -89,14 +93,9 @@ public class EditarSessaoFrame extends JFrame {
 		comboBoxFilme.setBounds(133, 92, 81, 24);
 		getContentPane().add(comboBoxFilme);
 		
-		lblNumeroDaSala = new JLabel("Numero da Sala");
-		lblNumeroDaSala.setBounds(246, 93, 133, 23);
-		getContentPane().add(lblNumeroDaSala);
-		
-		
 		
 		String[][] dadosSalas = Exibir.exibirSalasTabela(Banco.getSalas());
-		String[] optionsSala = new String[dadosSalas.length + 1];
+		final String[] optionsSala = new String[dadosSalas.length + 1];
 
 		optionsSala[0] = "";
 		if (Banco.getSalas() != null) {
@@ -110,6 +109,60 @@ public class EditarSessaoFrame extends JFrame {
 		}
 		comboSala.setBounds(409, 92, 67, 24);
 		getContentPane().add(comboSala);
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboSessao.getSelectedIndex() == 0){
+					//TODO
+				}else{
+					String opcaoSelecionada = (String) comboSessao.getSelectedItem();
+					int nroSessao = Integer.parseInt(opcaoSelecionada.split("-")[0]);
+					Sessao sessaoSelecionada = Banco.obterSessao(nroSessao);
+					for(int i = 0; i < optionsFilmes.length; i++){
+						if(sessaoSelecionada.getFilme().getNome().equals(optionsFilmes[i])){
+							comboBoxFilme.setSelectedIndex(i);
+						}
+					}
+					
+					for(int i = 1; i < optionsSala.length; i++){
+						if(sessaoSelecionada.getSala().getNumero() == Integer.parseInt(optionsSala[i])){
+							comboSala.setSelectedIndex(i);
+						}
+					}
+					
+					int aux = sessaoSelecionada.getSala().getCapacidade();
+					Integer capacidade = new Integer(aux);
+					disponibilidade.setText(capacidade.toString());
+				
+					precoField.setText(new Double(sessaoSelecionada.getPreco()).toString());
+					
+					int hora = sessaoSelecionada.getHorarioDeInicio().get(Calendar.HOUR);
+					horaField.setText(new Integer(hora).toString());
+					
+					int minuto = sessaoSelecionada.getHorarioDeInicio().get(Calendar.MINUTE);
+					
+					
+				}
+			}
+		});
+		btnOk.setBounds(408, 39, 64, 25);
+		getContentPane().add(btnOk);
+		
+		JLabel lblNovoFilme = new JLabel("Novo filme");
+		lblNovoFilme.setBounds(33, 93, 81, 23);
+		getContentPane().add(lblNovoFilme);
+		
+		
+		
+		
+		lblNumeroDaSala = new JLabel("Numero da Sala");
+		lblNumeroDaSala.setBounds(246, 93, 133, 23);
+		getContentPane().add(lblNumeroDaSala);
+		
+		
+		
+		
 		
 		JLabel lblDisponibilidade = new JLabel("Disponibilidade de lugares");
 		lblDisponibilidade.setBounds(34, 144, 209, 23);
