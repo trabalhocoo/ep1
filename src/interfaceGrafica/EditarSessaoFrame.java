@@ -6,18 +6,17 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import banco.Banco;
 
 import objetos.Administrador;
 import objetos.Sessao;
 import objetos.Usuario;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-
 import visualizacao.Exibir;
-
-import banco.Banco;
 
 public class EditarSessaoFrame extends JFrame {
 
@@ -31,7 +30,7 @@ public class EditarSessaoFrame extends JFrame {
 	private JComboBox comboBoxFilme;
 	private JLabel lblNumeroDaSala;
 	private JComboBox comboSala;
-	private JComboBox comboSessao;
+	private JTextField sessaoField;
 	private JLabel disponibilidade;
 	private JButton buttonLimpar;
 	private JButton buttonAdd;
@@ -58,24 +57,18 @@ public class EditarSessaoFrame extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().add(btnVoltar);
 		
-		JLabel lblEscolhaUmaSesso = new JLabel("Escolha uma sessão");
+		JLabel lblEscolhaUmaSesso = new JLabel("Digite o número de uma sessão");
 		lblEscolhaUmaSesso.setBounds(34, 44, 143, 15);
 		getContentPane().add(lblEscolhaUmaSesso);
 		
-		String[][] dadosSessao = Exibir.exibirSessoesTabela(Banco.getSessoes());
-		String[] optionsSessao = new String[dadosSessao.length + 1];
-		optionsSessao[0] = "";
-		if (Banco.getSessoes() != null) {
-			for (int i = 0; i < dadosSessao.length; i++) {
-				optionsSessao[i + 1] = dadosSessao[i][4] + "- " + dadosSessao[i][0];
-			}
-			comboSessao = new JComboBox(optionsSessao);
-			comboSessao.setSelectedIndex(0);
-		} else {
-			comboSessao = new JComboBox();
-		}
-		comboSessao.setBounds(236, 39, 143, 24);
-		getContentPane().add(comboSessao);
+		final JLabel lblAviso = new JLabel("");//vazio por enquanto
+		lblAviso.setBounds(34, 18, 298, 14);
+		getContentPane().add(lblAviso);
+
+
+		sessaoField = new JTextField();
+		sessaoField.setBounds(236, 39, 143, 24);
+		getContentPane().add(sessaoField);
 		
 		String[][] dadosFilmes = Exibir.exibirFilmesTabela(Banco.getFilmes());
 		final String[] optionsFilmes = new String[dadosFilmes.length + 1];
@@ -92,6 +85,7 @@ public class EditarSessaoFrame extends JFrame {
 		}
 		comboBoxFilme.setBounds(133, 92, 81, 24);
 		getContentPane().add(comboBoxFilme);
+		
 		
 		
 		String[][] dadosSalas = Exibir.exibirSalasTabela(Banco.getSalas());
@@ -113,12 +107,17 @@ public class EditarSessaoFrame extends JFrame {
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(comboSessao.getSelectedIndex() == 0){
-					//TODO
+				if(sessaoField.getText().equals("")){
+					lblAviso.setText("Por favor, preencha o campo numero da Sessão.");
+				}else if(!sessaoField.getText().matches("^[0-9]")){
+					lblAviso.setText("Por favor, digite apenas caracteres numéricos");
+					//TODO chamar aki limpa fields.
 				}else{
-					String opcaoSelecionada = (String) comboSessao.getSelectedItem();
-					int nroSessao = Integer.parseInt(opcaoSelecionada.split("-")[0]);
-					Sessao sessaoSelecionada = Banco.obterSessao(nroSessao);
+					lblAviso.setText("");
+					Sessao sessaoSelecionada = Banco.obterSessao(Integer.parseInt(sessaoField.getText()));
+					if(sessaoSelecionada == null){
+						lblAviso.setText("A sessão de numero " + sessaoField.getText() + " não existe");
+					}else{
 					for(int i = 0; i < optionsFilmes.length; i++){
 						if(sessaoSelecionada.getFilme().getNome().equals(optionsFilmes[i])){
 							comboBoxFilme.setSelectedIndex(i);
@@ -150,11 +149,8 @@ public class EditarSessaoFrame extends JFrame {
 					mesField.setText(new Integer(mes).toString());
 					
 					int ano = sessaoSelecionada.getHorarioDeInicio().get(Calendar.YEAR);
-					anoField.setText(new Integer(ano).toString());
-					
-					
-					
-					
+					anoField.setText(new Integer(ano).toString());	
+					}
 				}
 			}
 		});
