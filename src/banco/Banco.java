@@ -347,6 +347,16 @@ public class Banco {
 		}
 		return null;
 	}
+	
+	public static Caixa obterCaixa(int numero){
+		for(Caixa caixa : caixas){
+			if(caixa.getNumeroDaCaixa() == numero){
+				return caixa;
+			}
+		}
+		return null;
+	}
+	
 
 	public static boolean addCaixa(Caixa caixaNova) {
 		boolean resultado = caixas.add(caixaNova);
