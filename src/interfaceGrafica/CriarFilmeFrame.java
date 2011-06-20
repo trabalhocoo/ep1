@@ -129,8 +129,9 @@ public class CriarFilmeFrame extends JFrame{
 		textGenero.setColumns(10);
 		
 		//campo para preenchimento da estreia
-		textEstreia = new JTextField();
+		textEstreia = new JTextField("dd/mm/aaaa");
 		textEstreia.setBounds(384, 89, 114, 20);
+		textEstreia.setForeground(Color.gray);
 		getContentPane().add(textEstreia);
 		textEstreia.setColumns(10);
 		
