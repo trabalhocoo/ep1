@@ -286,15 +286,11 @@ public class Administrador extends Decorator implements Serializable {
 		return removeu;
 	}
 
-	public void alterarCaixa() {
-		ArrayList dadosCaixas = InterfaceCinema.alterarCaixa();
+	public boolean alterarCaixa(ArrayList dadosCaixas) {
 		int numero = (Integer) dadosCaixas.get(0);
 		double dinheiro = (Double) dadosCaixas.get(1);
 		boolean alterou = Banco.modificarCaixa(numero, dinheiro);
-		if (alterou == true)
-			System.out.println("Caixa alterado com sucesso.\n");
-		else
-			System.out.println("Caixa nao encontrado.\n");
+		return alterou;
 
 	}
 

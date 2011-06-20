@@ -141,7 +141,7 @@ public class Controlador{
 				break;
 			case 18:
 				//TODO Alterar Caixa
-				admin.alterarCaixa();
+				//admin.alterarCaixa();
 				break;
 			case 19:
 				//Remover caixa
