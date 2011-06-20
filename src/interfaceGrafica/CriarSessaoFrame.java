@@ -58,7 +58,7 @@ public class CriarSessaoFrame extends JFrame {
 		// minute, Sala sala, double preco, int disp
 
 		final JLabel lblAviso = new JLabel("");// vazio por enquanto
-		lblAviso.setBounds(23, 50, 298, 14);
+		lblAviso.setBounds(55, 67, 298, 14);
 		getContentPane().add(lblAviso);
 
 		JLabel lblPorFavorPreencha = new JLabel(
@@ -250,7 +250,7 @@ public class CriarSessaoFrame extends JFrame {
 					admin.adicionarSessao(admin, dadosSessao);
 					lblAviso.setOpaque(false);
 					lblAviso.setForeground(Color.red);
-					lblAviso.setText("Sessão criada com sucesso. Numero " + Sessao.getNumeroDeSessoes());
+					lblAviso.setText("Sessao criada com sucesso. Numero " + Sessao.getNumeroDeSessoes());
 					limparCampos.actionPerformed(arg0);
 				}
 

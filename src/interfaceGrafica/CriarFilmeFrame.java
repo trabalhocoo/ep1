@@ -163,7 +163,7 @@ public class CriarFilmeFrame extends JFrame{
 		//276, 293
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(textNomeDoFilme.getText().equals("") || comboFaixa.getSelectedIndex()==0 || textDuracao.getText().equals("")||textDiretor.getText().equals("") || textSinopse.getText().equals("") || textGenero.getText().equals("") || textEstreia.getText().equals("") ){
+				if(textNomeDoFilme.getText().equals("") || comboFaixa.getSelectedIndex()==0 || textDuracao.getText().equals("")||textDiretor.getText().equals("") || textSinopse.getText().equals("") || textGenero.getText().equals("") || textEstreia.getText().equals("dd/mm/aaaa") ){
 					lblNewLabel_1.setOpaque(false);
 					lblNewLabel_1.setForeground(Color.red);
 					lblNewLabel_1.setText("Por favor, digite todos os campos.");

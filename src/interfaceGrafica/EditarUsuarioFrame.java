@@ -77,7 +77,9 @@ public class EditarUsuarioFrame extends JFrame{
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (textField_1.getText().equals("") || textField_2.getText().equals("") ){
-					lblNewLabel_2.setText("Pr favor, preencher todos os campos.");
+					lblNewLabel_2.setOpaque(false);
+					lblNewLabel_2.setForeground(Color.red);
+					lblNewLabel_2.setText("Por favor, preencher todos os campos.");
 				}
 				else {	
 					boolean alterou = false;
@@ -100,7 +102,7 @@ public class EditarUsuarioFrame extends JFrame{
 						arrayListDeUsuario.add(nome);
 						arrayListDeUsuario.add(permissaoUsuario);
 						arrayListDeUsuario.add(senha);
-						System.out.println (nome + " " + permissao + " " + senha);
+						//System.out.println (nome + " " + permissao + " " + senha);
 						alterou = admin.alterarUsuario(arrayListDeUsuario);
 					
 					} catch (Exception e){
@@ -108,6 +110,11 @@ public class EditarUsuarioFrame extends JFrame{
 					}
 					if (alterou){
 						lblNewLabel_2.setText("Usuario alterado com sucesso.");
+						textField_1.setText("");
+						comboBox.setSelectedIndex(0);
+						textField_2.setText("");
+						textField.setText("");
+						
 					}
 					else
 						lblNewLabel_2.setText("Usuario nao encontrado.");
