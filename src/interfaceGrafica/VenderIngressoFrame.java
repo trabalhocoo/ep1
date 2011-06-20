@@ -22,9 +22,9 @@ import java.util.TreeSet;
 import javax.swing.JComboBox;
 
 public class VenderIngressoFrame extends JFrame{
-	private JTextField txtAno;
-	private JTextField txtMes;
 	private JTextField txtDia;
+	private JTextField txtMes;
+	private JTextField txtAno;
 	private JTextField txtFilme;
 	private JTextField txtHorario;
 	private JTextField txtSala;
@@ -33,6 +33,7 @@ public class VenderIngressoFrame extends JFrame{
 	private Usuario usuarioLogado;
 	private Caixa caixa;
 	private JTextField textNumeroDaSessao;
+	private final JLabel lblNewLabel_2;
 	
 	public VenderIngressoFrame(final Usuario usuarioLogado, final Caixa caixa) {
 		this.usuarioLogado = usuarioLogado;
@@ -49,20 +50,20 @@ public class VenderIngressoFrame extends JFrame{
 		lblDigiteONmero.setBounds(33, 43, 277, 14);
 		getContentPane().add(lblDigiteONmero);
 		
-		txtAno = new JTextField();
-		txtAno.setBounds(70, 88, 18, 20);
-		getContentPane().add(txtAno);
-		txtAno.setColumns(10);
+		txtDia = new JTextField();
+		txtDia.setBounds(70, 88, 18, 20);
+		getContentPane().add(txtDia);
+		txtDia.setColumns(10);
 		
 		txtMes = new JTextField();
 		txtMes.setBounds(98, 88, 18, 20);
 		getContentPane().add(txtMes);
 		txtMes.setColumns(10);
 		
-		txtDia = new JTextField();
-		txtDia.setBounds(129, 88, 39, 20);
-		getContentPane().add(txtDia);
-		txtDia.setColumns(10);
+		txtAno = new JTextField();
+		txtAno.setBounds(129, 88, 39, 20);
+		getContentPane().add(txtAno);
+		txtAno.setColumns(10);
 		
 		JLabel lblAno = new JLabel("Data");
 		lblAno.setBounds(33, 91, 46, 14);
@@ -121,22 +122,37 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(txtPoltronas);
 		txtPoltronas.setColumns(10);
 		
-		
+		lblNewLabel_2 = new JLabel("");//vazio por enquanto
+		lblNewLabel_2.setBounds(33, 18, 298, 14);
+		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Sessao sessao = Banco.obterSessao(Integer.parseInt(textNumeroDaSessao.getText()));
-				Integer temp =  sessao.getSala().getNumero();
-				txtSala.setText(temp.toString());
-				txtFilme.setText(sessao.getFilme().getNome());
-				Date data = (Date) sessao.getHorarioDeInicio().getTime();
-				txtHorario.setText(data.toString());
-				
-				
-				
-				
-				
+				if (sessao!= null){
+					Integer temp =  sessao.getSala().getNumero();
+					txtSala.setText(temp.toString());
+					txtFilme.setText(sessao.getFilme().getNome());
+					Date data = (Date) sessao.getHorarioDeInicio().getTime();
+					@SuppressWarnings("deprecation")
+					Integer temp2 = data.getHours();
+					@SuppressWarnings("deprecation")
+					Integer temp3 = data.getMinutes();
+					txtHorario.setText(temp2.toString() + ":" + temp3.toString());
+					Integer temp4 = data.getDay();
+					Integer temp5 = data.getMonth();
+					Integer temp6 = data.getYear();
+					txtDia.setText(temp4.toString());
+					txtMes.setText(temp5.toString());
+					txtAno.setText(temp6.toString());
+				}
+				else{
+					lblNewLabel_2.setOpaque(false);
+					lblNewLabel_2.setForeground(Color.red);
+					lblNewLabel_2.setText("Numero de sessao não encontrado.");
+				}
+					
 			}
 		});
 		btnOk.setBounds(463, 39, 55, 23);
@@ -147,6 +163,21 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(btnVender);
 		
 		JButton btnNewButton = new JButton("Cancelar compra");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lblNewLabel_2.setText("");
+				txtSala.setText("");
+				txtAno.setText("");
+				txtDia.setText("");
+				txtFilme.setText("");
+				txtMes.setText("");
+				txtHorario.setText("");
+				txtQuantidade.setText("");
+				txtPoltronas.setText("");
+				textNumeroDaSessao.setText("");
+				
+			}
+		});
 		btnNewButton.setBounds(207, 294, 144, 23);
 		getContentPane().add(btnNewButton);
 		
