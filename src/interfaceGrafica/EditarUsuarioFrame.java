@@ -76,8 +76,12 @@ public class EditarUsuarioFrame extends JFrame{
 		JButton btnAdicionar = new JButton("Alterar");
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean alterou = false;
-				lblNewLabel_2.setText("");
+				if (textField_1.getText().equals("") || textField_2.getText().equals("") ){
+					lblNewLabel_2.setText("Pr favor, preencher todos os campos.");
+				}
+				else {	
+					boolean alterou = false;
+					lblNewLabel_2.setText("");
 					try{
 						
 						// 0: usuario, 1: nome, 2: ehadmin, 3: senha
@@ -109,6 +113,7 @@ public class EditarUsuarioFrame extends JFrame{
 						lblNewLabel_2.setText("Usuario nao encontrado.");
 						textField.setText("");
 				}
+			}
 		});
 		btnAdicionar.setBounds(52, 259, 123, 23);
 		getContentPane().add(btnAdicionar);
@@ -117,13 +122,18 @@ public class EditarUsuarioFrame extends JFrame{
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean alterou = false;
-				lblNewLabel_2.setText("");
+				lblNewLabel_2.setOpaque(false);
+				lblNewLabel_2.setForeground(Color.red);
+				if (textField.getText().equals("")){
+					lblNewLabel_2.setText("Digite o numero de registro do usuário.");
+				}
+				else{
+					boolean alterou = false;
+					lblNewLabel_2.setText("");
 					try{
 						int registro = Integer.parseInt(textField.getText());
 						Usuario usuarioAAlterar = Banco.obterUsuario(registro);
-						lblNewLabel_2.setOpaque(false);
-						lblNewLabel_2.setForeground(Color.red);
+					
 						if (usuarioAAlterar == null){
 							lblNewLabel_2.setText("Usuario nao encontrado.");
 							textField.setText("");
@@ -142,6 +152,7 @@ public class EditarUsuarioFrame extends JFrame{
 						System.out.println(e);
 					}
 				}
+			}
 		});
 		btnNewButton.setBounds(448, 81, 58, 23);
 		getContentPane().add(btnNewButton);

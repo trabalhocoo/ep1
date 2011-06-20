@@ -89,17 +89,22 @@ public class CriarSalaFrame extends JFrame{
 		JButton criarSalaBtn = new JButton("Criar sala");
 		criarSalaBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int capacidade = Integer.parseInt(textcapacidade.getText());
-				int numeroSala = Integer.parseInt(textnumeroDaSala.getText());
-				boolean tres_d = chckbxSalad.isSelected();
-				ArrayList<Object> sala = new ArrayList<Object>();
-				sala.add(capacidade);
-				sala.add(numeroSala);
-				sala.add(tres_d);
-				admin.adicionarSala(sala);
 				avisoLabel.setOpaque(false);
 				avisoLabel.setForeground(Color.red);
-				avisoLabel.setText("Sala criada com sucesso.");
+				if (textcapacidade.getText().equals("") || textnumeroDaSala.getText().equals("") ){
+					avisoLabel.setText("Por favor, preencha todos os campos.");
+				}
+				else {
+					int capacidade = Integer.parseInt(textcapacidade.getText());
+					int numeroSala = Integer.parseInt(textnumeroDaSala.getText());
+					boolean tres_d = chckbxSalad.isSelected();
+					ArrayList<Object> sala = new ArrayList<Object>();
+					sala.add(capacidade);
+					sala.add(numeroSala);
+					sala.add(tres_d);
+					admin.adicionarSala(sala);
+					avisoLabel.setText("Sala criada com sucesso.");
+				}
 			}
 		});
 		criarSalaBtn.setBounds(55, 259, 123, 23);

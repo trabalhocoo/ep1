@@ -4,12 +4,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
+
+import banco.Banco;
 import objetos.*;
 
 public class CriarCaixaFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	final JLabel lblNewLabel_2;
-	private static Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriados()+1;
 	
 	public CriarCaixaFrame(final Usuario usr) {
 		usuarioLogado = usr;
@@ -46,9 +47,8 @@ public class CriarCaixaFrame extends JFrame{
 		
 		
 		//label do numero do caixa
-		
-		System.out.println ("numeroDeCaixas: " + Caixa.getNumeroDeCaixasCriados());
-		JLabel numeroDoCaixa = new JLabel(numeroDeCaixasCriados.toString());
+		Integer temp = Banco.getCaixas().size() +1;
+		JLabel numeroDoCaixa = new JLabel(temp.toString());
 		numeroDoCaixa.setBounds(153, 121, 46, 14);
 		getContentPane().add(numeroDoCaixa);
 		
@@ -59,13 +59,9 @@ public class CriarCaixaFrame extends JFrame{
 				lblNewLabel_2.setOpaque(false);
 				lblNewLabel_2.setForeground(Color.red);
 				if (criou){
-					//Integer numeroDeCaixasCriados = Caixa.getNumeroDeCaixasCriados()+1;
-					System.out.println (numeroDeCaixasCriados);
-					lblNewLabel_2.setText("Caixa " + numeroDeCaixasCriados.toString() + " criado com sucesso.");
 					CriarCaixaFrame crCaixa = new CriarCaixaFrame(usr);
 					crCaixa.showIt("Criar Sala");
-					crCaixa.editarLabelDeAviso("Caixa " + numeroDeCaixasCriados.toString() + " criado com sucesso.");
-					numeroDeCaixasCriados++;
+					crCaixa.editarLabelDeAviso("Caixa " + Banco.getCaixas().size() + " criado com sucesso.");
 					dispose();
 				}
 				else{

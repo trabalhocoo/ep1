@@ -43,15 +43,20 @@ public class RemoverCaixaFrame extends JFrame {
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int numeroDoCaixa = Integer.parseInt(codCaixa.getText());
-				boolean removeu = admin.removerCaixa(numeroDoCaixa);//tem algo esquisito aki...(acho q esse metodo é gambiarra) Agora esta OK!!
 				lblNewLabel_2.setOpaque(false);
 				lblNewLabel_2.setForeground(Color.red);
-				if (removeu){
-					lblNewLabel_2.setText("Caixa removido com sucesso.");
+				if(codCaixa.getText().equals("")){
+					lblNewLabel_2.setText("Por favor informar a caixa que deseja remover.");
 				}
-				else
-					lblNewLabel_2.setText("Caixa nao encontrado.");
+				else {
+					int numeroDoCaixa = Integer.parseInt(codCaixa.getText());
+					boolean removeu = admin.removerCaixa(numeroDoCaixa);//tem algo esquisito aki...(acho q esse metodo é gambiarra) Agora esta OK!!
+					if (removeu){
+						lblNewLabel_2.setText("Caixa removido com sucesso.");
+					}
+					else
+						lblNewLabel_2.setText("Caixa nao encontrado.");
+				}
 			}
 		});
 		btnNewButton.setBounds(407, 81, 58, 23);

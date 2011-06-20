@@ -179,7 +179,7 @@ public class AdminFrame extends JFrame {
 				case 3:
 					//Remover usuario
 					RemoverUsuarioFrame remUsuFr = new RemoverUsuarioFrame(usuarioLogado);
-					remUsuFr.showIt("Remover Usu�rio");
+					remUsuFr.showIt("Remover Usuario");
 					dispose();
 					hideIt();
 					break;
@@ -269,15 +269,14 @@ public class AdminFrame extends JFrame {
 				case 17:
 					//Criar Caixa
 					CriarCaixaFrame caixa = new CriarCaixaFrame(usuarioLogado);
-					caixa.showIt("Criar Usuario");
+					caixa.showIt("Criar Caixa");
 					hideIt();
 					break;
-					/*
 				case 18:
-					//TODO Alterar Caixa
-					AlterarCaixaFrame alterarCaixa = new AlterarCaixa(usuarioLogado);
-					alterarCaixa.showIt("Editar Usuario");
-					break;*/
+					//Alterar Caixa
+					EditarCaixaFrame alterarCaixa = new EditarCaixaFrame(usuarioLogado);
+					alterarCaixa.showIt("Editar Caixa");
+					break;
 				case 19:
 					//Remover caixa
 					RemoverCaixaFrame delCaixa = new RemoverCaixaFrame(usuarioLogado);

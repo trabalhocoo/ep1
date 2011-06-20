@@ -1,25 +1,21 @@
 package interfaceGrafica;
 import java.awt.Color;
 import javax.swing.*;
-
 import banco.Banco;
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import objetos.Administrador;
-import objetos.Usuario;
-import objetos.Sala;
+import objetos.*;
 
 public class EditarSalaFrame extends JFrame{
 	private static Usuario usuarioLogado;
 	private JTextField numSala;
 	private JTextField capacidade;
 	
-	public EditarSalaFrame(final Usuario usrLogado) {
+	public EditarSalaFrame(Usuario usrLogado) {
 		usuarioLogado = usrLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
