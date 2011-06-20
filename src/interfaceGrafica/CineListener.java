@@ -36,16 +36,20 @@ public class CineListener implements ActionListener{
 			txtdisplay.setVisible(true);
 		}
 		if(actionCommand.equals("VENDER INGRESSO")){
-			System.out.println("Clicou no vender ingresso");	
+			VenderIngressoFrame vendIng = new VenderIngressoFrame(userFrame.getUsuario(), userFrame.getCaixa());
+			vendIng.showIt("Vender Ingresso");
+			//System.out.println("Clicou no vender ingresso");	
 		}
 		if(actionCommand.equals("DESLOGAR")){
 			//System.out.println("Clicou no deslogar");
+			userFrame.getCaixa().setEstaEmUso(false);
 			Controlador.deslogar(userFrame.getUsuario());
 			LoginSenhaFrame logSen = new LoginSenhaFrame();
 			logSen.showIt("Identificacao");
 			userFrame.hideIt();
 		}
 		if(actionCommand.equals("SAIR DO PROGRAMA")){
+			userFrame.getCaixa().setEstaEmUso(false);
 			//System.out.println("Clicou no sair do programa");
 			Controlador.sairDoPrograma();
 		}

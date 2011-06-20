@@ -1,16 +1,21 @@
 package interfaceGrafica;
 import javax.swing.*;
 
-import objetos.Usuario;
+import controlador.Controlador;
+
+import objetos.*;
 import java.awt.*;
-import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 //estava pensando em atribuir um caixa a ele q nao estivesse sendo usado
 public class UsuarioFrame extends JFrame{
 	private static Usuario usuarioLogado;
+	private static Caixa caixa;
 	
-	public UsuarioFrame (final Usuario usuario){
+	public UsuarioFrame (final Usuario usuario, final Caixa caixa){
 		usuarioLogado = usuario;
+		this.caixa = caixa; 
 		this.setSize(550,380);
 		this.setLocation(200,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,13 +45,21 @@ public class UsuarioFrame extends JFrame{
 		JButton deslogarBtn = new JButton("DESLOGAR");
 		deslogarBtn.setBounds(297, 143, 142, 32);
 		getContentPane().add(deslogarBtn);
-		deslogarBtn.addActionListener(new CineListener(this));
+		deslogarBtn.addActionListener(new CineListener(this)); 
 		
 		JButton sairBtn = new JButton("SAIR DO PROGRAMA");
 		sairBtn.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		sairBtn.setBounds(297, 217, 142, 32);
 		getContentPane().add(sairBtn);
-		sairBtn.addActionListener(new CineListener(this));
+		sairBtn.addActionListener(new CineListener(this)); 
+		
+		final JLabel lblNewLabel_1 = new JLabel("");//vazio por enquanto
+		lblNewLabel_1.setBounds(54, 283, 458, 14);
+		getContentPane().add(lblNewLabel_1);
+		
+		lblNewLabel_1.setOpaque(false);
+		lblNewLabel_1.setForeground(Color.red);
+		lblNewLabel_1.setText("CAIXA EM USO: " + caixa.getNumeroDaCaixa());
 		
 	}
 	
@@ -76,5 +89,9 @@ public class UsuarioFrame extends JFrame{
 	
 	public Usuario getUsuario(){
 		return usuarioLogado;
+	}
+	
+	public Caixa getCaixa(){
+		return caixa;
 	}
 }

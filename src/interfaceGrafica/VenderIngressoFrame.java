@@ -1,13 +1,19 @@
 package interfaceGrafica;
 
 import javax.swing.JFrame;
+
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
+import objetos.*;
+
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class VenderIngressoFrame extends JFrame{
 	private JTextField txtSessao;
@@ -19,19 +25,26 @@ public class VenderIngressoFrame extends JFrame{
 	private JTextField txtSala;
 	private JTextField txtQuantidade;
 	private JTextField txtPoltronas;
-	public VenderIngressoFrame() {
-		getContentPane().setBackground(Color.WHITE);
-		setBackground(Color.ORANGE);
-		setResizable(false);
+	private Usuario usuarioLogado;
+	private Caixa caixa;
+	
+	public VenderIngressoFrame(final Usuario usuarioLogado, final Caixa caixa) {
+		this.usuarioLogado = usuarioLogado;
+		this.setSize(550,380);
+		this.setLocation(200,200);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+		getContentPane().setBackground(Color.white);
+		
 		setTitle("--- Venda de ingressos ---");
 		getContentPane().setLayout(null);
 		
 		txtSessao = new JTextField();
-		txtSessao.setBounds(175, 40, 86, 20);
+		txtSessao.setBounds(201, 41, 86, 17);
 		getContentPane().add(txtSessao);
 		txtSessao.setColumns(10);
 		
-		JLabel lblDigiteONmero = new JLabel("Digite o n\u00FAmero da sess\u00E3o");
+		JLabel lblDigiteONmero = new JLabel("Digite o n\u00FAmero da sess\u00E3o:");
 		lblDigiteONmero.setBounds(33, 43, 184, 14);
 		getContentPane().add(lblDigiteONmero);
 		
@@ -71,7 +84,7 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(lblHorrio);
 		
 		JLabel lblSala = new JLabel("Sala");
-		lblSala.setBounds(178, 91, 46, 14);
+		lblSala.setBounds(227, 91, 46, 14);
 		getContentPane().add(lblSala);
 		
 		txtFilme = new JTextField();
@@ -85,7 +98,7 @@ public class VenderIngressoFrame extends JFrame{
 		txtHorario.setColumns(10);
 		
 		txtSala = new JTextField();
-		txtSala.setBounds(227, 88, 86, 20);
+		txtSala.setBounds(282, 88, 86, 20);
 		getContentPane().add(txtSala);
 		txtSala.setColumns(10);
 		
@@ -108,15 +121,53 @@ public class VenderIngressoFrame extends JFrame{
 		txtPoltronas.setColumns(10);
 		
 		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(270, 39, 46, 23);
+		btnOk.setBounds(313, 39, 55, 23);
 		getContentPane().add(btnOk);
 		
 		JButton btnVender = new JButton("Vender");
-		btnVender.setBounds(33, 222, 184, 23);
+		btnVender.setBounds(33, 294, 144, 23);
 		getContentPane().add(btnVender);
 		
-		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.setBounds(224, 222, 89, 23);
+		JButton btnNewButton = new JButton("Cancelar compra");
+		btnNewButton.setBounds(207, 294, 144, 23);
 		getContentPane().add(btnNewButton);
+		
+		//Botao voltar
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UsuarioFrame usfr = new UsuarioFrame(usuarioLogado, caixa);
+				usfr.showIt("Menu Usuario");
+				dispose();
+			}
+		});
+		btnVoltar.setBounds(374, 294, 144, 23);
+		getContentPane().add(btnVoltar);
+		
 	}
+	
+	// Makes the frame visible.
+	public void showIt(){
+		this.setVisible(true);
+	}
+	// Makes the frame visible and sets the title text.
+	public void showIt(String title){
+		this.setTitle(title);
+		this.setVisible(true);
+	}
+	
+	// Makes the frame visible and sets the title text
+	// and the position of the window.
+	public void showIt(String title,int x, int y){
+		this.setTitle(title);
+		this.setLocation(x,y);
+		this.setVisible(true);
+	}
+	
+	// Makes the frame invisible.
+	public void hideIt(){
+		this.setVisible(false);
+	}
+	
+	
 }
