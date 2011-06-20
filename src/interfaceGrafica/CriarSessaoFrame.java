@@ -16,6 +16,7 @@ import banco.Banco;
 import objetos.Administrador;
 import objetos.Filme;
 import objetos.Sala;
+import objetos.Sessao;
 import objetos.Usuario;
 import visualizacao.Exibir;
 
@@ -55,6 +56,10 @@ public class CriarSessaoFrame extends JFrame {
 
 		// Filme filme, int year, int month, int date, int hourOfDay, int
 		// minute, Sala sala, double preco, int disp
+
+		final JLabel lblAviso = new JLabel("");// vazio por enquanto
+		lblAviso.setBounds(23, 50, 298, 14);
+		getContentPane().add(lblAviso);
 
 		JLabel lblPorFavorPreencha = new JLabel(
 				"Por favor preencha as informacoes abaixo sobre a sessao que deseja criar:");
@@ -123,7 +128,7 @@ public class CriarSessaoFrame extends JFrame {
 			comboSala = new JComboBox();
 		}
 		comboSala.setBackground(Color.white);
-		comboSala.setBounds(395, 89, 89, 20); //145, 89, 94, 20
+		comboSala.setBounds(395, 89, 89, 20); // 145, 89, 94, 20
 		getContentPane().add(comboSala);
 
 		precoField = new JTextField();
@@ -175,9 +180,8 @@ public class CriarSessaoFrame extends JFrame {
 		anoField.setColumns(10);
 		anoField.setBounds(342, 212, 51, 19);
 		getContentPane().add(anoField);
-
-		JButton btnLimparCampos = new JButton("Limpar Campos");
-		btnLimparCampos.addActionListener(new ActionListener() {
+		
+		final ActionListener limparCampos = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBoxFilme.setSelectedIndex(0);
 				comboSala.setSelectedIndex(0);
@@ -189,38 +193,65 @@ public class CriarSessaoFrame extends JFrame {
 				anoField.setText("");
 
 			}
-		});
+		};
+
+		JButton btnLimparCampos = new JButton("Limpar Campos");
+		btnLimparCampos.addActionListener(limparCampos);
 		btnLimparCampos.setBounds(198, 292, 134, 25);
 		getContentPane().add(btnLimparCampos);
 
 		JButton btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
-					//TODO TERMINAR ISSO
-					String campoNomeFilme = (String) comboBoxFilme.getSelectedItem();
-					Object campoAno = Integer.parseInt(anoField.getText());
-					Object campoMes = Integer.parseInt(mesField.getText());
-					
-					/*
-						lblNewLabel_2.setOpaque(false);
-						lblNewLabel_2.setForeground(Color.red);
-						lblNewLabel_2.setText("Por favor, digite todos os campos.");
-					*/
-					
+				// TODO TERMINAR ISSO
+				String campoNomeFilme = (String) comboBoxFilme
+						.getSelectedItem();
+				String campoAno = anoField.getText();
+				String campoMes = mesField.getText();
+				String campoDia = diaField.getText();
+				String campoHora = horaField.getText();
+				String campoMinuto = minutoField.getText();
+				String campoNumero = (String) comboSala.getSelectedItem();
+				String campoPreco = precoField.getText();
+
+				if (campoNomeFilme == null || campoAno == null
+						|| campoMes == null || campoDia == null
+						|| campoMinuto == null || campoNumero.equals("")
+						|| campoPreco == null) {
+					lblAviso.setOpaque(false);
+					lblAviso.setForeground(Color.red);
+					lblAviso.setText("Por favor, digite todos os campos.");
+				} else {
+					lblAviso.setOpaque(true);
 					String nomeFilme = campoNomeFilme;
-					Filme filme = Banco.obterFilme(nomeFilme);
-					int year;
-					int month;
-					int date = Integer.parseInt(diaField.getText());
-					int hourOfDay = Integer.parseInt(horaField.getText());
-					int minute = Integer.parseInt(minutoField.getText());
-					int nroSala = Integer.parseInt((String) comboSala
-							.getSelectedItem());
+					int year = Integer.parseInt(campoAno);
+					int month = Integer.parseInt(campoMes);
+					int date = Integer.parseInt(campoDia);
+					int hourOfDay = Integer.parseInt(campoHora);
+					int minute = Integer.parseInt(campoMinuto);
+					int nroSala = Integer.parseInt(campoNumero);
 					Sala sala = Banco.obterSala(nroSala);
-					double preco = Double.parseDouble(precoField.getText());
+					double preco = Double.parseDouble(campoPreco);
 					int disp = sala.getCapacidade();
 					
+					ArrayList dadosSessao = new ArrayList();
+					dadosSessao.add(nomeFilme);
+					dadosSessao.add(year);
+					dadosSessao.add(month);
+					dadosSessao.add(date);
+					dadosSessao.add(hourOfDay);
+					dadosSessao.add(minute);
+					dadosSessao.add(nroSala);
+					dadosSessao.add(preco);
 					
+					admin.adicionarSessao(admin, dadosSessao);
+					lblAviso.setOpaque(false);
+					lblAviso.setForeground(Color.red);
+					lblAviso.setText("Sessão criada com sucesso. Numero " + Sessao.getNumeroDeSessoes());
+					limparCampos.actionPerformed(arg0);
+				}
+
 			}
 		});
 		btnAdicionar.setBounds(55, 292, 117, 25);

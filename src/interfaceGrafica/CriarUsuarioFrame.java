@@ -68,9 +68,9 @@ public class CriarUsuarioFrame extends JFrame {
 		textField_1.setBounds(163, 201, 104, 20);
 		getContentPane().add(textField_1);
 		
-		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(23, 50, 298, 14);
-		getContentPane().add(lblNewLabel_2);
+		final JLabel lblAviso = new JLabel("");//vazio por enquanto
+		lblAviso.setBounds(23, 50, 298, 14);
+		getContentPane().add(lblAviso);
 		
 		JButton btnAdicionar = new JButton("Adicionar");
 		btnAdicionar.addActionListener(new ActionListener() {
@@ -93,17 +93,17 @@ public class CriarUsuarioFrame extends JFrame {
 					}
 					
 					if(option ==0 || nome.equals("")|| senha.equals("")){
-						lblNewLabel_2.setOpaque(false);
-						lblNewLabel_2.setForeground(Color.red);
-						lblNewLabel_2.setText("Por favor, digite todos os campos.");
+						lblAviso.setOpaque(false);
+						lblAviso.setForeground(Color.red);
+						lblAviso.setText("Por favor, digite todos os campos.");
 					}
 					else {
 						dadosUsuario.add(2);
 						dadosUsuario.add(senha);
 						admin.adicionarUsuario(dadosUsuario);
-						lblNewLabel_2.setOpaque(false);
-						lblNewLabel_2.setForeground(Color.red);
-						lblNewLabel_2.setText("Usuario criado com sucesso. Login: " + usuarioLogado.getNumeroDeUsuarios() + " Senha: " + senha); 
+						lblAviso.setOpaque(false);
+						lblAviso.setForeground(Color.red);
+						lblAviso.setText("Usuario criado com sucesso. Login: " + usuarioLogado.getNumeroDeUsuarios() + " Senha: " + senha); 
 						textField_1.setText("");
 						comboBox.setSelectedIndex(0);
 						textField.setText("");

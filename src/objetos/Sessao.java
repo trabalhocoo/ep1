@@ -111,4 +111,12 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 		}
 	}
 
+	public static int getNumeroDeSessoes() {
+		return numeroDeSessoes;
+	}
+
+	public static void setNumeroDeSessoes(int numeroDeSessoes) {
+		Sessao.numeroDeSessoes = numeroDeSessoes;
+	}
+
 }
