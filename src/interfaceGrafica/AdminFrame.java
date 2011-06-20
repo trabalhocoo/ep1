@@ -198,7 +198,7 @@ public class AdminFrame extends JFrame {
 				case 6:
 					//Editar filme
 					EditarFilmeFrame editarFilme = new EditarFilmeFrame(usuarioLogado);
-					editarFilme.showIt("Editar Usuario");
+					editarFilme.showIt("Editar Filme");
 					hideIt();
 					break;
 				case 7:

@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class EditarCaixaFrame extends JFrame{
 	private static Usuario usuarioLogado;
-	private JTextField textField;
-	
+	private JTextField numeroCaixa;
+	private Caixa caixaAAlterar;
 	
 	public EditarCaixaFrame (Usuario usrLogado){
 		usuarioLogado = usrLogado;
@@ -41,12 +41,18 @@ public class EditarCaixaFrame extends JFrame{
 		label.setBounds(35, 83, 483, 14);
 		getContentPane().add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(359, 80, 53, 20);
-		getContentPane().add(textField);
+		numeroCaixa = new JTextField();
+		numeroCaixa.setColumns(10);
+		numeroCaixa.setBounds(359, 80, 53, 20);
+		getContentPane().add(numeroCaixa);
 		
 		JButton button = new JButton("OK");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int numeroDigitado = Integer.parseInt(numeroCaixa.getText());
+				
+			}
+		});
 		button.setBounds(431, 79, 58, 23);
 		getContentPane().add(button);
 		

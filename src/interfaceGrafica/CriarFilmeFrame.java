@@ -151,7 +151,8 @@ public class CriarFilmeFrame extends JFrame{
 				textDiretor.setText("");
 				textSinopse.setText("");
 				textGenero.setText("");
-				textEstreia.setText("");
+				textEstreia.setText("dd/mm/aaaa");
+				textEstreia.setForeground(Color.gray);
 			}
 		});
 		btnLimparCampos.setBounds(209, 293, 123, 23);
