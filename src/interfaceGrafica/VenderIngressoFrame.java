@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import banco.Banco;
+
 import objetos.*;
 
 import java.awt.Font;
@@ -14,9 +16,11 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TreeSet;
+
+import javax.swing.JComboBox;
 
 public class VenderIngressoFrame extends JFrame{
-	private JTextField txtSessao;
 	private JTextField txtAno;
 	private JTextField txtMes;
 	private JTextField txtDia;
@@ -39,13 +43,8 @@ public class VenderIngressoFrame extends JFrame{
 		setTitle("--- Venda de ingressos ---");
 		getContentPane().setLayout(null);
 		
-		txtSessao = new JTextField();
-		txtSessao.setBounds(201, 41, 86, 17);
-		getContentPane().add(txtSessao);
-		txtSessao.setColumns(10);
-		
-		JLabel lblDigiteONmero = new JLabel("Digite o n\u00FAmero da sess\u00E3o:");
-		lblDigiteONmero.setBounds(33, 43, 184, 14);
+		JLabel lblDigiteONmero = new JLabel("Escolha a sess\u00E3o que deseja vender:");
+		lblDigiteONmero.setBounds(33, 22, 240, 14);
 		getContentPane().add(lblDigiteONmero);
 		
 		txtAno = new JTextField();
@@ -75,25 +74,25 @@ public class VenderIngressoFrame extends JFrame{
 		lblDia.setBounds(119, 91, 18, 14);
 		getContentPane().add(lblDia);
 		
-		JLabel lblFilme = new JLabel("Filme");
+		JLabel lblFilme = new JLabel("Filme:");
 		lblFilme.setBounds(33, 119, 46, 14);
 		getContentPane().add(lblFilme);
 		
-		JLabel lblHorrio = new JLabel("Hor\u00E1rio");
+		JLabel lblHorrio = new JLabel("Hor\u00E1rio:");
 		lblHorrio.setBounds(33, 147, 46, 14);
 		getContentPane().add(lblHorrio);
 		
-		JLabel lblSala = new JLabel("Sala");
+		JLabel lblSala = new JLabel("Sala:");
 		lblSala.setBounds(227, 91, 46, 14);
 		getContentPane().add(lblSala);
 		
 		txtFilme = new JTextField();
-		txtFilme.setBounds(70, 116, 98, 20);
+		txtFilme.setBounds(93, 116, 98, 20);
 		getContentPane().add(txtFilme);
 		txtFilme.setColumns(10);
 		
 		txtHorario = new JTextField();
-		txtHorario.setBounds(70, 144, 98, 20);
+		txtHorario.setBounds(93, 144, 98, 20);
 		getContentPane().add(txtHorario);
 		txtHorario.setColumns(10);
 		
@@ -103,25 +102,59 @@ public class VenderIngressoFrame extends JFrame{
 		txtSala.setColumns(10);
 		
 		JLabel lblQuantosIngressosVo = new JLabel("Quantos ingressos v\u00E3o ser vendidos?");
-		lblQuantosIngressosVo.setBounds(33, 172, 184, 14);
+		lblQuantosIngressosVo.setBounds(33, 172, 240, 14);
 		getContentPane().add(lblQuantosIngressosVo);
 		
 		txtQuantidade = new JTextField();
-		txtQuantidade.setBounds(227, 169, 86, 20);
+		txtQuantidade.setBounds(282, 169, 86, 20);
 		getContentPane().add(txtQuantidade);
 		txtQuantidade.setColumns(10);
 		
 		JLabel lblQuantidadeDePoltronas = new JLabel("Quantidade de poltronas dispon\u00EDveis:");
-		lblQuantidadeDePoltronas.setBounds(33, 197, 184, 14);
+		lblQuantidadeDePoltronas.setBounds(33, 197, 240, 14);
 		getContentPane().add(lblQuantidadeDePoltronas);
 		
 		txtPoltronas = new JTextField();
-		txtPoltronas.setBounds(227, 194, 86, 20);
+		txtPoltronas.setBounds(282, 200, 86, 20);
 		getContentPane().add(txtPoltronas);
 		txtPoltronas.setColumns(10);
 		
+		JComboBox comboBoxOpcoesSessao = new JComboBox();
+		comboBoxOpcoesSessao.setBounds(33, 40, 420, 20);
+		getContentPane().add(comboBoxOpcoesSessao);
+		
+		
+		//guardar o arraylist de nomes de filme
+		TreeSet <Sessao> listaSessoesBanco = Banco.getSessoes();
+		
+		String[] options = new String [listaSessoesBanco.size()+1];
+		options[0]="";
+		int i = 0;
+		for (Sessao sessao: listaSessoesBanco){
+			options[i+1]=sessao.getFilme().getNome();
+			System.out.println (sessao.getFilme().getNome());
+			i++;
+		}
+		comboBoxOpcoesSessao = new JComboBox(options);
+		
+		
 		JButton btnOk = new JButton("OK");
-		btnOk.setBounds(313, 39, 55, 23);
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				/*
+				Sessao sessao = Banco.obterSessao(Integer.parseInt(txtSessao.getText()));
+				Integer temp =  sessao.getSala().getNumero();
+				txtSala.setText(temp.toString());
+				txtFilme.setText(sessao.getFilme().getNome());
+				*/
+				
+				
+				
+				
+				
+			}
+		});
+		btnOk.setBounds(463, 39, 55, 23);
 		getContentPane().add(btnOk);
 		
 		JButton btnVender = new JButton("Vender");
@@ -143,6 +176,8 @@ public class VenderIngressoFrame extends JFrame{
 		});
 		btnVoltar.setBounds(374, 294, 144, 23);
 		getContentPane().add(btnVoltar);
+		
+
 		
 	}
 	
@@ -168,6 +203,4 @@ public class VenderIngressoFrame extends JFrame{
 	public void hideIt(){
 		this.setVisible(false);
 	}
-	
-	
 }
