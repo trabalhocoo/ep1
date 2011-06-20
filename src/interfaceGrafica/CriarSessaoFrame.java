@@ -232,6 +232,9 @@ public class CriarSessaoFrame extends JFrame {
 					int minute = Integer.parseInt(campoMinuto);
 					int nroSala = Integer.parseInt(campoNumero);
 					Sala sala = Banco.obterSala(nroSala);
+					if(campoPreco.split(",").length > 1){
+						campoPreco = campoPreco.replaceFirst(",", ".");
+					}
 					double preco = Double.parseDouble(campoPreco);
 					int disp = sala.getCapacidade();
 					
