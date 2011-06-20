@@ -188,7 +188,6 @@ public class AdminFrame extends JFrame {
 					String[][] out = usuarioLogado.exibirUsuariosTabela();
 					TextDisplayFrame txtDisp = new TextDisplayFrame(out, "usuario");
 					txtDisp.setVisible(true);
-					hideIt();
 					break;
 				case 5:
 					//Criar filme
