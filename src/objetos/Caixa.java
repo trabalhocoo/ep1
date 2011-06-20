@@ -53,7 +53,7 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 	public int getNumCaixa (){
 		return numeroDoCaixa;
 	}
-	public static int getNumeroDeCaixasCriadas(){
+	public static int getNumeroDeCaixasCriados(){
 		return numeroDeCaixasCriados;
 	}
 
