@@ -109,6 +109,10 @@ public class EditarCaixaFrame extends JFrame{
 					boolean alterou = admin.alterarCaixa(dadosCaixa);
 					if (alterou){
 						lblAviso.setText("Caixa alterado com sucesso.");
+						numeroCaixa.setText("");
+						textNumeroDoCaixa.setText("");
+						textSaldo.setText("");						
+						
 					}
 					else {
 						lblAviso.setText("Ocorreu um problema. Tente novamente.");
