@@ -119,8 +119,7 @@ public class CriarFilmeFrame extends JFrame{
 		//campo para preenchimento da sinopse
 		textSinopse = new JTextArea();
 		scrollPane.setViewportView(textSinopse);
-		textSinopse.setLineWrap(true);
-		textSinopse.setRows(4);
+		textSinopse.setRows(3);
 		textSinopse.setColumns(10);
 		
 		//campo para preenchimento do genero

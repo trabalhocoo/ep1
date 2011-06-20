@@ -14,7 +14,7 @@ public class EditarFilmeFrame extends JFrame{
 	private JTextField nomeDoFilme;
 	private JTextField duracao;
 	private JTextField genero;
-	private JTextField sinopse;
+	private JTextArea sinopse;
 	private JTextField dataDaEstreia;
 	private JTextField diretor;
 	private JComboBox comboBox;
@@ -252,10 +252,14 @@ public class EditarFilmeFrame extends JFrame{
 		label_4.setBounds(23, 232, 102, 14);
 		getContentPane().add(label_4);
 		
-		sinopse = new JTextField();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(135, 232, 371, 50);
+		getContentPane().add(scrollPane);
+		
+		sinopse = new JTextArea();
+		scrollPane.setViewportView(sinopse);
+		sinopse.setRows(3);
 		sinopse.setColumns(10);
-		sinopse.setBounds(135, 232, 371, 50);
-		getContentPane().add(sinopse);
 		
 		JLabel label_5 = new JLabel("Data da estreia :");
 		label_5.setBounds(280, 111, 102, 14);
