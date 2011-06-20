@@ -250,6 +250,7 @@ public class AdminFrame extends JFrame {
 					//Editar sessao
 					EditarSessaoFrame editarSessao = new EditarSessaoFrame(usuarioLogado);
 					editarSessao.showIt("Editar Usuario");
+					hideIt();
 					break;
 				/*
 				case 15:
