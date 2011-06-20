@@ -174,7 +174,7 @@ public class AdminFrame extends JFrame {
 					//Editar usuario
 					EditarUsuarioFrame editarUsuFr = new EditarUsuarioFrame(usuarioLogado);
 					editarUsuFr.showIt("Editar Usuario");
-					dispose();
+					hideIt();
 					break;
 				case 3:
 					//Remover usuario
@@ -188,6 +188,7 @@ public class AdminFrame extends JFrame {
 					String[][] out = usuarioLogado.exibirUsuariosTabela();
 					TextDisplayFrame txtDisp = new TextDisplayFrame(out, "usuario");
 					txtDisp.setVisible(true);
+					hideIt();
 					break;
 				case 5:
 					//Criar filme
@@ -199,12 +200,12 @@ public class AdminFrame extends JFrame {
 					//Editar filme
 					EditarFilmeFrame editarFilme = new EditarFilmeFrame(usuarioLogado);
 					editarFilme.showIt("Editar Usuario");
+					hideIt();
 					break;
 				case 7:
 					//Remover filme
 					RemoverFilmeFrame remFilFr = new RemoverFilmeFrame(usuarioLogado);
 					remFilFr.showIt("Remover Filme");
-					dispose();
 					hideIt();
 					break;
 				case 8:
@@ -272,11 +273,11 @@ public class AdminFrame extends JFrame {
 					caixa.showIt("Criar Caixa");
 					hideIt();
 					break;
-				/*case 18:
+				case 18:
 					//Alterar Caixa
 					EditarCaixaFrame alterarCaixa = new EditarCaixaFrame(usuarioLogado);
 					alterarCaixa.showIt("Editar Caixa");
-					break;*/
+					break;
 				case 19:
 					//Remover caixa
 					RemoverCaixaFrame delCaixa = new RemoverCaixaFrame(usuarioLogado);
