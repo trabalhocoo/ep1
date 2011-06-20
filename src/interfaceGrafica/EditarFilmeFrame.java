@@ -17,8 +17,8 @@ public class EditarFilmeFrame extends JFrame{
 	private JTextArea sinopse;
 	private JTextField dataDaEstreia;
 	private JTextField diretor;
-	private JComboBox comboBox;
-	private JComboBox comboBox_1;
+	private JComboBox comboBoxFaixa;
+	private JComboBox comboBoxFilmes;
 	private JCheckBox checkBox;
 	private final JLabel lblNewLabel_2;
 	
@@ -49,8 +49,9 @@ public class EditarFilmeFrame extends JFrame{
 				sinopse.setText("");
 				dataDaEstreia.setText("");
 				diretor.setText("");
-				comboBox.setSelectedIndex(0);
+				comboBoxFaixa.setSelectedIndex(0);
 				checkBox.setSelected(false);
+				comboBoxFilmes.setSelectedIndex(0);
 			}
 		});
 		btnLimparCampos.setBounds(208, 293, 123, 23);
@@ -72,7 +73,7 @@ public class EditarFilmeFrame extends JFrame{
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean alterou = false;
-				if(nomeDoFilme.getText().equals("")|| comboBox.getSelectedIndex()==0 || duracao.getText().equals("")||diretor.getText().equals("") || sinopse.getText().equals("") || genero.getText().equals("") || dataDaEstreia.getText().equals("")){
+				if(nomeDoFilme.getText().equals("")|| comboBoxFaixa.getSelectedIndex()==0 || duracao.getText().equals("")||diretor.getText().equals("") || sinopse.getText().equals("") || genero.getText().equals("") || dataDaEstreia.getText().equals("")){
 					lblNewLabel_2.setOpaque(false);
 					lblNewLabel_2.setForeground(Color.red);
 					lblNewLabel_2.setText("Por favor, digite todos os campos.");
@@ -95,14 +96,14 @@ public class EditarFilmeFrame extends JFrame{
 						String estreia = (String) dadosFilme.get(7);
 						boolean is3d = (Boolean) dadosFilme.get(8);
 						*/
-						antigoNome = (String)comboBox_1.getSelectedItem();
+						antigoNome = (String)comboBoxFilmes.getSelectedItem();
 						arrayListDeFilme.add(antigoNome);
 						arrayListDeFilme.add(nomeDoFilme.getText());
 						int faixa;
-						if (comboBox.getSelectedIndex() == 1)
+						if (comboBoxFaixa.getSelectedIndex() == 1)
 							faixa = 0;
 						else 
-							faixa = Integer.parseInt((String) comboBox.getSelectedItem());
+							faixa = Integer.parseInt((String) comboBoxFaixa.getSelectedItem());
 						arrayListDeFilme.add(faixa);
 						int temp2 = Integer.parseInt(duracao.getText());
 						arrayListDeFilme.add(temp2);
@@ -127,9 +128,9 @@ public class EditarFilmeFrame extends JFrame{
 						sinopse.setText("");
 						dataDaEstreia.setText("");
 						diretor.setText("");
-						comboBox.setSelectedIndex(0);
+						comboBoxFaixa.setSelectedIndex(0);
 						checkBox.setSelected(false);
-						comboBox_1.setSelectedIndex(0);
+						comboBoxFilmes.setSelectedIndex(0);
 						EditarFilmeFrame edFr = new EditarFilmeFrame(usrLogado);
 						edFr.showIt("Editar frame");
 						edFr.editarLabelDeAviso("O filme " + antigoNome + " foi alterado com sucesso.");
@@ -145,8 +146,8 @@ public class EditarFilmeFrame extends JFrame{
 						sinopse.setText("");
 						dataDaEstreia.setText("");
 						diretor.setText("");
-						comboBox.setSelectedIndex(0);
-						comboBox_1.setSelectedIndex(0);
+						comboBoxFaixa.setSelectedIndex(0);
+						comboBoxFilmes.setSelectedIndex(0);
 						checkBox.setSelected(false);
 						
 					}
@@ -164,7 +165,7 @@ public class EditarFilmeFrame extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//System.out.println (comboBox_1.getSelectedIndex());
-				if (comboBox_1.getSelectedIndex()==0){
+				if (comboBoxFilmes.getSelectedIndex()==0){
 					lblNewLabel_2.setOpaque(false);
 					lblNewLabel_2.setForeground(Color.red);
 					lblNewLabel_2.setText("Por favor, selecione um filme.");
@@ -172,7 +173,7 @@ public class EditarFilmeFrame extends JFrame{
 				else {
 					try{
 						lblNewLabel_2.setText("");
-						Filme filmeAAlterar = Banco.obterFilme((String) comboBox_1.getSelectedItem());
+						Filme filmeAAlterar = Banco.obterFilme((String) comboBoxFilmes.getSelectedItem());
 						nomeDoFilme.setText(filmeAAlterar.getNome());
 						Integer temp = filmeAAlterar.getDuracao();
 						duracao.setText(temp.toString());
@@ -181,17 +182,17 @@ public class EditarFilmeFrame extends JFrame{
 						//System.out.println ("Faixa: "+ temp2);
 						//"","Livre", "12", "14", "16", "18", "30"
 						if (temp2 == 0)
-							comboBox.setSelectedIndex(1);
+							comboBoxFaixa.setSelectedIndex(1);
 						else if (temp2 == 12)
-							comboBox.setSelectedIndex(2);
+							comboBoxFaixa.setSelectedIndex(2);
 						else if (temp2 == 14)
-							comboBox.setSelectedIndex(3);
+							comboBoxFaixa.setSelectedIndex(3);
 						else if (temp2 == 16)
-							comboBox.setSelectedIndex(4);
+							comboBoxFaixa.setSelectedIndex(4);
 						else if (temp2 == 30)
-							comboBox.setSelectedIndex(5);
+							comboBoxFaixa.setSelectedIndex(5);
 						else 
-							comboBox.setSelectedIndex(0);
+							comboBoxFaixa.setSelectedIndex(0);
 						sinopse.setText(filmeAAlterar.getSinopse());
 						dataDaEstreia.setText(filmeAAlterar.getDataDeEstreia());
 						diretor.setText(filmeAAlterar.getDiretor());
@@ -242,11 +243,11 @@ public class EditarFilmeFrame extends JFrame{
 		getContentPane().add(label_3);
 		
 		String[] options2 = {"","Livre", "12", "14", "16", "18", "30"};
-		comboBox = new JComboBox(options2);
-		comboBox.setSelectedIndex(0);
-		comboBox.setBackground(Color.WHITE);
-		comboBox.setBounds(136, 196, 113, 20);
-		getContentPane().add(comboBox);
+		comboBoxFaixa = new JComboBox(options2);
+		comboBoxFaixa.setSelectedIndex(0);
+		comboBoxFaixa.setBackground(Color.WHITE);
+		comboBoxFaixa.setBounds(136, 196, 113, 20);
+		getContentPane().add(comboBoxFaixa);
 		
 		JLabel label_4 = new JLabel("Sinopse:");
 		label_4.setBounds(23, 232, 102, 14);
@@ -292,9 +293,60 @@ public class EditarFilmeFrame extends JFrame{
 			options3[i+1]=listaFilmes.get(i).getNome();
 		}
 		//String[] options3 = {"","Livre", "12", "14", "16", "18", "30"};
-		comboBox_1 = new JComboBox(options3);
-		comboBox_1.setBounds(226, 50, 201, 20);
-		getContentPane().add(comboBox_1);
+		comboBoxFilmes = new JComboBox(options3);
+		comboBoxFilmes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//System.out.println (comboBox_1.getSelectedIndex());
+				if (comboBoxFilmes.getSelectedIndex()==0){
+					nomeDoFilme.setText("");
+					duracao.setText("");
+					genero.setText("");
+					sinopse.setText("");
+					dataDaEstreia.setText("");
+					diretor.setText("");
+					checkBox.setSelected(false);
+					comboBoxFaixa.setSelectedIndex(0);
+				}
+				else {
+					try{
+						lblNewLabel_2.setText("");
+						Filme filmeAAlterar = Banco.obterFilme((String) comboBoxFilmes.getSelectedItem());
+						nomeDoFilme.setText(filmeAAlterar.getNome());
+						Integer temp = filmeAAlterar.getDuracao();
+						duracao.setText(temp.toString());
+						genero.setText(filmeAAlterar.getGenero());
+						int temp2 = filmeAAlterar.getFaixaEtaria();
+						//System.out.println ("Faixa: "+ temp2);
+						//"","Livre", "12", "14", "16", "18", "30"
+						if (temp2 == 0)
+							comboBoxFaixa.setSelectedIndex(1);
+						else if (temp2 == 12)
+							comboBoxFaixa.setSelectedIndex(2);
+						else if (temp2 == 14)
+							comboBoxFaixa.setSelectedIndex(3);
+						else if (temp2 == 16)
+							comboBoxFaixa.setSelectedIndex(4);
+						else if (temp2 == 30)
+							comboBoxFaixa.setSelectedIndex(5);
+						else 
+							comboBoxFaixa.setSelectedIndex(0);
+						sinopse.setText(filmeAAlterar.getSinopse());
+						dataDaEstreia.setText(filmeAAlterar.getDataDeEstreia());
+						diretor.setText(filmeAAlterar.getDiretor());
+						checkBox.setSelected(filmeAAlterar.isIs3d());
+						
+					} catch (Exception e){
+						System.out.println(e);
+					}
+				}
+				
+			}
+		});
+		comboBoxFilmes.setBounds(226, 50, 201, 20);
+		getContentPane().add(comboBoxFilmes);
+		
 		
 	}
 	
