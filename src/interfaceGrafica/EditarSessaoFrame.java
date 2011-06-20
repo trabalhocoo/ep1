@@ -10,10 +10,29 @@ import javax.swing.JLabel;
 
 import objetos.Administrador;
 import objetos.Usuario;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+
+import visualizacao.Exibir;
+
+import banco.Banco;
 
 public class EditarSessaoFrame extends JFrame {
 
 	private static Usuario usuarioLogado;
+	private JTextField precoField;
+	private JTextField horaField;
+	private JTextField minutoField;
+	private JTextField diaField;
+	private JTextField mesField;
+	private JTextField anoField;
+	private JComboBox comboBoxFilme;
+	private JLabel lblNumeroDaSala;
+	private JComboBox comboSala;
+	private JComboBox comboSessao;
+	private JLabel disponibilidade;
+	private JButton buttonLimpar;
+	private JButton buttonAdd;
 
 	public EditarSessaoFrame(final Usuario usrLogado) {
 		usuarioLogado = usrLogado;
@@ -26,7 +45,7 @@ public class EditarSessaoFrame extends JFrame {
 		
 		//voltar
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(387, 259, 89, 23);
+		btnVoltar.setBounds(383, 286, 89, 23);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminFrame usfr = new AdminFrame(admin);
@@ -36,6 +55,131 @@ public class EditarSessaoFrame extends JFrame {
 		});
 		getContentPane().setLayout(null);
 		getContentPane().add(btnVoltar);
+		
+		JLabel lblEscolhaUmaSesso = new JLabel("Escolha uma sessão");
+		lblEscolhaUmaSesso.setBounds(34, 44, 143, 15);
+		getContentPane().add(lblEscolhaUmaSesso);
+		
+		comboSessao = new JComboBox();
+		comboSessao.setBounds(236, 39, 143, 24);
+		getContentPane().add(comboSessao);
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.setBounds(408, 39, 64, 25);
+		getContentPane().add(btnOk);
+		
+		JLabel lblNovoFilme = new JLabel("Novo filme");
+		lblNovoFilme.setBounds(33, 93, 81, 23);
+		getContentPane().add(lblNovoFilme);
+		
+		
+		String[][] dadosFilmes = Exibir.exibirFilmesTabela(Banco.getFilmes());
+		String[] optionsFilmes = new String[dadosFilmes.length + 1];
+
+		optionsFilmes[0] = "";
+		if (Banco.getFilmes() != null) {
+			for (int i = 0; i < dadosFilmes.length; i++) {
+				optionsFilmes[i + 1] = dadosFilmes[i][0];
+			}
+			comboBoxFilme = new JComboBox(optionsFilmes);
+			comboBoxFilme.setSelectedIndex(0);
+		} else {
+			comboBoxFilme = new JComboBox();
+		}
+		comboBoxFilme.setBounds(133, 92, 81, 24);
+		getContentPane().add(comboBoxFilme);
+		
+		lblNumeroDaSala = new JLabel("Numero da Sala");
+		lblNumeroDaSala.setBounds(246, 93, 133, 23);
+		getContentPane().add(lblNumeroDaSala);
+		
+		
+		
+		String[][] dadosSalas = Exibir.exibirSalasTabela(Banco.getSalas());
+		String[] optionsSala = new String[dadosSalas.length + 1];
+
+		optionsSala[0] = "";
+		if (Banco.getSalas() != null) {
+			for (int i = 0; i < dadosSalas.length; i++) {
+				optionsSala[i + 1] = dadosSalas[i][1];
+			}
+			comboSala = new JComboBox(optionsSala);
+			comboSala.setSelectedIndex(0);
+		} else {
+			comboSala = new JComboBox();
+		}
+		comboSala.setBounds(409, 92, 67, 24);
+		getContentPane().add(comboSala);
+		
+		JLabel lblDisponibilidade = new JLabel("Disponibilidade de lugares");
+		lblDisponibilidade.setBounds(34, 144, 209, 23);
+		getContentPane().add(lblDisponibilidade);
+		
+		disponibilidade = new JLabel("");
+		disponibilidade.setBounds(291, 148, 70, 15);
+		getContentPane().add(disponibilidade);
+		
+		JLabel lblPreo = new JLabel("Preço");
+		lblPreo.setBounds(34, 169, 53, 15);
+		getContentPane().add(lblPreo);
+		
+		precoField = new JTextField();
+		precoField.setBounds(105, 167, 64, 19);
+		getContentPane().add(precoField);
+		precoField.setColumns(10);
+		
+		JLabel label = new JLabel("Hora (24 horas)");
+		label.setBounds(34, 196, 119, 15);
+		getContentPane().add(label);
+		
+		horaField = new JTextField();
+		horaField.setColumns(10);
+		horaField.setBounds(34, 212, 31, 19);
+		getContentPane().add(horaField);
+		
+		JLabel label_1 = new JLabel(":");
+		label_1.setBounds(65, 214, 14, 15);
+		getContentPane().add(label_1);
+		
+		minutoField = new JTextField();
+		minutoField.setColumns(10);
+		minutoField.setBounds(75, 212, 39, 19);
+		getContentPane().add(minutoField);
+		
+		JLabel label_2 = new JLabel("Data");
+		label_2.setBounds(236, 196, 70, 15);
+		getContentPane().add(label_2);
+		
+		diaField = new JTextField();
+		diaField.setColumns(10);
+		diaField.setBounds(236, 212, 22, 19);
+		getContentPane().add(diaField);
+		
+		JLabel label_3 = new JLabel("/");
+		label_3.setBounds(260, 214, 14, 15);
+		getContentPane().add(label_3);
+		
+		JLabel label_4 = new JLabel("/");
+		label_4.setBounds(291, 214, 14, 15);
+		getContentPane().add(label_4);
+		
+		mesField = new JTextField();
+		mesField.setColumns(10);
+		mesField.setBounds(270, 212, 22, 19);
+		getContentPane().add(mesField);
+		
+		anoField = new JTextField();
+		anoField.setColumns(10);
+		anoField.setBounds(299, 212, 51, 19);
+		getContentPane().add(anoField);
+		
+		buttonLimpar = new JButton("Limpar Campos");
+		buttonLimpar.setBounds(216, 285, 134, 25);
+		getContentPane().add(buttonLimpar);
+		
+		buttonAdd = new JButton("Adicionar");
+		buttonAdd.setBounds(60, 285, 117, 25);
+		getContentPane().add(buttonAdd);
 
 	}
 
@@ -62,5 +206,4 @@ public class EditarSessaoFrame extends JFrame {
 		this.setLocation(x, y);
 		this.setVisible(true);
 	}
-
 }

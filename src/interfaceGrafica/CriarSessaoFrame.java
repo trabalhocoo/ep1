@@ -204,7 +204,6 @@ public class CriarSessaoFrame extends JFrame {
 		btnAdicionar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO TERMINAR ISSO
 				String campoNomeFilme = (String) comboBoxFilme
 						.getSelectedItem();
 				String campoAno = anoField.getText();
