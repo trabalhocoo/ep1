@@ -1,20 +1,27 @@
 package interfaceGrafica;
-
+import javax.swing.*;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TreeSet;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import banco.Banco;
 
 import objetos.Administrador;
+import objetos.Sessao;
 import objetos.Usuario;
 
 public class RemoverSessaoFrame extends JFrame {
 	private static Usuario usuarioLogado;
+	private JTextField codSessao;
 	
-	public RemoverSessaoFrame() {
+	public RemoverSessaoFrame(Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
@@ -23,9 +30,42 @@ public class RemoverSessaoFrame extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.white); //mudar a cor
 		
-		JLabel lblDigiteONumero = new JLabel("Escolha o filme que deseja remover:");
-		lblDigiteONumero.setBounds(22, 38, 483, 14);
+		final JLabel lblErro = new JLabel("");// vazio por enquanto
+		lblErro.setBounds(33, 60, 298, 14);
+		getContentPane().add(lblErro);
+		
+		JLabel lblDigiteONumero = new JLabel("Escolha o numero sessao que deseja remover:");
+		lblDigiteONumero.setBounds(22, 38, 253, 14);
 		getContentPane().add(lblDigiteONumero);
+		
+		//campo para preencher o numero da sessao
+		codSessao = new JTextField();
+		codSessao.setBounds(274, 35, 86, 20);
+		getContentPane().add(codSessao);
+		codSessao.setColumns(10);
+		
+		JButton btnOK = new JButton("OK");
+		btnOK.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int registro = Integer.parseInt(codSessao.getText());
+				lblErro.setOpaque(false);
+				lblErro.setForeground(Color.red);
+				if(codSessao.getText().equals("")){
+					lblErro.setText("Por favor informar a sessao que deseja remover.");
+				}
+				else {
+					int numeroDaSessao = Integer.parseInt(codSessao.getText());
+					boolean removeu = admin.removerSessao(admin,numeroDaSessao);
+					if (removeu){
+						lblErro.setText("Sessao Removida com sucesso!");
+					}
+					else
+						lblErro.setText("Sessao não encontrada!");
+				}
+			}
+		});
+		btnOK.setBounds(416, 34, 89, 23);
+		getContentPane().add(btnOK);
 		
 		//voltar
 		JButton btnVoltar = new JButton("Voltar");
@@ -38,6 +78,9 @@ public class RemoverSessaoFrame extends JFrame {
 		});
 		btnVoltar.setBounds(387, 259, 89, 23);
 		getContentPane().add(btnVoltar);
+		
+		
+
 		
 		
 	}
