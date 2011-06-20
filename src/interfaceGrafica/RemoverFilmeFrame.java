@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 import javax.swing.*;
 
@@ -10,6 +11,7 @@ import banco.Banco;
 
 import objetos.Administrador;
 import objetos.Filme;
+import objetos.Sessao;
 import objetos.Usuario;
 
 public class RemoverFilmeFrame extends JFrame{
@@ -65,10 +67,22 @@ public class RemoverFilmeFrame extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				lblNewLabel_2.setOpaque(false);
 				lblNewLabel_2.setForeground(Color.red);
-				if (listaDeFilmes.getSelectedIndex()==0){
-					lblNewLabel_2.setText("Por favor, escolha o filme que deseja remover.");
-			} else {	
+				TreeSet<Sessao> sessoesDoBanco = Banco.getSessoes();
+				boolean podeRemover = true;
 				String nomeDoFilmeASerRemovido = (String)listaDeFilmes.getSelectedItem();
+				for (Sessao sessao: sessoesDoBanco){
+					if (sessao.getFilme().equals(nomeDoFilmeASerRemovido) && sessao.getLugaresDisponiveis()!=sessao.getSala().getCapacidade()){
+						podeRemover = false;
+						break;
+					}
+				}
+				
+				if(podeRemover == false){
+					lblNewLabel_2.setText("Filme não pode ser removida pois está sendo usada em uma sessao já vendida.");
+				}				
+				else if (listaDeFilmes.getSelectedIndex()==0){
+					lblNewLabel_2.setText("Por favor, escolha o filme que deseja remover.");
+			} else {
 				boolean removeu = admin.removerFilme(nomeDoFilmeASerRemovido);
 				
 				if (removeu){

@@ -4,12 +4,14 @@ import javax.swing.*;
 import banco.Banco;
 
 import objetos.Administrador;
+import objetos.Sessao;
 import objetos.Usuario;
 
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.TreeSet;
 
 public class RemoverSalaFrame extends JFrame{
 	private static Usuario usuarioLogado;
@@ -41,14 +43,27 @@ public class RemoverSalaFrame extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int registro = Integer.parseInt(codSala.getText());
-				boolean removeu = admin.removerSala(registro);
-				lblNewLabel_2.setOpaque(false);
-				lblNewLabel_2.setForeground(Color.red);
-				if (removeu){
-					lblNewLabel_2.setText("Sala removida com sucesso.");
+				boolean podeRemover = true;
+				TreeSet<Sessao> sessoesDoBanco = Banco.getSessoes();
+				for (Sessao sessao: sessoesDoBanco){
+					if (sessao.getSala().getNumero() == registro && sessao.getLugaresDisponiveis()!=sessao.getSala().getCapacidade()){
+						podeRemover = false;
+						break;
+					}
 				}
-				else
-					lblNewLabel_2.setText("Sala nao encontrada.");
+				if(podeRemover == false){
+					lblNewLabel_2.setText("Sala não pode ser removida pois está sendo usada em uma sessao já vendida.");
+				}
+				else {
+					boolean removeu = admin.removerSala(registro);
+					lblNewLabel_2.setOpaque(false);
+					lblNewLabel_2.setForeground(Color.red);
+					if (removeu){
+						lblNewLabel_2.setText("Sala removida com sucesso.");
+					}
+					else
+						lblNewLabel_2.setText("Sala nao encontrada.");
+				}
 			}
 		});
 		btnNewButton.setBounds(357, 81, 58, 23);

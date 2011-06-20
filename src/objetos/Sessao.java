@@ -3,6 +3,7 @@ package objetos;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TreeSet;
 
 public class Sessao implements Serializable, Comparable<Sessao> {
 	/**
