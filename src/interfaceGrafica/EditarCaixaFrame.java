@@ -49,7 +49,7 @@ public class EditarCaixaFrame extends JFrame{
 		getContentPane().add(numeroCaixa);
 		
 		final JLabel lblAviso = new JLabel("");// vazio por enquanto
-		lblAviso.setBounds(23, 50, 433, 14);
+		lblAviso.setBounds(10, 50, 508, 14);
 		getContentPane().add(lblAviso);
 		
 		JButton button = new JButton("OK");
@@ -106,6 +106,7 @@ public class EditarCaixaFrame extends JFrame{
 				}
 				else {
 					ArrayList<Object> dadosCaixa = new ArrayList<Object>();
+					dadosCaixa.add(temp1);
 					dadosCaixa.add(Integer.parseInt(textNumeroDoCaixa.getText()));
 					dadosCaixa.add(Double.parseDouble(textSaldo.getText()));
 					boolean alterou = admin.alterarCaixa(dadosCaixa);

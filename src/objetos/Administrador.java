@@ -303,9 +303,10 @@ public class Administrador extends Decorator implements Serializable {
 	}
 
 	public boolean alterarCaixa(ArrayList dadosCaixas) {
-		int numero = (Integer) dadosCaixas.get(0);
-		double dinheiro = (Double) dadosCaixas.get(1);
-		boolean alterou = Banco.modificarCaixa(numero, dinheiro);
+		int numeroAntigo = (Integer) dadosCaixas.get(0);
+		int numero = (Integer) dadosCaixas.get(1);
+		double dinheiro = (Double) dadosCaixas.get(2);
+		boolean alterou = Banco.modificarCaixa(numeroAntigo, numero, dinheiro);
 		return alterou;
 
 	}

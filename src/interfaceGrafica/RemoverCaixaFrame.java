@@ -63,7 +63,7 @@ public class RemoverCaixaFrame extends JFrame {
 							lblNewLabel_2.setText("Caixa removido com sucesso.");
 							}
 						else
-							lblNewLabel_2.setText("Não foi possível remover o caixa. Veja se ele ainda está em uso ou se ainda tem dinheiro.");
+							lblNewLabel_2.setText("Não foi possível remover o caixa. Verifique está em uso ou se tem saldo.");
 					}
 				}
 			}
