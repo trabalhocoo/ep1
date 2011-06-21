@@ -179,7 +179,7 @@ public class Controlador{
 				break;
 			case 4:
 				//TODO Exibir filmes em usuario
-				usuarioLogado.venderIngresso();
+				//usuarioLogado.venderIngresso();
 				break;
 			case 5:
 				//Deslogar

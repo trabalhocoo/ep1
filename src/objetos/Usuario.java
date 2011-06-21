@@ -127,8 +127,7 @@ public abstract class Usuario implements Serializable, Comparable<Usuario> {
 		Controlador.setLogado(false);
 	}
 
-	public void venderIngresso() {
-		ArrayList dadosSessaoASerVendida = InterfaceCinema.venderIngresso();
+	public void venderIngresso(ArrayList dadosSessaoASerVendida) {
 		Calendar inicio = (Calendar) dadosSessaoASerVendida.get(0);
 		int numSala = (Integer) dadosSessaoASerVendida.get(1);
 		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida.get(2);
