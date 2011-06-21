@@ -454,13 +454,13 @@ public class Banco {
 		return salas;
 	}
 
-	public static boolean modificarCaixa(int numero, double dinheiro) {
+	public static boolean modificarCaixa(int numeroAntigo, int numero, double dinheiro) {
 		Iterator<Caixa> it = caixas.iterator();
 		Caixa caixaEncontrado = null;
 		// essa contrucao eh usada para nao dar currentModificationException
 		while (it.hasNext()) {
 			caixaEncontrado = it.next();
-			if (caixaEncontrado.equals(caixaEncontrado))
+			if (caixaEncontrado.equals(obterCaixa(numeroAntigo)))
 				break;
 		}
 		if (caixaEncontrado.equals(caixaEncontrado)) {
