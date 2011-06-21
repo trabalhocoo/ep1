@@ -98,7 +98,10 @@ public class EditarCaixaFrame extends JFrame{
 				Caixa caixaAtual = Banco.obterCaixa(temp1);
 				int temp2 = Integer.parseInt(textNumeroDoCaixa.getText());
 				Caixa pretendenteDeCaixa = Banco.obterCaixa(temp2);
-				if (numeroCaixa.getText().equals("") || textNumeroDoCaixa.getText().equals("") || textSaldo.getText().equals("")){
+				if (Double.parseDouble(textSaldo.getText()) <0){
+					lblAviso.setText("Por favor, forneca saldo nao negativo.");
+				}
+				else if (numeroCaixa.getText().equals("") || textNumeroDoCaixa.getText().equals("") || textSaldo.getText().equals("")){
 					lblAviso.setText("Por favor, digite todos os campos.");
 				}
 				else if (pretendenteDeCaixa != null && !(numeroCaixa.getText().equals(textNumeroDoCaixa.getText()))){
