@@ -21,7 +21,7 @@ import objetos.Caixa;
 public class RegistroOutros extends Registrador {
 	
 	public static void registrarSessao(String texto, Sessao sessao, Usuario usuario){
-		String informacoesDaSessao = "Sobre a Sessao: Filme: " + sessao.getFilme().getNome() + "Sala: " + sessao.getSala().getNumero();// teoicamente deveria ter tb o horario
+		String informacoesDaSessao = "Criou a sessão:  Nº da Sessao : "+sessao.getNumero() + " Filme: "  + sessao.getFilme().getNome() + " Sala: " + sessao.getSala().getNumero();// teoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
@@ -39,7 +39,7 @@ public class RegistroOutros extends Registrador {
 	   }
 	
 	public static void registrarSala(String texto, Sala sala, Usuario usuario){
-		String informacoesDaSala = "Sala: " + sala.getNumero() + " Capacidade: " + sala.getCapacidade();// teoicamente deveria ter tb o horario
+		String informacoesDaSala = "Criou a Sala: " + sala.getNumero() + " Capacidade: " + sala.getCapacidade();// teoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
@@ -57,7 +57,7 @@ public class RegistroOutros extends Registrador {
 	   }
 	
 	public static void registrarFilme(String texto, Filme filme, Usuario usuario){
-		String informacoesDoFilme = "Filme: " + filme.getNome() + " Genero: " + filme.getGenero();// teoicamente deveria ter tb o horario
+		String informacoesDoFilme = "Criou o Filme: " + filme.getNome() + " Genero: " + filme.getGenero();// teoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
@@ -75,7 +75,7 @@ public class RegistroOutros extends Registrador {
 	   }
 	
 	public static void registrarUsuario(String texto, Usuario usuario, Usuario usuarioNovo){
-		String informacoesDoNovoUsuario = "Novo usuario: " + usuarioNovo.getNome() + " Registro: " + usuarioNovo.getRegistro();// teoicamente deveria ter tb o horario
+		String informacoesDoNovoUsuario = "Criou o usuario: " + usuarioNovo.getNome() + " Registro: " + usuarioNovo.getRegistro();// teoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
@@ -93,7 +93,7 @@ public class RegistroOutros extends Registrador {
 	   }
 	
 	public static void registrarCaixa(String texto, Usuario usuario, Caixa caixa){
-		String informacoesDoCaixa = "Caixa: " + caixa.getNumeroDaCaixa();// teeoicamente deveria ter tb o horario
+		String informacoesDoCaixa = "Criou o caixa: " + caixa.getNumeroDaCaixa();// teeoicamente deveria ter tb o horario
 		String conteudo = texto;
 		String informacoesDeUsuarioEHora  = "Nome do usuario :" + usuario.getNome();
 	      FileWriter fw; 
