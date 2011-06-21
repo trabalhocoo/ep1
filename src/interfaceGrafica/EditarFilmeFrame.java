@@ -37,7 +37,7 @@ public class EditarFilmeFrame extends JFrame{
 		String[] options = {"", "Admin", "Usuario"};
 		
 		lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(23, 30, 298, 14);
+		lblNewLabel_2.setBounds(23, 30, 463, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnLimparCampos = new JButton("Limpar campos");
@@ -73,12 +73,15 @@ public class EditarFilmeFrame extends JFrame{
 		btnAdicionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean alterou = false;
-				if(nomeDoFilme.getText().equals("")|| comboBoxFaixa.getSelectedIndex()==0 || duracao.getText().equals("")||diretor.getText().equals("") || sinopse.getText().equals("") || genero.getText().equals("") || dataDaEstreia.getText().equals("")){
+				if(comboBoxFilmes.getSelectedIndex() == 0){
+					lblNewLabel_2.setOpaque(false);
+					lblNewLabel_2.setForeground(Color.red);
+					lblNewLabel_2.setText("Por favor, escolha primeiro um filme para editar e clique em ok.");
+				}else if(nomeDoFilme.getText().equals("")|| comboBoxFaixa.getSelectedIndex()==0 || duracao.getText().equals("")||diretor.getText().equals("") || sinopse.getText().equals("") || genero.getText().equals("") || dataDaEstreia.getText().equals("")){
 					lblNewLabel_2.setOpaque(false);
 					lblNewLabel_2.setForeground(Color.red);
 					lblNewLabel_2.setText("Por favor, digite todos os campos.");
-				}
-				else {
+				}	else {
 					lblNewLabel_2.setText("");
 					String antigoNome = "";
 					try{
@@ -140,7 +143,7 @@ public class EditarFilmeFrame extends JFrame{
 						
 					}
 					else {
-						lblNewLabel_2.setText("Ocorreu um problema, tente novamente.");
+						lblNewLabel_2.setText("Ocorreu um problema, reverifique as informações dadas e tente novamente.");
 						nomeDoFilme.setText("");
 						duracao.setText("");
 						genero.setText("");
