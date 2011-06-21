@@ -173,8 +173,8 @@ public class Banco {
 	
 	}
 
-	public static void addSala(Sala sala) {
-		salas.add(sala);
+	public static boolean addSala(Sala sala) {
+		return salas.add(sala);
 	}
 
 	public static boolean modificarSala(Sala sala, int capacidade, int numero,

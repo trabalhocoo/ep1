@@ -100,15 +100,26 @@ public class CriarSalaFrame extends JFrame {
 								.getText());
 						int numeroSala = Integer.parseInt(textnumeroDaSala
 								.getText());
-						boolean tres_d = chckbxSalad.isSelected();
-						ArrayList<Object> sala = new ArrayList<Object>();
-						sala.add(capacidade);
-						sala.add(numeroSala);
-						sala.add(tres_d);
-						admin.adicionarSala(sala);
-						avisoLabel.setText("Sala criada com sucesso.");
+						if (capacidade < 0 || numeroSala < 0) {
+							avisoLabel
+									.setText("Digite apenas números maiores que zero.");
+						} else {
+							boolean tres_d = chckbxSalad.isSelected();
+							ArrayList<Object> sala = new ArrayList<Object>();
+							sala.add(capacidade);
+							sala.add(numeroSala);
+							sala.add(tres_d);
+							boolean adicionou = admin.adicionarSala(sala);
+							if (adicionou) {
+								avisoLabel.setText("Sala criada com sucesso.");
+							} else {
+								avisoLabel
+										.setText("Não foi possível criar a sala. Dê outro número a ela.");
+							}
+						}
 					} catch (NumberFormatException e) {
-						avisoLabel.setText("Por favor, digite apenas caracteres numéricos.");
+						avisoLabel
+								.setText("Por favor, digite apenas caracteres numéricos.");
 					} catch (Exception e) {
 						System.out.println(e);
 					}

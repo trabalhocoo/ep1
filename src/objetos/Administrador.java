@@ -129,13 +129,13 @@ public class Administrador extends Decorator implements Serializable {
 
 	}
 
-	public void adicionarSala(ArrayList sala) {
+	public boolean adicionarSala(ArrayList sala) {
 		// int capacidade, int numero, boolean is3d
 		int capacidade = (Integer) sala.get(0);
 		int numero = (Integer) sala.get(1);
 		boolean eh3d = (Boolean) sala.get(2);
 		Sala salaNova = new Sala(capacidade, numero, eh3d);
-		Banco.addSala(salaNova);
+		return Banco.addSala(salaNova);
 		// System.out.println("Sala adicionada com sucesso.\n");
 		// RegistroOutros.registrarSala(" Adicionou sala \n", salaNova,
 		// usuario);
