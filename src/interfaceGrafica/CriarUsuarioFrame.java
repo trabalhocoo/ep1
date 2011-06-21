@@ -24,11 +24,7 @@ public class CriarUsuarioFrame extends JFrame {
 		this.setLocation(200,200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		getContentPane().setBackground(Color.white); //mudar a cor
-		
-		JLabel lblCriarUsurio = new JLabel("1- CRIAR USUARIO");
-		lblCriarUsurio.setBounds(23, 21, 134, 20);
-		getContentPane().add(lblCriarUsurio);
+		getContentPane().setBackground(Color.white);
 		
 		JLabel lblNome = new JLabel("Nome do usuario:");
 		lblNome.setBounds(23, 88, 110, 14);

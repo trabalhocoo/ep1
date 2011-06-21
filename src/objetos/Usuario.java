@@ -21,7 +21,6 @@ public abstract class Usuario implements Serializable, Comparable<Usuario> {
 	protected String login;
 	protected String senha;
 	protected static int numeroDeUsuarios = 0;
-	private Caixa CaixaDoMomento = null;
 
 	public static int getNumeroDeUsuarios() {
 		return numeroDeUsuarios;
@@ -127,50 +126,24 @@ public abstract class Usuario implements Serializable, Comparable<Usuario> {
 		Controlador.setLogado(false);
 	}
 
-	public void venderIngresso(ArrayList dadosSessaoASerVendida) {
-		Calendar inicio = (Calendar) dadosSessaoASerVendida.get(0);
-		int numSala = (Integer) dadosSessaoASerVendida.get(1);
-		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida.get(2);
-		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
+	public boolean venderIngresso(ArrayList dadosSessaoASerVendida, Caixa caixa) {
+		Sessao sessaoAAlterar = Banco.obterSessao((Integer) dadosSessaoASerVendida.get(0));
+		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida.get(1);
 		int quantidadeFinal = 0;
 		boolean haSecao = true;
 		if (sessaoAAlterar == null)
 			haSecao = false;
 		else
 			quantidadeFinal = sessaoAAlterar.getLugaresDisponiveis()- quantidadeDeIngressosASerVendida;
-		if (haSecao == true && quantidadeFinal >= 0) {
+		if (haSecao == true && quantidadeFinal >= 0 && caixa != null) {
 			sessaoAAlterar.setLugaresDisponiveis(quantidadeFinal);
 			double dinheiro = quantidadeDeIngressosASerVendida * sessaoAAlterar.getPreco();
-			if (CaixaDoMomento == null) {
-				TreeSet<Caixa> meusCaixas = Banco.getCaixas();
-				Iterator<Caixa> itCaixas = meusCaixas.iterator();
-				Caixa caixa2;
-				while (itCaixas.hasNext()) {
-					caixa2 = itCaixas.next();
-					if (caixa2.getEstaEmUso() == false) {
-						CaixaDoMomento = caixa2;
-						CaixaDoMomento.setEstaEmUso(true);
-						break;
-					}
-				}
-			}
-
-			if (CaixaDoMomento != null) {
-				CaixaDoMomento.setDinheiro(CaixaDoMomento.getDinheiro()	+ dinheiro);
-				// TODO - Interface gráfica tá faltando!
-				System.out.println("Ingressos vendidos com sucesso! O caixa "
-						+ CaixaDoMomento.getNumCaixa() + " agora tem R$"
-						+ CaixaDoMomento.getDinheiro() + "!");
-			} else
-				System.out.println("Não há caixas disponíveis!!!");
-
-		} else if (haSecao == true && quantidadeFinal < 0) {
-			System.out.println("Forneca um numero menor que " + (-1*quantidadeFinal));
+			caixa.setDinheiro(caixa.getDinheiro() + dinheiro);
+			return true;
 		} else {
-			System.out.println("Forneça uma sessão válida!");
+			return false;
 		}
-
-		Calendar horaInicio = Calendar.getInstance();
+		//Calendar horaInicio = Calendar.getInstance();
 		// Filme filme, int year, int month, int date, int hourOfDay, int
 		// minute, Sala sala, double preco, int disp
 
