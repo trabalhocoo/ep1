@@ -46,7 +46,7 @@ public class EditarSessaoFrame extends JFrame {
 
 		// voltar
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(383, 286, 89, 23);
+		btnVoltar.setBounds(384, 286, 133, 23);
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				AdminFrame usfr = new AdminFrame(admin);
@@ -58,8 +58,8 @@ public class EditarSessaoFrame extends JFrame {
 		getContentPane().add(btnVoltar);
 
 		JLabel lblEscolhaUmaSesso = new JLabel(
-				"Digite o n\u00FAmero de uma sess\u00E3o");
-		lblEscolhaUmaSesso.setBounds(34, 44, 143, 15);
+				"Digite o n\u00FAmero de uma sess\u00E3o que deseja alterar:");
+		lblEscolhaUmaSesso.setBounds(34, 44, 316, 15);
 		getContentPane().add(lblEscolhaUmaSesso);
 
 		final JLabel lblAviso = new JLabel("");// vazio por enquanto
@@ -67,7 +67,7 @@ public class EditarSessaoFrame extends JFrame {
 		getContentPane().add(lblAviso);
 
 		sessaoField = new JTextField();
-		sessaoField.setBounds(236, 39, 143, 24);
+		sessaoField.setBounds(332, 41, 81, 20);
 		getContentPane().add(sessaoField);
 
 		String[][] dadosFilmes = Exibir.exibirFilmesTabela(Banco.getFilmes());
@@ -83,7 +83,7 @@ public class EditarSessaoFrame extends JFrame {
 		} else {
 			comboBoxFilme = new JComboBox();
 		}
-		comboBoxFilme.setBounds(133, 92, 81, 24);
+		comboBoxFilme.setBounds(113, 82, 81, 24);
 		getContentPane().add(comboBoxFilme);
 
 		final ActionListener actionLimpar = new ActionListener() {
@@ -115,7 +115,7 @@ public class EditarSessaoFrame extends JFrame {
 		} else {
 			comboSala = new JComboBox();
 		}
-		comboSala.setBounds(409, 92, 67, 24);
+		comboSala.setBounds(370, 82, 67, 24);
 		getContentPane().add(comboSala);
 
 		JButton btnOk = new JButton("OK");
@@ -179,36 +179,36 @@ public class EditarSessaoFrame extends JFrame {
 				}
 			}
 		});
-		btnOk.setBounds(408, 39, 64, 25);
+		btnOk.setBounds(436, 39, 64, 25);
 		getContentPane().add(btnOk);
 
-		JLabel lblNovoFilme = new JLabel("Novo filme");
-		lblNovoFilme.setBounds(33, 93, 81, 23);
+		JLabel lblNovoFilme = new JLabel("Novo filme:");
+		lblNovoFilme.setBounds(34, 81, 81, 23);
 		getContentPane().add(lblNovoFilme);
 
-		lblNumeroDaSala = new JLabel("Numero da Sala");
-		lblNumeroDaSala.setBounds(246, 93, 133, 23);
+		lblNumeroDaSala = new JLabel("Numero da Sala:");
+		lblNumeroDaSala.setBounds(246, 81, 133, 23);
 		getContentPane().add(lblNumeroDaSala);
 
-		JLabel lblDisponibilidade = new JLabel("Disponibilidade de lugares");
-		lblDisponibilidade.setBounds(34, 144, 143, 23);
+		JLabel lblDisponibilidade = new JLabel("Disponibilidade de lugares:");
+		lblDisponibilidade.setBounds(34, 115, 168, 23);
 		getContentPane().add(lblDisponibilidade);
 
 		dispField = new JTextField("");
-		dispField.setBounds(172, 145, 70, 19);
+		dispField.setBounds(204, 115, 70, 19);
 		getContentPane().add(dispField);
 
-		JLabel lblPreo = new JLabel("Pre\u00E7o");
-		lblPreo.setBounds(34, 169, 53, 15);
+		JLabel lblPreo = new JLabel("Pre\u00E7o:");
+		lblPreo.setBounds(34, 152, 53, 15);
 		getContentPane().add(lblPreo);
 
 		precoField = new JTextField();
-		precoField.setBounds(105, 167, 64, 19);
+		precoField.setBounds(113, 149, 64, 19);
 		getContentPane().add(precoField);
 		precoField.setColumns(10);
 
 		JLabel label = new JLabel("Hora (24 horas)");
-		label.setBounds(34, 196, 119, 15);
+		label.setBounds(34, 186, 119, 15);
 		getContentPane().add(label);
 
 		horaField = new JTextField();
@@ -217,12 +217,12 @@ public class EditarSessaoFrame extends JFrame {
 		getContentPane().add(horaField);
 
 		JLabel label_1 = new JLabel(":");
-		label_1.setBounds(65, 214, 14, 15);
+		label_1.setBounds(73, 215, 14, 15);
 		getContentPane().add(label_1);
 
 		minutoField = new JTextField();
 		minutoField.setColumns(10);
-		minutoField.setBounds(75, 212, 39, 19);
+		minutoField.setBounds(83, 212, 39, 19);
 		getContentPane().add(minutoField);
 
 		JLabel label_2 = new JLabel("Data");
@@ -332,7 +332,7 @@ public class EditarSessaoFrame extends JFrame {
 				}
 			}
 		});
-		buttonAdd.setBounds(60, 285, 117, 25);
+		buttonAdd.setBounds(34, 285, 143, 25);
 		getContentPane().add(buttonAdd);
 	}
 
