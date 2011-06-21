@@ -1,6 +1,7 @@
 package interfaceGrafica;
 
 import javax.swing.JFrame;
+import java.text.DateFormatSymbols; 
 
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
@@ -22,14 +23,14 @@ import java.util.TreeSet;
 import javax.swing.JComboBox;
 
 public class VenderIngressoFrame extends JFrame{
-	private JTextField txtDia;
-	private JTextField txtMes;
-	private JTextField txtAno;
-	private JTextField txtFilme;
-	private JTextField txtHorario;
-	private JTextField txtSala;
+	private JLabel txtDia;
+	private JLabel txtMes;
+	private JLabel txtAno;
+	private JLabel txtFilme;
+	private JLabel txtHorario;
+	private JLabel txtSala;
 	private JTextField txtQuantidade;
-	private JTextField txtPoltronas;
+	private JLabel txtPoltronas;
 	private Usuario usuarioLogado;
 	private Caixa caixa;
 	private JTextField textNumeroDaSessao;
@@ -50,22 +51,22 @@ public class VenderIngressoFrame extends JFrame{
 		lblDigiteONmero.setBounds(33, 43, 277, 14);
 		getContentPane().add(lblDigiteONmero);
 		
-		txtDia = new JTextField();
+		txtDia = new JLabel();
+		txtDia.setForeground(Color.BLUE);
 		txtDia.setBounds(70, 88, 18, 20);
 		getContentPane().add(txtDia);
-		txtDia.setColumns(10);
 		
-		txtMes = new JTextField();
-		txtMes.setBounds(98, 88, 18, 20);
+		txtMes = new JLabel();
+		txtMes.setForeground(Color.BLUE);
+		txtMes.setBounds(98, 88, 59, 20);
 		getContentPane().add(txtMes);
-		txtMes.setColumns(10);
 		
-		txtAno = new JTextField();
-		txtAno.setBounds(129, 88, 39, 20);
+		txtAno = new JLabel();
+		txtAno.setForeground(Color.BLUE);
+		txtAno.setBounds(167, 88, 39, 20);
 		getContentPane().add(txtAno);
-		txtAno.setColumns(10);
 		
-		JLabel lblAno = new JLabel("Data");
+		JLabel lblAno = new JLabel("Data:");
 		lblAno.setBounds(33, 91, 46, 14);
 		getContentPane().add(lblAno);
 		
@@ -74,7 +75,7 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(lblMs);
 		
 		JLabel lblDia = new JLabel("/");
-		lblDia.setBounds(119, 91, 18, 14);
+		lblDia.setBounds(159, 91, 18, 14);
 		getContentPane().add(lblDia);
 		
 		JLabel lblFilme = new JLabel("Filme:");
@@ -89,20 +90,20 @@ public class VenderIngressoFrame extends JFrame{
 		lblSala.setBounds(227, 91, 46, 14);
 		getContentPane().add(lblSala);
 		
-		txtFilme = new JTextField();
+		txtFilme = new JLabel();
+		txtFilme.setForeground(Color.BLUE);
 		txtFilme.setBounds(93, 116, 198, 20);
 		getContentPane().add(txtFilme);
-		txtFilme.setColumns(10);
 		
-		txtHorario = new JTextField();
+		txtHorario = new JLabel();
+		txtHorario.setForeground(Color.BLUE);
 		txtHorario.setBounds(93, 144, 198, 20);
 		getContentPane().add(txtHorario);
-		txtHorario.setColumns(10);
 		
-		txtSala = new JTextField();
+		txtSala = new JLabel();
+		txtSala.setForeground(Color.BLUE);
 		txtSala.setBounds(282, 88, 86, 20);
 		getContentPane().add(txtSala);
-		txtSala.setColumns(10);
 		
 		JLabel lblQuantosIngressosVo = new JLabel("Quantos ingressos v\u00E3o ser vendidos?");
 		lblQuantosIngressosVo.setBounds(33, 172, 240, 14);
@@ -117,10 +118,10 @@ public class VenderIngressoFrame extends JFrame{
 		lblQuantidadeDePoltronas.setBounds(33, 197, 240, 14);
 		getContentPane().add(lblQuantidadeDePoltronas);
 		
-		txtPoltronas = new JTextField();
-		txtPoltronas.setBounds(282, 200, 86, 20);
+		txtPoltronas = new JLabel();
+		txtPoltronas.setForeground(Color.BLUE);
+		txtPoltronas.setBounds(253, 197, 86, 20);
 		getContentPane().add(txtPoltronas);
-		txtPoltronas.setColumns(10);
 		
 		lblNewLabel_2 = new JLabel("");//vazio por enquanto
 		lblNewLabel_2.setBounds(33, 18, 298, 14);
@@ -135,17 +136,25 @@ public class VenderIngressoFrame extends JFrame{
 					txtSala.setText(temp.toString());
 					txtFilme.setText(sessao.getFilme().getNome());
 					Date data = (Date) sessao.getHorarioDeInicio().getTime();
+					//System.out.println (data);
 					@SuppressWarnings("deprecation")
 					Integer temp2 = data.getHours();
 					@SuppressWarnings("deprecation")
 					Integer temp3 = data.getMinutes();
 					txtHorario.setText(temp2.toString() + ":" + temp3.toString());
-					Integer temp4 = data.getDay();
+					@SuppressWarnings("deprecation")
+					Integer temp4 = data.getDate();
+					@SuppressWarnings("deprecation")
 					Integer temp5 = data.getMonth();
-					Integer temp6 = data.getYear();
+					@SuppressWarnings("deprecation")
+					Integer temp6 = data.getYear()+1900;
 					txtDia.setText(temp4.toString());
-					txtMes.setText(temp5.toString());
+					String mes = getMonth(temp5);
+					//System.out.println(temp4);
+					txtMes.setText(mes);
 					txtAno.setText(temp6.toString());
+					Integer quantidadeDeLugaresDisponiveis = sessao.getLugaresDisponiveis();
+					txtPoltronas.setText(quantidadeDeLugaresDisponiveis.toString());
 				}
 				else{
 					lblNewLabel_2.setOpaque(false);
@@ -224,4 +233,8 @@ public class VenderIngressoFrame extends JFrame{
 	public void hideIt(){
 		this.setVisible(false);
 	}
+	
+	public String getMonth(int month) {     
+		return new DateFormatSymbols().getMonths()[month-1]; 
+	} 
 }

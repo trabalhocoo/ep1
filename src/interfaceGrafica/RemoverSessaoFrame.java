@@ -55,12 +55,12 @@ public class RemoverSessaoFrame extends JFrame {
 				}
 				else {
 					int numeroDaSessao = Integer.parseInt(codSessao.getText());
-					boolean removeu = admin.removerSessao(admin,numeroDaSessao);
+					/*boolean removeu = admin.removerSessao(admin,numeroDaSessao);
 					if (removeu){
 						lblErro.setText("Sessao Removida com sucesso!");
 					}
 					else
-						lblErro.setText("Sessao não encontrada!");
+						lblErro.setText("Sessao não encontrada!");*/
 				}
 			}
 		});
