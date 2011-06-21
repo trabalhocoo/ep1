@@ -35,7 +35,7 @@ public class RemoverSessaoFrame extends JFrame {
 		lblErro.setBounds(22, 60, 464, 14);
 		getContentPane().add(lblErro);
 		
-		JLabel lblDigiteONumero = new JLabel("Escolha o numero sessao que deseja remover:");
+		JLabel lblDigiteONumero = new JLabel("Escolha o numero da sessao que deseja remover:");
 		lblDigiteONumero.setBounds(22, 38, 288, 14);
 		getContentPane().add(lblDigiteONumero);
 		
@@ -50,26 +50,29 @@ public class RemoverSessaoFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				lblErro.setOpaque(false);
 				lblErro.setForeground(Color.red);
+				System.out.println(codSessao.getText());
 				if(codSessao.getText().equals("")){
 					lblErro.setText("Por favor informar a sessao que deseja remover.");
 				}
 				else {
-					int registro = Integer.parseInt(codSessao.getText());
+					lblErro.setText("");
 					int numeroDaSessao = Integer.parseInt(codSessao.getText());
-					Sessao sessaoARemover = Banco.obterSessao(Integer.parseInt(codSessao.getText()));
-					if(sessaoARemover != null){
-						if (sessaoARemover.getVendeu()== true && sessaoARemover.getHorarioDeInicio().getTime().after(new Date())){
-							lblErro.setText("Sessao não pode ser removida pois já foi vendido ingresso.");
-						}
-						else {
-					boolean removeu = admin.removerSessao(admin,numeroDaSessao);
-					if (removeu){
-						lblErro.setText("Sessao removida com sucesso!");
+					Sessao sessaoARemover = Banco.obterSessao(numeroDaSessao);
+					if (sessaoARemover!= null){
+					if (sessaoARemover.getVendeu()== true && sessaoARemover.getHorarioDeInicio().getTime().after(new Date())){
+						lblErro.setText("Sessao não pode ser removida pois já foi vendido ingresso.");
+					}
+					else {
+						boolean removeu = admin.removerSessao(admin,numeroDaSessao);
+						if (removeu){
+						lblErro.setText("Sessao removida com sucesso.");
 					}
 					else
-						lblErro.setText("Sessao nao encontrada!");
-						}
+						lblErro.setText("Ocorreu um problema.Tente novamente.");
 					}
+					}
+					else
+						lblErro.setText("Sessao nao encontrada.");
 				}
 			}
 		});
