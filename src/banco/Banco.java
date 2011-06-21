@@ -136,10 +136,10 @@ public class Banco {
 		// essa contrucao eh usada para nao dar currentModificationException
 		while (it.hasNext()) {
 			sessaoEncontrada = it.next();
-			if (sessao.equals(sessaoEncontrada))
+			if (sessaoEncontrada.equals(sessao))
 				break;
 		}
-		if (sessao.equals(sessaoEncontrada)) {
+		if (sessaoEncontrada.equals(sessao)) {
 			sessaoEncontrada.setFilme(filme);
 			sessaoEncontrada.setHorarioDeInicio(horaInicio);
 			sessaoEncontrada.setSala(sala);

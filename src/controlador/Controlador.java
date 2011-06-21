@@ -123,10 +123,10 @@ public class Controlador{
 				//Criar sessao
 				//admin.adicionarSessao(usuarioLogado);
 				break;
-			case 14:
+			/*case 14:
 				//Editar sessao
 				admin.alterarSessao(usuarioLogado);
-				break;
+				break;*/
 			/*case 15:
 				//Remover sessao
 				admin.removerSessao(usuarioLogado);

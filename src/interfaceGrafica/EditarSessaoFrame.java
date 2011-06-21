@@ -3,6 +3,7 @@ package interfaceGrafica;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.JButton;
@@ -31,7 +32,7 @@ public class EditarSessaoFrame extends JFrame {
 	private JLabel lblNumeroDaSala;
 	private JComboBox comboSala;
 	private JTextField sessaoField;
-	private JLabel disponibilidade;
+	private JTextField dispField;
 	private JButton buttonLimpar;
 	private JButton buttonAdd;
 
@@ -56,7 +57,8 @@ public class EditarSessaoFrame extends JFrame {
 		getContentPane().setLayout(null);
 		getContentPane().add(btnVoltar);
 
-		JLabel lblEscolhaUmaSesso = new JLabel("Digite o nÃºmero de uma sessÃ£o");
+		JLabel lblEscolhaUmaSesso = new JLabel(
+				"Digite o n\u00FAmero de uma sess\u00E3o");
 		lblEscolhaUmaSesso.setBounds(34, 44, 143, 15);
 		getContentPane().add(lblEscolhaUmaSesso);
 
@@ -89,7 +91,7 @@ public class EditarSessaoFrame extends JFrame {
 				sessaoField.setText("");
 				comboBoxFilme.setSelectedIndex(0);
 				comboSala.setSelectedIndex(0);
-				disponibilidade.setText("");
+				dispField.setText("");
 				precoField.setText("");
 				horaField.setText("");
 				minutoField.setText("");
@@ -149,7 +151,7 @@ public class EditarSessaoFrame extends JFrame {
 
 						int aux = sessaoSelecionada.getSala().getCapacidade();
 						Integer capacidade = new Integer(aux);
-						disponibilidade.setText(capacidade.toString());
+						dispField.setText(capacidade.toString());
 
 						precoField.setText(new Double(sessaoSelecionada
 								.getPreco()).toString());
@@ -189,14 +191,14 @@ public class EditarSessaoFrame extends JFrame {
 		getContentPane().add(lblNumeroDaSala);
 
 		JLabel lblDisponibilidade = new JLabel("Disponibilidade de lugares");
-		lblDisponibilidade.setBounds(34, 144, 209, 23);
+		lblDisponibilidade.setBounds(34, 144, 143, 23);
 		getContentPane().add(lblDisponibilidade);
 
-		disponibilidade = new JLabel("");
-		disponibilidade.setBounds(291, 148, 70, 15);
-		getContentPane().add(disponibilidade);
+		dispField = new JTextField("");
+		dispField.setBounds(172, 145, 70, 19);
+		getContentPane().add(dispField);
 
-		JLabel lblPreo = new JLabel("PreÃ§o");
+		JLabel lblPreo = new JLabel("Pre\u00E7o");
 		lblPreo.setBounds(34, 169, 53, 15);
 		getContentPane().add(lblPreo);
 
@@ -255,7 +257,79 @@ public class EditarSessaoFrame extends JFrame {
 		buttonLimpar.setBounds(216, 285, 134, 25);
 		getContentPane().add(buttonLimpar);
 
-		buttonAdd = new JButton("Adicionar");
+		buttonAdd = new JButton("Salvar Alterações");
+		buttonAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Sessao sessaoSelecionada;
+				if (sessaoField.getText().equals("")) {
+					lblAviso.setText("Por favor, preencha o campo numero da Sessão.");
+				} else if (!sessaoField.getText().matches("^[0-9]")) {
+					lblAviso.setText("Por favor, digite uma entrada válida");
+					actionLimpar.actionPerformed(arg0);
+				} else {
+					lblAviso.setText("");
+					sessaoSelecionada = Banco.obterSessao(Integer
+							.parseInt(sessaoField.getText()));
+					if (sessaoSelecionada == null) {
+						lblAviso.setText("A sessão de numero "
+								+ sessaoField.getText() + " não existe");
+					} else {
+						String campoFilme = (String) comboBoxFilme
+								.getSelectedItem();
+						String campoSala = (String) comboSala.getSelectedItem();
+						String campoPreco = precoField.getText();
+						String campoHora = horaField.getText();
+						String campoMinuto = minutoField.getText();
+						String campoDia = diaField.getText();
+						String campoMes = mesField.getText();
+						String campoAno = anoField.getText();
+						String campoDisp = dispField.getText();
+
+						if ("".equals(campoFilme) || "".equals(campoSala)
+								|| "".equals(campoPreco)|| "".equals(campoHora)
+								|| "".equals(campoMinuto) || "".equals(campoDia)
+								|| "".equals(campoMes)|| "".equals(campoAno)) {
+							lblAviso.setText("Por favor, preencha todos os campos.");
+						}else{
+							int ano = Integer.parseInt(campoAno);
+							int mes = Integer.parseInt(campoMes);
+							int dia = Integer.parseInt(campoDia);
+							int hora = Integer.parseInt(campoHora);
+							int minuto = Integer.parseInt(campoMinuto);
+							
+							Calendar dataOriginal = Calendar.getInstance();
+							dataOriginal.set(ano, mes, dia, hora, minuto);
+							
+							String nome = campoFilme;
+							int numSala = Integer.parseInt(campoSala);
+							double preco = Double.parseDouble(campoPreco);
+							int disp = Integer.parseInt(campoDisp);
+							
+							ArrayList<Object> dadosDeSessao = new ArrayList<Object>();
+							dadosDeSessao.add(dataOriginal);
+							dadosDeSessao.add(nome);
+							dadosDeSessao.add(ano);
+							dadosDeSessao.add(mes);
+							dadosDeSessao.add(dia);
+							dadosDeSessao.add(hora);
+							dadosDeSessao.add(minuto);
+							dadosDeSessao.add(numSala);
+							dadosDeSessao.add(preco);
+							dadosDeSessao.add(disp);
+							
+							boolean funcionou = admin.alterarSessao(admin, dadosDeSessao);
+							if(funcionou){
+								lblAviso.setText("Sessao alterada com sucesso!");
+								actionLimpar.actionPerformed(arg0);
+							}else{
+								lblAviso.setText("Houve algum problema na alteração");
+							}
+						}
+
+					}
+				}
+			}
+		});
 		buttonAdd.setBounds(60, 285, 117, 25);
 		getContentPane().add(buttonAdd);
 	}
