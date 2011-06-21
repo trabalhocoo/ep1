@@ -42,35 +42,49 @@ public class RemoverCaixaFrame extends JFrame {
 		final JLabel lblNewLabel_2 = new JLabel("");// vazio por enquanto
 		lblNewLabel_2.setBounds(33, 60, 453, 14);
 		getContentPane().add(lblNewLabel_2);
-		
+
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lblNewLabel_2.setOpaque(false);
 				lblNewLabel_2.setForeground(Color.red);
-				if(codCaixa.getText().equals("")){
-					lblNewLabel_2.setText("Por favor informar a caixa que deseja remover.");
-				}
-				else {
-					int numeroDoCaixa = Integer.parseInt(codCaixa.getText());
-					Caixa caixa = Banco.obterCaixa(numeroDoCaixa);
-					if(caixa == null){
-						lblNewLabel_2.setText("Caixa nao encontrado");
-					}
-					else {
-						boolean removeu = admin.removerCaixa(numeroDoCaixa);//tem algo esquisito aki...(acho q esse metodo é gambiarra) Agora esta OK!!
-						if (removeu){
-							lblNewLabel_2.setText("Caixa removido com sucesso.");
+				if (codCaixa.getText().equals("")) {
+					lblNewLabel_2
+							.setText("Por favor informar a caixa que deseja remover.");
+				} else {
+					try {
+						int numeroDoCaixa = Integer.parseInt(codCaixa.getText());
+						if (numeroDoCaixa < 1) {
+							lblNewLabel_2
+									.setText("Digite apenas valores maiores que 0");
+						} else {
+							Caixa caixa = Banco.obterCaixa(numeroDoCaixa);
+							if (caixa == null) {
+								lblNewLabel_2.setText("Caixa nao encontrado");
+							} else {
+								boolean removeu = admin
+										.removerCaixa(numeroDoCaixa);
+								// tem algo esquisito aki...(acho q esse metodo
+								// é
+								// gambiarra) Agora esta OK!!
+								if (removeu) {
+									lblNewLabel_2
+											.setText("Caixa removido com sucesso.");
+								} else
+									lblNewLabel_2
+											.setText("Não foi possível remover o caixa. Verifique se está em uso ou se tem saldo.");
 							}
-						else
-							lblNewLabel_2.setText("Não foi possível remover o caixa. Verifique se está em uso ou se tem saldo.");
+						}
+					} catch (NumberFormatException e) {
+						lblNewLabel_2
+								.setText("Digite apenas valores numéricos.");
 					}
 				}
 			}
 		});
 		btnNewButton.setBounds(407, 81, 58, 23);
 		getContentPane().add(btnNewButton);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -83,29 +97,29 @@ public class RemoverCaixaFrame extends JFrame {
 		getContentPane().add(btnVoltar);
 
 	}
+
 	// Makes the frame visible.
-	public void showIt(){
-		this.setVisible(true);
-	}
-	
-	// Makes the frame invisible.
-	public void hideIt(){
-		this.setVisible(false);
-	}
-	
-	// Makes the frame visible and sets the title text.
-	public void showIt(String title){
-		this.setTitle(title);
-		this.setVisible(true);
-	}
-	
-	// Makes the frame visible and sets the title text
-	// and the position of the window.
-	public void showIt(String title,int x, int y){
-		this.setTitle(title);
-		this.setLocation(x,y);
+	public void showIt() {
 		this.setVisible(true);
 	}
 
-	
+	// Makes the frame invisible.
+	public void hideIt() {
+		this.setVisible(false);
+	}
+
+	// Makes the frame visible and sets the title text.
+	public void showIt(String title) {
+		this.setTitle(title);
+		this.setVisible(true);
+	}
+
+	// Makes the frame visible and sets the title text
+	// and the position of the window.
+	public void showIt(String title, int x, int y) {
+		this.setTitle(title);
+		this.setLocation(x, y);
+		this.setVisible(true);
+	}
+
 }
