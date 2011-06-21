@@ -47,7 +47,7 @@ public class CriarCaixaFrame extends JFrame{
 		
 		
 		//label do numero do caixa
-		Integer temp = Banco.getCaixas().size() +1;
+		Integer temp = Banco.getCaixas().last().getNumCaixa()+1;
 		JLabel numeroDoCaixa = new JLabel(temp.toString());
 		numeroDoCaixa.setBounds(153, 121, 46, 14);
 		getContentPane().add(numeroDoCaixa);
@@ -61,7 +61,8 @@ public class CriarCaixaFrame extends JFrame{
 				if (criou){
 					CriarCaixaFrame crCaixa = new CriarCaixaFrame(usr);
 					crCaixa.showIt("Criar Sala");
-					crCaixa.editarLabelDeAviso("Caixa " + Banco.getCaixas().size() + " criado com sucesso.");
+					int temp = Banco.getCaixas().last().getNumCaixa();
+					crCaixa.editarLabelDeAviso("Caixa " + temp + " criado com sucesso.");
 					dispose();
 				}
 				else{

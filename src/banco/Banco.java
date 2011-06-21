@@ -112,6 +112,11 @@ public class Banco {
 			if(sessoes.size() > 0){
 				Sessao.setNumeroDeSessoes(sessoes.last().getNumero());
 			}
+			if(caixas.size() > 0){
+				Caixa.setNumeroDeCaixasCriados(caixas.last().getNumCaixa());
+				//System.out.println (caixas.last().getNumCaixa());
+			}
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("Arquivo n�o encontrado, criando os primeiros");
 			try {

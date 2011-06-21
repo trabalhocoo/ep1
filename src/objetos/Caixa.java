@@ -56,6 +56,10 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 	public static int getNumeroDeCaixasCriados(){
 		return numeroDeCaixasCriados;
 	}
+	
+	public static void setNumeroDeCaixasCriados(int numeroDeCaixas) {
+		numeroDeCaixasCriados = numeroDeCaixas;
+	}
 
 	@Override
 	public int compareTo(Caixa arg0) {

@@ -139,8 +139,7 @@ public class LoginSenhaFrame extends JFrame {
 									lblNewLabel_1.setText("Houve um problema ao atribuir um Caixa.");
 								}
 							}
-							UsuarioFrame usfr = new UsuarioFrame(usuario,
-									Controlador.getCaixaUsado());
+							UsuarioFrame usfr = new UsuarioFrame(usuario, Controlador.getCaixaUsado());
 							usfr.showIt("Menu Usuario");
 						}
 						hideIt();
