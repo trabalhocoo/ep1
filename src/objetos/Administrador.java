@@ -174,13 +174,20 @@ public class Administrador extends Decorator implements Serializable {
 		return Banco.addCaixa(caixaNova);
 	}
 
-	public boolean removerCaixa(int caixa) {
-		boolean removeu = Banco.removerCaixa(caixa);
+	public boolean removerCaixa(int numeroCaixa) {
+		Caixa caixa = Banco.obterCaixa(numeroCaixa);
+		boolean removeu = false;
+		if (caixa.getEstaEmUso() == true || caixa.getDinheiro()!=0)
+			return false;
+		else{
+		
+		removeu = Banco.removerCaixa(numeroCaixa);
 		/*
 		 * if (removeu == true)
 		 * System.out.println("Caixa removido com sucesso.\n"); else
 		 * System.out.println("Caixa nao encontrado.\n");
 		 */
+		}
 		return removeu;
 
 	}
