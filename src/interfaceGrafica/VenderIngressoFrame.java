@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.TreeSet;
 
@@ -124,7 +126,7 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(txtPoltronas);
 		
 		lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(33, 18, 298, 14);
+		lblNewLabel_2.setBounds(33, 18, 485, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnOk = new JButton("OK");
@@ -168,10 +170,54 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(btnOk);
 		
 		JButton btnVender = new JButton("Vender");
+		btnVender.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lblNewLabel_2.setOpaque(false);
+				lblNewLabel_2.setForeground(Color.red);
+				
+				if(textNumeroDaSessao.getText().equals("") || txtQuantidade.getText().equals("")){	
+					lblNewLabel_2.setText("Digite todos os campos.");
+				}
+				else if (Integer.parseInt(txtQuantidade.getText()) > Integer.parseInt(txtPoltronas.getText())){
+					lblNewLabel_2.setText("Quantidade de ingressos não disponível. Digite um numero menor que "+ txtPoltronas.getText() + ".");
+				}
+				else {
+					ArrayList dadosSessaoASerVendida = new ArrayList();
+					dadosSessaoASerVendida.add(Integer.parseInt(textNumeroDaSessao.getText()));
+					dadosSessaoASerVendida.add(Integer.parseInt(txtQuantidade.getText()));
+					boolean vendeu = usuarioLogado.venderIngresso(dadosSessaoASerVendida, caixa);
+					if (vendeu==true){
+						lblNewLabel_2.setText("Ingressos vendidos com sucesso.");
+						txtSala.setText("");
+						txtAno.setText("");
+						txtDia.setText("");
+						txtFilme.setText("");
+						txtMes.setText("");
+						txtHorario.setText("");
+						txtQuantidade.setText("");
+						txtPoltronas.setText("");
+						textNumeroDaSessao.setText("");
+					}
+					else {
+						lblNewLabel_2.setText("Ocorreu um problema. Tente novamente.");
+					}
+					
+				}
+				
+				
+				/*
+				 Calendar inicio = (Calendar) dadosSessaoASerVendida.get(0);
+		int numSala = (Integer) dadosSessaoASerVendida.get(1);
+		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida.get(2);
+		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
+				 */
+				
+			}
+		});
 		btnVender.setBounds(33, 294, 144, 23);
 		getContentPane().add(btnVender);
 		
-		JButton btnNewButton = new JButton("Cancelar compra");
+		JButton btnNewButton = new JButton("Limpas campos");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				lblNewLabel_2.setText("");
