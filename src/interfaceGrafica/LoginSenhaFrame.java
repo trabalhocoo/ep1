@@ -123,8 +123,7 @@ public class LoginSenhaFrame extends JFrame{
 							AdminFrame admfr = new AdminFrame((Administrador)usuario);
 							admfr.showIt("Menu Admin");
 						} else {
-							caixa = Banco.obterCaixa(1);
-						/*
+						
 						for (int i = 1; i<Banco.getCaixas().size(); i++){
 							caixa = Banco.obterCaixa(i);
 							if (caixa.getEstaEmUso() == false){
@@ -132,7 +131,6 @@ public class LoginSenhaFrame extends JFrame{
 								break;
 							}
 						}
-						*/
 						UsuarioFrame usfr = new UsuarioFrame(usuario, caixa);
 						usfr.showIt("Menu Usuario");
 						}
