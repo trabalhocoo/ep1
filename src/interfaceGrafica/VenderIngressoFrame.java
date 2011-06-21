@@ -126,7 +126,7 @@ public class VenderIngressoFrame extends JFrame{
 		getContentPane().add(txtPoltronas);
 		
 		lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(33, 18, 485, 14);
+		lblNewLabel_2.setBounds(33, 18, 464, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnOk = new JButton("OK");
@@ -179,7 +179,7 @@ public class VenderIngressoFrame extends JFrame{
 					lblNewLabel_2.setText("Digite todos os campos.");
 				}
 				else if (Integer.parseInt(txtQuantidade.getText()) > Integer.parseInt(txtPoltronas.getText())){
-					lblNewLabel_2.setText("Quantidade de ingressos não disponível. Digite um numero menor que "+ txtPoltronas.getText() + ".");
+					lblNewLabel_2.setText("Quantidade de ingressos não disponível. Digite um numero menor ou igual a "+ txtPoltronas.getText() + ".");
 				}
 				else {
 					ArrayList dadosSessaoASerVendida = new ArrayList();
@@ -201,7 +201,6 @@ public class VenderIngressoFrame extends JFrame{
 					else {
 						lblNewLabel_2.setText("Ocorreu um problema. Tente novamente.");
 					}
-					
 				}
 				
 				
@@ -211,7 +210,6 @@ public class VenderIngressoFrame extends JFrame{
 		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida.get(2);
 		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
 				 */
-				
 			}
 		});
 		btnVender.setBounds(33, 294, 144, 23);
