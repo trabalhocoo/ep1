@@ -62,7 +62,6 @@ public class Administrador extends Decorator implements Serializable {
 			throw new UnsupportedOperationException(
 					"Não é possivel colocar um filme 3d numa sala não 3d");
 		}
-		System.out.println("aqui");
 		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto,
 				sala, preco, sala.getCapacidade());
 		boolean adicionou = Banco.addSessao(sessaoNova);

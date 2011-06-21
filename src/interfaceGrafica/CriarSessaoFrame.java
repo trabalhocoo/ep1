@@ -224,49 +224,56 @@ public class CriarSessaoFrame extends JFrame {
 					lblAviso.setText("Por favor, digite todos os campos.");
 				} else {
 					lblAviso.setOpaque(true);
-					String nomeFilme = campoNomeFilme;
-					int year = Integer.parseInt(campoAno);
-					int month = Integer.parseInt(campoMes);
-					int date = Integer.parseInt(campoDia);
-					int hourOfDay = Integer.parseInt(campoHora);
-					int minute = Integer.parseInt(campoMinuto);
-					int nroSala = Integer.parseInt(campoNumero);
-					Sala sala = Banco.obterSala(nroSala);
-					if (campoPreco.split(",").length > 1) {
-						campoPreco = campoPreco.replaceFirst(",", ".");
-					}
-					double preco = Double.parseDouble(campoPreco);
-					int disp = sala.getCapacidade();
+					try {
+						String nomeFilme = campoNomeFilme;
+						int year = Integer.parseInt(campoAno);
+						int month = Integer.parseInt(campoMes);
+						int date = Integer.parseInt(campoDia);
+						int hourOfDay = Integer.parseInt(campoHora);
+						int minute = Integer.parseInt(campoMinuto);
+						int nroSala = Integer.parseInt(campoNumero);
+						Sala sala = Banco.obterSala(nroSala);
+						if (campoPreco.split(",").length > 1) {
+							campoPreco = campoPreco.replaceFirst(",", ".");
+						}
+						double preco = Double.parseDouble(campoPreco);
+						int disp = sala.getCapacidade();
 
-					ArrayList dadosSessao = new ArrayList();
-					dadosSessao.add(nomeFilme);
-					dadosSessao.add(year);
-					dadosSessao.add(month);
-					dadosSessao.add(date);
-					dadosSessao.add(hourOfDay);
-					dadosSessao.add(minute);
-					dadosSessao.add(nroSala);
-					dadosSessao.add(preco);
-					
-					boolean isAdicionado = false;
-					try{
-						isAdicionado = admin.adicionarSessao(admin, dadosSessao);
-					}catch (UnsupportedOperationException e) {
+						ArrayList dadosSessao = new ArrayList();
+						dadosSessao.add(nomeFilme);
+						dadosSessao.add(year);
+						dadosSessao.add(month);
+						dadosSessao.add(date);
+						dadosSessao.add(hourOfDay);
+						dadosSessao.add(minute);
+						dadosSessao.add(nroSala);
+						dadosSessao.add(preco);
+
+						boolean isAdicionado = false;
+						try {
+							isAdicionado = admin.adicionarSessao(admin,
+									dadosSessao);
+						} catch (UnsupportedOperationException e) {
+							lblAviso.setOpaque(false);
+							lblAviso.setForeground(Color.red);
+							lblAviso.setText("Operação não suportada: não é possível um filme 3d rodar em uma sala não 3d!");
+						}
+
+						if (isAdicionado) {
+							lblAviso.setOpaque(false);
+							lblAviso.setForeground(Color.red);
+							lblAviso.setText("Sessao criada com sucesso. Numero "
+									+ Sessao.getNumeroDeSessoes());
+							limparCampos.actionPerformed(arg0);
+						} else {
+							lblAviso.setOpaque(false);
+							lblAviso.setForeground(Color.red);
+							lblAviso.setText("Houve um problema ao criar a sessão.");
+						}
+					} catch (NumberFormatException e) {
 						lblAviso.setOpaque(false);
 						lblAviso.setForeground(Color.red);
-						lblAviso.setText("Operação não suportada: não é possível um filme 3d rodar em uma sala não 3d!");
-					}
-					
-					if (isAdicionado) {
-						lblAviso.setOpaque(false);
-						lblAviso.setForeground(Color.red);
-						lblAviso.setText("Sessao criada com sucesso. Numero "
-								+ Sessao.getNumeroDeSessoes());
-						limparCampos.actionPerformed(arg0);
-					}else{
-						lblAviso.setOpaque(false);
-						lblAviso.setForeground(Color.red);
-						lblAviso.setText("Houve um problema ao criar a sessão.");
+						lblAviso.setText("Digite apenas valores numéricos nos campos numéricos.");
 					}
 				}
 
