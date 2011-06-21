@@ -2,6 +2,7 @@ package controlador;
 import java.text.ParseException;
 
 import objetos.Administrador;
+import objetos.Caixa;
 import objetos.Usuario;
 import registro.RegistroAcesso;
 import banco.*;
@@ -11,6 +12,15 @@ public class Controlador{
 	private static boolean tipoUsuario;
 	private static Usuario usuarioLogado;
 	private static boolean reiniciar;
+	private static Caixa caixaUsado;
+
+	public static Caixa getCaixaUsado() {
+		return caixaUsado;
+	}
+
+	public static void setCaixaUsado(Caixa caixaUsado) {
+		Controlador.caixaUsado = caixaUsado;
+	}
 
 	public static boolean logar(int registro, String senha){
 		Usuario user = Banco.obterUsuario(registro);

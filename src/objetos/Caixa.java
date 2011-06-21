@@ -20,7 +20,7 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 
 	
 	public Caixa(){
-		numeroDoCaixa = Banco.getCaixas().size() +1;
+		numeroDoCaixa = numeroDeCaixasCriados +1;
 		dinheiro = 0;
 		numeroDeCaixasCriados = numeroDeCaixasCriados+1;
 		estaEmUso = false;

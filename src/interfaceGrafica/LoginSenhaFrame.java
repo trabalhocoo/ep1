@@ -1,4 +1,5 @@
 package interfaceGrafica;
+
 import javax.swing.*;
 
 import objetos.*;
@@ -10,14 +11,13 @@ import controlador.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginSenhaFrame extends JFrame{
+public class LoginSenhaFrame extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	JLabel imageLabel = new JLabel();
 	private String filepath = "/interfaceGrafica/";
 	private String imagefile = "cinema.jpg";
-	Caixa caixa;
-	
+
 	public LoginSenhaFrame()
 	{
 		this.setSize(550,380);
@@ -88,8 +88,7 @@ public class LoginSenhaFrame extends JFrame{
 					lblNewLabel_1.setOpaque(false);
 					lblNewLabel_1.setForeground(Color.red);
 					lblNewLabel_1.setText("Digite seu login e senha.");
-				}
-					
+				}				
 				else{
 				//teria que logar e perguntar qual � o usuario que logou e depois decidir se aparece o usuarioframe ou adminframe
 					boolean logou = false;
@@ -124,14 +123,19 @@ public class LoginSenhaFrame extends JFrame{
 							admfr.showIt("Menu Admin");
 						} else {
 						
-						for (int i = 1; i<Banco.getCaixas().size(); i++){
-							caixa = Banco.obterCaixa(i);
+						for (Caixa caixa : Banco.getCaixas()){
 							if (caixa.getEstaEmUso() == false){
 								caixa.setEstaEmUso(true);
+								Controlador.setCaixaUsado(caixa);
 								break;
 							}
 						}
-						UsuarioFrame usfr = new UsuarioFrame(usuario, caixa);
+						if(Controlador.getCaixaUsado() == null){
+							Caixa caixa = new Caixa();
+							caixa.setEstaEmUso(true);
+							Controlador.setCaixaUsado(caixa);
+						}
+						UsuarioFrame usfr = new UsuarioFrame(usuario, Controlador.getCaixaUsado());
 						usfr.showIt("Menu Usuario");
 						}
 						hideIt();
@@ -141,28 +145,28 @@ public class LoginSenhaFrame extends JFrame{
 		});
 		
 	}
-	
 
 	// Makes the frame visible.
-	public void showIt(){
+	public void showIt() {
 		this.setVisible(true);
 	}
+
 	// Makes the frame visible and sets the title text.
-	public void showIt(String title){
-	this.setTitle(title);
-	this.setVisible(true);
+	public void showIt(String title) {
+		this.setTitle(title);
+		this.setVisible(true);
 	}
-	
+
 	// Makes the frame visible and sets the title text
 	// and the position of the window.
-	public void showIt(String title,int x, int y){
-	this.setTitle(title);
-	this.setLocation(x,y);
-	this.setVisible(true);
+	public void showIt(String title, int x, int y) {
+		this.setTitle(title);
+		this.setLocation(x, y);
+		this.setVisible(true);
 	}
-	
+
 	// Makes the frame invisible.
-	public void hideIt(){
-	this.setVisible(false);
+	public void hideIt() {
+		this.setVisible(false);
 	}
 }
