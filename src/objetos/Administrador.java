@@ -72,8 +72,8 @@ public class Administrador extends Decorator implements Serializable {
 		System.out.println("Sessao adicionada com sucesso.\n");
 	}
 
-	public void alterarSessao(Usuario usuario) {
-		ArrayList dadosSessao = InterfaceCinema.alterarSessao();
+	public boolean alterarSessao(Usuario usuario, ArrayList dadosSessao) {
+		//ArrayList dadosSessao = InterfaceCinema.alterarSessao();
 		Calendar dataOriginal = (Calendar) dadosSessao.get(0);
 		String nomeFilme = (String) dadosSessao.get(1);
 		int ano = (Integer) dadosSessao.get(2);
@@ -94,11 +94,12 @@ public class Administrador extends Decorator implements Serializable {
 		boolean alterou = Banco.modificarSessao(sessaoAAlterar, filme, inicio,
 				salaASerUsada, preco);
 		if (alterou == true) {
-			System.out.println("Sessao alterada com sucesso.\n");
+			
 			RegistroOutros.registrarSessao(" Alterou sessao ", sessaoAAlterar,
 					usuario);
+			return true;
 		} else
-			System.out.println("Sessao nao encontrada.\n");
+			return false;
 	}
 
 	public boolean removerSessao(Usuario usuario, int nroSessao) {
