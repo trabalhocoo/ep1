@@ -45,6 +45,10 @@ public class Controlador{
 		RegistroAcesso.registrarAcesso(" Usuario saiu do sistema ", usuario);
 		tipoUsuario = false;
 		isLogado = false;
+		if(caixaUsado != null){
+			caixaUsado.setEstaEmUso(false);
+			caixaUsado = null;
+		}
 		Banco.gravarDados();
 	}
 	
