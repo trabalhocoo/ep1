@@ -18,79 +18,77 @@ public class LoginSenhaFrame extends JFrame {
 	private String filepath = "/interfaceGrafica/";
 	private String imagefile = "cinema.jpg";
 
-	public LoginSenhaFrame()
-	{
-		this.setSize(550,380);
-		this.setLocation(200,200);
+	public LoginSenhaFrame() {
+		this.setSize(550, 380);
+		this.setLocation(200, 200);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.white);
-		// add the image 
-	
-	    //ImageIcon pic = new ImageIcon(filepath+imagefile);
-	    JLabel pictureLabel = new JLabel(new ImageIcon(LoginSenhaFrame.class.getResource("/interfaceGrafica/cinema.jpg")));
-	    //panel1.setBounds(20, 76, 236, 233);
-	    pictureLabel.setBounds(20, 76, 236, 233);
-	    this.getContentPane().add(pictureLabel);
-	    //pack();
-	    
-	    
+		// add the image
+
+		// ImageIcon pic = new ImageIcon(filepath+imagefile);
+		JLabel pictureLabel = new JLabel(new ImageIcon(
+				LoginSenhaFrame.class
+						.getResource("/interfaceGrafica/cinema.jpg")));
+		// panel1.setBounds(20, 76, 236, 233);
+		pictureLabel.setBounds(20, 76, 236, 233);
+		this.getContentPane().add(pictureLabel);
+		// pack();
+
 		JLabel lblNewLabel = new JLabel("DIGITE SEU LOGIN E SENHA:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(296, 91, 213, 14);
 		getContentPane().add(lblNewLabel);
-		
+
 		JLabel lblLogin = new JLabel("Login:");
 		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblLogin.setBounds(296, 135, 46, 21);
 		getContentPane().add(lblLogin);
-		
+
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSenha.setBounds(296, 183, 46, 14);
 		getContentPane().add(lblSenha);
-		
+
 		textField = new JTextField();
 		textField.setBounds(352, 137, 86, 20);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		
+
 		passwordField = new JPasswordField();
 		passwordField.setBounds(352, 182, 86, 20);
 		getContentPane().add(passwordField);
-		//senha = passwordField.getPassword().toString();
-		
+		// senha = passwordField.getPassword().toString();
+
 		JButton btnOk = new JButton("OK");
 		btnOk.setBounds(363, 227, 63, 20);
 		getContentPane().add(btnOk);
-		
+
 		JLabel label = new JLabel("");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		label.setForeground(Color.BLACK);
 		label.setBounds(10, 170, 222, 14);
 		getContentPane().add(label);
-		
-		final JLabel lblNewLabel_1 = new JLabel("");//vazio por enquanto
+
+		final JLabel lblNewLabel_1 = new JLabel("");// vazio por enquanto
 		lblNewLabel_1.setBounds(296, 270, 200, 14);
 		getContentPane().add(lblNewLabel_1);
-		
+
 		JLabel lblSicocine = new JLabel("Sicocine");
 		lblSicocine.setFont(new Font("QuigleyWiggly", Font.PLAIN, 43));
 		lblSicocine.setBounds(198, 27, 228, 38);
 		getContentPane().add(lblSicocine);
-		
-		
-		
-		
+
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (textField.getText().equals("") || passwordField.getText().equals("")){
+				if (textField.getText().equals("")
+						|| passwordField.getText().equals("")) {
 					lblNewLabel_1.setOpaque(false);
 					lblNewLabel_1.setForeground(Color.red);
 					lblNewLabel_1.setText("Digite seu login e senha.");
-				}				
-				else{
-				//teria que logar e perguntar qual � o usuario que logou e depois decidir se aparece o usuarioframe ou adminframe
+				} else {
+					// teria que logar e perguntar qual � o usuario que logou
+					// e depois decidir se aparece o usuarioframe ou adminframe
 					boolean logou = false;
 					boolean logado = Controlador.isLogado();
 					boolean tipoUser;
@@ -100,50 +98,55 @@ public class LoginSenhaFrame extends JFrame {
 					int login = Integer.parseInt(textField.getText());
 					String senha = passwordField.getText();
 					Usuario usuario;
-					//System.out.println (tipoUser);
-					try{
+					// System.out.println (tipoUser);
+					try {
 						logou = Controlador.logar(login, senha);
-					}
-					catch (Exception e){
+					} catch (Exception e) {
 						System.out.print(e);
-				}
+					}
 					tipoUser = Controlador.tipoUsuario();
 					logado = Controlador.isLogado();
 					usuario = Controlador.obterUsuario(login, senha);
-					if(!logou){
+					if (!logou) {
 						lblNewLabel_1.setOpaque(false);
 						lblNewLabel_1.setForeground(Color.red);
 						textField.setText("");
 						passwordField.setText("");
 						lblNewLabel_1.setText("O login e/ou senha invalidos.");
-					}
-					else {
-						if (tipoUser){
-							AdminFrame admfr = new AdminFrame((Administrador)usuario);
+					} else {
+						if (tipoUser) {
+							AdminFrame admfr = new AdminFrame(
+									(Administrador) usuario);
 							admfr.showIt("Menu Admin");
 						} else {
-						
-						for (Caixa caixa : Banco.getCaixas()){
-							if (caixa.getEstaEmUso() == false){
-								caixa.setEstaEmUso(true);
-								Controlador.setCaixaUsado(caixa);
-								break;
+
+							for (Caixa caixa : Banco.getCaixas()) {
+								if (caixa.getEstaEmUso() == false) {
+									caixa.setEstaEmUso(true);
+									Controlador.setCaixaUsado(caixa);
+									break;
+								}
 							}
-						}
-						if(Controlador.getCaixaUsado() == null){
-							Caixa caixa = new Caixa();
-							caixa.setEstaEmUso(true);
-							Controlador.setCaixaUsado(caixa);
-						}
-						UsuarioFrame usfr = new UsuarioFrame(usuario, Controlador.getCaixaUsado());
-						usfr.showIt("Menu Usuario");
+							if (Controlador.getCaixaUsado() == null) {
+								Caixa caixa = new Caixa();
+								boolean salvou = Banco.addCaixa(caixa);
+								if (salvou) {
+									caixa.setEstaEmUso(true);
+									Controlador.setCaixaUsado(caixa);
+								}else{
+									
+								}
+							}
+							UsuarioFrame usfr = new UsuarioFrame(usuario,
+									Controlador.getCaixaUsado());
+							usfr.showIt("Menu Usuario");
 						}
 						hideIt();
-				}
+					}
 				}
 			}
 		});
-		
+
 	}
 
 	// Makes the frame visible.
