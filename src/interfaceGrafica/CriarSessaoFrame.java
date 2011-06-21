@@ -86,7 +86,8 @@ public class CriarSessaoFrame extends JFrame {
 		lblDispo.setBounds(55, 125, 193, 14);
 		getContentPane().add(lblDispo);
 
-		// Arrumar os campos ano, mes, dia para podermos usar em um campo sï¿½ e o
+		// Arrumar os campos ano, mes, dia para podermos usar em um campo sï¿½ e
+		// o
 		// mesmo para o campo hora e minutos
 
 		// campo para preenchimento do nome do Filme //sem comboBox
@@ -180,7 +181,7 @@ public class CriarSessaoFrame extends JFrame {
 		anoField.setColumns(10);
 		anoField.setBounds(342, 212, 51, 19);
 		getContentPane().add(anoField);
-		
+
 		final ActionListener limparCampos = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				comboBoxFilme.setSelectedIndex(0);
@@ -231,12 +232,12 @@ public class CriarSessaoFrame extends JFrame {
 					int minute = Integer.parseInt(campoMinuto);
 					int nroSala = Integer.parseInt(campoNumero);
 					Sala sala = Banco.obterSala(nroSala);
-					if(campoPreco.split(",").length > 1){
+					if (campoPreco.split(",").length > 1) {
 						campoPreco = campoPreco.replaceFirst(",", ".");
 					}
 					double preco = Double.parseDouble(campoPreco);
 					int disp = sala.getCapacidade();
-					
+
 					ArrayList dadosSessao = new ArrayList();
 					dadosSessao.add(nomeFilme);
 					dadosSessao.add(year);
@@ -247,11 +248,26 @@ public class CriarSessaoFrame extends JFrame {
 					dadosSessao.add(nroSala);
 					dadosSessao.add(preco);
 					
-					admin.adicionarSessao(admin, dadosSessao);
-					lblAviso.setOpaque(false);
-					lblAviso.setForeground(Color.red);
-					lblAviso.setText("Sessao criada com sucesso. Numero " + Sessao.getNumeroDeSessoes());
-					limparCampos.actionPerformed(arg0);
+					boolean isAdicionado = false;
+					try{
+						isAdicionado = admin.adicionarSessao(admin, dadosSessao);
+					}catch (UnsupportedOperationException e) {
+						lblAviso.setOpaque(false);
+						lblAviso.setForeground(Color.red);
+						lblAviso.setText("Operação não suportada: não é possível um filme 3d rodar em uma sala não 3d!");
+					}
+					
+					if (isAdicionado) {
+						lblAviso.setOpaque(false);
+						lblAviso.setForeground(Color.red);
+						lblAviso.setText("Sessao criada com sucesso. Numero "
+								+ Sessao.getNumeroDeSessoes());
+						limparCampos.actionPerformed(arg0);
+					}else{
+						lblAviso.setOpaque(false);
+						lblAviso.setForeground(Color.red);
+						lblAviso.setText("Houve um problema ao criar a sessão.");
+					}
 				}
 
 			}

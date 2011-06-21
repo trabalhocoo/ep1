@@ -125,8 +125,8 @@ public class Banco {
 		}
 	}
 
-	public static void addSessao(Sessao sessao) {
-		sessoes.add(sessao);
+	public static boolean addSessao(Sessao sessao) {
+		 return sessoes.add(sessao);
 	}
 
 	public static boolean modificarSessao(Sessao sessao, Filme filme,
