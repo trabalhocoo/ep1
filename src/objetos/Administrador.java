@@ -23,23 +23,22 @@ public class Administrador extends Decorator implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Usuario userDecorado;
-	
-	
 
 	public Usuario getUserDecorado() {
 		return userDecorado;
 	}
 
 	public Administrador(Usuario userDecorado) {
-		super(userDecorado.getNome(), true, userDecorado.getLogin(), userDecorado.getSenha());
+		super(userDecorado.getNome(), true, userDecorado.getLogin(),
+				userDecorado.getSenha());
 		this.userDecorado = userDecorado;
-		this.setRegistro(getRegistro()-1);
-		
+		this.setRegistro(getRegistro() - 1);
+
 	}
 
 	// String filme, int year, int month, int date, int hourOfDay, int minute,
 	// int sala, double preco, int disp
-	public void adicionarSessao(Usuario usuario, ArrayList dadosSessao ) {
+	public boolean adicionarSessao(Usuario usuario, ArrayList dadosSessao) {
 		String nomeFilme = (String) dadosSessao.get(0);
 		int ano = (Integer) dadosSessao.get(1);
 		int mes = (Integer) dadosSessao.get(2);
@@ -50,30 +49,33 @@ public class Administrador extends Decorator implements Serializable {
 		double preco = (Double) dadosSessao.get(7);
 
 		Filme filme = Banco.obterFilme(nomeFilme);
-		if(filme == null){
-			System.out.println("O Filme que vocï¿½ escolheu nï¿½o existe. Tente novamente");
-			return;
+		if (filme == null) {
+			System.out.println("filme nao existe");
+			return false;
 		}
 		Sala sala = Banco.obterSala(numSala);
-		if(sala == null){
-			System.out.println("A sala que vocï¿½ escolheu nï¿½o existe. Tente novamente");
-			return;
+		if (sala == null) {
+			System.out.println("sala nao existe");
+			return false;
 		}
-		if(filme.isIs3d() == true && sala.is3d() == false){
-			System.out.println("Esta sala nï¿½o suporta um filme em 3d");
-			return;
+		if (filme.isIs3d() == true && sala.is3d() == false) {
+			throw new UnsupportedOperationException(
+					"Não é possivel colocar um filme 3d numa sala não 3d");
 		}
-
+		System.out.println("aqui");
 		Sessao sessaoNova = new Sessao(filme, ano, mes, dia, hora, minuto,
 				sala, preco, sala.getCapacidade());
-		Banco.addSessao(sessaoNova);
-		RegistroOutros.registrarSessao(" Registrou sessao ", sessaoNova,
-				usuario);
-		System.out.println("Sessao adicionada com sucesso.\n");
+		boolean adicionou = Banco.addSessao(sessaoNova);
+		if (adicionou) {
+			RegistroOutros.registrarSessao(" Registrou sessao ", sessaoNova,
+					usuario);
+			return true;
+		} else
+			return false;
 	}
 
 	public boolean alterarSessao(Usuario usuario, ArrayList dadosSessao) {
-		//ArrayList dadosSessao = InterfaceCinema.alterarSessao();
+		// ArrayList dadosSessao = InterfaceCinema.alterarSessao();
 		Calendar dataOriginal = (Calendar) dadosSessao.get(0);
 		String nomeFilme = (String) dadosSessao.get(1);
 		int ano = (Integer) dadosSessao.get(2);
@@ -95,7 +97,7 @@ public class Administrador extends Decorator implements Serializable {
 		boolean alterou = Banco.modificarSessao(sessaoAAlterar, filme, inicio,
 				salaASerUsada, preco, disp);
 		if (alterou == true) {
-			
+
 			RegistroOutros.registrarSessao(" Alterou sessao ", sessaoAAlterar,
 					usuario);
 			return true;
@@ -124,7 +126,7 @@ public class Administrador extends Decorator implements Serializable {
 			return true;
 		} else
 			return false;
-			
+
 	}
 
 	public void adicionarSala(ArrayList sala) {
@@ -134,8 +136,9 @@ public class Administrador extends Decorator implements Serializable {
 		boolean eh3d = (Boolean) sala.get(2);
 		Sala salaNova = new Sala(capacidade, numero, eh3d);
 		Banco.addSala(salaNova);
-		//System.out.println("Sala adicionada com sucesso.\n");
-		//RegistroOutros.registrarSala(" Adicionou sala \n", salaNova, usuario);
+		// System.out.println("Sala adicionada com sucesso.\n");
+		// RegistroOutros.registrarSala(" Adicionou sala \n", salaNova,
+		// usuario);
 	}
 
 	public boolean alterarSala(ArrayList salaAdd) {
@@ -144,12 +147,13 @@ public class Administrador extends Decorator implements Serializable {
 		int numero = (Integer) salaAdd.get(2);
 		boolean eh3d = (Boolean) salaAdd.get(3);
 		boolean alterou = Banco.modificarSala(sala, capacidade, numero, eh3d);
-		/*if (alterou == true) {
-			System.out.println("Sala alterada com sucesso.\n");
-			//RegistroOutros.registrarSala(" Alterou sala ", sala, usuario);
-		} else
-			//System.out.println("Sala nao encontrada.\n");*/
-			return alterou;
+		/*
+		 * if (alterou == true) {
+		 * System.out.println("Sala alterada com sucesso.\n");
+		 * //RegistroOutros.registrarSala(" Alterou sala ", sala, usuario); }
+		 * else //System.out.println("Sala nao encontrada.\n");
+		 */
+		return alterou;
 	}
 
 	public void exibirUsuarios() {// listar os usuarios existentes
@@ -157,7 +161,7 @@ public class Administrador extends Decorator implements Serializable {
 		System.out.println("Lista de usuarios:");
 		Exibir.exibirUsuarios(listaUsuarios);
 	}
-	
+
 	public String[][] exibirUsuariosTabela() {// listar os usuarios existentes
 		TreeSet<Usuario> listaUsuarios = Banco.getUsuarios();
 		System.out.println("Lista de usuarios:");
@@ -166,16 +170,17 @@ public class Administrador extends Decorator implements Serializable {
 
 	public boolean adicionarCaixa() {
 		Caixa caixaNova = new Caixa();
-		//System.out.println("Caixa adicionado com sucesso.\n");
+		// System.out.println("Caixa adicionado com sucesso.\n");
 		return Banco.addCaixa(caixaNova);
 	}
 
 	public boolean removerCaixa(int caixa) {
 		boolean removeu = Banco.removerCaixa(caixa);
-		/*if (removeu == true)
-			System.out.println("Caixa removido com sucesso.\n");
-		else
-			System.out.println("Caixa nao encontrado.\n");*/
+		/*
+		 * if (removeu == true)
+		 * System.out.println("Caixa removido com sucesso.\n"); else
+		 * System.out.println("Caixa nao encontrado.\n");
+		 */
 		return removeu;
 
 	}
@@ -195,7 +200,7 @@ public class Administrador extends Decorator implements Serializable {
 		Filme filmeNovo = new Filme(nome, faixa, duracao, diretor, sinopse,
 				genero, estreia, eh3d);
 		Banco.adicionarFilme(filmeNovo);
-		//System.out.println("Filme adicionado com sucesso.\n");
+		// System.out.println("Filme adicionado com sucesso.\n");
 	}
 
 	public boolean alterarFilme(ArrayList dadosFilme) {
@@ -220,20 +225,20 @@ public class Administrador extends Decorator implements Serializable {
 		Filme filme = Banco.obterFilme(nomeDoFilme);
 		boolean removeu = Banco.removerFilme(filme);
 		/*
-		if (removeu == true)
-			System.out.println("Filme removido com sucesso.\n");
-		else
-			System.out.println("Filme nao encontrado.\n");*/
+		 * if (removeu == true)
+		 * System.out.println("Filme removido com sucesso.\n"); else
+		 * System.out.println("Filme nao encontrado.\n");
+		 */
 		return removeu;
 	}
 
 	public void adicionarUsuario(ArrayList dadosUsuario) {
-		//ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
+		// ArrayList dadosUsuario = InterfaceCinema.adicionarUsuario();
 		// String nomenome, boolean admadm, String loginlogin, String passwd
 		String nome = (String) dadosUsuario.get(0);
 		boolean adm = (Boolean) dadosUsuario.get(1);
 		String senha = (String) dadosUsuario.get(3);
-		
+
 		String login = "0";
 		if (adm == true) {
 			login = "1";
@@ -246,8 +251,10 @@ public class Administrador extends Decorator implements Serializable {
 			novoUsuario = new Vendedor(nome, adm, login, senha);
 		}
 		Banco.addUsuario(novoUsuario);
-		/*System.out.println("Usuario criado com sucesso.Registro: "
-				+ novoUsuario.getRegistro() + "\n");*/
+		/*
+		 * System.out.println("Usuario criado com sucesso.Registro: " +
+		 * novoUsuario.getRegistro() + "\n");
+		 */
 	}
 
 	public boolean removerUsuario(int registro) {
@@ -255,16 +262,16 @@ public class Administrador extends Decorator implements Serializable {
 
 		boolean removeu = Banco.removerUsuario(usuario);
 		/*
-		if (removeu == true)
-			System.out.println("Usuario removido com sucesso.\n");
-		else
-			System.out.println("Usuario nao encontrado.\n");*/
+		 * if (removeu == true)
+		 * System.out.println("Usuario removido com sucesso.\n"); else
+		 * System.out.println("Usuario nao encontrado.\n");
+		 */
 		return removeu;
 	}
 
 	public boolean alterarUsuario(ArrayList<Object> resposta) {
 		// 0: usuario, 1: nome, 2: ehadmin, 3: senha
-		//ArrayList<Object> resposta = InterfaceCinema.alterarUsuario();
+		// ArrayList<Object> resposta = InterfaceCinema.alterarUsuario();
 
 		Usuario usuarioAAlterar = (Usuario) resposta.get(0);
 		String nome = (String) resposta.get(1);
@@ -281,10 +288,10 @@ public class Administrador extends Decorator implements Serializable {
 
 		boolean removeu = Banco.removerSala(sala);
 		/*
-		if (removeu == true)
-			System.out.println("Usuario removido com sucesso.\n");
-		else
-			System.out.println("Usuario nao encontrado.\n");*/
+		 * if (removeu == true)
+		 * System.out.println("Usuario removido com sucesso.\n"); else
+		 * System.out.println("Usuario nao encontrado.\n");
+		 */
 		return removeu;
 	}
 
@@ -298,10 +305,10 @@ public class Administrador extends Decorator implements Serializable {
 
 	public void exibirCaixas() {
 		TreeSet<Caixa> listaCaixas = Banco.getCaixas();
-		//System.out.println("Lista de Caixas:");
+		// System.out.println("Lista de Caixas:");
 		Exibir.exibirCaixas(listaCaixas);
 	}
-	
+
 	public String[][] exibirCaixasTabela() {
 		TreeSet<Caixa> listaCaixas = Banco.getCaixas();
 		System.out.println("Lista de Caixas:");

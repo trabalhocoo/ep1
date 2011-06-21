@@ -10,7 +10,7 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static int numeroDeSessoes;
+	private static int numeroDeSessoes = 0;
 	private int numero;
 	private Filme filme;
 	private Calendar horarioDeInicio;
