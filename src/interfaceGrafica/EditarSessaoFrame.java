@@ -284,47 +284,53 @@ public class EditarSessaoFrame extends JFrame {
 						String campoMes = mesField.getText();
 						String campoAno = anoField.getText();
 						String campoDisp = dispField.getText();
-						
 
 						if ("".equals(campoFilme) || "".equals(campoSala)
-								|| "".equals(campoPreco)|| "".equals(campoHora)
-								|| "".equals(campoMinuto) || "".equals(campoDia)
-								|| "".equals(campoMes)|| "".equals(campoAno)) {
+								|| "".equals(campoPreco)
+								|| "".equals(campoHora)
+								|| "".equals(campoMinuto)
+								|| "".equals(campoDia) || "".equals(campoMes)
+								|| "".equals(campoAno)) {
 							lblAviso.setText("Por favor, preencha todos os campos.");
-						}else{
-							int ano = Integer.parseInt(campoAno);
-							int mes = Integer.parseInt(campoMes);
-							int dia = Integer.parseInt(campoDia);
-							int hora = Integer.parseInt(campoHora);
-							int minuto = Integer.parseInt(campoMinuto);
-							
-							Calendar dataOriginal = Calendar.getInstance();
-							dataOriginal.set(ano, mes, dia, hora, minuto);
-							
-							String nome = campoFilme;
-							int numSala = Integer.parseInt(campoSala);
-							double preco = Double.parseDouble(campoPreco);
-							int disp = Integer.parseInt(campoDisp);
-							
-							ArrayList<Object> dadosDeSessao = new ArrayList<Object>();
-							dadosDeSessao.add(dataOriginal);
-							dadosDeSessao.add(nome);
-							dadosDeSessao.add(ano);
-							dadosDeSessao.add(mes);
-							dadosDeSessao.add(dia);
-							dadosDeSessao.add(hora);
-							dadosDeSessao.add(minuto);
-							dadosDeSessao.add(numSala);
-							dadosDeSessao.add(preco);
-							dadosDeSessao.add(disp);
-							dadosDeSessao.add(sessaoSelecionada.getNumero());
-							
-							boolean funcionou = admin.alterarSessao(admin, dadosDeSessao);
-							if(funcionou){
-								lblAviso.setText("Sessao alterada com sucesso!");
-								actionLimpar.actionPerformed(arg0);
-							}else{
-								lblAviso.setText("Houve algum problema na alteração");
+						} else {
+							try {
+								int ano = Integer.parseInt(campoAno);
+								int mes = Integer.parseInt(campoMes);
+								int dia = Integer.parseInt(campoDia);
+								int hora = Integer.parseInt(campoHora);
+								int minuto = Integer.parseInt(campoMinuto);
+
+								Calendar dataOriginal = Calendar.getInstance();
+								dataOriginal.set(ano, mes, dia, hora, minuto);
+
+								String nome = campoFilme;
+								int numSala = Integer.parseInt(campoSala);
+								double preco = Double.parseDouble(campoPreco);
+								int disp = Integer.parseInt(campoDisp);
+
+								ArrayList<Object> dadosDeSessao = new ArrayList<Object>();
+								dadosDeSessao.add(dataOriginal);
+								dadosDeSessao.add(nome);
+								dadosDeSessao.add(ano);
+								dadosDeSessao.add(mes);
+								dadosDeSessao.add(dia);
+								dadosDeSessao.add(hora);
+								dadosDeSessao.add(minuto);
+								dadosDeSessao.add(numSala);
+								dadosDeSessao.add(preco);
+								dadosDeSessao.add(disp);
+								dadosDeSessao.add(sessaoSelecionada.getNumero());
+
+								boolean funcionou = admin.alterarSessao(admin,
+										dadosDeSessao);
+								if (funcionou) {
+									lblAviso.setText("Sessao alterada com sucesso!");
+									actionLimpar.actionPerformed(arg0);
+								} else {
+									lblAviso.setText("Houve algum problema na alteração");
+								}
+							} catch (NumberFormatException e) {
+								lblAviso.setText("Digite apenas caracteres numéricos em campos numéricos");
 							}
 						}
 
