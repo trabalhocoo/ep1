@@ -63,7 +63,7 @@ public class EditarSessaoFrame extends JFrame {
 		getContentPane().add(lblEscolhaUmaSesso);
 
 		final JLabel lblAviso = new JLabel("");// vazio por enquanto
-		lblAviso.setBounds(34, 18, 298, 14);
+		lblAviso.setBounds(34, 18, 453, 14);
 		getContentPane().add(lblAviso);
 
 		sessaoField = new JTextField();
@@ -262,8 +262,10 @@ public class EditarSessaoFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Sessao sessaoSelecionada;
 				if (sessaoField.getText().equals("")) {
+					lblAviso.setForeground(Color.red);
 					lblAviso.setText("Por favor, preencha o campo numero da Sessão.");
 				} else if (!sessaoField.getText().matches("^[0-9]")) {
+					lblAviso.setForeground(Color.red);
 					lblAviso.setText("Por favor, digite uma entrada válida");
 					actionLimpar.actionPerformed(arg0);
 				} else {
@@ -271,6 +273,7 @@ public class EditarSessaoFrame extends JFrame {
 					sessaoSelecionada = Banco.obterSessao(Integer
 							.parseInt(sessaoField.getText()));
 					if (sessaoSelecionada == null) {
+						lblAviso.setForeground(Color.red);
 						lblAviso.setText("A sessão de numero "
 								+ sessaoField.getText() + " não existe");
 					} else {
@@ -291,6 +294,7 @@ public class EditarSessaoFrame extends JFrame {
 								|| "".equals(campoMinuto)
 								|| "".equals(campoDia) || "".equals(campoMes)
 								|| "".equals(campoAno)) {
+							lblAviso.setForeground(Color.red);
 							lblAviso.setText("Por favor, preencha todos os campos.");
 						} else {
 							try {
@@ -299,37 +303,51 @@ public class EditarSessaoFrame extends JFrame {
 								int dia = Integer.parseInt(campoDia);
 								int hora = Integer.parseInt(campoHora);
 								int minuto = Integer.parseInt(campoMinuto);
-
-								Calendar dataOriginal = Calendar.getInstance();
-								dataOriginal.set(ano, mes, dia, hora, minuto);
-
-								String nome = campoFilme;
 								int numSala = Integer.parseInt(campoSala);
 								double preco = Double.parseDouble(campoPreco);
 								int disp = Integer.parseInt(campoDisp);
 
-								ArrayList<Object> dadosDeSessao = new ArrayList<Object>();
-								dadosDeSessao.add(dataOriginal);
-								dadosDeSessao.add(nome);
-								dadosDeSessao.add(ano);
-								dadosDeSessao.add(mes);
-								dadosDeSessao.add(dia);
-								dadosDeSessao.add(hora);
-								dadosDeSessao.add(minuto);
-								dadosDeSessao.add(numSala);
-								dadosDeSessao.add(preco);
-								dadosDeSessao.add(disp);
-								dadosDeSessao.add(sessaoSelecionada.getNumero());
-
-								boolean funcionou = admin.alterarSessao(admin,
-										dadosDeSessao);
-								if (funcionou) {
-									lblAviso.setText("Sessao alterada com sucesso!");
-									actionLimpar.actionPerformed(arg0);
+								if (ano < 0 || mes < 0 || dia < 1 || hora < 0
+										|| minuto < 0 || numSala < 1
+										|| preco < 0 || disp < 0) {
+									lblAviso.setForeground(Color.red);
+									lblAviso.setText("Digite valores maiores que 0 e para dia maiores que 1");
 								} else {
-									lblAviso.setText("Houve algum problema na alteração");
+
+									Calendar dataOriginal = Calendar
+											.getInstance();
+									dataOriginal.set(ano, mes, dia, hora,
+											minuto);
+
+									String nome = campoFilme;
+
+									ArrayList<Object> dadosDeSessao = new ArrayList<Object>();
+									dadosDeSessao.add(dataOriginal);
+									dadosDeSessao.add(nome);
+									dadosDeSessao.add(ano);
+									dadosDeSessao.add(mes);
+									dadosDeSessao.add(dia);
+									dadosDeSessao.add(hora);
+									dadosDeSessao.add(minuto);
+									dadosDeSessao.add(numSala);
+									dadosDeSessao.add(preco);
+									dadosDeSessao.add(disp);
+									dadosDeSessao.add(sessaoSelecionada
+											.getNumero());
+
+									boolean funcionou = admin.alterarSessao(
+											admin, dadosDeSessao);
+									if (funcionou) {
+										lblAviso.setForeground(Color.red);
+										lblAviso.setText("Sessao alterada com sucesso!");
+										actionLimpar.actionPerformed(arg0);
+									} else {
+										lblAviso.setForeground(Color.red);
+										lblAviso.setText("Houve algum problema na alteração");
+									}
 								}
 							} catch (NumberFormatException e) {
+								lblAviso.setForeground(Color.red);
 								lblAviso.setText("Digite apenas caracteres numéricos em campos numéricos");
 							}
 						}

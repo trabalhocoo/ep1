@@ -221,7 +221,7 @@ public class CriarSessaoFrame extends JFrame {
 						|| campoPreco == null) {
 					lblAviso.setOpaque(false);
 					lblAviso.setForeground(Color.red);
-					lblAviso.setText("Por favor, digite todos os campos.");
+					lblAviso.setText("Por favor, preencha todos os campos.");
 				} else {
 					lblAviso.setOpaque(true);
 					try {
