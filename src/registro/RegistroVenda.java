@@ -1,39 +1,38 @@
 package registro;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Date;
 
+import objetos.Caixa;
 import objetos.Filme;
 import objetos.Sala;
-
+import objetos.Sessao;
+import objetos.Usuario;
 
 public class RegistroVenda extends Registrador {
 
-	void registrarVenda(Filme filme, String hora, Sala sala, Date data, double preco){
+	// void registrarVenda(Filme filme, String hora, Sala sala, Date data,
+	// double preco){
+	public static void registrarVenda(String texto,Sessao sessao, double preco, Usuario usuario, Caixa caixa) {
+		String informacoesVenda = "Vendeu ingresso Sessao:" + sessao.getNumero() + " Filme: " + sessao.getFilme().getNome()+ " Sala: " + sessao.getSala().getNumero() + " Preco " + sessao.getPreco();
+		String conteudo = texto;
+		String informacoesDeUsuarioEHora = "Nome do usuario: "+ usuario.getNome();
+		FileWriter fw;
 		try {
-			FileOutputStream fluxo = new FileOutputStream("registroVenda.txt");
-			ObjectOutputStream objarq = new ObjectOutputStream(fluxo);
-			objarq.writeObject(filme);
-			objarq.writeObject(hora);
-			objarq.writeObject(sala);
-			objarq.writeObject(data);
-			objarq.writeObject(preco);
-			objarq.writeObject("\n");
-			objarq.close();
+			fw = new FileWriter("registroVendas.txt", true);
+			fw.write(informacoesDeUsuarioEHora);
+			fw.write(informacoesVenda);
+			fw.write(conteudo + System.getProperty("line.separator"));
+			fw.close();
 		}
-		catch(IOException ioExc) {
-			System.out.println(ioExc.getMessage());
-			ioExc.printStackTrace();
+		// em caso de erro apreenta mensagem abaixo
+		catch (IOException e) {
+			System.out.println(e);
 		}
+	}
 
-	}
-	
-	void registrarVendaErrada(Filme filme, String hora, Sala sala, Date data, double preco){//pra q registrar a venda errada?
-		
-		
-		
-	}
-	
 }
