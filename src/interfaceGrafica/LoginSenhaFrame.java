@@ -84,39 +84,46 @@ public class LoginSenhaFrame extends JFrame{
 		
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//teria que logar e perguntar qual � o usuario que logou e depois decidir se aparece o usuarioframe ou adminframe
-				boolean logou = false;
-				boolean logado = Controlador.isLogado();
-				boolean tipoUser;
-				boolean reiniciar = true;
-				Controlador.setReiniciar(reiniciar);
-				Banco.recuperarDados();
-				int login = Integer.parseInt(textField.getText());
-				String senha = passwordField.getText();
-				Usuario usuario;
-				//System.out.println (tipoUser);
-				try{
-					logou = Controlador.logar(login, senha);
-				}
-				catch (Exception e){
-					System.out.print(e);
-				}
-				tipoUser = Controlador.tipoUsuario();
-				logado = Controlador.isLogado();
-				usuario = Controlador.obterUsuario(login, senha);
-				if(!logou){
+				if (textField.getText().equals("") || passwordField.getText().equals("")){
 					lblNewLabel_1.setOpaque(false);
 					lblNewLabel_1.setForeground(Color.red);
-					textField.setText("");
-					passwordField.setText("");
-					lblNewLabel_1.setText("O login e/ou senha invalidos.");
+					lblNewLabel_1.setText("Digite seu login e senha.");
 				}
-				else {
-					if (tipoUser){
-						AdminFrame admfr = new AdminFrame((Administrador)usuario);
-						admfr.showIt("Menu Admin");
-					} else {
-						caixa = Banco.obterCaixa(1);
+					
+				else{
+				//teria que logar e perguntar qual � o usuario que logou e depois decidir se aparece o usuarioframe ou adminframe
+					boolean logou = false;
+					boolean logado = Controlador.isLogado();
+					boolean tipoUser;
+					boolean reiniciar = true;
+					Controlador.setReiniciar(reiniciar);
+					Banco.recuperarDados();
+					int login = Integer.parseInt(textField.getText());
+					String senha = passwordField.getText();
+					Usuario usuario;
+					//System.out.println (tipoUser);
+					try{
+						logou = Controlador.logar(login, senha);
+					}
+					catch (Exception e){
+						System.out.print(e);
+				}
+					tipoUser = Controlador.tipoUsuario();
+					logado = Controlador.isLogado();
+					usuario = Controlador.obterUsuario(login, senha);
+					if(!logou){
+						lblNewLabel_1.setOpaque(false);
+						lblNewLabel_1.setForeground(Color.red);
+						textField.setText("");
+						passwordField.setText("");
+						lblNewLabel_1.setText("O login e/ou senha invalidos.");
+					}
+					else {
+						if (tipoUser){
+							AdminFrame admfr = new AdminFrame((Administrador)usuario);
+							admfr.showIt("Menu Admin");
+						} else {
+							caixa = Banco.obterCaixa(1);
 						/*
 						for (int i = 1; i<Banco.getCaixas().size(); i++){
 							caixa = Banco.obterCaixa(i);
@@ -128,8 +135,9 @@ public class LoginSenhaFrame extends JFrame{
 						*/
 						UsuarioFrame usfr = new UsuarioFrame(usuario, caixa);
 						usfr.showIt("Menu Usuario");
-					}
-					hideIt();
+						}
+						hideIt();
+				}
 				}
 			}
 		});
