@@ -33,7 +33,9 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 		horarioDeInicio.set(year, month, date, hourOfDay, minute);
 		horarioDeFim.set(year, month, date, hourOfDay, minute);
 		horarioDeFim.add(Calendar.MINUTE,tempoIntervalo);
+		System.out.println("numero antes = " + numeroDeSessoes);
 		numeroDeSessoes++;
+		System.out.println("numero depois = " + numeroDeSessoes);
 		numero = numeroDeSessoes;
 	}
 	
