@@ -84,15 +84,16 @@ public class Administrador extends Decorator implements Serializable {
 		int numSala = (Integer) dadosSessao.get(7);
 		double preco = (Double) dadosSessao.get(8);
 		int disp = (Integer) dadosSessao.get(9);
+		int numeroSessao = (Integer) dadosSessao.get(10);
 
 		Filme filme = Banco.obterFilme(nomeFilme);
 		Calendar inicio = Calendar.getInstance();
 		inicio.set(ano, mes, dia, hora, minuto);
-		Sessao sessaoAAlterar = Banco.obterSessao(inicio, numSala);
+		Sessao sessaoAAlterar = Banco.obterSessao(numeroSessao);
 		Sala salaASerUsada = Banco.obterSala(numSala);
 
 		boolean alterou = Banco.modificarSessao(sessaoAAlterar, filme, inicio,
-				salaASerUsada, preco);
+				salaASerUsada, preco, disp);
 		if (alterou == true) {
 			
 			RegistroOutros.registrarSessao(" Alterou sessao ", sessaoAAlterar,

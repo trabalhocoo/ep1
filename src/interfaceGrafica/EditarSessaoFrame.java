@@ -284,6 +284,7 @@ public class EditarSessaoFrame extends JFrame {
 						String campoMes = mesField.getText();
 						String campoAno = anoField.getText();
 						String campoDisp = dispField.getText();
+						
 
 						if ("".equals(campoFilme) || "".equals(campoSala)
 								|| "".equals(campoPreco)|| "".equals(campoHora)
@@ -316,6 +317,7 @@ public class EditarSessaoFrame extends JFrame {
 							dadosDeSessao.add(numSala);
 							dadosDeSessao.add(preco);
 							dadosDeSessao.add(disp);
+							dadosDeSessao.add(sessaoSelecionada.getNumero());
 							
 							boolean funcionou = admin.alterarSessao(admin, dadosDeSessao);
 							if(funcionou){

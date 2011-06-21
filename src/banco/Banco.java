@@ -130,7 +130,7 @@ public class Banco {
 	}
 
 	public static boolean modificarSessao(Sessao sessao, Filme filme,
-			Calendar horaInicio, Sala sala, double preco) {
+			Calendar horaInicio, Sala sala, double preco, int disp) {
 		Iterator<Sessao> it = sessoes.iterator();
 		Sessao sessaoEncontrada = null;
 		// essa contrucao eh usada para nao dar currentModificationException
@@ -144,6 +144,7 @@ public class Banco {
 			sessaoEncontrada.setHorarioDeInicio(horaInicio);
 			sessaoEncontrada.setSala(sala);
 			sessaoEncontrada.setPreco(preco);
+			sessaoEncontrada.setLugaresDisponiveis(disp);
 			return true;
 		}
 		return false;
