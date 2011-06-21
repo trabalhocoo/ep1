@@ -210,8 +210,15 @@ public class CriarFilmeFrame extends JFrame{
 						textGenero.setText("");
 						textEstreia.setText("");
 					}
+				catch (NumberFormatException e) {
+					System.out.println(e);
+					lblNewLabel_1.setOpaque(false);
+					lblNewLabel_1.setForeground(Color.red);
+					lblNewLabel_1.setText("Por favor, digite valores válidos para os campos."); 	
+				}
 				catch (Exception e){
 					System.out.print(e);
+					
 				}
 				}
 				
