@@ -101,9 +101,11 @@ public class EditarSalaFrame extends JFrame {
 					lblNewLabel_2
 							.setText("Digite apenas caracteres numéricos.");
 				} catch (Exception e) {
+					lblNewLabel_2
+					.setText("Ocorreu um erro. Tente reverificar os valores.");
 					System.out.println(e);
 				}
-				
+
 			}
 		});
 		btnAdicionar.setBounds(50, 259, 123, 23);
@@ -116,25 +118,36 @@ public class EditarSalaFrame extends JFrame {
 				lblNewLabel_2.setText("");
 				try {
 					int registro = Integer.parseInt(numSala.getText());
-					Sala salaAAlterar = Banco.obterSala(registro);
+					if (registro < 1) {
+						lblNewLabel_2.setOpaque(false);
+						lblNewLabel_2.setForeground(Color.red);
+						lblNewLabel_2.setText("Apenas são aceitos valores maiores que 0.");
+					} else {
+						Sala salaAAlterar = Banco.obterSala(registro);
+						lblNewLabel_2.setOpaque(false);
+						lblNewLabel_2.setForeground(Color.red);
+						if (salaAAlterar == null) {
+							lblNewLabel_2.setText("Sala nao encontrada.");
+							numSala.setText("");
+							capacidade.setText("");
+							chckbxSalad.setSelected(false);
+						} else {
+							Integer temp = salaAAlterar.getCapacidade();
+							String cap = temp.toString();
+							capacidade.setText(cap);
+							if (salaAAlterar.is3d())
+								chckbxSalad.setSelected(true);
+							else
+								chckbxSalad.setSelected(false);
+						}
+					}
+				} catch (NumberFormatException e) {
 					lblNewLabel_2.setOpaque(false);
 					lblNewLabel_2.setForeground(Color.red);
-					if (salaAAlterar == null) {
-						lblNewLabel_2.setText("Sala nao encontrada.");
-						numSala.setText("");
-						capacidade.setText("");
-						chckbxSalad.setSelected(false);
-					} else {
-						Integer temp = salaAAlterar.getCapacidade();
-						String cap = temp.toString();
-						capacidade.setText(cap);
-						if (salaAAlterar.is3d())
-							chckbxSalad.setSelected(true);
-						else
-							chckbxSalad.setSelected(false);
-					}
+					lblNewLabel_2.setText("Digite apenas valores numéricos.");
 				} catch (Exception e) {
 					System.out.println(e);
+					lblNewLabel_2.setText("Ocorreu um erro. Tente reverificar os valores.");
 				}
 			}
 		});
