@@ -68,6 +68,8 @@ public class EditarCaixaFrame extends JFrame{
 					lblAviso.setForeground(Color.red);
 					lblAviso.setText("Caixa nao encontrado.");
 					numeroCaixa.setText("");
+					textNumeroDoCaixa.setText("");
+					textSaldo.setText("");	
 				}
 			}
 		});

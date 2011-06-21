@@ -9,7 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import banco.Banco;
+
 import objetos.Administrador;
+import objetos.Caixa;
 import objetos.Usuario;
 
 public class RemoverCaixaFrame extends JFrame {
@@ -37,7 +40,7 @@ public class RemoverCaixaFrame extends JFrame {
 		codCaixa.setColumns(10);
 
 		final JLabel lblNewLabel_2 = new JLabel("");// vazio por enquanto
-		lblNewLabel_2.setBounds(33, 60, 298, 14);
+		lblNewLabel_2.setBounds(33, 60, 453, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("OK");
@@ -50,12 +53,18 @@ public class RemoverCaixaFrame extends JFrame {
 				}
 				else {
 					int numeroDoCaixa = Integer.parseInt(codCaixa.getText());
-					boolean removeu = admin.removerCaixa(numeroDoCaixa);//tem algo esquisito aki...(acho q esse metodo é gambiarra) Agora esta OK!!
-					if (removeu){
-						lblNewLabel_2.setText("Caixa removido com sucesso.");
+					Caixa caixa = Banco.obterCaixa(numeroDoCaixa);
+					if(caixa == null){
+						lblNewLabel_2.setText("Caixa nao encontrado");
 					}
-					else
-						lblNewLabel_2.setText("Caixa nao encontrado.");
+					else {
+						boolean removeu = admin.removerCaixa(numeroDoCaixa);//tem algo esquisito aki...(acho q esse metodo é gambiarra) Agora esta OK!!
+						if (removeu){
+							lblNewLabel_2.setText("Caixa removido com sucesso.");
+							}
+						else
+							lblNewLabel_2.setText("Não foi possível remover o caixa. Veja se ele ainda está em uso ou se ainda tem dinheiro.");
+					}
 				}
 			}
 		});

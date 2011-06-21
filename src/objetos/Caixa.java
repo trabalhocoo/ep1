@@ -22,7 +22,7 @@ public class Caixa implements Serializable, Comparable<Caixa>{
 	public Caixa(){
 		numeroDoCaixa = numeroDeCaixasCriados +1;
 		dinheiro = 0;
-		numeroDeCaixasCriados = numeroDeCaixasCriados+1;
+		numeroDeCaixasCriados++;
 		estaEmUso = false;
 	} 
 		
