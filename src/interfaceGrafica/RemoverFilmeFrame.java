@@ -1,8 +1,10 @@
 package interfaceGrafica;
 import java.awt.Color;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.TreeSet;
 
 import javax.swing.*;
@@ -47,7 +49,7 @@ public class RemoverFilmeFrame extends JFrame{
 		
 		
 		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(23, 30, 298, 14);
+		lblNewLabel_2.setBounds(23, 30, 493, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		//voltar
@@ -71,14 +73,16 @@ public class RemoverFilmeFrame extends JFrame{
 				boolean podeRemover = true;
 				String nomeDoFilmeASerRemovido = (String)listaDeFilmes.getSelectedItem();
 				for (Sessao sessao: sessoesDoBanco){
-					if (sessao.getFilme().getNome().equals(nomeDoFilmeASerRemovido) && sessao.getLugaresDisponiveis()!=sessao.getSala().getCapacidade()){
+					if (sessao.getFilme().getNome().equals(nomeDoFilmeASerRemovido) && sessao.getHorarioDeInicio().getTime().after(new Date())){
+						//System.out.println(sessao.getHorarioDeInicio().getTime());
+						//System.out.println(new Date());
 						podeRemover = false;
 						break;
 					}
 				}
 				
 				if(podeRemover == false){
-					lblNewLabel_2.setText("Filme não pode ser removida pois está sendo usada em uma sessao já vendida.");
+					lblNewLabel_2.setText("Filme não pode ser removida pois está sendo usada em uma sessao.");
 				}				
 				else if (listaDeFilmes.getSelectedIndex()==0){
 					lblNewLabel_2.setText("Por favor, escolha o filme que deseja remover.");

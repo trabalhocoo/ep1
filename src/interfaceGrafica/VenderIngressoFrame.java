@@ -132,36 +132,52 @@ public class VenderIngressoFrame extends JFrame{
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Sessao sessao = Banco.obterSessao(Integer.parseInt(textNumeroDaSessao.getText()));
-				if (sessao!= null){
-					Integer temp =  sessao.getSala().getNumero();
-					txtSala.setText(temp.toString());
-					txtFilme.setText(sessao.getFilme().getNome());
-					Date data = (Date) sessao.getHorarioDeInicio().getTime();
-					//System.out.println (data);
-					@SuppressWarnings("deprecation")
-					Integer temp2 = data.getHours();
-					@SuppressWarnings("deprecation")
-					Integer temp3 = data.getMinutes();
-					txtHorario.setText(temp2.toString() + ":" + temp3.toString());
-					@SuppressWarnings("deprecation")
-					Integer temp4 = data.getDate();
-					@SuppressWarnings("deprecation")
-					Integer temp5 = data.getMonth();
-					@SuppressWarnings("deprecation")
-					Integer temp6 = data.getYear()+1900;
-					txtDia.setText(temp4.toString());
-					String mes = getMonth(temp5);
-					//System.out.println(temp4);
-					txtMes.setText(mes);
-					txtAno.setText(temp6.toString());
-					Integer quantidadeDeLugaresDisponiveis = sessao.getLugaresDisponiveis();
-					txtPoltronas.setText(quantidadeDeLugaresDisponiveis.toString());
+				lblNewLabel_2.setOpaque(false);
+				lblNewLabel_2.setForeground(Color.red);
+				
+				if (textNumeroDaSessao.getText().equals("")){
+					lblNewLabel_2.setText("Digite um numero de sessao.");
+					txtSala.setText("");
+					txtAno.setText("");
+					txtDia.setText("");
+					txtFilme.setText("");
+					txtMes.setText("");
+					txtHorario.setText("");
+					txtQuantidade.setText("");
+					txtPoltronas.setText("");
+					textNumeroDaSessao.setText("");
 				}
-				else{
-					lblNewLabel_2.setOpaque(false);
-					lblNewLabel_2.setForeground(Color.red);
-					lblNewLabel_2.setText("Numero de sessao não encontrado.");
+				else {
+					lblNewLabel_2.setText("");
+					Sessao sessao = Banco.obterSessao(Integer.parseInt(textNumeroDaSessao.getText()));
+					if (sessao!= null){
+						Integer temp =  sessao.getSala().getNumero();
+						txtSala.setText(temp.toString());
+						txtFilme.setText(sessao.getFilme().getNome());
+						Date data = (Date) sessao.getHorarioDeInicio().getTime();
+						//System.out.println (data);
+						@SuppressWarnings("deprecation")
+						Integer temp2 = data.getHours();
+						@SuppressWarnings("deprecation")
+						Integer temp3 = data.getMinutes();
+						txtHorario.setText(temp2.toString() + ":" + temp3.toString());
+						@SuppressWarnings("deprecation")
+						Integer temp4 = data.getDate();
+						@SuppressWarnings("deprecation")
+						Integer temp5 = data.getMonth();
+						@SuppressWarnings("deprecation")
+						Integer temp6 = data.getYear()+1900;
+						txtDia.setText(temp4.toString());
+						String mes = getMonth(temp5);
+						//System.out.println(temp4);
+						txtMes.setText(mes);
+						txtAno.setText(temp6.toString());
+						Integer quantidadeDeLugaresDisponiveis = sessao.getLugaresDisponiveis();
+						txtPoltronas.setText(quantidadeDeLugaresDisponiveis.toString());
+					}
+					else{
+						lblNewLabel_2.setText("Numero de sessao não encontrado.");
+					}
 				}
 					
 			}
