@@ -1,5 +1,6 @@
 package interfaceGrafica;
 import javax.swing.*;
+import java.util.Date;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -31,40 +32,48 @@ public class RemoverSessaoFrame extends JFrame {
 		getContentPane().setBackground(Color.white); //mudar a cor
 		
 		final JLabel lblErro = new JLabel("");// vazio por enquanto
-		lblErro.setBounds(33, 60, 298, 14);
+		lblErro.setBounds(22, 60, 464, 14);
 		getContentPane().add(lblErro);
 		
 		JLabel lblDigiteONumero = new JLabel("Escolha o numero sessao que deseja remover:");
-		lblDigiteONumero.setBounds(22, 38, 253, 14);
+		lblDigiteONumero.setBounds(22, 38, 288, 14);
 		getContentPane().add(lblDigiteONumero);
 		
 		//campo para preencher o numero da sessao
 		codSessao = new JTextField();
-		codSessao.setBounds(274, 35, 86, 20);
+		codSessao.setBounds(320, 35, 86, 20);
 		getContentPane().add(codSessao);
 		codSessao.setColumns(10);
 		
 		JButton btnOK = new JButton("OK");
 		btnOK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int registro = Integer.parseInt(codSessao.getText());
 				lblErro.setOpaque(false);
 				lblErro.setForeground(Color.red);
 				if(codSessao.getText().equals("")){
 					lblErro.setText("Por favor informar a sessao que deseja remover.");
 				}
 				else {
+					int registro = Integer.parseInt(codSessao.getText());
 					int numeroDaSessao = Integer.parseInt(codSessao.getText());
-					/*boolean removeu = admin.removerSessao(admin,numeroDaSessao);
+					Sessao sessaoARemover = Banco.obterSessao(Integer.parseInt(codSessao.getText()));
+					if(sessaoARemover != null){
+						if (sessaoARemover.getVendeu()== true && sessaoARemover.getHorarioDeInicio().getTime().after(new Date())){
+							lblErro.setText("Sessao não pode ser removida pois já foi vendido ingresso.");
+						}
+						else {
+					boolean removeu = admin.removerSessao(admin,numeroDaSessao);
 					if (removeu){
-						lblErro.setText("Sessao Removida com sucesso!");
+						lblErro.setText("Sessao removida com sucesso!");
 					}
 					else
-						lblErro.setText("Sessao não encontrada!");*/
+						lblErro.setText("Sessao nao encontrada!");
+						}
+					}
 				}
 			}
 		});
-		btnOK.setBounds(416, 34, 89, 23);
+		btnOK.setBounds(416, 34, 73, 23);
 		getContentPane().add(btnOK);
 		
 		//voltar

@@ -139,6 +139,8 @@ public abstract class Usuario implements Serializable, Comparable<Usuario> {
 			sessaoAAlterar.setLugaresDisponiveis(quantidadeFinal);
 			double dinheiro = quantidadeDeIngressosASerVendida * sessaoAAlterar.getPreco();
 			caixa.setDinheiro(caixa.getDinheiro() + dinheiro);
+			sessaoAAlterar.setVendeu(true);
+			System.out.println (sessaoAAlterar.getVendeu());
 			return true;
 		} else {
 			return false;

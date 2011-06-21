@@ -109,7 +109,7 @@ public class Administrador extends Decorator implements Serializable {
 		// Aqui havera o horario de inicio da sessao e a sala
 		// int year, int month, int date, int hourOfDay, int minute, int numSala
 		// e retornar nessa sequencia
-		ArrayList<Integer> dadosSessao = InterfaceCinema.removerSessao();
+		/*ArrayList<Integer> dadosSessao = InterfaceCinema.removerSessao();
 		int ano = dadosSessao.get(0);
 		int mes = dadosSessao.get(1);
 		int dia = dadosSessao.get(2);
@@ -118,11 +118,11 @@ public class Administrador extends Decorator implements Serializable {
 		int numSala = dadosSessao.get(5);
 
 		Calendar inicio = Calendar.getInstance();
-		inicio.set(ano, mes, dia, hora, minutos);
+		inicio.set(ano, mes, dia, hora, minutos);*/
 
 		boolean removeu = Banco.removerSessao(nroSessao);
 		if (removeu == true) {
-			RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);
+			//RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);
 			return true;
 		} else
 			return false;

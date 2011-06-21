@@ -19,6 +19,7 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 	private double preco;
 	private int lugaresDisponiveis;
 	public static int tempoIntervalo = 15;
+	private boolean vendeu = false;
 	
 	Sessao(Filme filme, int year, int month, int date, int hourOfDay, int minute, Sala sala, double preco, int disp)
 	{
@@ -34,6 +35,14 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 		horarioDeFim.add(Calendar.MINUTE,tempoIntervalo);
 		numeroDeSessoes++;
 		numero = numeroDeSessoes;
+	}
+	
+	public boolean getVendeu() {
+		return vendeu;
+	}
+
+	public void setVendeu(boolean vendeu) {
+		this.vendeu = vendeu;
 	}
 
 	public int getNumero() {

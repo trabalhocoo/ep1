@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 import java.util.TreeSet;
 
 public class RemoverSalaFrame extends JFrame{
@@ -36,28 +37,28 @@ public class RemoverSalaFrame extends JFrame{
 		codSala.setColumns(10);
 		
 		final JLabel lblNewLabel_2 = new JLabel("");//vazio por enquanto
-		lblNewLabel_2.setBounds(23, 50, 298, 14);
+		lblNewLabel_2.setBounds(23, 50, 453, 14);
 		getContentPane().add(lblNewLabel_2);
 		
 		JButton btnNewButton = new JButton("OK");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				lblNewLabel_2.setOpaque(false);
+				lblNewLabel_2.setForeground(Color.red);
 				int registro = Integer.parseInt(codSala.getText());
 				boolean podeRemover = true;
 				TreeSet<Sessao> sessoesDoBanco = Banco.getSessoes();
 				for (Sessao sessao: sessoesDoBanco){
-					if (sessao.getSala().getNumero() == registro && sessao.getLugaresDisponiveis()!=sessao.getSala().getCapacidade()){
+					if (sessao.getSala().getNumero() == registro && sessao.getHorarioDeInicio().getTime().after(new Date())){
 						podeRemover = false;
 						break;
 					}
 				}
 				if(podeRemover == false){
-					lblNewLabel_2.setText("Sala não pode ser removida pois está sendo usada em uma sessao já vendida.");
+					lblNewLabel_2.setText("Sala não pode ser removida pois está sendo usada em uma sessao.");
 				}
 				else {
 					boolean removeu = admin.removerSala(registro);
-					lblNewLabel_2.setOpaque(false);
-					lblNewLabel_2.setForeground(Color.red);
 					if (removeu){
 						lblNewLabel_2.setText("Sala removida com sucesso.");
 					}
