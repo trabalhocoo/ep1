@@ -127,28 +127,25 @@ public abstract class Usuario implements Serializable, Comparable<Usuario> {
 	}
 
 	public boolean venderIngresso(ArrayList dadosSessaoASerVendida, Caixa caixa) {
-		Sessao sessaoAAlterar = Banco.obterSessao((Integer) dadosSessaoASerVendida.get(0));
-		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida.get(1);
+		Sessao sessaoAAlterar = Banco
+				.obterSessao((Integer) dadosSessaoASerVendida.get(0));
+		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida
+				.get(1);
 		int quantidadeFinal = 0;
-		boolean haSecao = true;
-		if (sessaoAAlterar == null)
-			haSecao = false;
-		else
-			quantidadeFinal = sessaoAAlterar.getLugaresDisponiveis()- quantidadeDeIngressosASerVendida;
-		if (haSecao == true && quantidadeFinal >= 0 && caixa != null) {
-			sessaoAAlterar.setLugaresDisponiveis(quantidadeFinal);
-			double dinheiro = quantidadeDeIngressosASerVendida * sessaoAAlterar.getPreco();
-			caixa.setDinheiro(caixa.getDinheiro() + dinheiro);
-			sessaoAAlterar.setVendeu(true);
-			System.out.println (sessaoAAlterar.getVendeu());
-			return true;
-		} else {
-			return false;
-		}
-		//Calendar horaInicio = Calendar.getInstance();
-		// Filme filme, int year, int month, int date, int hourOfDay, int
-		// minute, Sala sala, double preco, int disp
+		if (sessaoAAlterar != null) {
+			quantidadeFinal = sessaoAAlterar.getLugaresDisponiveis()
+					- quantidadeDeIngressosASerVendida;
 
+			if (quantidadeFinal >= 0 && caixa != null) {
+				sessaoAAlterar.setLugaresDisponiveis(quantidadeFinal);
+				double dinheiro = quantidadeDeIngressosASerVendida
+						* sessaoAAlterar.getPreco();
+				caixa.setDinheiro(caixa.getDinheiro() + dinheiro);
+				sessaoAAlterar.setVendeu(true);
+				return true;
+			} 
+		}
+		return false;
 	}
 
 	@Override

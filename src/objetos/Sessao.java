@@ -84,7 +84,7 @@ public class Sessao implements Serializable, Comparable<Sessao> {
 	}
 
 	public void setLugaresDisponiveis(int lugaresDisponiveis) {
-		if (lugaresDisponiveis > 0)
+		if (lugaresDisponiveis >= 0)
 			this.lugaresDisponiveis = lugaresDisponiveis;
 	}
 
