@@ -127,13 +127,14 @@ public class LoginSenhaFrame extends JFrame {
 									break;
 								}
 							}
+							
 							if (Controlador.getCaixaUsado() == null) {
 								Caixa caixa = new Caixa();
 								boolean salvou = Banco.addCaixa(caixa);
 								if (salvou) {
 									caixa.setEstaEmUso(true);
 									Controlador.setCaixaUsado(caixa);
-								}else{
+								} else{
 									lblNewLabel_1.setOpaque(false);
 									lblNewLabel_1.setForeground(Color.red);
 									lblNewLabel_1.setText("Houve um problema ao atribuir um Caixa.");

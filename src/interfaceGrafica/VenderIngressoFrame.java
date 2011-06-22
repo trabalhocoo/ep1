@@ -246,7 +246,7 @@ public class VenderIngressoFrame extends JFrame {
 								.parseInt(textNumeroDaSessao.getText()));
 						dadosSessaoASerVendida.add(Integer
 								.parseInt(txtQuantidade.getText()));
-						boolean vendeu = usuarioLogado.venderIngresso(
+						boolean vendeu = usuarioLogado.venderIngresso(usuarioLogado,
 								dadosSessaoASerVendida, caixa);
 						if (vendeu == true) {
 							lblNewLabel_2

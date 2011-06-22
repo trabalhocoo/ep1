@@ -4,7 +4,7 @@ import java.text.ParseException;
 import objetos.Administrador;
 import objetos.Caixa;
 import objetos.Usuario;
-import registro.RegistroAcesso;
+import registro.RegistroLogin;
 import banco.*;
 
 public class Controlador{
@@ -29,7 +29,8 @@ public class Controlador{
 			if(user.getSenha().equals(senha)){
 				isLogado = true;
 				tipoUsuario = user.isEhAdministrador();
-				RegistroAcesso.registrarAcesso(" Usuario entrou no sistema ", user);
+				RegistroLogin r = new RegistroLogin();
+				r.registrarAcesso(null, " Usuario entrou no sistema ", user);
 				return true;
 			}
 		}
@@ -42,7 +43,8 @@ public class Controlador{
 	}
 
 	public static void deslogar(Usuario usuario){
-		RegistroAcesso.registrarAcesso(" Usuario saiu do sistema ", usuario);
+		RegistroLogin r = new RegistroLogin ();
+		r.registrarAcesso(null, " Usuario saiu do sistema ", usuario);
 		tipoUsuario = false;
 		isLogado = false;
 		if(caixaUsado != null){

@@ -9,7 +9,8 @@ import java.util.InputMismatchException;
 import java.util.ListIterator;
 import java.util.TreeSet;
 
-import registro.RegistroOutros;
+import registro.RegistrarSessao;
+import registro.RegistroFilme;
 
 import visualizacao.Exibir;
 import visualizacao.InterfaceCinema;
@@ -66,7 +67,8 @@ public class Administrador extends Decorator implements Serializable {
 				sala, preco, sala.getCapacidade());
 		boolean adicionou = Banco.addSessao(sessaoNova);
 		if (adicionou) {
-			RegistroOutros.registrarSessao(" Registrou sessao ", sessaoNova,
+			RegistrarSessao r = new RegistrarSessao ();
+			r.registrarAcesso(sessaoNova, " Registrou sessao ",
 					usuario);
 			return true;
 		} else
@@ -96,9 +98,8 @@ public class Administrador extends Decorator implements Serializable {
 		boolean alterou = Banco.modificarSessao(sessaoAAlterar, filme, inicio,
 				salaASerUsada, preco, disp);
 		if (alterou == true) {
-
-			RegistroOutros.registrarSessao(" Alterou sessao ", sessaoAAlterar,
-					usuario);
+			RegistrarSessao r = new RegistrarSessao();
+			r.registrarAcesso(sessaoAAlterar, " Alterou sessao ", usuario);
 			return true;
 		} else
 			return false;
@@ -118,9 +119,12 @@ public class Administrador extends Decorator implements Serializable {
 
 		Calendar inicio = Calendar.getInstance();
 		inicio.set(ano, mes, dia, hora, minutos);*/
+		Sessao sessaoAAlterar = Banco.obterSessao(nroSessao);
 
 		boolean removeu = Banco.removerSessao(nroSessao);
 		if (removeu == true) {
+			RegistrarSessao r = new RegistrarSessao();
+			r.registrarAcesso(sessaoAAlterar, " Removeu sessao ", usuario);
 			//RegistroOutros.registrarSessao(" Removeu sessao ", null, usuario);
 			return true;
 		} else
@@ -191,7 +195,7 @@ public class Administrador extends Decorator implements Serializable {
 
 	}
 
-	public void adicionarFilme(ArrayList dadosFilme) {
+	public void adicionarFilme(Usuario usuario, ArrayList dadosFilme) {
 		// String nome, int faixa, Date duracao, String diretor, String sinopse,
 		// String genero, String estreia, boolean is3d
 		String nome = (String) dadosFilme.get(0);
@@ -206,10 +210,12 @@ public class Administrador extends Decorator implements Serializable {
 		Filme filmeNovo = new Filme(nome, faixa, duracao, diretor, sinopse,
 				genero, estreia, eh3d);
 		Banco.adicionarFilme(filmeNovo);
+		RegistroFilme r = new RegistroFilme();
+		r.registrarAcesso(filmeNovo, " Adicionou filme ", usuario);
 		// System.out.println("Filme adicionado com sucesso.\n");
 	}
 
-	public boolean alterarFilme(ArrayList dadosFilme) {
+	public boolean alterarFilme(Usuario usuario, ArrayList dadosFilme) {
 		String nomeDoFilme = (String) dadosFilme.get(0);
 		Filme filmeAAlterar = Banco.obterFilme(nomeDoFilme);
 
@@ -224,12 +230,21 @@ public class Administrador extends Decorator implements Serializable {
 
 		boolean alterou = Banco.modificarFilme(filmeAAlterar, novoNome,
 				faixaEtaria, duracao, diretor, sinopse, genero, estreia, is3d);
+		if (alterou == true){
+			RegistroFilme r = new RegistroFilme();
+			r.registrarAcesso(filmeAAlterar, " Alterou filme ", usuario);
+		}
 		return alterou;
 	}
 
-	public boolean removerFilme(String nomeDoFilme) {
+	public boolean removerFilme(Usuario usuario, String nomeDoFilme) {
 		Filme filme = Banco.obterFilme(nomeDoFilme);
 		boolean removeu = Banco.removerFilme(filme);
+		
+		if (removeu == true){
+			RegistroFilme r = new RegistroFilme();
+			r.registrarAcesso(filme, " Removeu filme ", usuario);
+		}
 		/*
 		 * if (removeu == true)
 		 * System.out.println("Filme removido com sucesso.\n"); else

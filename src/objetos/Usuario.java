@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.TreeSet;
+
+import registro.RegistroVenda;
 import visualizacao.Exibir;
 import visualizacao.InterfaceCinema;
 import banco.*;
@@ -126,7 +128,7 @@ public abstract class Usuario implements Serializable, Comparable<Usuario> {
 		Controlador.setLogado(false);
 	}
 
-	public boolean venderIngresso(ArrayList dadosSessaoASerVendida, Caixa caixa) {
+	public boolean venderIngresso(Usuario usuario, ArrayList dadosSessaoASerVendida, Caixa caixa) {
 		Sessao sessaoAAlterar = Banco
 				.obterSessao((Integer) dadosSessaoASerVendida.get(0));
 		int quantidadeDeIngressosASerVendida = (Integer) dadosSessaoASerVendida
@@ -142,6 +144,7 @@ public abstract class Usuario implements Serializable, Comparable<Usuario> {
 						* sessaoAAlterar.getPreco();
 				caixa.setDinheiro(caixa.getDinheiro() + dinheiro);
 				sessaoAAlterar.setVendeu(true);
+				RegistroVenda.registrarVenda(" Vendeu ingresso ", sessaoAAlterar, sessaoAAlterar.getPreco(), usuario, caixa);
 				return true;
 			} 
 		}

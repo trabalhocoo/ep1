@@ -196,7 +196,7 @@ public class CriarFilmeFrame extends JFrame{
 						dadosFilme.add(eh3D);
 						// String nome, int faixa, Date duracao, String diretor, String sinopse,
 						// String genero, String estreia, boolean is3d
-						admin.adicionarFilme(dadosFilme);
+						admin.adicionarFilme(usuarioLogado, dadosFilme);
 						lblNewLabel_1.setOpaque(false);
 						lblNewLabel_1.setForeground(Color.red);
 						lblNewLabel_1.setText("Filme " + nome + " criado com sucesso."); 

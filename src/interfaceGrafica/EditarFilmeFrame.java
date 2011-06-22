@@ -115,7 +115,7 @@ public class EditarFilmeFrame extends JFrame{
 						arrayListDeFilme.add(genero.getText());
 						arrayListDeFilme.add(dataDaEstreia.getText());
 						arrayListDeFilme.add(checkBox.isSelected());
-						alterou = admin.alterarFilme(arrayListDeFilme);
+						alterou = admin.alterarFilme(usuarioLogado, arrayListDeFilme);
 					
 					} catch (Exception e){
 						System.out.println(e);

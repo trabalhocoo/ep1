@@ -21,7 +21,7 @@ public class RemoverFilmeFrame extends JFrame{
 	private JTextField textField;
 	private JComboBox listaDeFilmes;
 	
-	public RemoverFilmeFrame(Usuario usuarioLogado) {
+	public RemoverFilmeFrame(final Usuario usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 		final Administrador admin = (Administrador)usuarioLogado;
 		this.setSize(550,380);
@@ -87,7 +87,7 @@ public class RemoverFilmeFrame extends JFrame{
 				else if (listaDeFilmes.getSelectedIndex()==0){
 					lblNewLabel_2.setText("Por favor, escolha o filme que deseja remover.");
 			} else {
-				boolean removeu = admin.removerFilme(nomeDoFilmeASerRemovido);
+				boolean removeu = admin.removerFilme(usuarioLogado, nomeDoFilmeASerRemovido);
 				
 				if (removeu){
 					lblNewLabel_2.setText("O filme " + nomeDoFilmeASerRemovido + " foi removido com sucesso.");
